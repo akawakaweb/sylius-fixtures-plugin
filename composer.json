@@ -9,7 +9,9 @@
     "license": "MIT",
     "require": {
         "php": "^8.0",
-        "sylius/core-bundle": "^1.12"
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
+        "sylius/core-bundle": "^1.12",
+        "zenstruck/foundry": "^1.31"
     },
     "require-dev": {
         "behat/behat": "^3.6.1",
