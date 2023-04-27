@@ -22,7 +22,6 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use Imagine\File\LoaderInterface;
 
 final class ShopConfigurationFixture extends Fixture implements FixtureGroupInterface, OrderedFixtureInterface
 {

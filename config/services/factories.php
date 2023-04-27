@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Configurator\FactoryConfigurator;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\AddressFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CountryFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CurrencyFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CustomerFactory;
@@ -30,6 +31,16 @@ return static function (ContainerConfigurator $container) {
             ->args([
                 service('sylius.resource_registry'),
             ])
+
+        ->set('sylius.shop_fixtures.factory.address', AddressFactory::class)
+            ->args([
+//                service('sylius.factory.address'),
+//                service('sylius.shop_fixtures.default_values.address'),
+//                service('sylius.shop_fixtures.transformer.address'),
+//                service('sylius.shop_fixtures.updater.address'),
+            ])
+            ->tag('foundry.factory')
+        ->alias(AddressFactory::class, 'sylius.shop_fixtures.factory.address')
 
         ->set('sylius.shop_fixtures.factory.country', CountryFactory::class)
             ->args([

@@ -9,7 +9,6 @@
  * file that was distributed with this source code.
  */
 
-
 declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
@@ -90,7 +89,7 @@ final class ShopUserFactory extends ModelFactory implements FactoryWithModelClas
     protected function initialize(): self
     {
         return $this
-            ->instantiateWith(function(array $attributes): ShopUserInterface {
+            ->instantiateWith(function (array $attributes): ShopUserInterface {
                 $shopUser = $this->shopUserFactory->createNew();
                 $customer = $this->customerFactory->createNew();
 

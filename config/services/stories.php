@@ -18,6 +18,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultCustomerGroupsStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultGeographicalStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultLocalesStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultShopUsersStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomAddressesStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomShopUsersStory;
 
 return static function (ContainerConfigurator $container) {
@@ -41,6 +42,10 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.story.default_shop_users', DefaultShopUsersStory::class)
             ->tag('foundry.story')
         ->alias(DefaultShopUsersStory::class, 'sylius.shop_fixtures.foundry.story.default_shop_users')
+
+        ->set('sylius.shop_fixtures.story.random_addresses', RandomAddressesStory::class)
+            ->tag('foundry.story')
+        ->alias(RandomAddressesStory::class, 'sylius.shop_fixtures.foundry.story.random_addresses')
 
         ->set('sylius.shop_fixtures.story.random_shop_users', RandomShopUsersStory::class)
             ->tag('foundry.story')
