@@ -46,7 +46,6 @@ final class ShopConfigurationFixtureTest extends KernelTestCase
         return self::getContainer()->get('sylius.repository.currency');
     }
 
-
     private function getCustomerGroupRepository(): RepositoryInterface
     {
         return static::getContainer()->get('sylius.repository.customer_group');

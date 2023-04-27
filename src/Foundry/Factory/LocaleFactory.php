@@ -90,7 +90,7 @@ final class LocaleFactory extends ModelFactory implements FactoryWithModelClassA
             ->beforeInstantiate(function (array $attributes): array {
                 return $this->transformer->transform($attributes);
             })
-            ->instantiateWith(function(): LocaleInterface {
+            ->instantiateWith(function (): LocaleInterface {
                 /** @var LocaleInterface $locale */
                 $locale = $this->factory->createNew();
 
@@ -99,7 +99,7 @@ final class LocaleFactory extends ModelFactory implements FactoryWithModelClassA
             ->afterInstantiate(function (LocaleInterface $locale, array $attributes): void {
                 $this->updater->update($locale, $attributes);
             })
-            ;
+        ;
     }
 
     protected static function getClass(): string

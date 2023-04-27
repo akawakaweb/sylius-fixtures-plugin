@@ -8,6 +8,8 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\CountryTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\CountryTransformerInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\CurrencyTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\CurrencyTransformerInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\CustomerTransformer;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\CustomerTransformerInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\LocaleTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\LocaleTransformerInterface;
 
@@ -18,6 +20,9 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.transformer.currency', CurrencyTransformer::class)
         ->alias(CurrencyTransformerInterface::class, 'sylius.shop_fixtures.transformer.currency')
+
+        ->set('sylius.shop_fixtures.transformer.customer', CustomerTransformer::class)
+        ->alias(CustomerTransformerInterface::class, 'sylius.shop_fixtures.transformer.customer')
 
         ->set('sylius.shop_fixtures.transformer.locale', LocaleTransformer::class)
         ->alias(LocaleTransformerInterface::class, 'sylius.shop_fixtures.transformer.locale')

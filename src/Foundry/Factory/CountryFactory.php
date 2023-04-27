@@ -91,7 +91,7 @@ final class CountryFactory extends ModelFactory implements FactoryWithModelClass
             ->beforeInstantiate(function (array $attributes): array {
                 return $this->transformer->transform($attributes);
             })
-            ->instantiateWith(function(): CountryInterface {
+            ->instantiateWith(function (): CountryInterface {
                 /** @var CountryInterface $country */
                 $country = $this->factory->createNew();
 

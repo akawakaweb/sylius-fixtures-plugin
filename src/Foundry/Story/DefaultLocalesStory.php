@@ -21,7 +21,7 @@ final class DefaultLocalesStory extends Story
 {
     public function build(): void
     {
-        Factory::delayFlush(function() {
+        Factory::delayFlush(function () {
             foreach ($this->getLocaleCodes() as $currencyCode) {
                 LocaleFactory::new()->withCode($currencyCode)->create();
             }

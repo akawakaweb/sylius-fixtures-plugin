@@ -21,7 +21,7 @@ final class DefaultCurrenciesStory extends Story
 {
     public function build(): void
     {
-        Factory::delayFlush(function() {
+        Factory::delayFlush(function () {
             foreach ($this->getCurrencyCodes() as $currencyCode) {
                 CurrencyFactory::new()->withCode($currencyCode)->create();
             }

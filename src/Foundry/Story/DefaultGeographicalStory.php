@@ -21,7 +21,7 @@ final class DefaultGeographicalStory extends Story
 {
     public function build(): void
     {
-        Factory::delayFlush(function() {
+        Factory::delayFlush(function () {
             foreach ($this->getCountryCodes() as $countryCode) {
                 CountryFactory::new()->withCode($countryCode)->create();
             }

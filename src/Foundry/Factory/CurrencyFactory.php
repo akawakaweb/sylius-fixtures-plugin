@@ -90,7 +90,7 @@ final class CurrencyFactory extends ModelFactory implements FactoryWithModelClas
             ->beforeInstantiate(function (array $attributes): array {
                 return $this->transformer->transform($attributes);
             })
-            ->instantiateWith(function(): CurrencyInterface {
+            ->instantiateWith(function (): CurrencyInterface {
                 /** @var CurrencyInterface $currency */
                 $currency = $this->factory->createNew();
 

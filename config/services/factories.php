@@ -16,6 +16,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Configurator\FactoryConfigurator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CountryFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CurrencyFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CustomerFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\FactoryWithModelClassAwareInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
 
@@ -48,6 +49,16 @@ return static function (ContainerConfigurator $container) {
             ])
             ->tag('foundry.factory')
         ->alias(CurrencyFactory::class, 'sylius.shop_fixtures.factory.currency')
+
+        ->set('sylius.shop_fixtures.factory.customer', CustomerFactory::class)
+            ->args([
+                service('sylius.factory.customer'),
+                service('sylius.shop_fixtures.default_values.customer'),
+                service('sylius.shop_fixtures.transformer.customer'),
+                service('sylius.shop_fixtures.updater.customer'),
+            ])
+            ->tag('foundry.factory')
+        ->alias(CustomerFactory::class, 'sylius.shop_fixtures.factory.customer')
 
         ->set('sylius.shop_fixtures.factory.locale', LocaleFactory::class)
             ->args([

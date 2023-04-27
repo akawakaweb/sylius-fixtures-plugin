@@ -13,13 +13,13 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultCurrenciesStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultCustomerGroupsStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultGeographicalStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultLocalesStory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultCurrenciesStory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultGeographicalStory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultLocalesStory;
 
 final class ShopConfigurationFixture extends Fixture implements FixtureGroupInterface
 {

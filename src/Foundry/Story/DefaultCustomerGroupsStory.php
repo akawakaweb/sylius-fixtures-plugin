@@ -21,7 +21,7 @@ final class DefaultCustomerGroupsStory extends Story
 {
     public function build(): void
     {
-        Factory::delayFlush(function() {
+        Factory::delayFlush(function () {
             CustomerGroupFactory::new()
                 ->withCode('retail')
                 ->withName('Retail')
