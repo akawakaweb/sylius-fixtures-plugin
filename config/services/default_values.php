@@ -12,6 +12,8 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\CustomerDefaultValues;
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\CustomerDefaultValuesInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\LocaleDefaultValues;
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\LocaleDefaultValuesInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ShopUserDefaultValues;
+use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ShopUserDefaultValuesInterface;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
@@ -26,5 +28,11 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.default_values.locale', LocaleDefaultValues::class)
         ->alias(LocaleDefaultValuesInterface::class, 'sylius.shop_fixtures.default_values.locale')
+
+        ->set('sylius.shop_fixtures.default_values.shop_user', ShopUserDefaultValues::class)
+            ->args([
+                service('sylius.shop_fixtures.default_values.customer'),
+            ])
+        ->alias(ShopUserDefaultValuesInterface::class, 'sylius.shop_fixtures.default_values.shop_user')
     ;
 };

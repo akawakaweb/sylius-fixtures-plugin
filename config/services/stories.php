@@ -17,6 +17,8 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultCurrenciesStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultCustomerGroupsStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultGeographicalStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultLocalesStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultShopUsersStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomShopUsersStory;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
@@ -35,5 +37,13 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.story.default_locales', DefaultLocalesStory::class)
             ->tag('foundry.story')
         ->alias(DefaultLocalesStory::class, 'sylius.shop_fixtures.foundry.story.default_locales')
+
+        ->set('sylius.shop_fixtures.story.default_shop_users', DefaultShopUsersStory::class)
+            ->tag('foundry.story')
+        ->alias(DefaultShopUsersStory::class, 'sylius.shop_fixtures.foundry.story.default_shop_users')
+
+        ->set('sylius.shop_fixtures.story.random_shop_users', RandomShopUsersStory::class)
+            ->tag('foundry.story')
+        ->alias(RandomShopUsersStory::class, 'sylius.shop_fixtures.foundry.story.random_shop_users')
     ;
 };

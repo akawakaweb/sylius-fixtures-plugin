@@ -19,6 +19,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CurrencyFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CustomerFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\FactoryWithModelClassAwareInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ShopUserFactory;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
@@ -69,5 +70,16 @@ return static function (ContainerConfigurator $container) {
             ])
             ->tag('foundry.factory')
         ->alias(LocaleFactory::class, 'sylius.shop_fixtures.factory.locale')
+
+        ->set('sylius.shop_fixtures.factory.shop_user', ShopUserFactory::class)
+            ->args([
+                service('sylius.factory.shop_user'),
+                service('sylius.factory.customer'),
+                service('sylius.shop_fixtures.default_values.shop_user'),
+//                service('sylius.shop_fixtures.transformer.shop_user'),
+                service('sylius.shop_fixtures.updater.shop_user'),
+            ])
+            ->tag('foundry.factory')
+        ->alias(ShopUserFactory::class, 'sylius.shop_fixtures.factory.shop_user')
     ;
 };

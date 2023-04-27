@@ -12,6 +12,8 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CustomerUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CustomerUpdaterInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\LocaleUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\LocaleUpdaterInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShopUserUpdater;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShopUserUpdaterInterface;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
@@ -26,5 +28,11 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.updater.locale', LocaleUpdater::class)
         ->alias(LocaleUpdaterInterface::class, 'sylius.shop_fixtures.updater.locale')
+
+        ->set('sylius.shop_fixtures.updater.shop_user', ShopUserUpdater::class)
+            ->args([
+                service('sylius.shop_fixtures.updater.customer'),
+            ])
+        ->alias(ShopUserUpdaterInterface::class, 'sylius.shop_fixtures.updater.shop_user')
     ;
 };
