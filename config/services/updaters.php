@@ -14,6 +14,8 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\LocaleUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\LocaleUpdaterInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShopUserUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShopUserUpdaterInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\TaxonUpdater;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\TaxonUpdaterInterface;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
@@ -34,5 +36,11 @@ return static function (ContainerConfigurator $container) {
                 service('sylius.shop_fixtures.updater.customer'),
             ])
         ->alias(ShopUserUpdaterInterface::class, 'sylius.shop_fixtures.updater.shop_user')
+
+        ->set('sylius.shop_fixtures.updater.taxon', TaxonUpdater::class)
+            ->args([
+                service('sylius.generator.taxon_slug'),
+            ])
+        ->alias(TaxonUpdaterInterface::class, 'sylius.shop_fixtures.updater.taxon')
     ;
 };

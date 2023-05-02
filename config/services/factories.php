@@ -21,6 +21,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CustomerFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\FactoryWithModelClassAwareInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ShopUserFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxonFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ZoneFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ZoneMemberFactory;
 
@@ -94,6 +95,18 @@ return static function (ContainerConfigurator $container) {
             ])
             ->tag('foundry.factory')
         ->alias(ShopUserFactory::class, 'sylius.shop_fixtures.factory.shop_user')
+
+        ->set('sylius.shop_fixtures.factory.taxon', TaxonFactory::class)
+            ->args([
+                service('sylius.factory.taxon'),
+                service('sylius.repository.taxon'),
+//                service('sylius.shop_fixtures.default_values.taxon'),
+//                service('sylius.shop_fixtures.transformer.taxon'),
+                service('sylius.shop_fixtures.updater.taxon'),
+            ])
+            ->tag('foundry.factory')
+        ->alias(TaxonFactory::class, 'sylius.shop_fixtures.factory.taxon')
+
 
         ->set('sylius.shop_fixtures.factory.zone', ZoneFactory::class)
             ->args([
