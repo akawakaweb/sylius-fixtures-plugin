@@ -13,15 +13,17 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
+use Sylius\Component\Addressing\Model\ZoneInterface;
 use Zenstruck\Foundry\ModelFactory;
+use Zenstruck\Foundry\Proxy;
 
 /**
  * @mixin ModelFactory
  */
-trait EnabledTrait
+trait WithZoneTrait
 {
-    public function enabled(): self
+    public function withZone(Proxy|ZoneInterface|string $zone): self
     {
-        return $this->addState(['enabled' => true]);
+        return $this->addState(['zone' => $zone]);
     }
 }
