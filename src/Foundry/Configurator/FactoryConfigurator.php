@@ -1,10 +1,20 @@
 <?php
 
+/*
+ * This file is part of ShopFixturesPlugin.
+ *
+ * (c) Akawaka
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Configurator;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\FactoryWithModelClassAwareInterface;
+use Sylius\Component\Resource\Metadata\MetadataInterface;
 use Sylius\Component\Resource\Metadata\RegistryInterface;
 use Zenstruck\Foundry\ModelFactory;
 
@@ -32,8 +42,12 @@ final class FactoryConfigurator
         $factory::withModelClass($modelClass);
     }
 
+    /**
+     * @param class-string $class
+     */
     private function getModelClass(string $class): ?string
     {
+        /** @var MetadataInterface $metadata */
         foreach ($this->registry->getAll() as $metadata) {
             $modelClass = $metadata->getClass('model');
 

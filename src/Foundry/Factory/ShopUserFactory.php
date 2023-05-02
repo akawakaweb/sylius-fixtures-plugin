@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Sylius package.
+ * This file is part of ShopFixturesPlugin.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Akawaka
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -16,6 +16,7 @@ namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ShopUserDefaultValuesInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShopUserUpdaterInterface;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\UserRepository;
+use Sylius\Component\Core\Model\CustomerInterface;
 use Sylius\Component\Core\Model\ShopUser;
 use Sylius\Component\Core\Model\ShopUserInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
@@ -89,8 +90,11 @@ final class ShopUserFactory extends ModelFactory implements FactoryWithModelClas
     protected function initialize(): self
     {
         return $this
-            ->instantiateWith(function (array $attributes): ShopUserInterface {
+            ->instantiateWith(function (): ShopUserInterface {
+                /** @var ShopUserInterface $shopUser */
                 $shopUser = $this->shopUserFactory->createNew();
+
+                /** @var CustomerInterface $customer */
                 $customer = $this->customerFactory->createNew();
 
                 $shopUser->setCustomer($customer);

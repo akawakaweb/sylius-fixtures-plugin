@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Sylius package.
+ * This file is part of ShopFixturesPlugin.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Akawaka
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -23,7 +23,7 @@ final class CustomerUpdater implements CustomerUpdaterInterface
         $customer->setFirstName($attributes['firstName'] ?? null);
         $customer->setLastName($attributes['lastName'] ?? null);
         $customer->setGroup($attributes['customerGroup'] ?? null);
-        $customer->setGender($attributes['gender'] ?? null);
+        $customer->setGender($attributes['gender'] ?? '');
         $customer->setPhoneNumber($attributes['phoneNumber'] ?? null);
         $customer->setBirthday($attributes['birthday'] ?? null);
     }

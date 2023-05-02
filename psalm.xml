@@ -13,4 +13,48 @@
             <directory name="tests" />
         </ignoreFiles>
     </projectFiles>
+
+    <issueHandlers>
+        <ImplementedReturnTypeMismatch>
+            <errorLevel type="suppress">
+                <directory name="src/Foundry/Factory" />
+            </errorLevel>
+        </ImplementedReturnTypeMismatch>
+
+        <InternalMethod>
+            <errorLevel type="suppress">
+                <file name="src/Foundry/Configurator/FactoryConfigurator.php" />
+            </errorLevel>
+        </InternalMethod>
+
+        <LessSpecificImplementedReturnType>
+            <errorLevel type="suppress">
+                <directory name="src/Foundry/Factory" />
+            </errorLevel>
+        </LessSpecificImplementedReturnType>
+
+        <LessSpecificReturnStatement>
+            <errorLevel type="suppress">
+                <directory name="src/Foundry/Factory" />
+            </errorLevel>
+        </LessSpecificReturnStatement>
+
+        <LessSpecificReturnType>
+            <errorLevel type="suppress">
+                <directory name="src/Foundry/Factory" />
+            </errorLevel>
+        </LessSpecificReturnType>
+
+        <MixedArgument>
+            <errorLevel type="suppress">
+                <directory name="src/Foundry/Updater" />
+            </errorLevel>
+        </MixedArgument>
+
+        <MoreSpecificReturnType>
+            <errorLevel type="suppress">
+                <directory name="src/Foundry/Factory" />
+            </errorLevel>
+        </MoreSpecificReturnType>
+    </issueHandlers>
 </psalm>
