@@ -21,6 +21,8 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CustomerFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\FactoryWithModelClassAwareInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ShopUserFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ZoneFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ZoneMemberFactory;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
@@ -92,5 +94,25 @@ return static function (ContainerConfigurator $container) {
             ])
             ->tag('foundry.factory')
         ->alias(ShopUserFactory::class, 'sylius.shop_fixtures.factory.shop_user')
+
+        ->set('sylius.shop_fixtures.factory.zone', ZoneFactory::class)
+            ->args([
+//                    service('sylius.factory.zone'),
+                    service('sylius.shop_fixtures.default_values.zone'),
+                    service('sylius.shop_fixtures.transformer.zone'),
+//                    service('sylius.shop_fixtures.updater.zone'),
+            ])
+            ->tag('foundry.factory')
+        ->alias(ZoneFactory::class, 'sylius.shop_fixtures.factory.zone')
+
+        ->set('sylius.shop_fixtures.factory.zone_member', ZoneMemberFactory::class)
+            ->args([
+//                service('sylius.factory.zone_member'),
+//                service('sylius.shop_fixtures.default_values.zone_member'),
+//                service('sylius.shop_fixtures.transformer.zone_member'),
+//                service('sylius.shop_fixtures.updater.zone_member'),
+            ])
+            ->tag('foundry.factory')
+        ->alias(ZoneMemberFactory::class, 'sylius.shop_fixtures.factory.zone_member')
     ;
 };

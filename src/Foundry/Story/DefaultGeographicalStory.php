@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Story;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CountryFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ZoneFactory;
 use Zenstruck\Foundry\Factory;
 use Zenstruck\Foundry\Story;
 
@@ -21,11 +22,27 @@ final class DefaultGeographicalStory extends Story
 {
     public function build(): void
     {
-        Factory::delayFlush(function () {
-            foreach ($this->getCountryCodes() as $countryCode) {
+        $countryCodes = $this->getCountryCodes();
+
+        Factory::delayFlush(function () use ($countryCodes) {
+            foreach ($countryCodes as $countryCode) {
                 CountryFactory::new()->withCode($countryCode)->create();
             }
         });
+
+        ZoneFactory::new()
+            ->withName('United States of America')
+            ->withCountries(['US'])
+            ->create()
+        ;
+
+        \array_shift($countryCodes);
+
+        ZoneFactory::new()
+            ->withName('Rest of the World')
+            ->withCountries($countryCodes)
+            ->create()
+        ;
     }
 
     /**
