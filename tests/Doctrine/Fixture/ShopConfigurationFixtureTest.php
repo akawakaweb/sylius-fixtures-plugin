@@ -26,6 +26,7 @@ final class ShopConfigurationFixtureTest extends KernelTestCase
         $fixture->load(self::getContainer()->get('doctrine.orm.entity_manager'));
 
         $locales = $this->getLocaleRepository()->findAll();
+        $channels = $this->getChannelRepository()->findAll();
         $countries = $this->getCountryRepository()->findAll();
         $currencies = $this->getCurrencyRepository()->findAll();
         $customerGroups = $this->getCustomerGroupRepository()->findAll();
@@ -34,12 +35,18 @@ final class ShopConfigurationFixtureTest extends KernelTestCase
         $taxa = $this->getTaxonRepository()->findAll();
 
         $this->assertCount(8, $locales);
+        $this->assertCount(1, $channels);
         $this->assertCount(12, $countries);
         $this->assertCount(9, $currencies);
         $this->assertCount(1, $customers);
         $this->assertCount(2, $customerGroups);
         $this->assertCount(3, $shippingMethods);
         $this->assertCount(1, $taxa);
+    }
+
+    private function getChannelRepository(): RepositoryInterface
+    {
+        return self::getContainer()->get('sylius.repository.channel');
     }
 
     private function getCountryRepository(): RepositoryInterface
