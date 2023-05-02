@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultChannelsStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultCurrenciesStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultCustomerGroupsStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultGeographicalStory;
@@ -33,6 +34,7 @@ final class ShopConfigurationFixture extends Fixture implements FixtureGroupInte
         DefaultCurrenciesStory::load();
         DefaultGeographicalStory::load();
         DefaultMenuTaxonStory::load();
+        DefaultChannelsStory::load();
         DefaultShippingMethodsStory::load();
         DefaultCustomerGroupsStory::load();
         DefaultShopUsersStory::load();
