@@ -62,7 +62,7 @@ use Zenstruck\Foundry\RepositoryProxy;
 final class CountryFactory extends ModelFactory implements FactoryWithModelClassAwareInterface
 {
     use WithCodeTrait;
-    use EnabledTrait;
+    use ToggableTrait;
 
     private static ?string $modelClass = null;
 

@@ -18,6 +18,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultCustomerGroupsStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultGeographicalStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultLocalesStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultMenuTaxonStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultShippingMethodsStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultShopUsersStory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
@@ -32,6 +33,7 @@ final class ShopConfigurationFixture extends Fixture implements FixtureGroupInte
         DefaultCurrenciesStory::load();
         DefaultGeographicalStory::load();
         DefaultMenuTaxonStory::load();
+        DefaultShippingMethodsStory::load();
         DefaultCustomerGroupsStory::load();
         DefaultShopUsersStory::load();
     }

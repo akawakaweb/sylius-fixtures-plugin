@@ -20,6 +20,8 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CurrencyFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CustomerFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\FactoryWithModelClassAwareInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ShippingCategoryFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ShippingMethodFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ShopUserFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxonFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ZoneFactory;
@@ -84,6 +86,26 @@ return static function (ContainerConfigurator $container) {
             ])
             ->tag('foundry.factory')
         ->alias(LocaleFactory::class, 'sylius.shop_fixtures.factory.locale')
+
+        ->set('sylius.shop_fixtures.factory.shipping_category', ShippingCategoryFactory::class)
+            ->args([
+//                service('sylius.factory.shipping_category'),
+//                service('sylius.shop_fixtures.default_values.shipping_category'),
+                service('sylius.shop_fixtures.transformer.shipping_category'),
+//                service('sylius.shop_fixtures.updater.shipping_category'),
+            ])
+            ->tag('foundry.factory')
+        ->alias(ShippingCategoryFactory::class, 'sylius.shop_fixtures.factory.shipping_category')
+
+        ->set('sylius.shop_fixtures.factory.shipping_method', ShippingMethodFactory::class)
+            ->args([
+//                service('sylius.factory.shipping_method'),
+//                service('sylius.shop_fixtures.default_values.shipping_method'),
+//                service('sylius.shop_fixtures.transformer.shipping_method'),
+                service('sylius.shop_fixtures.updater.shipping_method'),
+            ])
+            ->tag('foundry.factory')
+        ->alias(ShippingMethodFactory::class, 'sylius.shop_fixtures.factory.shipping_method')
 
         ->set('sylius.shop_fixtures.factory.shop_user', ShopUserFactory::class)
             ->args([
