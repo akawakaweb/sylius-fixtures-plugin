@@ -157,7 +157,7 @@ jobs:
 
             -
                 name: Run PHPStan
-                run: vendor/bin/phpstan analyse -c phpstan.neon -l 5 src/
+                run: vendor/bin/phpstan analyse
 
             -
                 name: Run Psalm
