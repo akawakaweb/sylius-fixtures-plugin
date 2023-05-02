@@ -51,6 +51,18 @@
             </errorLevel>
         </MixedArgument>
 
+        <MixedInferredReturnType>
+            <errorLevel type="suppress">
+                <file name="src/Symfony/ShopFixturesPlugin.php" />
+            </errorLevel>
+        </MixedInferredReturnType>
+
+        <MixedReturnStatement>
+            <errorLevel type="suppress">
+                <file name="src/Symfony/ShopFixturesPlugin.php" />
+            </errorLevel>
+        </MixedReturnStatement>
+
         <MoreSpecificReturnType>
             <errorLevel type="suppress">
                 <directory name="src/Foundry/Factory" />
