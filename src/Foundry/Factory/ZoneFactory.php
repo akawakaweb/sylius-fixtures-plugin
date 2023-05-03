@@ -43,8 +43,9 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static ZoneInterface[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
  * @method static ZoneInterface[]|Proxy[] randomSet(int $number, array $attributes = [])
  */
-final class ZoneFactory extends ModelFactory
+final class ZoneFactory extends ModelFactory implements FactoryWithModelClassAwareInterface
 {
+    use WithModelClassTrait;
     use WithCodeTrait;
     use WithNameTrait;
 
@@ -94,6 +95,6 @@ final class ZoneFactory extends ModelFactory
 
     protected static function getClass(): string
     {
-        return Zone::class;
+        return self::$modelClass ?? Zone::class;
     }
 }

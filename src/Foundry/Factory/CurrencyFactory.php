@@ -43,22 +43,6 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static CurrencyInterface[]|Proxy[] findBy(array $attributes)
  * @method static CurrencyInterface[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
  * @method static CurrencyInterface[]|Proxy[] randomSet(int $number, array $attributes = [])
- *
- * @phpstan-method        Proxy<CurrencyInterface> create(array|callable $attributes = [])
- * @phpstan-method static Proxy<CurrencyInterface> createOne(array $attributes = [])
- * @phpstan-method static Proxy<CurrencyInterface> find(object|array|mixed $criteria)
- * @phpstan-method static Proxy<CurrencyInterface> findOrCreate(array $attributes)
- * @phpstan-method static Proxy<CurrencyInterface> first(string $sortedField = 'id')
- * @phpstan-method static Proxy<CurrencyInterface> last(string $sortedField = 'id')
- * @phpstan-method static Proxy<CurrencyInterface> random(array $attributes = [])
- * @phpstan-method static Proxy<CurrencyInterface> randomOrCreate(array $attributes = [])
- * @phpstan-method static RepositoryProxy<CurrencyInterface> repository()
- * @phpstan-method static list<Proxy<CurrencyInterface>> all()
- * @phpstan-method static list<Proxy<CurrencyInterface>> createMany(int $number, array|callable $attributes = [])
- * @phpstan-method static list<Proxy<CurrencyInterface>> createSequence(iterable|callable $sequence)
- * @phpstan-method static list<Proxy<CurrencyInterface>> findBy(array $attributes)
- * @phpstan-method static list<Proxy<CurrencyInterface>> randomRange(int $min, int $max, array $attributes = [])
- * @phpstan-method static list<Proxy<CurrencyInterface>> randomSet(int $number, array $attributes = [])
  */
 final class CurrencyFactory extends ModelFactory implements FactoryWithModelClassAwareInterface
 {

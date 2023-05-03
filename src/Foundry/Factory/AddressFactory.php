@@ -41,12 +41,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  */
 final class AddressFactory extends ModelFactory implements FactoryWithModelClassAwareInterface
 {
-    private static ?string $modelClass = null;
-
-    public static function withModelClass(string $modelClass): void
-    {
-        self::$modelClass = $modelClass;
-    }
+    use WithModelClassTrait;
 
     protected function getDefaults(): array
     {

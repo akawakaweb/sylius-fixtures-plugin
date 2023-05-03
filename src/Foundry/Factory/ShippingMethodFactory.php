@@ -46,8 +46,9 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static ShippingMethodInterface[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
  * @method static ShippingMethodInterface[]|Proxy[] randomSet(int $number, array $attributes = [])
  */
-final class ShippingMethodFactory extends ModelFactory
+final class ShippingMethodFactory extends ModelFactory implements FactoryWithModelClassAwareInterface
 {
+    use WithModelClassTrait;
     use WithCodeTrait;
     use WithNameTrait;
     use WithDescriptionTrait;
@@ -99,6 +100,6 @@ final class ShippingMethodFactory extends ModelFactory
 
     protected static function getClass(): string
     {
-        return ShippingMethod::class;
+        return self::$modelClass ?? ShippingMethod::class;
     }
 }

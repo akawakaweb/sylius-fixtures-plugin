@@ -48,8 +48,9 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static AdminUserInterface[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
  * @method static AdminUserInterface[]|Proxy[] randomSet(int $number, array $attributes = [])
  */
-final class AdminUserFactory extends ModelFactory
+final class AdminUserFactory extends ModelFactory implements FactoryWithModelClassAwareInterface
 {
+    use WithModelClassTrait;
     use WithEmailTrait;
     use WithUsernameTrait;
     use ToggableTrait;
@@ -90,6 +91,6 @@ final class AdminUserFactory extends ModelFactory
 
     protected static function getClass(): string
     {
-        return AdminUser::class;
+        return self::$modelClass ?? AdminUser::class;
     }
 }

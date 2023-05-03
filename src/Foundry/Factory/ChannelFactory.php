@@ -50,8 +50,9 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static ChannelInterface[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
  * @method static ChannelInterface[]|Proxy[] randomSet(int $number, array $attributes = [])
  */
-final class ChannelFactory extends ModelFactory
+final class ChannelFactory extends ModelFactory implements FactoryWithModelClassAwareInterface
 {
+    use WithModelClassTrait;
     use WithCodeTrait;
     use WithNameTrait;
     use WithLocalesTrait;
@@ -162,6 +163,6 @@ final class ChannelFactory extends ModelFactory
 
     protected static function getClass(): string
     {
-        return Channel::class;
+        return self::$modelClass ?? Channel::class;
     }
 }

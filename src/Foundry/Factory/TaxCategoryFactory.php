@@ -43,8 +43,9 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static TaxCategoryInterface[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
  * @method static TaxCategoryInterface[]|Proxy[] randomSet(int $number, array $attributes = [])
  */
-final class TaxCategoryFactory extends ModelFactory
+final class TaxCategoryFactory extends ModelFactory implements FactoryWithModelClassAwareInterface
 {
+    use WithModelClassTrait;
     use WithCodeTrait;
     use WithNameTrait;
     use WithDescriptionTrait;
@@ -75,6 +76,6 @@ final class TaxCategoryFactory extends ModelFactory
 
     protected static function getClass(): string
     {
-        return TaxCategory::class;
+        return self::$modelClass ?? TaxCategory::class;
     }
 }

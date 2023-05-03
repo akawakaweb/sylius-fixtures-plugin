@@ -15,5 +15,8 @@ namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
 interface FactoryWithModelClassAwareInterface
 {
+    /**
+     * @param class-string $modelClass
+     */
     public static function withModelClass(string $modelClass): void;
 }

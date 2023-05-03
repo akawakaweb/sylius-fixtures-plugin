@@ -33,6 +33,7 @@ final class FactoryConfigurator
             return;
         }
 
+        /** @var class-string|null $modelClass */
         $modelClass = $this->getModelClass($factory::getEntityClass());
 
         if (null === $modelClass) {

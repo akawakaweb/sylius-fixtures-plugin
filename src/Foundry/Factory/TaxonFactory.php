@@ -46,8 +46,9 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static TaxonInterface[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
  * @method static TaxonInterface[]|Proxy[] randomSet(int $number, array $attributes = [])
  */
-final class TaxonFactory extends ModelFactory
+final class TaxonFactory extends ModelFactory implements FactoryWithModelClassAwareInterface
 {
+    use WithModelClassTrait;
     use WithCodeTrait;
     use WithNameTrait;
     use WithSlugTrait;
@@ -92,7 +93,7 @@ final class TaxonFactory extends ModelFactory
 
     protected static function getClass(): string
     {
-        return Taxon::class;
+        return self::$modelClass ?? Taxon::class;
     }
 
     private function createTaxon(array $attributes = []): TaxonInterface

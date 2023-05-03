@@ -49,12 +49,11 @@ use Zenstruck\Foundry\RepositoryProxy;
  */
 final class ShopUserFactory extends ModelFactory implements FactoryWithModelClassAwareInterface
 {
+    use WithModelClassTrait;
     use WithEmailTrait;
     use WithFirstNameTrait;
     use WithLastNameTrait;
     use WithPasswordTrait;
-
-    private static ?string $modelClass = null;
 
     public function __construct(
         private FactoryInterface $shopUserFactory,
@@ -63,11 +62,6 @@ final class ShopUserFactory extends ModelFactory implements FactoryWithModelClas
         private ShopUserUpdaterInterface $shopUserUpdater,
     ) {
         parent::__construct();
-    }
-
-    public static function withModelClass(string $modelClass): void
-    {
-        self::$modelClass = $modelClass;
     }
 
     protected function getDefaults(): array

@@ -55,8 +55,9 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static ProductAttributeInterface[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
  * @method static ProductAttributeInterface[]|Proxy[] randomSet(int $number, array $attributes = [])
  */
-final class ProductAttributeFactory extends ModelFactory
+final class ProductAttributeFactory extends ModelFactory implements FactoryWithModelClassAwareInterface
 {
+    use WithModelClassTrait;
     use WithCodeTrait;
     use WithTypeTrait;
     use WithNameTrait;
@@ -115,6 +116,6 @@ final class ProductAttributeFactory extends ModelFactory
 
     protected static function getClass(): string
     {
-        return ProductAttribute::class;
+        return self::$modelClass ?? ProductAttribute::class;
     }
 }

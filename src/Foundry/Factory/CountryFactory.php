@@ -47,10 +47,9 @@ use Zenstruck\Foundry\RepositoryProxy;
  */
 final class CountryFactory extends ModelFactory implements FactoryWithModelClassAwareInterface
 {
+    use WithModelClassTrait;
     use WithCodeTrait;
     use ToggableTrait;
-
-    private static ?string $modelClass = null;
 
     public function __construct(
         private FactoryInterface $factory,
@@ -59,11 +58,6 @@ final class CountryFactory extends ModelFactory implements FactoryWithModelClass
         private CountryUpdaterInterface $updater,
     ) {
         parent::__construct();
-    }
-
-    public static function withModelClass(string $modelClass): void
-    {
-        self::$modelClass = $modelClass;
     }
 
     protected function getDefaults(): array
