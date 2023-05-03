@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Tests\Acme\SyliusExamplePlugin\Foundry\Story;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomJeansStory;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
@@ -30,6 +31,7 @@ final class RandomJeansStoryTest extends KernelTestCase
     {
         self::bootKernel();
 
+        LocaleFactory::new()->withCode('en_US')->create();
         RandomJeansStory::load();
 
         $products = $this->getProductRepository()->findAll();
@@ -42,6 +44,7 @@ final class RandomJeansStoryTest extends KernelTestCase
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('mens_jeans', $product->getMainTaxon()->getCode());
         $this->assertStringEndsWith('jeans_01.jpg', $product->getImagesByType('main')[0]->getPath());
+        $this->assertCount(3, $product->getAttributes());
 
         $product = $products[1];
         $this->assertInstanceOf(ProductInterface::class, $product);
@@ -49,6 +52,7 @@ final class RandomJeansStoryTest extends KernelTestCase
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('mens_jeans', $product->getMainTaxon()->getCode());
         $this->assertStringEndsWith('jeans_02.jpg', $product->getImagesByType('main')[0]->getPath());
+        $this->assertCount(3, $product->getAttributes());
 
         $product = $products[2];
         $this->assertInstanceOf(ProductInterface::class, $product);
@@ -56,6 +60,7 @@ final class RandomJeansStoryTest extends KernelTestCase
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('mens_jeans', $product->getMainTaxon()->getCode());
         $this->assertStringEndsWith('jeans_03.jpg', $product->getImagesByType('main')[0]->getPath());
+        $this->assertCount(3, $product->getAttributes());
 
         $product = $products[3];
         $this->assertInstanceOf(ProductInterface::class, $product);
@@ -63,6 +68,7 @@ final class RandomJeansStoryTest extends KernelTestCase
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('mens_jeans', $product->getMainTaxon()->getCode());
         $this->assertStringEndsWith('jeans_04.svg', $product->getImagesByType('main')[0]->getPath());
+        $this->assertCount(3, $product->getAttributes());
 
         $product = $products[4];
         $this->assertInstanceOf(ProductInterface::class, $product);
@@ -70,6 +76,7 @@ final class RandomJeansStoryTest extends KernelTestCase
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('women_jeans', $product->getMainTaxon()->getCode());
         $this->assertStringEndsWith('jeans_01.jpg', $product->getImagesByType('main')[0]->getPath());
+        $this->assertCount(3, $product->getAttributes());
 
         $product = $products[5];
         $this->assertInstanceOf(ProductInterface::class, $product);
@@ -77,6 +84,7 @@ final class RandomJeansStoryTest extends KernelTestCase
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('women_jeans', $product->getMainTaxon()->getCode());
         $this->assertStringEndsWith('jeans_02.jpg', $product->getImagesByType('main')[0]->getPath());
+        $this->assertCount(3, $product->getAttributes());
 
         $product = $products[6];
         $this->assertInstanceOf(ProductInterface::class, $product);
@@ -84,6 +92,7 @@ final class RandomJeansStoryTest extends KernelTestCase
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('women_jeans', $product->getMainTaxon()->getCode());
         $this->assertStringEndsWith('jeans_03.jpg', $product->getImagesByType('main')[0]->getPath());
+        $this->assertCount(3, $product->getAttributes());
 
         $product = $products[7];
         $this->assertInstanceOf(ProductInterface::class, $product);
@@ -91,6 +100,7 @@ final class RandomJeansStoryTest extends KernelTestCase
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('women_jeans', $product->getMainTaxon()->getCode());
         $this->assertStringEndsWith('jeans_04.jpg', $product->getImagesByType('main')[0]->getPath());
+        $this->assertCount(3, $product->getAttributes());
     }
 
     private function getProductRepository(): RepositoryInterface

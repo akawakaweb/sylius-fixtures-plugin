@@ -38,22 +38,6 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static AddressInterface[]|Proxy[] findBy(array $attributes)
  * @method static AddressInterface[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
  * @method static AddressInterface[]|Proxy[] randomSet(int $number, array $attributes = [])
- *
- * @phpstan-method        Proxy<AddressInterface> create(array|callable $attributes = [])
- * @phpstan-method static Proxy<AddressInterface> createOne(array $attributes = [])
- * @phpstan-method static Proxy<AddressInterface> find(object|array|mixed $criteria)
- * @phpstan-method static Proxy<AddressInterface> findOrCreate(array $attributes)
- * @phpstan-method static Proxy<AddressInterface> first(string $sortedField = 'id')
- * @phpstan-method static Proxy<AddressInterface> last(string $sortedField = 'id')
- * @phpstan-method static Proxy<AddressInterface> random(array $attributes = [])
- * @phpstan-method static Proxy<AddressInterface> randomOrCreate(array $attributes = [])
- * @phpstan-method static RepositoryProxy<AddressInterface> repository()
- * @phpstan-method static list<Proxy<AddressInterface>> all()
- * @phpstan-method static list<Proxy<AddressInterface>> createMany(int $number, array|callable $attributes = [])
- * @phpstan-method static list<Proxy<AddressInterface>> createSequence(iterable|callable $sequence)
- * @phpstan-method static list<Proxy<AddressInterface>> findBy(array $attributes)
- * @phpstan-method static list<Proxy<AddressInterface>> randomRange(int $min, int $max, array $attributes = [])
- * @phpstan-method static list<Proxy<AddressInterface>> randomSet(int $number, array $attributes = [])
  */
 final class AddressFactory extends ModelFactory implements FactoryWithModelClassAwareInterface
 {

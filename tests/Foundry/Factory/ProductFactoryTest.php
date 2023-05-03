@@ -15,10 +15,12 @@ namespace Tests\Acme\SyliusExamplePlugin\Foundry\Factory;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ChannelFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAttributeFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxonFactory;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductVariantInterface;
+use Sylius\Component\Product\Model\ProductAttributeValueInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Tests\Acme\SyliusExamplePlugin\PurgeDatabaseTrait;
 use Zenstruck\Foundry\Test\Factories;
@@ -293,19 +295,19 @@ final class ProductFactoryTest extends KernelTestCase
 //        $this->assertEquals('men_jeans', $product->getTaxons()->last()->getCode());
 //    }
 
-//    /** @test */
-//    function it_creates_product_with_given_product_attributes(): void
-//    {
-//        LocaleFactory::new()->withCode('en_US')->create();
-//        ProductAttributeFactory::new()->withType(ProductAttributeValueInterface::STORAGE_TEXT)->withCode('jeans_brand')->create();
-//        ProductAttributeFactory::new()->withType(ProductAttributeValueInterface::STORAGE_TEXT)->withCode('jeans_collection')->create();
-//        $product = ProductFactory::new()->withProductAttributes([
-//            'jeans_brand' => 'You are breathtaking',
-//            'jeans_collection' => 'Sylius Winter 2019',
-//        ])->create();
-//
-//        $this->assertEquals('jeans_brand', $product->getAttributes()->first()->getCode());
-//    }
+    /** @test */
+    public function it_creates_product_with_given_product_attributes(): void
+    {
+        LocaleFactory::new()->withCode('en_US')->create();
+        ProductAttributeFactory::new()->withType(ProductAttributeValueInterface::STORAGE_TEXT)->withCode('jeans_brand')->create();
+        ProductAttributeFactory::new()->withType(ProductAttributeValueInterface::STORAGE_TEXT)->withCode('jeans_collection')->create();
+        $product = ProductFactory::new()->withProductAttributes([
+            'jeans_brand' => 'You are breathtaking',
+            'jeans_collection' => 'Sylius Winter 2019',
+        ])->create();
+
+        $this->assertEquals('jeans_brand', $product->getAttributes()->first()->getCode());
+    }
 //
 //    /** @test */
 //    function it_creates_product_with_given_product_options(): void

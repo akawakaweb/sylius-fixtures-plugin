@@ -19,6 +19,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithDescriptionTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithImagesTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithNameTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithProductAttributesTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithShortDescriptionTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithSlugTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ProductTransformerInterface;
@@ -60,6 +61,7 @@ final class ProductFactory extends ModelFactory
     use WithShortDescriptionTrait;
     use WithChannelsTrait;
     use WithImagesTrait;
+    use WithProductAttributesTrait;
 
     public function __construct(
         private ProductTransformerInterface $transformer,

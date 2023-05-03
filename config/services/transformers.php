@@ -12,6 +12,8 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\CustomerTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\CustomerTransformerInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\LocaleTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\LocaleTransformerInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ProductAttributeTransformer;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ProductAttributeTransformerInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ProductTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ProductTransformerInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ShippingCategoryTransformer;
@@ -36,8 +38,12 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.transformer.product', ProductTransformer::class)
             ->args([
                 service('sylius.generator.slug'),
+                service('sylius.factory.product_attribute_value'),
             ])
         ->alias(ProductTransformerInterface::class, 'sylius.shop_fixtures.transformer.product')
+
+        ->set('sylius.shop_fixtures.transformer.product_attribute', ProductAttributeTransformer::class)
+        ->alias(ProductAttributeTransformerInterface::class, 'sylius.shop_fixtures.transformer.product_attribute')
 
         ->set('sylius.shop_fixtures.transformer.shipping_category', ShippingCategoryTransformer::class)
         ->alias(ShippingCategoryTransformerInterface::class, 'sylius.shop_fixtures.transformer.shipping_category')
