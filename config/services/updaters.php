@@ -24,6 +24,10 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShopUserUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShopUserUpdaterInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\TaxonUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\TaxonUpdaterInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ZoneMemberUpdater;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ZoneMemberUpdaterInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ZoneUpdater;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ZoneUpdaterInterface;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
@@ -78,5 +82,11 @@ return static function (ContainerConfigurator $container) {
                 service('sylius.generator.taxon_slug'),
             ])
         ->alias(TaxonUpdaterInterface::class, 'sylius.shop_fixtures.updater.taxon')
+
+        ->set('sylius.shop_fixtures.updater.zone', ZoneUpdater::class)
+        ->alias(ZoneUpdaterInterface::class, 'sylius.shop_fixtures.updater.zone')
+
+        ->set('sylius.shop_fixtures.updater.zone_member', ZoneMemberUpdater::class)
+        ->alias(ZoneMemberUpdaterInterface::class, 'sylius.shop_fixtures.updater.zone_member')
     ;
 };

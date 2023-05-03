@@ -14,9 +14,11 @@ declare(strict_types=1);
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ZoneMemberUpdaterInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Addressing\Model\ZoneMember;
 use Sylius\Component\Addressing\Model\ZoneMemberInterface;
+use Sylius\Component\Resource\Factory\FactoryInterface;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;
@@ -45,11 +47,33 @@ final class ZoneMemberFactory extends ModelFactory implements FactoryWithModelCl
     use WithModelClassTrait;
     use WithCodeTrait;
 
+    public function __construct(
+        private FactoryInterface $factory,
+        private ZoneMemberUpdaterInterface $updater,
+    ) {
+        parent::__construct();
+    }
+
     protected function getDefaults(): array
     {
         return [
             'code' => self::faker()->text(),
         ];
+    }
+
+    protected function initialize(): self
+    {
+        return $this
+            ->instantiateWith(function(): ZoneMemberInterface {
+                /** @var ZoneMemberInterface $zoneMember */
+                $zoneMember = $this->factory->createNew();
+
+                return $zoneMember;
+            })
+            ->afterInstantiate(function (ZoneMemberInterface $zoneMember, array $attributes): void {
+                $this->updater->update($zoneMember, $attributes);
+            })
+        ;
     }
 
     protected static function getClass(): string

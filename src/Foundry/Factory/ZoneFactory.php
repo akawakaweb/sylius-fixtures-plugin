@@ -17,9 +17,11 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ZoneDefaultValuesInterfa
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithNameTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ZoneTransformerInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ZoneUpdaterInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Addressing\Model\Zone;
 use Sylius\Component\Addressing\Model\ZoneInterface;
+use Sylius\Component\Resource\Factory\FactoryInterface;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;
@@ -50,8 +52,10 @@ final class ZoneFactory extends ModelFactory implements FactoryWithModelClassAwa
     use WithNameTrait;
 
     public function __construct(
+        private FactoryInterface $factory,
         private ZoneDefaultValuesInterface $defaultValues,
         private ZoneTransformerInterface $transformer,
+        private ZoneUpdaterInterface $updater,
     ) {
         parent::__construct();
     }
@@ -89,6 +93,15 @@ final class ZoneFactory extends ModelFactory implements FactoryWithModelClassAwa
         return $this
             ->beforeInstantiate(function (array $attributes): array {
                 return $this->transformer->transform($attributes);
+            })
+            ->instantiateWith(function (): ZoneInterface {
+                /** @var ZoneInterface $zone */
+                $zone = $this->factory->createNew();
+
+                return $zone;
+            })
+            ->afterInstantiate(function (ZoneInterface $zone, array $attributes): void {
+                $this->updater->update($zone, $attributes);
             })
         ;
     }

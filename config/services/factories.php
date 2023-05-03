@@ -185,20 +185,20 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.factory.zone', ZoneFactory::class)
             ->args([
-//                    service('sylius.factory.zone'),
+                    service('sylius.factory.zone'),
                     service('sylius.shop_fixtures.default_values.zone'),
                     service('sylius.shop_fixtures.transformer.zone'),
-//                    service('sylius.shop_fixtures.updater.zone'),
+                    service('sylius.shop_fixtures.updater.zone'),
             ])
             ->tag('foundry.factory')
         ->alias(ZoneFactory::class, 'sylius.shop_fixtures.factory.zone')
 
         ->set('sylius.shop_fixtures.factory.zone_member', ZoneMemberFactory::class)
             ->args([
-//                service('sylius.factory.zone_member'),
+                service('sylius.factory.zone_member'),
 //                service('sylius.shop_fixtures.default_values.zone_member'),
 //                service('sylius.shop_fixtures.transformer.zone_member'),
-//                service('sylius.shop_fixtures.updater.zone_member'),
+                service('sylius.shop_fixtures.updater.zone_member'),
             ])
             ->tag('foundry.factory')
         ->alias(ZoneMemberFactory::class, 'sylius.shop_fixtures.factory.zone_member')
