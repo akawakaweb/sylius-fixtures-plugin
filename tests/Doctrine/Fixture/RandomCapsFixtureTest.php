@@ -19,28 +19,28 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Tests\Acme\SyliusExamplePlugin\PurgeDatabaseTrait;
 use Zenstruck\Foundry\Test\Factories;
 
-final class RandomShopUsersFixtureTest extends KernelTestCase
+final class RandomCapsFixtureTest extends KernelTestCase
 {
     use PurgeDatabaseTrait;
     use Factories;
 
     /** @test */
-    public function it_creates_random_shop_users(): void
+    public function it_creates_random_caps(): void
     {
         self::bootKernel();
 
         /** @var Fixture $fixture */
-        $fixture = self::getContainer()->get('sylius.shop_fixtures.foundry.fixture.random_shop_users');
+        $fixture = self::getContainer()->get('sylius.shop_fixtures.foundry.fixture.random_caps');
 
         $fixture->load(self::getContainer()->get('doctrine.orm.entity_manager'));
 
-        $shopUsers = $this->getShopUserRepository()->findAll();
+        $products = $this->getProductRepository()->findAll();
 
-        $this->assertCount(20, $shopUsers);
+        $this->assertCount(4, $products);
     }
 
-    private function getShopUserRepository(): RepositoryInterface
+    private function getProductRepository(): RepositoryInterface
     {
-        return static::getContainer()->get('sylius.repository.shop_user');
+        return static::getContainer()->get('sylius.repository.product');
     }
 }

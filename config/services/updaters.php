@@ -14,6 +14,8 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CustomerUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CustomerUpdaterInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\LocaleUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\LocaleUpdaterInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ProductUpdater;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ProductUpdaterInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShippingMethodUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShippingMethodUpdaterInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShopUserUpdater;
@@ -42,6 +44,20 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.updater.locale', LocaleUpdater::class)
         ->alias(LocaleUpdaterInterface::class, 'sylius.shop_fixtures.updater.locale')
+
+        ->set('sylius.shop_fixtures.updater.product', ProductUpdater::class)
+            ->args([
+                service('sylius.repository.locale'),
+                service('sylius.factory.product_variant'),
+                service('sylius.factory.channel_pricing'),
+                service('sylius.generator.product_variant'),
+                service('sylius.repository.channel'),
+                service('sylius.factory.product_taxon'),
+                service('sylius.factory.product_image'),
+                service('file_locator'),
+                service('sylius.image_uploader'),
+            ])
+        ->alias(ProductUpdaterInterface::class, 'sylius.shop_fixtures.updater.product')
 
         ->set('sylius.shop_fixtures.updater.shipping_method', ShippingMethodUpdater::class)
         ->alias(ShippingMethodUpdaterInterface::class, 'sylius.shop_fixtures.updater.shipping_method')

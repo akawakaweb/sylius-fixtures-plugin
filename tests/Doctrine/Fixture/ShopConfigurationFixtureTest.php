@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of ShopFixturesPlugin.
+ *
+ * (c) Akawaka
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Tests\Acme\SyliusExamplePlugin\Doctrine\Fixture;
@@ -16,7 +25,7 @@ final class ShopConfigurationFixtureTest extends KernelTestCase
     use Factories;
 
     /** @test */
-    function it_creates_shop_configuration(): void
+    public function it_creates_shop_configuration(): void
     {
         self::bootKernel();
 

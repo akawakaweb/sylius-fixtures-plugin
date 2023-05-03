@@ -19,6 +19,9 @@ return static function (ECSConfig $ecsConfig): void {
     $ecsConfig->paths([
         __DIR__ . '/src',
         __DIR__ . '/tests/Behat',
+        __DIR__ . '/tests/Doctrine',
+        __DIR__ . '/tests/Foundry',
+        __DIR__ . '/tests/PurgeDatabaseTrait.php',
         __DIR__ . '/ecs.php',
     ]);
 

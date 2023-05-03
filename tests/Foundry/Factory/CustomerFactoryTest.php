@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of ShopFixturesPlugin.
+ *
+ * (c) Akawaka
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Tests\Acme\SyliusExamplePlugin\Foundry\Factory;
@@ -16,7 +25,7 @@ final class CustomerFactoryTest extends KernelTestCase
     use Factories;
 
     /** @test */
-    function it_creates_customer_with_default_values(): void
+    public function it_creates_customer_with_default_values(): void
     {
         $customer = CustomerFactory::createOne();
 
@@ -30,7 +39,7 @@ final class CustomerFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_customer_with_given_email(): void
+    public function it_creates_customer_with_given_email(): void
     {
         $firstCustomer = CustomerFactory::createOne(['email' => 'shop@sylius.com']);
         $secondCustomer = CustomerFactory::new()->withEmail('customer@sylius.com')->create();
@@ -40,7 +49,7 @@ final class CustomerFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_customer_with_given_first_name(): void
+    public function it_creates_customer_with_given_first_name(): void
     {
         $firstCustomer = CustomerFactory::createOne(['firstName' => 'Marty']);
         $secondCustomer = CustomerFactory::new()->withFirstName('Emmet')->create();
@@ -50,7 +59,7 @@ final class CustomerFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_customer_with_given_last_name(): void
+    public function it_creates_customer_with_given_last_name(): void
     {
         $firstCustomer = CustomerFactory::createOne(['lastName' => 'McFly']);
         $secondCustomer = CustomerFactory::new()->withLastName('Brown')->create();
@@ -60,7 +69,7 @@ final class CustomerFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_male_customer(): void
+    public function it_creates_male_customer(): void
     {
         $firstCustomer = CustomerFactory::createOne(['gender' => 'm']);
         $secondCustomer = CustomerFactory::new()->male()->create();
@@ -70,7 +79,7 @@ final class CustomerFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_female_customer(): void
+    public function it_creates_female_customer(): void
     {
         $firstCustomer = CustomerFactory::createOne(['gender' => 'f']);
         $secondCustomer = CustomerFactory::new()->female()->create();
@@ -80,7 +89,7 @@ final class CustomerFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_customer_with_given_phone_number(): void
+    public function it_creates_customer_with_given_phone_number(): void
     {
         $firstCustomer = CustomerFactory::createOne(['phoneNumber' => '0102030405']);
         $secondCustomer = CustomerFactory::new()->withPhoneNumber('01234567889')->create();
@@ -90,7 +99,7 @@ final class CustomerFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_customer_with_given_birthday(): void
+    public function it_creates_customer_with_given_birthday(): void
     {
         $firstBirthday = new \DateTimeImmutable('39 years ago');
         $secondBirthday = new \DateTimeImmutable('41 years ago');
@@ -103,7 +112,7 @@ final class CustomerFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_customer_with_given_birthday_as_string(): void
+    public function it_creates_customer_with_given_birthday_as_string(): void
     {
         $firstBirthday = new \DateTimeImmutable('39 years ago');
         $secondBirthday = new \DateTimeImmutable('41 years ago');

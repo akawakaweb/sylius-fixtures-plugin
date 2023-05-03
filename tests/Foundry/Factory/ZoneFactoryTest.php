@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Sylius package.
+ * This file is part of ShopFixturesPlugin.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Akawaka
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -27,7 +27,7 @@ final class ZoneFactoryTest extends KernelTestCase
     use Factories;
 
     /** @test */
-    function it_creates_zone(): void
+    public function it_creates_zone(): void
     {
         $zone = ZoneFactory::createOne();
 
@@ -37,7 +37,7 @@ final class ZoneFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_zone_with_given_code(): void
+    public function it_creates_zone_with_given_code(): void
     {
         $zone = ZoneFactory::new()->withCode('world')->create();
 
@@ -45,7 +45,7 @@ final class ZoneFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_zone_with_given_name(): void
+    public function it_creates_zone_with_given_name(): void
     {
         $zone = ZoneFactory::new()->withName('Rest of the World')->create();
 
@@ -54,7 +54,7 @@ final class ZoneFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_zone_with_new_members(): void
+    public function it_creates_zone_with_new_members(): void
     {
         $zone = ZoneFactory::new()->withMembers(['united_states', 'france'])->create();
 
@@ -63,7 +63,7 @@ final class ZoneFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_zone_with_existing_proxy_members(): void
+    public function it_creates_zone_with_existing_proxy_members(): void
     {
         $firstZoneMember = ZoneMemberFactory::new()->withCode('zone_a')->create();
         $secondZoneMember = ZoneMemberFactory::new()->withCode('zone_b')->create();
@@ -78,7 +78,7 @@ final class ZoneFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_zone_with_existing_members(): void
+    public function it_creates_zone_with_existing_members(): void
     {
         $firstZoneMember = ZoneMemberFactory::new()->withCode('zone_a')->create()->object();
         $secondZoneMember = ZoneMemberFactory::new()->withCode('zone_b')->create()->object();
@@ -93,7 +93,7 @@ final class ZoneFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_zone_with_new_countries(): void
+    public function it_creates_zone_with_new_countries(): void
     {
         $zone = ZoneFactory::new()->withCountries(['FR', 'EN'])->create();
 
@@ -102,7 +102,7 @@ final class ZoneFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_zone_with_existing_proxy_countries(): void
+    public function it_creates_zone_with_existing_proxy_countries(): void
     {
         $firstZoneMember = ZoneMemberFactory::new()->withCode('FR')->create();
         $secondZoneMember = ZoneMemberFactory::new()->withCode('EN')->create();
@@ -117,7 +117,7 @@ final class ZoneFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_zone_with_existing_countries(): void
+    public function it_creates_zone_with_existing_countries(): void
     {
         $firstZoneMember = ZoneMemberFactory::new()->withCode('FR')->create()->object();
         $secondZoneMember = ZoneMemberFactory::new()->withCode('EN')->create()->object();
@@ -132,7 +132,7 @@ final class ZoneFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_zone_with_new_provinces(): void
+    public function it_creates_zone_with_new_provinces(): void
     {
         $zone = ZoneFactory::new()->withProvinces(['US-TX', 'US-ME'])->create();
 
@@ -141,7 +141,7 @@ final class ZoneFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_zone_with_existing_proxy_provinces(): void
+    public function it_creates_zone_with_existing_proxy_provinces(): void
     {
         $firstZoneMember = ZoneMemberFactory::new()->withCode('US-TX')->create();
         $secondZoneMember = ZoneMemberFactory::new()->withCode('US-ME')->create();
@@ -156,7 +156,7 @@ final class ZoneFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_zone_with_existing_provinces(): void
+    public function it_creates_zone_with_existing_provinces(): void
     {
         $firstZoneMember = ZoneMemberFactory::new()->withCode('US-TX')->create()->object();
         $secondZoneMember = ZoneMemberFactory::new()->withCode('US-ME')->create()->object();
@@ -171,7 +171,7 @@ final class ZoneFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_zone_with_given_scope(): void
+    public function it_creates_zone_with_given_scope(): void
     {
         $zone = ZoneFactory::new()->withScope(Scope::TAX)->create();
 

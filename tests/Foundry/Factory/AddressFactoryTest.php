@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Sylius package.
+ * This file is part of ShopFixturesPlugin.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Akawaka
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -25,7 +25,7 @@ final class AddressFactoryTest extends KernelTestCase
     use Factories;
 
     /** @test */
-    function it_creates_country_with_random_data(): void
+    public function it_creates_country_with_random_data(): void
     {
         $address = AddressFactory::createOne();
 
@@ -40,7 +40,7 @@ final class AddressFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_address_with_given_first_name(): void
+    public function it_creates_address_with_given_first_name(): void
     {
         $address = AddressFactory::createOne(['firstName' => 'Marty']);
 
@@ -48,7 +48,7 @@ final class AddressFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_address_with_given_last_name(): void
+    public function it_creates_address_with_given_last_name(): void
     {
         $address = AddressFactory::createOne(['LastName' => 'McFly']);
 
@@ -56,7 +56,7 @@ final class AddressFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_address_with_given_phone_number(): void
+    public function it_creates_address_with_given_phone_number(): void
     {
         $address = AddressFactory::createOne(['phoneNumber' => '1955-1985-2015']);
 
@@ -64,7 +64,7 @@ final class AddressFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_address_with_given_company(): void
+    public function it_creates_address_with_given_company(): void
     {
         $address = AddressFactory::createOne(['company' => 'Universal Pictures']);
 
@@ -72,7 +72,7 @@ final class AddressFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_address_with_given_street(): void
+    public function it_creates_address_with_given_street(): void
     {
         $address = AddressFactory::createOne(['street' => '9303 Lyon Drive, Lyon Estates']);
 
@@ -80,7 +80,7 @@ final class AddressFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_address_with_given_city(): void
+    public function it_creates_address_with_given_city(): void
     {
         $address = AddressFactory::createOne(['city' => 'Hill Valley']);
 
@@ -88,7 +88,7 @@ final class AddressFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_address_with_given_post_code(): void
+    public function it_creates_address_with_given_post_code(): void
     {
         $address = AddressFactory::createOne(['postcode' => '95420']);
 
@@ -96,7 +96,7 @@ final class AddressFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_address_with_given_country_code(): void
+    public function it_creates_address_with_given_country_code(): void
     {
         $address = AddressFactory::createOne(['countryCode' => 'US']);
 
@@ -104,7 +104,7 @@ final class AddressFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_address_with_given_province_name(): void
+    public function it_creates_address_with_given_province_name(): void
     {
         $address = AddressFactory::createOne(['provinceName' => 'California']);
 
@@ -112,7 +112,7 @@ final class AddressFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_address_with_given_province_code(): void
+    public function it_creates_address_with_given_province_code(): void
     {
         $address = AddressFactory::createOne(['provinceCode' => 'CA']);
 

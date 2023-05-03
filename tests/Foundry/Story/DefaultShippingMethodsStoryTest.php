@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Sylius package.
+ * This file is part of ShopFixturesPlugin.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Akawaka
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -14,10 +14,8 @@ declare(strict_types=1);
 namespace Tests\Acme\SyliusExamplePlugin\Foundry\Story;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultMenuTaxonStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultShippingMethodsStory;
 use Sylius\Component\Core\Model\ShippingMethodInterface;
-use Sylius\Component\Core\Model\TaxonInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Tests\Acme\SyliusExamplePlugin\PurgeDatabaseTrait;
@@ -29,7 +27,7 @@ final class DefaultShippingMethodsStoryTest extends KernelTestCase
     use Factories;
 
     /** @test */
-    function it_creates_default_shipping_methods(): void
+    public function it_creates_default_shipping_methods(): void
     {
         self::bootKernel();
 

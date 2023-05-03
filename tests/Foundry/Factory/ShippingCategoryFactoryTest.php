@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Sylius package.
+ * This file is part of ShopFixturesPlugin.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Akawaka
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -25,7 +25,7 @@ final class ShippingCategoryFactoryTest extends KernelTestCase
     use Factories;
 
     /** @test */
-    function it_creates_shipping_category(): void
+    public function it_creates_shipping_category(): void
     {
         $shippingCategory = ShippingCategoryFactory::createOne();
 
@@ -34,7 +34,7 @@ final class ShippingCategoryFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_shipping_category_with_given_code(): void
+    public function it_creates_shipping_category_with_given_code(): void
     {
         $shippingCategory = ShippingCategoryFactory::new()->withCode('SC2')->create();
 
@@ -42,7 +42,7 @@ final class ShippingCategoryFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_shipping_category_with_given_name(): void
+    public function it_creates_shipping_category_with_given_name(): void
     {
         $shippingCategory = ShippingCategoryFactory::new()->withName('Shipping category one')->create();
 
@@ -51,7 +51,7 @@ final class ShippingCategoryFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_shipping_category_with_given_description(): void
+    public function it_creates_shipping_category_with_given_description(): void
     {
         $shippingCategory = ShippingCategoryFactory::new()->withDescription('One category to rule them all.')->create();
 
