@@ -15,7 +15,6 @@ namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithNameTrait;
-use Sylius\Bundle\CustomerBundle\Doctrine\ORM\CustomerGroupRepository;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Customer\Model\CustomerGroup;
 use Sylius\Component\Customer\Model\CustomerGroupInterface;
@@ -44,15 +43,9 @@ use Zenstruck\Foundry\RepositoryProxy;
  */
 final class CustomerGroupFactory extends ModelFactory implements FactoryWithModelClassAwareInterface
 {
+    use WithModelClassTrait;
     use WithCodeTrait;
     use WithNameTrait;
-
-    private static ?string $modelClass = null;
-
-    public static function withModelClass(string $modelClass): void
-    {
-        self::$modelClass = $modelClass;
-    }
 
     protected function getDefaults(): array
     {
