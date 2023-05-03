@@ -13,8 +13,11 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Story;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAttributeFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxonFactory;
+use Sylius\Component\Attribute\AttributeType\IntegerAttributeType;
+use Sylius\Component\Attribute\AttributeType\TextAttributeType;
 use Zenstruck\Foundry\Story;
 
 final class RandomDressesStory extends Story
@@ -22,7 +25,7 @@ final class RandomDressesStory extends Story
     public function build(): void
     {
         $this->createTaxa();
-        //$this->createAttributes();
+        $this->createAttributes();
         //$this->createOptions();
         $this->createProducts();
     }
@@ -49,36 +52,36 @@ final class RandomDressesStory extends Story
         ;
     }
 
-//    private function createAttributes(): void
-//    {
-//        $this->productAttributeFactory::new()
-//            ->withCode('dress_brand')
-//            ->withName('Dress brand')
-//            ->withType(TextAttributeType::TYPE)
-//            ->create()
-//        ;
-//
-//        $this->productAttributeFactory::new()
-//            ->withCode('dress_collection')
-//            ->withName('Dress collection')
-//            ->withType(TextAttributeType::TYPE)
-//            ->create()
-//        ;
-//
-//        $this->productAttributeFactory::new()
-//            ->withCode('dress_material')
-//            ->withName('Dress material')
-//            ->withType(TextAttributeType::TYPE)
-//            ->create()
-//        ;
-//
-//        $this->productAttributeFactory::new()
-//            ->withCode('length')
-//            ->withName('Length')
-//            ->withType(IntegerAttributeType::TYPE)
-//            ->create()
-//        ;
-//    }
+    private function createAttributes(): void
+    {
+        ProductAttributeFactory::new()
+            ->withCode('dress_brand')
+            ->withName('Dress brand')
+            ->withType(TextAttributeType::TYPE)
+            ->create()
+        ;
+
+        ProductAttributeFactory::new()
+            ->withCode('dress_collection')
+            ->withName('Dress collection')
+            ->withType(TextAttributeType::TYPE)
+            ->create()
+        ;
+
+        ProductAttributeFactory::new()
+            ->withCode('dress_material')
+            ->withName('Dress material')
+            ->withType(TextAttributeType::TYPE)
+            ->create()
+        ;
+
+        ProductAttributeFactory::new()
+            ->withCode('length')
+            ->withName('Length')
+            ->withType(IntegerAttributeType::TYPE)
+            ->create()
+        ;
+    }
 
 //    private function createOptions(): void
 //    {
@@ -109,7 +112,7 @@ final class RandomDressesStory extends Story
 
     private function createProducts(): void
     {
-        // $year = date('Y');
+        $year = date('Y');
 
         ProductFactory::new()
             ->withName('Beige strappy summer dress')
@@ -117,11 +120,11 @@ final class RandomDressesStory extends Story
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('dresses')
 //            ->withTaxa(['dresses'])
-//            ->withProductAttributes([
-//                'dress_brand'=> 'You are breathtaking',
-//                'dress_collection' => 'Sylius Winter '.$year,
-//                'dress_material' => '100% polyester',
-//            ])
+            ->withProductAttributes([
+                'dress_brand' => 'You are breathtaking',
+                'dress_collection' => 'Sylius Winter ' . $year,
+                'dress_material' => '100% polyester',
+            ])
 //            ->withProductOptions([
 //                'dress_size',
 //                'dress_height',
@@ -138,11 +141,11 @@ final class RandomDressesStory extends Story
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('dresses')
 //            ->withTaxa(['dresses'])
-//            ->withProductAttributes([
-//                'dress_brand'=> 'You are breathtaking',
-//                'dress_collection' => 'Sylius Winter '.$year,
-//                'dress_material' => '100% wool',
-//            ])
+            ->withProductAttributes([
+                'dress_brand' => 'You are breathtaking',
+                'dress_collection' => 'Sylius Winter ' . $year,
+                'dress_material' => '100% wool',
+            ])
 //            ->withProductOptions([
 //                'dress_size',
 //                'dress_height',
@@ -159,12 +162,12 @@ final class RandomDressesStory extends Story
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('dresses')
 //            ->withTaxa(['dresses'])
-//            ->withProductAttributes([
-//                'dress_brand'=> 'You are breathtaking',
-//                'dress_collection' => 'Sylius Winter '.$year,
-//                'dress_material' => '100% polyester',
-//                'length' => 100
-//            ])
+            ->withProductAttributes([
+                'dress_brand' => 'You are breathtaking',
+                'dress_collection' => 'Sylius Winter ' . $year,
+                'dress_material' => '100% polyester',
+                'length' => 100,
+            ])
 //            ->withProductOptions([
 //                'dress_size',
 //                'dress_height',

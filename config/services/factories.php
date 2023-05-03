@@ -22,6 +22,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CurrencyFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CustomerFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\FactoryWithModelClassAwareInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAttributeFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ShippingCategoryFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ShippingMethodFactory;
@@ -120,6 +121,15 @@ return static function (ContainerConfigurator $container) {
             ->tag('foundry.factory')
         ->alias(ProductFactory::class, 'sylius.shop_fixtures.factory.product')
 
+        ->set('sylius.shop_fixtures.factory.product_attribute', ProductAttributeFactory::class)
+            ->args([
+                service('sylius.factory.product_attribute'),
+//                service('sylius.shop_fixtures.default_values.product_attribute'),
+                service('sylius.shop_fixtures.transformer.product_attribute'),
+                service('sylius.shop_fixtures.updater.product_attribute'),
+            ])
+            ->tag('foundry.factory')
+        ->alias(ProductAttributeFactory::class, 'sylius.shop_fixtures.factory.product_attribute')
 
         ->set('sylius.shop_fixtures.factory.shipping_category', ShippingCategoryFactory::class)
             ->args([

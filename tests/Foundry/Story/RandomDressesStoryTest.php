@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Tests\Acme\SyliusExamplePlugin\Foundry\Story;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomDressesStory;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
@@ -30,6 +31,7 @@ final class RandomDressesStoryTest extends KernelTestCase
     {
         self::bootKernel();
 
+        LocaleFactory::new()->withCode('en_US')->create();
         RandomDressesStory::load();
 
         $products = $this->getProductRepository()->findAll();
@@ -42,6 +44,7 @@ final class RandomDressesStoryTest extends KernelTestCase
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('dresses', $product->getMainTaxon()->getCode());
         $this->assertStringEndsWith('dress_01.jpg', $product->getImagesByType('main')[0]->getPath());
+        $this->assertCount(3, $product->getAttributes());
 
         $product = $products[1];
         $this->assertInstanceOf(ProductInterface::class, $product);
@@ -49,6 +52,7 @@ final class RandomDressesStoryTest extends KernelTestCase
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('dresses', $product->getMainTaxon()->getCode());
         $this->assertStringEndsWith('dress_02.jpg', $product->getImagesByType('main')[0]->getPath());
+        $this->assertCount(3, $product->getAttributes());
 
         $product = $products[2];
         $this->assertInstanceOf(ProductInterface::class, $product);
@@ -56,6 +60,7 @@ final class RandomDressesStoryTest extends KernelTestCase
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('dresses', $product->getMainTaxon()->getCode());
         $this->assertStringEndsWith('dress_03.jpg', $product->getImagesByType('main')[0]->getPath());
+        $this->assertCount(4, $product->getAttributes());
     }
 
     private function getProductRepository(): RepositoryInterface

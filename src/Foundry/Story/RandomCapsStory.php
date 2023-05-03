@@ -13,8 +13,10 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Story;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAttributeFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxonFactory;
+use Sylius\Component\Attribute\AttributeType\TextAttributeType;
 use Zenstruck\Foundry\Story;
 
 final class RandomCapsStory extends Story
@@ -22,7 +24,7 @@ final class RandomCapsStory extends Story
     public function build(): void
     {
         $this->createTaxa();
-        //$this->createAttributes();
+        $this->createAttributes();
         $this->createProducts();
     }
 
@@ -78,33 +80,33 @@ final class RandomCapsStory extends Story
         ;
     }
 
-//    private function createAttributes(): void
-//    {
-//        $this->productAttributeFactory::new()
-//            ->withCode('cap_brand')
-//            ->withName('Cap brand')
-//            ->withType(TextAttributeType::TYPE)
-//            ->create()
-//        ;
-//
-//        $this->productAttributeFactory::new()
-//            ->withCode('cap_collection')
-//            ->withName('Cap collection')
-//            ->withType(TextAttributeType::TYPE)
-//            ->create()
-//        ;
-//
-//        $this->productAttributeFactory::new()
-//            ->withCode('cap_material')
-//            ->withName('Cap material')
-//            ->withType(TextAttributeType::TYPE)
-//            ->create()
-//        ;
-//    }
+    private function createAttributes(): void
+    {
+        ProductAttributeFactory::new()
+            ->withCode('cap_brand')
+            ->withName('Cap brand')
+            ->withType(TextAttributeType::TYPE)
+            ->create()
+        ;
+
+        ProductAttributeFactory::new()
+            ->withCode('cap_collection')
+            ->withName('Cap collection')
+            ->withType(TextAttributeType::TYPE)
+            ->create()
+        ;
+
+        ProductAttributeFactory::new()
+            ->withCode('cap_material')
+            ->withName('Cap material')
+            ->withType(TextAttributeType::TYPE)
+            ->create()
+        ;
+    }
 
     private function createProducts(): void
     {
-//        $year = date('Y');
+        $year = date('Y');
 
         ProductFactory::new()
             ->withName('Knitted burgundy winter cap')
@@ -112,11 +114,11 @@ final class RandomCapsStory extends Story
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('caps_with_pompons')
 //            ->withTaxa(['caps', 'caps_with_pompons'])
-//            ->withProductAttributes([
-//                'cap_brand'=> 'You are breathtaking',
-//                'cap_collection' => 'Sylius Winter '.$year,
-//                'cap_material' => '100% wool',
-//            ])
+            ->withProductAttributes([
+                'cap_brand' => 'You are breathtaking',
+                'cap_collection' => 'Sylius Winter ' . $year,
+                'cap_material' => '100% wool',
+            ])
             ->withImages([
                 ['path' => '@SyliusCoreBundle/Resources/fixtures/caps/cap_01.jpg', 'type' => 'main'],
             ])
@@ -129,11 +131,11 @@ final class RandomCapsStory extends Story
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('simple_caps')
 //            ->withTaxa(['caps', 'simple_caps'])
-//            ->withProductAttributes([
-//                'cap_brand'=> 'Modern Wear',
-//                'cap_collection' => 'Sylius Winter '.$year,
-//                'cap_material' => '100% wool',
-//            ])
+            ->withProductAttributes([
+                'cap_brand' => 'Modern Wear',
+                'cap_collection' => 'Sylius Winter ' . $year,
+                'cap_material' => '100% wool',
+            ])
             ->withImages([
                 ['path' => '@SyliusCoreBundle/Resources/fixtures/caps/cap_02.jpg', 'type' => 'main'],
             ])
@@ -146,11 +148,11 @@ final class RandomCapsStory extends Story
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('caps_with_pompons')
 //            ->withTaxa(['caps', 'caps_with_pompons'])
-//            ->withProductAttributes([
-//                'cap_brand'=> 'Celsius Small',
-//                'cap_collection' => 'Sylius Winter '.$year,
-//                'cap_material' => '100% wool',
-//            ])
+            ->withProductAttributes([
+                'cap_brand' => 'Celsius Small',
+                'cap_collection' => 'Sylius Winter ' . $year,
+                'cap_material' => '100% wool',
+            ])
             ->withImages([
                 ['path' => '@SyliusCoreBundle/Resources/fixtures/caps/cap_03.jpg', 'type' => 'main'],
             ])
@@ -163,11 +165,11 @@ final class RandomCapsStory extends Story
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('simple_caps')
 //            ->withTaxa(['caps', 'simple_caps'])
-//            ->withProductAttributes([
-//                'cap_brand'=> 'Date & Banana',
-//                'cap_collection' => 'Sylius Winter '.$year,
-//                'cap_material' => '100% cashmere',
-//            ])
+            ->withProductAttributes([
+                'cap_brand' => 'Date & Banana',
+                'cap_collection' => 'Sylius Winter ' . $year,
+                'cap_material' => '100% cashmere',
+            ])
             ->withImages([
                 ['path' => '@SyliusCoreBundle/Resources/fixtures/caps/cap_04.jpg', 'type' => 'main'],
             ])

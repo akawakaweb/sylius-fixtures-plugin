@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Story;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAttributeFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxonFactory;
 use Sylius\Component\Attribute\AttributeType\PercentAttributeType;
@@ -24,7 +25,7 @@ final class RandomTShirtsStory extends Story
     public function build(): void
     {
         $this->createTaxa();
-//        $this->createAttributes();
+        $this->createAttributes();
 //        $this->createOptions();
         $this->createProducts();
     }
@@ -81,36 +82,36 @@ final class RandomTShirtsStory extends Story
         ;
     }
 
-//    private function createAttributes(): void
-//    {
-//        $this->productAttributeFactory::new()
-//            ->withCode('t_shirt_brand')
-//            ->withName('T-shirt brand')
-//            ->withType(TextAttributeType::TYPE)
-//            ->create()
-//        ;
-//
-//        $this->productAttributeFactory::new()
-//            ->withCode('t_shirt_collection')
-//            ->withName('T-shirt collection')
-//            ->withType(TextAttributeType::TYPE)
-//            ->create()
-//        ;
-//
-//        $this->productAttributeFactory::new()
-//            ->withCode('t_shirt_material')
-//            ->withName('T-shirt material')
-//            ->withType(TextAttributeType::TYPE)
-//            ->create()
-//        ;
-//
-//        $this->productAttributeFactory::new()
-//            ->withCode('damage_reduction')
-//            ->withName('Damage reduction')
-//            ->withType(PercentAttributeType::TYPE)
-//            ->create()
-//        ;
-//    }
+    private function createAttributes(): void
+    {
+        ProductAttributeFactory::new()
+            ->withCode('t_shirt_brand')
+            ->withName('T-shirt brand')
+            ->withType(TextAttributeType::TYPE)
+            ->create()
+        ;
+
+        ProductAttributeFactory::new()
+            ->withCode('t_shirt_collection')
+            ->withName('T-shirt collection')
+            ->withType(TextAttributeType::TYPE)
+            ->create()
+        ;
+
+        ProductAttributeFactory::new()
+            ->withCode('t_shirt_material')
+            ->withName('T-shirt material')
+            ->withType(TextAttributeType::TYPE)
+            ->create()
+        ;
+
+        ProductAttributeFactory::new()
+            ->withCode('damage_reduction')
+            ->withName('Damage reduction')
+            ->withType(PercentAttributeType::TYPE)
+            ->create()
+        ;
+    }
 //
 //    private function createOptions(): void
 //    {
@@ -138,12 +139,12 @@ final class RandomTShirtsStory extends Story
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('women_t_shirts')
 //            ->withTaxa(['t_shirts', 'women_t_shirts'])
-//            ->withProductAttributes([
-//                't_shirt_brand' => 'You are breathtaking',
-//                't_shirt_collection' => 'Sylius Winter ' . $year,
-//                't_shirt_material' => '100% cotton',
-//                'damage_reduction' => 0.1,
-//            ])
+            ->withProductAttributes([
+                't_shirt_brand' => 'You are breathtaking',
+                't_shirt_collection' => 'Sylius Winter ' . $year,
+                't_shirt_material' => '100% cotton',
+                'damage_reduction' => 0.1,
+            ])
 //            ->withProductOptions([
 //                't_shirt_size',
 //            ])
@@ -159,11 +160,11 @@ final class RandomTShirtsStory extends Story
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('women_t_shirts')
 //            ->withTaxa(['t_shirts', 'women_t_shirts'])
-//            ->withProductAttributes([
-//                't_shirt_brand' => 'Modern Wear',
-//                't_shirt_collection' => 'Sylius Winter ' . $year,
-//                't_shirt_material' => '100% cotton',
-//            ])
+            ->withProductAttributes([
+                't_shirt_brand' => 'Modern Wear',
+                't_shirt_collection' => 'Sylius Winter ' . $year,
+                't_shirt_material' => '100% cotton',
+            ])
 //            ->withProductOptions([
 //                't_shirt_size',
 //            ])
@@ -179,11 +180,11 @@ final class RandomTShirtsStory extends Story
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('women_t_shirts')
 //            ->withTaxa(['t_shirts', 'women_t_shirts'])
-//            ->withProductAttributes([
-//                't_shirt_brand' => 'Celsius Small',
-//                't_shirt_collection' => 'Sylius Winter ' . $year,
-//                't_shirt_material' => '100% viscose',
-//            ])
+            ->withProductAttributes([
+                't_shirt_brand' => 'Celsius Small',
+                't_shirt_collection' => 'Sylius Winter ' . $year,
+                't_shirt_material' => '100% viscose',
+            ])
 //            ->withProductOptions([
 //                't_shirt_size',
 //            ])
@@ -199,11 +200,11 @@ final class RandomTShirtsStory extends Story
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('men_t_shirts')
 //            ->withTaxa(['t_shirts', 'men_t_shirts'])
-//            ->withProductAttributes([
-//                't_shirt_brand' => 'You are breathtaking',
-//                't_shirt_collection' => 'Sylius Winter ' . $year,
-//                't_shirt_material' => '100% viscose',
-//            ])
+            ->withProductAttributes([
+                't_shirt_brand' => 'You are breathtaking',
+                't_shirt_collection' => 'Sylius Winter ' . $year,
+                't_shirt_material' => '100% viscose',
+            ])
 //            ->withProductOptions([
 //                't_shirt_size',
 //            ])
@@ -219,11 +220,11 @@ final class RandomTShirtsStory extends Story
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('men_t_shirts')
 //            ->withTaxa(['t_shirts', 'men_t_shirts'])
-//            ->withProductAttributes([
-//                't_shirt_brand' => 'You are breathtaking',
-//                't_shirt_collection' => 'Sylius Winter ' . $year,
-//                't_shirt_material' => '100% cotton',
-//            ])
+            ->withProductAttributes([
+                't_shirt_brand' => 'You are breathtaking',
+                't_shirt_collection' => 'Sylius Winter ' . $year,
+                't_shirt_material' => '100% cotton',
+            ])
 //            ->withProductOptions([
 //                't_shirt_size',
 //            ])
@@ -239,11 +240,11 @@ final class RandomTShirtsStory extends Story
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('men_t_shirts')
 //            ->withTaxa(['t_shirts', 'men_t_shirts'])
-//            ->withProductAttributes([
-//                't_shirt_brand' => 'Modern Wear',
-//                't_shirt_collection' => 'Sylius Winter ' . $year,
-//                't_shirt_material' => '100% cotton',
-//            ])
+            ->withProductAttributes([
+                't_shirt_brand' => 'Modern Wear',
+                't_shirt_collection' => 'Sylius Winter ' . $year,
+                't_shirt_material' => '100% cotton',
+            ])
 //            ->withProductOptions([
 //                't_shirt_size',
 //            ])

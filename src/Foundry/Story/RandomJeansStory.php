@@ -13,8 +13,10 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Story;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAttributeFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxonFactory;
+use Sylius\Component\Attribute\AttributeType\TextAttributeType;
 use Zenstruck\Foundry\Story;
 
 final class RandomJeansStory extends Story
@@ -22,7 +24,7 @@ final class RandomJeansStory extends Story
     public function build(): void
     {
         $this->createTaxa();
-        //$this->createAttributes();
+        $this->createAttributes();
         //$this->createOptions();
         $this->createProducts();
     }
@@ -78,29 +80,29 @@ final class RandomJeansStory extends Story
         ;
     }
 
-//    private function createAttributes(): void
-//    {
-//        $this->productAttributeFactory::new()
-//            ->withCode('jeans_brand')
-//            ->withName('Jeans brand')
-//            ->withType(TextAttributeType::TYPE)
-//            ->create()
-//        ;
-//
-//        $this->productAttributeFactory::new()
-//            ->withCode('jeans_collection')
-//            ->withName('Jeans collection')
-//            ->withType(TextAttributeType::TYPE)
-//            ->create()
-//        ;
-//
-//        $this->productAttributeFactory::new()
-//            ->withCode('jeans_material')
-//            ->withName('Jeans material')
-//            ->withType(TextAttributeType::TYPE)
-//            ->create()
-//        ;
-//    }
+    private function createAttributes(): void
+    {
+        ProductAttributeFactory::new()
+            ->withCode('jeans_brand')
+            ->withName('Jeans brand')
+            ->withType(TextAttributeType::TYPE)
+            ->create()
+        ;
+
+        ProductAttributeFactory::new()
+            ->withCode('jeans_collection')
+            ->withName('Jeans collection')
+            ->withType(TextAttributeType::TYPE)
+            ->create()
+        ;
+
+        ProductAttributeFactory::new()
+            ->withCode('jeans_material')
+            ->withName('Jeans material')
+            ->withType(TextAttributeType::TYPE)
+            ->create()
+        ;
+    }
 
 //    private function createOptions(): void
 //    {
@@ -120,7 +122,7 @@ final class RandomJeansStory extends Story
 
     private function createProducts(): void
     {
-//        $year = date('Y');
+        $year = date('Y');
 
         ProductFactory::new()
             ->withName('911M regular fit jeans')
@@ -128,11 +130,11 @@ final class RandomJeansStory extends Story
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('mens_jeans')
 //            ->withTaxa(['jeans', 'men_jeans'])
-//            ->withProductAttributes([
-//                'jeans_brand'=> 'You are breathtaking',
-//                'jeans_collection' => 'Sylius Winter '.$year,
-//                'jeans_material' => '100% jeans',
-//            ])
+            ->withProductAttributes([
+                'jeans_brand' => 'You are breathtaking',
+                'jeans_collection' => 'Sylius Winter ' . $year,
+                'jeans_material' => '100% jeans',
+            ])
 //            ->withProductOptions([
 //                'jeans_size',
 //            ])
@@ -148,11 +150,11 @@ final class RandomJeansStory extends Story
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('mens_jeans')
 //            ->withTaxa(['jeans', 'men_jeans'])
-//            ->withProductAttributes([
-//                'jeans_brand'=> 'Modern Wear',
-//                'jeans_collection' => 'Sylius Winter '.$year,
-//                'jeans_material' => '100% jeans',
-//            ])
+            ->withProductAttributes([
+                'jeans_brand' => 'Modern Wear',
+                'jeans_collection' => 'Sylius Winter ' . $year,
+                'jeans_material' => '100% jeans',
+            ])
 //            ->withProductOptions([
 //                'jeans_size',
 //            ])
@@ -168,11 +170,11 @@ final class RandomJeansStory extends Story
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('mens_jeans')
 //            ->withTaxa(['jeans', 'men_jeans'])
-//            ->withProductAttributes([
-//                'jeans_brand'=> 'Celsius Small',
-//                'jeans_collection' => 'Sylius Winter '.$year,
-//                'jeans_material' => '100% jeans',
-//            ])
+            ->withProductAttributes([
+                'jeans_brand' => 'Celsius Small',
+                'jeans_collection' => 'Sylius Winter ' . $year,
+                'jeans_material' => '100% jeans',
+            ])
 //            ->withProductOptions([
 //                'jeans_size',
 //            ])
@@ -188,11 +190,11 @@ final class RandomJeansStory extends Story
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('mens_jeans')
 //            ->withTaxa(['jeans', 'men_jeans'])
-//            ->withProductAttributes([
-//                'jeans_brand'=> 'Date & Banana',
-//                'jeans_collection' => 'Sylius Winter '.$year,
-//                'jeans_material' => '100% jeans',
-//            ])
+            ->withProductAttributes([
+                'jeans_brand' => 'Date & Banana',
+                'jeans_collection' => 'Sylius Winter ' . $year,
+                'jeans_material' => '100% jeans',
+            ])
 //            ->withProductOptions([
 //                'jeans_size',
 //            ])
@@ -208,11 +210,11 @@ final class RandomJeansStory extends Story
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('women_jeans')
 //            ->withTaxa(['jeans', 'women_jeans'])
-//            ->withProductAttributes([
-//                'jeans_brand'=> 'You are breathtaking',
-//                'jeans_collection' => 'Sylius Winter '.$year,
-//                'jeans_material' => '100% jeans',
-//            ])
+            ->withProductAttributes([
+                'jeans_brand' => 'You are breathtaking',
+                'jeans_collection' => 'Sylius Winter ' . $year,
+                'jeans_material' => '100% jeans',
+            ])
 //            ->withProductOptions([
 //                'jeans_size',
 //            ])
@@ -228,11 +230,11 @@ final class RandomJeansStory extends Story
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('women_jeans')
 //            ->withTaxa(['jeans', 'women_jeans'])
-//            ->withProductAttributes([
-//                'jeans_brand'=> 'You are breathtaking',
-//                'jeans_collection' => 'Sylius Winter '.$year,
-//                'jeans_material' => '100% jeans',
-//            ])
+            ->withProductAttributes([
+                'jeans_brand' => 'You are breathtaking',
+                'jeans_collection' => 'Sylius Winter ' . $year,
+                'jeans_material' => '100% jeans',
+            ])
 //            ->withProductOptions([
 //                'jeans_size',
 //            ])
@@ -248,11 +250,11 @@ final class RandomJeansStory extends Story
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('women_jeans')
 //            ->withTaxa(['jeans', 'women_jeans'])
-//            ->withProductAttributes([
-//                'jeans_brand' => 'Modern Wear',
-//                'jeans_collection' => 'Sylius Winter ' . $year,
-//                'jeans_material' => '100% jeans',
-//            ])
+            ->withProductAttributes([
+                'jeans_brand' => 'Modern Wear',
+                'jeans_collection' => 'Sylius Winter ' . $year,
+                'jeans_material' => '100% jeans',
+            ])
 //            ->withProductOptions([
 //                'jeans_size',
 //            ])
@@ -268,11 +270,11 @@ final class RandomJeansStory extends Story
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('women_jeans')
 //            ->withTaxa(['jeans', 'women_jeans'])
-//            ->withProductAttributes([
-//                'jeans_brand'=> 'Modern Wear',
-//                'jeans_collection' => 'Sylius Winter '.$year,
-//                'jeans_material' => '100% jeans',
-//            ])
+            ->withProductAttributes([
+                'jeans_brand' => 'Modern Wear',
+                'jeans_collection' => 'Sylius Winter ' . $year,
+                'jeans_material' => '100% jeans',
+            ])
 //            ->withProductOptions([
 //                'jeans_size',
 //            ])

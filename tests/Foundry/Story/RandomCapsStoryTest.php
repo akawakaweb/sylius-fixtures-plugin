@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Tests\Acme\SyliusExamplePlugin\Foundry\Story;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomCapsStory;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
@@ -30,6 +31,7 @@ final class RandomCapsStoryTest extends KernelTestCase
     {
         self::bootKernel();
 
+        LocaleFactory::new()->withCode('en_US')->create();
         RandomCapsStory::load();
 
         $products = $this->getProductRepository()->findAll();
@@ -42,6 +44,7 @@ final class RandomCapsStoryTest extends KernelTestCase
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('caps_with_pompons', $product->getMainTaxon()->getCode());
         $this->assertStringEndsWith('cap_01.jpg', $product->getImagesByType('main')[0]->getPath());
+        $this->assertCount(3, $product->getAttributes());
 
         $product = $products[1];
         $this->assertInstanceOf(ProductInterface::class, $product);
@@ -49,6 +52,7 @@ final class RandomCapsStoryTest extends KernelTestCase
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('simple_caps', $product->getMainTaxon()->getCode());
         $this->assertStringEndsWith('cap_02.jpg', $product->getImagesByType('main')[0]->getPath());
+        $this->assertCount(3, $product->getAttributes());
 
         $product = $products[2];
         $this->assertInstanceOf(ProductInterface::class, $product);
@@ -56,6 +60,7 @@ final class RandomCapsStoryTest extends KernelTestCase
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('caps_with_pompons', $product->getMainTaxon()->getCode());
         $this->assertStringEndsWith('cap_03.jpg', $product->getImagesByType('main')[0]->getPath());
+        $this->assertCount(3, $product->getAttributes());
 
         $product = $products[3];
         $this->assertInstanceOf(ProductInterface::class, $product);
@@ -63,6 +68,7 @@ final class RandomCapsStoryTest extends KernelTestCase
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('simple_caps', $product->getMainTaxon()->getCode());
         $this->assertStringEndsWith('cap_04.jpg', $product->getImagesByType('main')[0]->getPath());
+        $this->assertCount(3, $product->getAttributes());
     }
 
     private function getProductRepository(): RepositoryInterface
