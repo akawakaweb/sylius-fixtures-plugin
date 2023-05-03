@@ -27,6 +27,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ShippingCategoryFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ShippingMethodFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ShopUserFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxCategoryFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxonFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ZoneFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ZoneMemberFactory;
@@ -162,6 +163,15 @@ return static function (ContainerConfigurator $container) {
             ->tag('foundry.factory')
         ->alias(ShopUserFactory::class, 'sylius.shop_fixtures.factory.shop_user')
 
+        ->set('sylius.shop_fixtures.factory.tax_category', TaxCategoryFactory::class)
+            ->args([
+//                service('sylius.factory.tax_category'),
+                service('sylius.shop_fixtures.transformer.tax_category'),
+//                service('sylius.shop_fixtures.updater.tax_category'),
+            ])
+            ->tag('foundry.factory')
+        ->alias(TaxCategoryFactory::class, 'sylius.shop_fixtures.factory.tax_category')
+
         ->set('sylius.shop_fixtures.factory.taxon', TaxonFactory::class)
             ->args([
                 service('sylius.factory.taxon'),
@@ -172,7 +182,6 @@ return static function (ContainerConfigurator $container) {
             ])
             ->tag('foundry.factory')
         ->alias(TaxonFactory::class, 'sylius.shop_fixtures.factory.taxon')
-
 
         ->set('sylius.shop_fixtures.factory.zone', ZoneFactory::class)
             ->args([

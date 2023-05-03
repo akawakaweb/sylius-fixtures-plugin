@@ -22,6 +22,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultLocalesStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultMenuTaxonStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultShippingMethodsStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultShopUsersStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultTaxCategoriesStory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -36,10 +37,11 @@ final class ShopConfigurationFixture extends Fixture implements FixtureGroupInte
         DefaultGeographicalStory::load();
         DefaultMenuTaxonStory::load();
         DefaultChannelsStory::load();
-        DefaultAdminUsersStory::load();
         DefaultShippingMethodsStory::load();
         DefaultCustomerGroupsStory::load();
         DefaultShopUsersStory::load();
+        DefaultAdminUsersStory::load();
+        DefaultTaxCategoriesStory::load();
     }
 
     public static function getGroups(): array

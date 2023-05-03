@@ -110,7 +110,7 @@ final class RandomCapsStory extends Story
 
         ProductFactory::new()
             ->withName('Knitted burgundy winter cap')
-//            ->withTaxCategory('other')
+            ->withTaxCategory('other')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('caps_with_pompons')
 //            ->withTaxa(['caps', 'caps_with_pompons'])
@@ -127,7 +127,7 @@ final class RandomCapsStory extends Story
 
         ProductFactory::new()
             ->withName('Knitted wool-blend green cap')
-//            ->withTaxCategory('other')
+            ->withTaxCategory('other')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('simple_caps')
 //            ->withTaxa(['caps', 'simple_caps'])
@@ -144,7 +144,7 @@ final class RandomCapsStory extends Story
 
         ProductFactory::new()
             ->withName('Knitted white pompom cap')
-//            ->withTaxCategory('other')
+            ->withTaxCategory('other')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('caps_with_pompons')
 //            ->withTaxa(['caps', 'caps_with_pompons'])
@@ -161,7 +161,7 @@ final class RandomCapsStory extends Story
 
         ProductFactory::new()
             ->withName('Cashmere-blend violet beanie')
-//            ->withTaxCategory('other')
+            ->withTaxCategory('other')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('simple_caps')
 //            ->withTaxa(['caps', 'simple_caps'])

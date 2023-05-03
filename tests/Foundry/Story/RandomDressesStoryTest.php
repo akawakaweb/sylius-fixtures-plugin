@@ -41,6 +41,7 @@ final class RandomDressesStoryTest extends KernelTestCase
         $product = $products[0];
         $this->assertInstanceOf(ProductInterface::class, $product);
         $this->assertEquals('Beige strappy summer dress', $product->getName());
+        $this->assertEquals('clothing', $product->getVariants()[0]->getTaxCategory()->getCode());
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('dresses', $product->getMainTaxon()->getCode());
         $this->assertStringEndsWith('dress_01.jpg', $product->getImagesByType('main')[0]->getPath());
@@ -49,6 +50,7 @@ final class RandomDressesStoryTest extends KernelTestCase
         $product = $products[1];
         $this->assertInstanceOf(ProductInterface::class, $product);
         $this->assertEquals('Off shoulder boho dress', $product->getName());
+        $this->assertEquals('clothing', $product->getVariants()[0]->getTaxCategory()->getCode());
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('dresses', $product->getMainTaxon()->getCode());
         $this->assertStringEndsWith('dress_02.jpg', $product->getImagesByType('main')[0]->getPath());
@@ -57,6 +59,7 @@ final class RandomDressesStoryTest extends KernelTestCase
         $product = $products[2];
         $this->assertInstanceOf(ProductInterface::class, $product);
         $this->assertEquals('Ruffle wrap festival dress', $product->getName());
+        $this->assertEquals('clothing', $product->getVariants()[0]->getTaxCategory()->getCode());
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('dresses', $product->getMainTaxon()->getCode());
         $this->assertStringEndsWith('dress_03.jpg', $product->getImagesByType('main')[0]->getPath());

@@ -22,6 +22,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithNameTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithProductAttributesTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithShortDescriptionTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithSlugTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithTaxCategoryTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ProductTransformerInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ProductUpdaterInterface;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository;
@@ -62,6 +63,7 @@ final class ProductFactory extends ModelFactory
     use WithChannelsTrait;
     use WithImagesTrait;
     use WithProductAttributesTrait;
+    use WithTaxCategoryTrait;
 
     public function __construct(
         private ProductTransformerInterface $transformer,

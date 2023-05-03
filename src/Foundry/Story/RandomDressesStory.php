@@ -116,7 +116,7 @@ final class RandomDressesStory extends Story
 
         ProductFactory::new()
             ->withName('Beige strappy summer dress')
-//            ->withTaxCategory('clothing')
+            ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('dresses')
 //            ->withTaxa(['dresses'])
@@ -137,7 +137,7 @@ final class RandomDressesStory extends Story
 
         ProductFactory::new()
             ->withName('Off shoulder boho dress')
-//            ->withTaxCategory('clothing')
+            ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('dresses')
 //            ->withTaxa(['dresses'])
@@ -158,7 +158,7 @@ final class RandomDressesStory extends Story
 
         ProductFactory::new()
             ->withName('Ruffle wrap festival dress')
-//            ->withTaxCategory('clothing')
+            ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('dresses')
 //            ->withTaxa(['dresses'])

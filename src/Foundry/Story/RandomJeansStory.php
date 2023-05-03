@@ -126,7 +126,7 @@ final class RandomJeansStory extends Story
 
         ProductFactory::new()
             ->withName('911M regular fit jeans')
-//            ->withTaxCategory('clothing')
+            ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('mens_jeans')
 //            ->withTaxa(['jeans', 'men_jeans'])
@@ -146,7 +146,7 @@ final class RandomJeansStory extends Story
 
         ProductFactory::new()
             ->withName('330M slim fit jeans')
-//            ->withTaxCategory('clothing')
+            ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('mens_jeans')
 //            ->withTaxa(['jeans', 'men_jeans'])
@@ -166,7 +166,7 @@ final class RandomJeansStory extends Story
 
         ProductFactory::new()
             ->withName('990M regular fit jeans')
-//            ->withTaxCategory('clothing')
+            ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('mens_jeans')
 //            ->withTaxa(['jeans', 'men_jeans'])
@@ -186,7 +186,7 @@ final class RandomJeansStory extends Story
 
         ProductFactory::new()
             ->withName('007M black elegance jeans')
-//            ->withTaxCategory('clothing')
+            ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('mens_jeans')
 //            ->withTaxa(['jeans', 'men_jeans'])
@@ -206,7 +206,7 @@ final class RandomJeansStory extends Story
 
         ProductFactory::new()
             ->withName('727F patched cropped jeans')
-//            ->withTaxCategory('clothing')
+            ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('women_jeans')
 //            ->withTaxa(['jeans', 'women_jeans'])
@@ -226,7 +226,7 @@ final class RandomJeansStory extends Story
 
         ProductFactory::new()
             ->withName('111F patched jeans with fancy badges')
-//            ->withTaxCategory('clothing')
+            ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('women_jeans')
 //            ->withTaxa(['jeans', 'women_jeans'])
@@ -246,7 +246,7 @@ final class RandomJeansStory extends Story
 
         ProductFactory::new()
             ->withName('000F office grey jeans')
-//            ->withTaxCategory('clothing')
+            ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('women_jeans')
 //            ->withTaxa(['jeans', 'women_jeans'])
@@ -266,7 +266,7 @@ final class RandomJeansStory extends Story
 
         ProductFactory::new()
             ->withName('666F boyfriend jeans with rips')
-//            ->withTaxCategory('clothing')
+            ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('women_jeans')
 //            ->withTaxa(['jeans', 'women_jeans'])

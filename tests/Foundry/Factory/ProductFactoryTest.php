@@ -17,6 +17,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ChannelFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAttributeFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxCategoryFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxonFactory;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductVariantInterface;
@@ -188,17 +189,43 @@ final class ProductFactoryTest extends KernelTestCase
         $this->assertEquals(ProductInterface::VARIANT_SELECTION_CHOICE, $product->getVariantSelectionMethod());
     }
 
-//    /** @test */
-//    function it_creates_product_with_given_tax_category(): void
-//    {
-//        LocaleFactory::new()->withCode('en_US')->create();
-//        $product = ProductFactory::new()->withTaxCategory('clothing')->create();
-//
-//        /** @var ProductVariantInterface $firstVariant */
-//        $variant = $product->getVariants()->first();
-//        $this->assertNotFalse($variant);
-//        $this->assertEquals('clothing', $variant->getTaxCategory()?->getCode());
-//    }
+    /** @test */
+    public function it_creates_product_with_given_tax_category_as_proxy(): void
+    {
+        LocaleFactory::new()->withCode('en_US')->create();
+        $taxCategory = TaxCategoryFactory::new()->withCode('clothing')->create();
+        $product = ProductFactory::new()->withTaxCategory($taxCategory)->create();
+
+        /** @var ProductVariantInterface $variant */
+        $variant = $product->getVariants()->first();
+        $this->assertNotFalse($variant);
+        $this->assertEquals('clothing', $variant->getTaxCategory()?->getCode());
+    }
+
+    /** @test */
+    public function it_creates_product_with_given_tax_category_as_object(): void
+    {
+        LocaleFactory::new()->withCode('en_US')->create();
+        $taxCategory = TaxCategoryFactory::new()->withCode('clothing')->create();
+        $product = ProductFactory::new()->withTaxCategory($taxCategory->object())->create();
+
+        /** @var ProductVariantInterface $variant */
+        $variant = $product->getVariants()->first();
+        $this->assertNotFalse($variant);
+        $this->assertEquals('clothing', $variant->getTaxCategory()?->getCode());
+    }
+
+    /** @test */
+    public function it_creates_product_with_given_tax_category_as_string(): void
+    {
+        LocaleFactory::new()->withCode('en_US')->create();
+        $product = ProductFactory::new()->withTaxCategory('clothing')->create();
+
+        /** @var ProductVariantInterface $variant */
+        $variant = $product->getVariants()->first();
+        $this->assertNotFalse($variant);
+        $this->assertEquals('clothing', $variant->getTaxCategory()?->getCode());
+    }
 
     /** @test */
     public function it_creates_product_with_given_channels_as_proxy(): void

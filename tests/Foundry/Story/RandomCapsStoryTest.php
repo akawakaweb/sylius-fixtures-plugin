@@ -41,6 +41,7 @@ final class RandomCapsStoryTest extends KernelTestCase
         $product = $products[0];
         $this->assertInstanceOf(ProductInterface::class, $product);
         $this->assertEquals('Knitted burgundy winter cap', $product->getName());
+        $this->assertEquals('other', $product->getVariants()[0]->getTaxCategory()->getCode());
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('caps_with_pompons', $product->getMainTaxon()->getCode());
         $this->assertStringEndsWith('cap_01.jpg', $product->getImagesByType('main')[0]->getPath());
@@ -49,6 +50,7 @@ final class RandomCapsStoryTest extends KernelTestCase
         $product = $products[1];
         $this->assertInstanceOf(ProductInterface::class, $product);
         $this->assertEquals('Knitted wool-blend green cap', $product->getName());
+        $this->assertEquals('other', $product->getVariants()[0]->getTaxCategory()->getCode());
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('simple_caps', $product->getMainTaxon()->getCode());
         $this->assertStringEndsWith('cap_02.jpg', $product->getImagesByType('main')[0]->getPath());
@@ -57,6 +59,7 @@ final class RandomCapsStoryTest extends KernelTestCase
         $product = $products[2];
         $this->assertInstanceOf(ProductInterface::class, $product);
         $this->assertEquals('Knitted white pompom cap', $product->getName());
+        $this->assertEquals('other', $product->getVariants()[0]->getTaxCategory()->getCode());
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('caps_with_pompons', $product->getMainTaxon()->getCode());
         $this->assertStringEndsWith('cap_03.jpg', $product->getImagesByType('main')[0]->getPath());
@@ -65,6 +68,7 @@ final class RandomCapsStoryTest extends KernelTestCase
         $product = $products[3];
         $this->assertInstanceOf(ProductInterface::class, $product);
         $this->assertEquals('Cashmere-blend violet beanie', $product->getName());
+        $this->assertEquals('other', $product->getVariants()[0]->getTaxCategory()->getCode());
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('simple_caps', $product->getMainTaxon()->getCode());
         $this->assertStringEndsWith('cap_04.jpg', $product->getImagesByType('main')[0]->getPath());

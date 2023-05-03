@@ -18,6 +18,8 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ProductTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ProductTransformerInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ShippingCategoryTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ShippingCategoryTransformerInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\TaxCategoryTransformer;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\TaxCategoryTransformerInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ZoneTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ZoneTransformerInterface;
 
@@ -47,6 +49,9 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.transformer.shipping_category', ShippingCategoryTransformer::class)
         ->alias(ShippingCategoryTransformerInterface::class, 'sylius.shop_fixtures.transformer.shipping_category')
+
+        ->set('sylius.shop_fixtures.transformer.tax_category', TaxCategoryTransformer::class)
+        ->alias(TaxCategoryTransformerInterface::class, 'sylius.shop_fixtures.transformer.tax_category')
 
         ->set('sylius.shop_fixtures.transformer.zone', ZoneTransformer::class)
         ->alias(ZoneTransformerInterface::class, 'sylius.shop_fixtures.transformer.zone')

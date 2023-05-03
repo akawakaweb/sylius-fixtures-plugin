@@ -43,6 +43,7 @@ final class ShopConfigurationFixtureTest extends KernelTestCase
         $customers = $this->getCustomerRepository()->findAll();
         $shippingMethods = $this->getShippingMethodRepository()->findAll();
         $taxa = $this->getTaxonRepository()->findAll();
+        $taxCategories = $this->getTaxCategoryRepository()->findAll();
 
         $this->assertCount(2, $adminUsers);
         $this->assertCount(8, $locales);
@@ -53,6 +54,7 @@ final class ShopConfigurationFixtureTest extends KernelTestCase
         $this->assertCount(2, $customerGroups);
         $this->assertCount(3, $shippingMethods);
         $this->assertCount(1, $taxa);
+        $this->assertCount(2, $taxCategories);
     }
 
     private function getAdminUserRepository(): RepositoryInterface
@@ -98,5 +100,10 @@ final class ShopConfigurationFixtureTest extends KernelTestCase
     private function getTaxonRepository(): RepositoryInterface
     {
         return static::getContainer()->get('sylius.repository.taxon');
+    }
+
+    private function getTaxCategoryRepository(): RepositoryInterface
+    {
+        return static::getContainer()->get('sylius.repository.tax_category');
     }
 }
