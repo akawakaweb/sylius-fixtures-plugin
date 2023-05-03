@@ -29,6 +29,7 @@ use Zenstruck\Foundry\Proxy;
 final class ProductTransformer implements ProductTransformerInterface
 {
     use TransformTaxonAttributeTrait;
+    use TransformTaxCategoryAttributeTrait;
     use TransformChannelsAttributeTrait;
     use TransformNameToCodeAttributeTrait;
     use TransformNameToSlugAttributeTrait;
@@ -45,6 +46,7 @@ final class ProductTransformer implements ProductTransformerInterface
     public function transform(array $attributes): array
     {
         $attributes = $this->transformTaxonAttribute($attributes, 'mainTaxon');
+        $attributes = $this->transformTaxCategoryAttribute($attributes);
         $attributes = $this->transformProductAttributeValues($attributes);
         $attributes = $this->transformChannelsAttribute($attributes);
         $attributes = $this->transformNameToCodeAttribute($attributes);

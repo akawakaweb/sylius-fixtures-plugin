@@ -19,6 +19,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultGeographicalStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultLocalesStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultMenuTaxonStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultShopUsersStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultTaxCategoriesStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomAddressesStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomCapsStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomDressesStory;
@@ -51,6 +52,10 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.story.default_menu_taxon', DefaultMenuTaxonStory::class)
             ->tag('foundry.story')
         ->alias(DefaultMenuTaxonStory::class, 'sylius.shop_fixtures.foundry.story.default_menu_taxon')
+
+        ->set('sylius.shop_fixtures.story.default_tax_category', DefaultTaxCategoriesStory::class)
+            ->tag('foundry.story')
+        ->alias(DefaultTaxCategoriesStory::class, 'sylius.shop_fixtures.foundry.story.default_tax_category')
 
         ->set('sylius.shop_fixtures.story.random_addresses', RandomAddressesStory::class)
             ->tag('foundry.story')
