@@ -29,6 +29,7 @@ use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository;
 use Sylius\Component\Core\Model\Product;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\TaxonInterface;
+use Sylius\Component\Resource\Factory\FactoryInterface;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;
@@ -67,6 +68,7 @@ final class ProductFactory extends ModelFactory implements FactoryWithModelClass
     use WithTaxCategoryTrait;
 
     public function __construct(
+        private FactoryInterface $factory,
         private ProductTransformerInterface $transformer,
         private ProductUpdaterInterface $updater,
     ) {
@@ -121,7 +123,10 @@ final class ProductFactory extends ModelFactory implements FactoryWithModelClass
                 return $this->transformer->transform($attributes);
             })
             ->instantiateWith(function (): ProductInterface {
-                return new Product();
+                /** @var ProductInterface $product */
+                $product = $this->factory->createNew();
+
+                return $product;
             })
             ->afterInstantiate(function (Product $product, array $attributes): void {
                 $this->updater->update($product, $attributes);

@@ -54,7 +54,7 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.factory.admin_user', AdminUserFactory::class)
             ->args([
-//                    service('sylius.factory.admin_user'),
+                    service('sylius.factory.admin_user'),
 //                    service('sylius.shop_fixtures.default_values.admin_user'),
 //                    service('sylius.shop_fixtures.transformer.admin_user'),
                     service('sylius.shop_fixtures.updater.admin_user'),
@@ -114,7 +114,7 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.factory.product', ProductFactory::class)
             ->args([
-//                service('sylius.factory.product'),
+                service('sylius.factory.product'),
 //                service('sylius.shop_fixtures.default_values.product'),
                 service('sylius.shop_fixtures.transformer.product'),
                 service('sylius.shop_fixtures.updater.product'),
@@ -144,7 +144,7 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.factory.shipping_method', ShippingMethodFactory::class)
             ->args([
-//                service('sylius.factory.shipping_method'),
+                service('sylius.factory.shipping_method'),
 //                service('sylius.shop_fixtures.default_values.shipping_method'),
 //                service('sylius.shop_fixtures.transformer.shipping_method'),
                 service('sylius.shop_fixtures.updater.shipping_method'),

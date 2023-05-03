@@ -25,6 +25,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\AdminUserUpdaterInterface;
 use Sylius\Bundle\UserBundle\Doctrine\ORM\UserRepository;
 use Sylius\Component\Core\Model\AdminUser;
 use Sylius\Component\Core\Model\AdminUserInterface;
+use Sylius\Component\Resource\Factory\FactoryInterface;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;
@@ -61,6 +62,7 @@ final class AdminUserFactory extends ModelFactory implements FactoryWithModelCla
     use WithAvatarTrait;
 
     public function __construct(
+        private FactoryInterface $factory,
         private AdminUserUpdaterInterface $updater,
     ) {
         parent::__construct();
@@ -81,7 +83,10 @@ final class AdminUserFactory extends ModelFactory implements FactoryWithModelCla
     {
         return $this
             ->instantiateWith(function (): AdminUserInterface {
-                return new AdminUser();
+                /** @var AdminUserInterface $adminUser */
+                $adminUser = $this->factory->createNew();
+
+                return $adminUser;
             })
             ->afterInstantiate(function (AdminUserInterface $adminUser, array $attributes): void {
                 $this->updater->update($adminUser, $attributes);

@@ -22,6 +22,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShippingMethodUpdaterInterface
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\ShippingMethodRepository;
 use Sylius\Component\Core\Model\ShippingMethod;
 use Sylius\Component\Core\Model\ShippingMethodInterface;
+use Sylius\Component\Resource\Factory\FactoryInterface;
 use Sylius\Component\Shipping\Model\ShippingCategoryInterface;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
@@ -56,6 +57,7 @@ final class ShippingMethodFactory extends ModelFactory implements FactoryWithMod
     use ToggableTrait;
 
     public function __construct(
+        private FactoryInterface $factory,
         private ShippingMethodUpdaterInterface $updater,
     ) {
         parent::__construct();
@@ -90,7 +92,10 @@ final class ShippingMethodFactory extends ModelFactory implements FactoryWithMod
     {
         return $this
             ->instantiateWith(function (): ShippingMethodInterface {
-                return new ShippingMethod();
+                /** @var ShippingMethodInterface $shippingMethod */
+                $shippingMethod = $this->factory->createNew();
+
+                return $shippingMethod;
             })
             ->afterInstantiate(function (ShippingMethodInterface $shippingMethod, array $attributes): void {
                 $this->updater->update($shippingMethod, $attributes);
