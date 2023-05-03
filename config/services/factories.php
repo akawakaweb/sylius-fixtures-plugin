@@ -64,10 +64,10 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.factory.channel', ChannelFactory::class)
             ->args([
-//                service('sylius.factory.channel'),
+                service('sylius.factory.channel'),
 //                service('sylius.shop_fixtures.default_values.channel'),
 //                service('sylius.shop_fixtures.transformer.channel'),
-//                service('sylius.shop_fixtures.updater.channel'),
+                service('sylius.shop_fixtures.updater.channel'),
             ])
             ->tag('foundry.factory')
         ->alias(ChannelFactory::class, 'sylius.shop_fixtures.factory.channel')

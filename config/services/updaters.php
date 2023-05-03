@@ -6,6 +6,8 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\AdminUserUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\AdminUserUpdaterInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ChannelUpdater;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ChannelUpdaterInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CountryUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CountryUpdaterInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CurrencyUpdater;
@@ -38,6 +40,9 @@ return static function (ContainerConfigurator $container) {
                 service('sylius.image_uploader'),
             ])
         ->alias(AdminUserUpdaterInterface::class, 'sylius.shop_fixtures.updater.admin_user')
+
+        ->set('sylius.shop_fixtures.updater.channel', ChannelUpdater::class)
+        ->alias(ChannelUpdaterInterface::class, 'sylius.shop_fixtures.updater.channel')
 
         ->set('sylius.shop_fixtures.updater.country', CountryUpdater::class)
         ->alias(CountryUpdaterInterface::class, 'sylius.shop_fixtures.updater.country')

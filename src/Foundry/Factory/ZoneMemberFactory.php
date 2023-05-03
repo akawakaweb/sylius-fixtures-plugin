@@ -64,7 +64,7 @@ final class ZoneMemberFactory extends ModelFactory implements FactoryWithModelCl
     protected function initialize(): self
     {
         return $this
-            ->instantiateWith(function(): ZoneMemberInterface {
+            ->instantiateWith(function (): ZoneMemberInterface {
                 /** @var ZoneMemberInterface $zoneMember */
                 $zoneMember = $this->factory->createNew();
 

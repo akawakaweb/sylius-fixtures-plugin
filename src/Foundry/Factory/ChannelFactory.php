@@ -18,6 +18,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCurrenciesTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithLocalesTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithNameTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ChannelUpdaterInterface;
 use Doctrine\ORM\EntityRepository;
 use Sylius\Component\Addressing\Model\ZoneInterface;
 use Sylius\Component\Core\Model\Channel;
@@ -26,6 +27,7 @@ use Sylius\Component\Core\Model\ShopBillingDataInterface;
 use Sylius\Component\Core\Model\TaxonInterface;
 use Sylius\Component\Currency\Model\CurrencyInterface;
 use Sylius\Component\Locale\Model\LocaleInterface;
+use Sylius\Component\Resource\Factory\FactoryInterface;
 use function Zenstruck\Foundry\lazy;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
@@ -59,8 +61,10 @@ final class ChannelFactory extends ModelFactory implements FactoryWithModelClass
     use WithCurrenciesTrait;
     use ToggableTrait;
 
-    public function __construct()
-    {
+    public function __construct(
+        private FactoryInterface $factory,
+        private ChannelUpdaterInterface $updater,
+    ) {
         parent::__construct();
     }
 
@@ -76,52 +80,52 @@ final class ChannelFactory extends ModelFactory implements FactoryWithModelClass
 
     public function withSkippingShippingStepAllowed(): self
     {
-        return $this->addState(['skipping_shipping_step_allowed' => true]);
+        return $this->addState(['skippingShippingStepAllowed' => true]);
     }
 
     public function withSkippingPaymentStepAllowed(): self
     {
-        return $this->addState(['skipping_payment_step_allowed' => true]);
+        return $this->addState(['skippingPaymentStepAllowed' => true]);
     }
 
     public function withoutAccountVerificationRequired(): self
     {
-        return $this->addState(['account_verification_required' => false]);
+        return $this->addState(['accountVerificationRequired' => false]);
     }
 
     public function withDefaultTaxZone(Proxy|ZoneInterface|string $defaultTaxZone): self
     {
-        return $this->addState(['default_tax_zone' => $defaultTaxZone]);
+        return $this->addState(['defaultTaxZone' => $defaultTaxZone]);
     }
 
     public function withTaxCalculationStrategy(string $taxCalculationStrategy): self
     {
-        return $this->addState(['tax_calculation_strategy' => $taxCalculationStrategy]);
+        return $this->addState(['taxCalculationStrategy' => $taxCalculationStrategy]);
     }
 
     public function withThemeName(?string $themeName): self
     {
-        return $this->addState(['theme_name' => $themeName]);
+        return $this->addState(['themeName' => $themeName]);
     }
 
     public function withContactEmail(string $contactEmail): self
     {
-        return $this->addState(['contact_email' => $contactEmail]);
+        return $this->addState(['contactEmail' => $contactEmail]);
     }
 
     public function withContactPhoneNumber(string $contactPhoneNumber): self
     {
-        return $this->addState(['contact_phone_number' => $contactPhoneNumber]);
+        return $this->addState(['contactPhoneNumber' => $contactPhoneNumber]);
     }
 
     public function withShopBillingData(Proxy|ShopBillingDataInterface|array $shopBillingData): self
     {
-        return $this->addState(['shop_billing_data' => $shopBillingData]);
+        return $this->addState(['shopBillingData' => $shopBillingData]);
     }
 
     public function withMenuTaxon(Proxy|TaxonInterface|string $menuTaxon): self
     {
-        return $this->addState(['menu_taxon' => $menuTaxon]);
+        return $this->addState(['menuTaxon' => $menuTaxon]);
     }
 
     protected function getDefaults(): array
@@ -157,7 +161,15 @@ final class ChannelFactory extends ModelFactory implements FactoryWithModelClass
     protected function initialize(): self
     {
         return $this
-            // ->afterInstantiate(function(Channel $channel): void {})
+            ->instantiateWith(function (): ChannelInterface {
+                /** @var ChannelInterface $channel */
+                $channel = $this->factory->createNew();
+
+                return $channel;
+            })
+            ->afterInstantiate(function (ChannelInterface $channel, array $attributes): void {
+                $this->updater->update($channel, $attributes);
+            })
         ;
     }
 
