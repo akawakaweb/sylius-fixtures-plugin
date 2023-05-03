@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Sylius package.
+ * This file is part of ShopFixturesPlugin.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Akawaka
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -28,7 +28,7 @@ final class ShippingMethodFactoryTest extends KernelTestCase
     use Factories;
 
     /** @test */
-    function it_creates_shipping_method(): void
+    public function it_creates_shipping_method(): void
     {
         LocaleFactory::new()->withCode('en_US')->create();
         //ChannelFactory::createMany(3);
@@ -47,7 +47,7 @@ final class ShippingMethodFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_shipping_method_with_given_code(): void
+    public function it_creates_shipping_method_with_given_code(): void
     {
         $shippingMethod = ShippingMethodFactory::new()->withCode('SM2')->create();
 
@@ -55,7 +55,7 @@ final class ShippingMethodFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_shipping_method_with_given_name(): void
+    public function it_creates_shipping_method_with_given_name(): void
     {
         LocaleFactory::new()->withCode('en_US')->create();
         $shippingMethod = ShippingMethodFactory::new()->withName('Shipping method 2')->create();
@@ -64,7 +64,7 @@ final class ShippingMethodFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_shipping_method_with_given_description(): void
+    public function it_creates_shipping_method_with_given_description(): void
     {
         LocaleFactory::new()->withCode('en_US')->create();
         $shippingMethod = ShippingMethodFactory::new()->withDescription('This is the Shipping method 2')->create();
@@ -73,7 +73,7 @@ final class ShippingMethodFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_shipping_method_with_zone_as_proxy(): void
+    public function it_creates_shipping_method_with_zone_as_proxy(): void
     {
         $zone = ZoneFactory::createOne();
         $shippingMethod = ShippingMethodFactory::new()->withZone($zone)->create();
@@ -82,7 +82,7 @@ final class ShippingMethodFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_shipping_method_with_zone(): void
+    public function it_creates_shipping_method_with_zone(): void
     {
         $zone = ZoneFactory::createOne()->object();
         $shippingMethod = ShippingMethodFactory::new()->withZone($zone)->create();
@@ -134,7 +134,7 @@ final class ShippingMethodFactoryTest extends KernelTestCase
 //    }
 
     /** @test */
-    function it_creates_shipping_method_with_category(): void
+    public function it_creates_shipping_method_with_category(): void
     {
         $shippingCategory = ShippingCategoryFactory::createOne()->object();
         $shippingMethod = ShippingMethodFactory::new()->withCategory($shippingCategory)->create();
@@ -177,7 +177,7 @@ final class ShippingMethodFactoryTest extends KernelTestCase
 //    }
 
     /** @test */
-    function it_creates_shipping_method_with_archive_date(): void
+    public function it_creates_shipping_method_with_archive_date(): void
     {
         $archivedAt = new \DateTimeImmutable('today');
         $shippingMethod = ShippingMethodFactory::new()->withArchiveDate($archivedAt)->create();
@@ -186,7 +186,7 @@ final class ShippingMethodFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_enabled_shipping_method(): void
+    public function it_creates_enabled_shipping_method(): void
     {
         $shippingMethod = ShippingMethodFactory::new()->enabled()->create();
 
@@ -194,7 +194,7 @@ final class ShippingMethodFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_disabled_shipping_method(): void
+    public function it_creates_disabled_shipping_method(): void
     {
         $shippingMethod = ShippingMethodFactory::new()->disabled()->create();
 

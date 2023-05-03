@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of ShopFixturesPlugin.
+ *
+ * (c) Akawaka
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Tests\Acme\SyliusExamplePlugin\Foundry\Factory;
@@ -16,7 +25,7 @@ final class LocaleFactoryTest extends KernelTestCase
     use Factories;
 
     /** @test */
-    function it_creates_locale_with_random_code(): void
+    public function it_creates_locale_with_random_code(): void
     {
         $locale = LocaleFactory::createOne();
 
@@ -25,7 +34,7 @@ final class LocaleFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_locale_with_given_code(): void
+    public function it_creates_locale_with_given_code(): void
     {
         $firstLocale = LocaleFactory::createOne(['code' => 'fr_FR']);
         $secondLocale = LocaleFactory::new()->withCode('pl_PL')->create();

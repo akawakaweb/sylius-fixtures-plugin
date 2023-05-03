@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of ShopFixturesPlugin.
+ *
+ * (c) Akawaka
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Tests\Acme\SyliusExamplePlugin\Foundry\Factory;
@@ -17,7 +26,7 @@ final class CountryFactoryTest extends KernelTestCase
     use Factories;
 
     /** @test */
-    function it_creates_country_with_random_code(): void
+    public function it_creates_country_with_random_code(): void
     {
         $country = CountryFactory::createOne();
 
@@ -27,7 +36,7 @@ final class CountryFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_country_with_given_code(): void
+    public function it_creates_country_with_given_code(): void
     {
         $firstCountry = CountryFactory::createOne(['code' => 'PL']);
         $secondCountry = CountryFactory::new()->withCode('FR')->create();
@@ -37,7 +46,7 @@ final class CountryFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_enabled_country(): void
+    public function it_creates_enabled_country(): void
     {
         $country = CountryFactory::new()->enabled()->create();
 

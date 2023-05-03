@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Sylius package.
+ * This file is part of ShopFixturesPlugin.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Akawaka
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -25,7 +25,7 @@ final class AdminUserFactoryTest extends KernelTestCase
     use Factories;
 
     /** @test */
-    function it_creates_admin_user_with_random_data(): void
+    public function it_creates_admin_user_with_random_data(): void
     {
         $adminUser = AdminUserFactory::createOne();
 
@@ -43,7 +43,7 @@ final class AdminUserFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_admin_user_with_given_email(): void
+    public function it_creates_admin_user_with_given_email(): void
     {
         $adminUser = AdminUserFactory::new()->withEmail('dark.vader@starwars.com')->create();
 
@@ -51,7 +51,7 @@ final class AdminUserFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_admin_user_with_given_username(): void
+    public function it_creates_admin_user_with_given_username(): void
     {
         $adminUser = AdminUserFactory::new()->withUsername('vadoo')->create();
 
@@ -59,7 +59,7 @@ final class AdminUserFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_enabled_admin_user(): void
+    public function it_creates_enabled_admin_user(): void
     {
         $adminUser = AdminUserFactory::new()->enabled()->create();
 
@@ -67,7 +67,7 @@ final class AdminUserFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_disabled_admin_user(): void
+    public function it_creates_disabled_admin_user(): void
     {
         $adminUser = AdminUserFactory::new()->disabled()->create();
 
@@ -75,7 +75,7 @@ final class AdminUserFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_admin_user_with_given_password(): void
+    public function it_creates_admin_user_with_given_password(): void
     {
         $adminUser = AdminUserFactory::new()->withPassword('luke-is-my-son')->withoutPersisting()->create();
 
@@ -91,7 +91,7 @@ final class AdminUserFactoryTest extends KernelTestCase
 //    }
 
     /** @test */
-    function it_creates_admin_user_with_given_first_name(): void
+    public function it_creates_admin_user_with_given_first_name(): void
     {
         $adminUser = AdminUserFactory::new()->withFirstName('Dark')->create();
 
@@ -99,7 +99,7 @@ final class AdminUserFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_admin_user_with_given_last_name(): void
+    public function it_creates_admin_user_with_given_last_name(): void
     {
         $adminUser = AdminUserFactory::new()->withLastName('Vader')->create();
 
@@ -107,7 +107,7 @@ final class AdminUserFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_admin_user_with_given_avatar(): void
+    public function it_creates_admin_user_with_given_avatar(): void
     {
         $adminUser = AdminUserFactory::new()->withAvatar('@SyliusCoreBundle/Resources/fixtures/adminAvatars/luke.jpg')->create();
 
@@ -116,7 +116,7 @@ final class AdminUserFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_admin_user_with_given_locale_code(): void
+    public function it_creates_admin_user_with_given_locale_code(): void
     {
         $adminUser = AdminUserFactory::new()->withLocaleCode('fr_FR')->create();
 

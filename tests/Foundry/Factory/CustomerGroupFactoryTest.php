@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of ShopFixturesPlugin.
+ *
+ * (c) Akawaka
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Tests\Acme\SyliusExamplePlugin\Foundry\Factory;
@@ -16,7 +25,7 @@ final class CustomerGroupFactoryTest extends KernelTestCase
     use Factories;
 
     /** @test */
-    function it_creates_customer_group_with_random_code_and_name(): void
+    public function it_creates_customer_group_with_random_code_and_name(): void
     {
         $customerGroup = CustomerGroupFactory::createOne();
 
@@ -26,7 +35,7 @@ final class CustomerGroupFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_customer_group_with_given_code(): void
+    public function it_creates_customer_group_with_given_code(): void
     {
         $firstCustomerGroup = CustomerGroupFactory::createOne(['code' => 'group_a']);
         $secondCustomerGroup = CustomerGroupFactory::new()->withCode('group_b')->create();
@@ -36,7 +45,7 @@ final class CustomerGroupFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_customer_group_with_given_name(): void
+    public function it_creates_customer_group_with_given_name(): void
     {
         $firstCustomerGroup = CustomerGroupFactory::createOne(['name' => 'Group A']);
         $secondCustomerGroup = CustomerGroupFactory::new()->withName('Group B')->create();

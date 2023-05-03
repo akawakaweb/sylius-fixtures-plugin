@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of ShopFixturesPlugin.
+ *
+ * (c) Akawaka
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Tests\Acme\SyliusExamplePlugin\Foundry\Factory;
@@ -17,7 +26,7 @@ final class CurrencyFactoryTest extends KernelTestCase
     use Factories;
 
     /** @test */
-    function it_creates_currency_with_random_code(): void
+    public function it_creates_currency_with_random_code(): void
     {
         $currency = CurrencyFactory::createOne();
 
@@ -27,7 +36,7 @@ final class CurrencyFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_currency_with_given_code(): void
+    public function it_creates_currency_with_given_code(): void
     {
         $firstCurrency = CurrencyFactory::createOne(['code' => 'EUR']);
         $secondCurrency = CurrencyFactory::new()->withCode('USD')->create();

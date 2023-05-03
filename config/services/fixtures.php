@@ -14,7 +14,11 @@ declare(strict_types=1);
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture\RandomAddressesFixture;
+use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture\RandomCapsFixture;
+use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture\RandomDressesFixture;
+use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture\RandomJeansFixture;
 use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture\RandomShopUsersFixture;
+use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture\RandomTShirtsFixture;
 use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture\ShopConfigurationFixture;
 
 return static function (ContainerConfigurator $container) {
@@ -23,6 +27,18 @@ return static function (ContainerConfigurator $container) {
             ->tag('doctrine.fixture.orm')
 
         ->set('sylius.shop_fixtures.foundry.fixture.random_addresses', RandomAddressesFixture::class)
+            ->tag('doctrine.fixture.orm')
+
+        ->set('sylius.shop_fixtures.foundry.fixture.random_caps', RandomCapsFixture::class)
+            ->tag('doctrine.fixture.orm')
+
+        ->set('sylius.shop_fixtures.foundry.fixture.random_dresses', RandomDressesFixture::class)
+            ->tag('doctrine.fixture.orm')
+
+        ->set('sylius.shop_fixtures.foundry.fixture.random_jeans', RandomJeansFixture::class)
+            ->tag('doctrine.fixture.orm')
+
+        ->set('sylius.shop_fixtures.foundry.fixture.random_t_shirts', RandomTShirtsFixture::class)
             ->tag('doctrine.fixture.orm')
 
         ->set('sylius.shop_fixtures.foundry.fixture.random_shop_users', RandomShopUsersFixture::class)

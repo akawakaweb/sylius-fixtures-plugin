@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Sylius package.
+ * This file is part of ShopFixturesPlugin.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Akawaka
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -26,7 +26,7 @@ final class TaxonFactoryTest extends KernelTestCase
     use Factories;
 
     /** @test */
-    function it_creates_taxon_with_random_code(): void
+    public function it_creates_taxon_with_random_code(): void
     {
         $taxon = TaxonFactory::createOne();
 
@@ -35,7 +35,7 @@ final class TaxonFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_taxon_with_given_code(): void
+    public function it_creates_taxon_with_given_code(): void
     {
         $taxon = TaxonFactory::new()->withCode('board-games')->create();
 
@@ -43,7 +43,7 @@ final class TaxonFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_taxon_with_name_for_each_locale(): void
+    public function it_creates_taxon_with_name_for_each_locale(): void
     {
         LocaleFactory::new()->withCode('en_US')->create();
         LocaleFactory::new()->withCode('fr_FR')->create();
@@ -68,7 +68,7 @@ final class TaxonFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_taxon_with_slug_for_each_locale(): void
+    public function it_creates_taxon_with_slug_for_each_locale(): void
     {
         LocaleFactory::new()->withCode('en_US')->create();
         LocaleFactory::new()->withCode('fr_FR')->create();
@@ -91,7 +91,7 @@ final class TaxonFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_taxon_with_description_for_each_locale(): void
+    public function it_creates_taxon_with_description_for_each_locale(): void
     {
         LocaleFactory::new()->withCode('en_US')->create();
         LocaleFactory::new()->withCode('fr_FR')->create();
@@ -114,7 +114,7 @@ final class TaxonFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_taxon_with_given_translations(): void
+    public function it_creates_taxon_with_given_translations(): void
     {
         LocaleFactory::new()->withCode('en_US')->create();
         LocaleFactory::new()->withCode('fr_FR')->create();
@@ -144,9 +144,9 @@ final class TaxonFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_taxon_with_given_children(): void
+    public function it_creates_taxon_with_given_children(): void
     {
-        LocaleFactory::new()->withCode('en_US')->create();;
+        LocaleFactory::new()->withCode('en_US')->create();
 
         $taxon = TaxonFactory::new()->withCode('categories')->withChildren([
             [

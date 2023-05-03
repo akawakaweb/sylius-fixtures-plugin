@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Sylius package.
+ * This file is part of ShopFixturesPlugin.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Akawaka
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -26,7 +26,7 @@ final class DefaultShopUsersStoryTest extends KernelTestCase
     use Factories;
 
     /** @test */
-    function it_creates_default_shop_users(): void
+    public function it_creates_default_shop_users(): void
     {
         self::bootKernel();
 

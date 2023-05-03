@@ -51,6 +51,12 @@
             </errorLevel>
         </MixedArgument>
 
+        <MixedArrayAssignment>
+            <errorLevel type="suppress">
+                <file name="src/Foundry/Transformer/TransformChannelsAttributeTrait.php" />
+            </errorLevel>
+        </MixedArrayAssignment>
+
         <MixedInferredReturnType>
             <errorLevel type="suppress">
                 <file name="src/Symfony/ShopFixturesPlugin.php" />

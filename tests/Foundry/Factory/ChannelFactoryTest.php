@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Sylius package.
+ * This file is part of ShopFixturesPlugin.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Akawaka
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -29,7 +29,7 @@ final class ChannelFactoryTest extends KernelTestCase
     use Factories;
 
     /** @test */
-    function it_creates_channel_with_default_values(): void
+    public function it_creates_channel_with_default_values(): void
     {
         $channel = ChannelFactory::createOne();
 
@@ -53,7 +53,7 @@ final class ChannelFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_channel_with_given_code(): void
+    public function it_creates_channel_with_given_code(): void
     {
         $channel = ChannelFactory::new()->withCode('default_channel')->create();
 
@@ -62,7 +62,7 @@ final class ChannelFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_channel_with_given_name(): void
+    public function it_creates_channel_with_given_name(): void
     {
         $channel = ChannelFactory::new()->withName('Default channel')->create();
 
@@ -71,7 +71,7 @@ final class ChannelFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_channel_with_given_hostname(): void
+    public function it_creates_channel_with_given_hostname(): void
     {
         $channel = ChannelFactory::new()->withHostname('default.localhost')->create();
 
@@ -79,7 +79,7 @@ final class ChannelFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_channel_with_given_color(): void
+    public function it_creates_channel_with_given_color(): void
     {
         $channel = ChannelFactory::new()->withColor('#1abb9c')->create();
 
@@ -87,7 +87,7 @@ final class ChannelFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_enabled_channel(): void
+    public function it_creates_enabled_channel(): void
     {
         $channel = ChannelFactory::new()->enabled()->create();
 
@@ -95,7 +95,7 @@ final class ChannelFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_disabled_channel(): void
+    public function it_creates_disabled_channel(): void
     {
         $channel = ChannelFactory::new()->disabled()->create();
 
@@ -103,7 +103,7 @@ final class ChannelFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_channel_with_skipping_shipping_step_allowed(): void
+    public function it_creates_channel_with_skipping_shipping_step_allowed(): void
     {
         $channel = ChannelFactory::new()->withSkippingShippingStepAllowed()->create();
 
@@ -111,7 +111,7 @@ final class ChannelFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_channel_with_skipping_payment_step_allowed(): void
+    public function it_creates_channel_with_skipping_payment_step_allowed(): void
     {
         $channel = ChannelFactory::new()->withSkippingPaymentStepAllowed()->create();
 
@@ -119,7 +119,7 @@ final class ChannelFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_channel_without_account_verification_required(): void
+    public function it_creates_channel_without_account_verification_required(): void
     {
         $channel = ChannelFactory::new()->withoutAccountVerificationRequired()->create();
 
@@ -127,7 +127,7 @@ final class ChannelFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_channel_with_given_already_existing_proxy_default_tax_zone(): void
+    public function it_creates_channel_with_given_already_existing_proxy_default_tax_zone(): void
     {
         $zone = ZoneFactory::new()->withCode('world')->create();
 
@@ -137,7 +137,7 @@ final class ChannelFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_channel_with_given_already_existing_default_tax_zone(): void
+    public function it_creates_channel_with_given_already_existing_default_tax_zone(): void
     {
         $zone = ZoneFactory::new()->withCode('world')->create()->object();
 
@@ -157,7 +157,7 @@ final class ChannelFactoryTest extends KernelTestCase
 //    }
 
     /** @test */
-    function it_creates_channel_with_given_tax_calculation_strategy(): void
+    public function it_creates_channel_with_given_tax_calculation_strategy(): void
     {
         $channel = ChannelFactory::new()->withTaxCalculationStrategy('order_based')->create();
 
@@ -165,7 +165,7 @@ final class ChannelFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_channel_with_given_theme_name(): void
+    public function it_creates_channel_with_given_theme_name(): void
     {
         $channel = ChannelFactory::new()->withThemeName('custom_theme')->create();
 
@@ -173,7 +173,7 @@ final class ChannelFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_channel_with_given_contact_email(): void
+    public function it_creates_channel_with_given_contact_email(): void
     {
         $channel = ChannelFactory::new()->withContactEmail('darthvader@starwars.com')->create();
 
@@ -181,7 +181,7 @@ final class ChannelFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_channel_with_given_contact_phone_number(): void
+    public function it_creates_channel_with_given_contact_phone_number(): void
     {
         $channel = ChannelFactory::new()->withContactPhoneNumber('0666-0666')->create();
 
@@ -217,7 +217,7 @@ final class ChannelFactoryTest extends KernelTestCase
 //    }
 
     /** @test */
-    function it_creates_channel_with_given_proxy_locales(): void
+    public function it_creates_channel_with_given_proxy_locales(): void
     {
         $locale = LocaleFactory::createOne();
         $channel = ChannelFactory::new()->withLocales([$locale])->create();
@@ -235,7 +235,7 @@ final class ChannelFactoryTest extends KernelTestCase
 //    }
 
     /** @test */
-    function it_creates_channel_with_given_proxy_currencies(): void
+    public function it_creates_channel_with_given_proxy_currencies(): void
     {
         $currency = CurrencyFactory::createOne();
         $channel = ChannelFactory::new()->withCurrencies([$currency])->create();
@@ -252,7 +252,7 @@ final class ChannelFactoryTest extends KernelTestCase
 //    }
 
     /** @test */
-    function it_creates_channel_with_given_proxy_menu_taxon(): void
+    public function it_creates_channel_with_given_proxy_menu_taxon(): void
     {
         $taxon = TaxonFactory::createOne();
         $channel = ChannelFactory::new()->withMenuTaxon($taxon)->create();
@@ -261,7 +261,7 @@ final class ChannelFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_channel_with_given_menu_taxon(): void
+    public function it_creates_channel_with_given_menu_taxon(): void
     {
         $taxon = TaxonFactory::createOne()->object();
         $channel = ChannelFactory::new()->withMenuTaxon($taxon)->create();

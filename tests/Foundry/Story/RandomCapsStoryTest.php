@@ -1,0 +1,72 @@
+<?php
+
+/*
+ * This file is part of ShopFixturesPlugin.
+ *
+ * (c) Akawaka
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
+namespace Tests\Acme\SyliusExamplePlugin\Foundry\Story;
+
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomCapsStory;
+use Sylius\Component\Core\Model\ProductInterface;
+use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Tests\Acme\SyliusExamplePlugin\PurgeDatabaseTrait;
+use Zenstruck\Foundry\Test\Factories;
+
+final class RandomCapsStoryTest extends KernelTestCase
+{
+    use PurgeDatabaseTrait;
+    use Factories;
+
+    /** @test */
+    public function it_creates_random_caps(): void
+    {
+        self::bootKernel();
+
+        RandomCapsStory::load();
+
+        $products = $this->getProductRepository()->findAll();
+
+        $this->assertCount(4, $products);
+
+        $product = $products[0];
+        $this->assertInstanceOf(ProductInterface::class, $product);
+        $this->assertEquals('Knitted burgundy winter cap', $product->getName());
+        $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
+        $this->assertEquals('caps_with_pompons', $product->getMainTaxon()->getCode());
+        $this->assertStringEndsWith('cap_01.jpg', $product->getImagesByType('main')[0]->getPath());
+
+        $product = $products[1];
+        $this->assertInstanceOf(ProductInterface::class, $product);
+        $this->assertEquals('Knitted wool-blend green cap', $product->getName());
+        $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
+        $this->assertEquals('simple_caps', $product->getMainTaxon()->getCode());
+        $this->assertStringEndsWith('cap_02.jpg', $product->getImagesByType('main')[0]->getPath());
+
+        $product = $products[2];
+        $this->assertInstanceOf(ProductInterface::class, $product);
+        $this->assertEquals('Knitted white pompom cap', $product->getName());
+        $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
+        $this->assertEquals('caps_with_pompons', $product->getMainTaxon()->getCode());
+        $this->assertStringEndsWith('cap_03.jpg', $product->getImagesByType('main')[0]->getPath());
+
+        $product = $products[3];
+        $this->assertInstanceOf(ProductInterface::class, $product);
+        $this->assertEquals('Cashmere-blend violet beanie', $product->getName());
+        $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
+        $this->assertEquals('simple_caps', $product->getMainTaxon()->getCode());
+        $this->assertStringEndsWith('cap_04.jpg', $product->getImagesByType('main')[0]->getPath());
+    }
+
+    private function getProductRepository(): RepositoryInterface
+    {
+        return self::getContainer()->get('sylius.repository.product');
+    }
+}
