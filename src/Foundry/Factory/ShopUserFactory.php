@@ -14,6 +14,10 @@ declare(strict_types=1);
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ShopUserDefaultValuesInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithEmailTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithFirstNameTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithLastNameTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithPasswordTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShopUserUpdaterInterface;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\UserRepository;
 use Sylius\Component\Core\Model\CustomerInterface;
@@ -42,22 +46,6 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static ShopUserInterface[]|Proxy[] findBy(array $attributes)
  * @method static ShopUserInterface[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
  * @method static ShopUserInterface[]|Proxy[] randomSet(int $number, array $attributes = [])
- *
- * @phpstan-method        Proxy<ShopUserInterface> create(array|callable $attributes = [])
- * @phpstan-method static Proxy<ShopUserInterface> createOne(array $attributes = [])
- * @phpstan-method static Proxy<ShopUserInterface> find(object|array|mixed $criteria)
- * @phpstan-method static Proxy<ShopUserInterface> findOrCreate(array $attributes)
- * @phpstan-method static Proxy<ShopUserInterface> first(string $sortedField = 'id')
- * @phpstan-method static Proxy<ShopUserInterface> last(string $sortedField = 'id')
- * @phpstan-method static Proxy<ShopUserInterface> random(array $attributes = [])
- * @phpstan-method static Proxy<ShopUserInterface> randomOrCreate(array $attributes = [])
- * @phpstan-method static RepositoryProxy<ShopUserInterface> repository()
- * @phpstan-method static list<Proxy<ShopUserInterface>> all()
- * @phpstan-method static list<Proxy<ShopUserInterface>> createMany(int $number, array|callable $attributes = [])
- * @phpstan-method static list<Proxy<ShopUserInterface>> createSequence(iterable|callable $sequence)
- * @phpstan-method static list<Proxy<ShopUserInterface>> findBy(array $attributes)
- * @phpstan-method static list<Proxy<ShopUserInterface>> randomRange(int $min, int $max, array $attributes = [])
- * @phpstan-method static list<Proxy<ShopUserInterface>> randomSet(int $number, array $attributes = [])
  */
 final class ShopUserFactory extends ModelFactory implements FactoryWithModelClassAwareInterface
 {

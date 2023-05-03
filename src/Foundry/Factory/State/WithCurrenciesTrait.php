@@ -11,17 +11,17 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
+namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State;
 
 use Zenstruck\Foundry\ModelFactory;
 
 /**
  * @mixin ModelFactory
  */
-trait WithCodeTrait
+trait WithCurrenciesTrait
 {
-    public function withCode(string $code): self
+    public function withCurrencies(array $currencies): self
     {
-        return $this->addState(['code' => $code]);
+        return $this->addState(['currencies' => $currencies]);
     }
 }

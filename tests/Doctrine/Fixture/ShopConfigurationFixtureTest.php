@@ -25,6 +25,7 @@ final class ShopConfigurationFixtureTest extends KernelTestCase
 
         $fixture->load(self::getContainer()->get('doctrine.orm.entity_manager'));
 
+        $adminUsers = $this->getAdminUserRepository()->findAll();
         $locales = $this->getLocaleRepository()->findAll();
         $channels = $this->getChannelRepository()->findAll();
         $countries = $this->getCountryRepository()->findAll();
@@ -34,6 +35,7 @@ final class ShopConfigurationFixtureTest extends KernelTestCase
         $shippingMethods = $this->getShippingMethodRepository()->findAll();
         $taxa = $this->getTaxonRepository()->findAll();
 
+        $this->assertCount(2, $adminUsers);
         $this->assertCount(8, $locales);
         $this->assertCount(1, $channels);
         $this->assertCount(12, $countries);
@@ -42,6 +44,11 @@ final class ShopConfigurationFixtureTest extends KernelTestCase
         $this->assertCount(2, $customerGroups);
         $this->assertCount(3, $shippingMethods);
         $this->assertCount(1, $taxa);
+    }
+
+    private function getAdminUserRepository(): RepositoryInterface
+    {
+        return self::getContainer()->get('sylius.repository.admin_user');
     }
 
     private function getChannelRepository(): RepositoryInterface

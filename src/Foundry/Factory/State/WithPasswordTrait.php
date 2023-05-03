@@ -11,17 +11,17 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
+namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State;
 
 use Zenstruck\Foundry\ModelFactory;
 
 /**
  * @mixin ModelFactory
  */
-trait WithBirthdayTrait
+trait WithPasswordTrait
 {
-    public function withBirthday(\DateTimeInterface|string $birthday): self
+    public function withPassword(string $password): self
     {
-        return $this->addState(['birthday' => $birthday]);
+        return $this->addState(['password' => $password]);
     }
 }

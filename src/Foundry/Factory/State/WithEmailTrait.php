@@ -11,17 +11,17 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
+namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State;
 
 use Zenstruck\Foundry\ModelFactory;
 
 /**
  * @mixin ModelFactory
  */
-trait WithPhoneNumberTrait
+trait WithEmailTrait
 {
-    public function withPhoneNumber(string $phoneNumber): self
+    public function withEmail(string $email): self
     {
-        return $this->addState(['phoneNumber' => $phoneNumber]);
+        return $this->addState(['email' => $email]);
     }
 }

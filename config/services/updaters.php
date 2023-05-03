@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\AdminUserUpdater;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\AdminUserUpdaterInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CountryUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CountryUpdaterInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CurrencyUpdater;
@@ -21,6 +23,14 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\TaxonUpdaterInterface;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
+        ->set('sylius.shop_fixtures.updater.admin_user', AdminUserUpdater::class)
+            ->args([
+                service('sylius.factory.avatar_image'),
+                service('file_locator'),
+                service('sylius.image_uploader'),
+            ])
+        ->alias(AdminUserUpdaterInterface::class, 'sylius.shop_fixtures.updater.admin_user')
+
         ->set('sylius.shop_fixtures.updater.country', CountryUpdater::class)
         ->alias(CountryUpdaterInterface::class, 'sylius.shop_fixtures.updater.country')
 

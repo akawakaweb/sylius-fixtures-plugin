@@ -11,22 +11,17 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
+namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State;
 
 use Zenstruck\Foundry\ModelFactory;
 
 /**
  * @mixin ModelFactory
  */
-trait ToggableTrait
+trait WithPhoneNumberTrait
 {
-    public function enabled(): self
+    public function withPhoneNumber(string $phoneNumber): self
     {
-        return $this->addState(['enabled' => true]);
-    }
-
-    public function disabled(): self
-    {
-        return $this->addState(['enabled' => false]);
+        return $this->addState(['phoneNumber' => $phoneNumber]);
     }
 }
