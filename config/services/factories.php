@@ -15,6 +15,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Configurator\FactoryConfigurator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\AddressFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\AdminUserFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ChannelFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CountryFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CurrencyFactory;
@@ -47,6 +48,16 @@ return static function (ContainerConfigurator $container) {
             ])
             ->tag('foundry.factory')
         ->alias(AddressFactory::class, 'sylius.shop_fixtures.factory.address')
+
+        ->set('sylius.shop_fixtures.factory.admin_user', AdminUserFactory::class)
+            ->args([
+//                    service('sylius.factory.admin_user'),
+//                    service('sylius.shop_fixtures.default_values.admin_user'),
+//                    service('sylius.shop_fixtures.transformer.admin_user'),
+                    service('sylius.shop_fixtures.updater.admin_user'),
+            ])
+            ->tag('foundry.factory')
+        ->alias(AdminUserFactory::class, 'sylius.shop_fixtures.factory.admin_user')
 
         ->set('sylius.shop_fixtures.factory.channel', ChannelFactory::class)
             ->args([

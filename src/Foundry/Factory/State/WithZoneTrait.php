@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
+namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State;
 
 use Sylius\Component\Addressing\Model\ZoneInterface;
 use Zenstruck\Foundry\ModelFactory;

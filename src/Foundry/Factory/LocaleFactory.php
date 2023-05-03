@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\LocaleDefaultValuesInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\LocaleTransformerInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\LocaleUpdaterInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
@@ -42,22 +43,6 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static LocaleInterface[]|Proxy[] findBy(array $attributes)
  * @method static LocaleInterface[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
  * @method static LocaleInterface[]|Proxy[] randomSet(int $number, array $attributes = [])
- *
- * @phpstan-method        Proxy<LocaleInterface> create(array|callable $attributes = [])
- * @phpstan-method static Proxy<LocaleInterface> createOne(array $attributes = [])
- * @phpstan-method static Proxy<LocaleInterface> find(object|array|mixed $criteria)
- * @phpstan-method static Proxy<LocaleInterface> findOrCreate(array $attributes)
- * @phpstan-method static Proxy<LocaleInterface> first(string $sortedField = 'id')
- * @phpstan-method static Proxy<LocaleInterface> last(string $sortedField = 'id')
- * @phpstan-method static Proxy<LocaleInterface> random(array $attributes = [])
- * @phpstan-method static Proxy<LocaleInterface> randomOrCreate(array $attributes = [])
- * @phpstan-method static RepositoryProxy<LocaleInterface> repository()
- * @phpstan-method static list<Proxy<LocaleInterface>> all()
- * @phpstan-method static list<Proxy<LocaleInterface>> createMany(int $number, array|callable $attributes = [])
- * @phpstan-method static list<Proxy<LocaleInterface>> createSequence(iterable|callable $sequence)
- * @phpstan-method static list<Proxy<LocaleInterface>> findBy(array $attributes)
- * @phpstan-method static list<Proxy<LocaleInterface>> randomRange(int $min, int $max, array $attributes = [])
- * @phpstan-method static list<Proxy<LocaleInterface>> randomSet(int $number, array $attributes = [])
  */
 final class LocaleFactory extends ModelFactory implements FactoryWithModelClassAwareInterface
 {

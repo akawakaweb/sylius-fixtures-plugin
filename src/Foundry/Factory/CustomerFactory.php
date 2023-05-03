@@ -14,6 +14,13 @@ declare(strict_types=1);
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\CustomerDefaultValuesInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\FemaleTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\MaleTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithBirthdayTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithEmailTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithFirstNameTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithLastNameTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithPhoneNumberTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\CustomerTransformerInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CustomerUpdaterInterface;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\CustomerRepository;
@@ -42,22 +49,6 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static CustomerInterface[]|Proxy[] findBy(array $attributes)
  * @method static CustomerInterface[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
  * @method static CustomerInterface[]|Proxy[] randomSet(int $number, array $attributes = [])
- *
- * @phpstan-method        Proxy<CustomerInterface> create(array|callable $attributes = [])
- * @phpstan-method static Proxy<CustomerInterface> createOne(array $attributes = [])
- * @phpstan-method static Proxy<CustomerInterface> find(object|array|mixed $criteria)
- * @phpstan-method static Proxy<CustomerInterface> findOrCreate(array $attributes)
- * @phpstan-method static Proxy<CustomerInterface> first(string $sortedField = 'id')
- * @phpstan-method static Proxy<CustomerInterface> last(string $sortedField = 'id')
- * @phpstan-method static Proxy<CustomerInterface> random(array $attributes = [])
- * @phpstan-method static Proxy<CustomerInterface> randomOrCreate(array $attributes = [])
- * @phpstan-method static RepositoryProxy<CustomerInterface> repository()
- * @phpstan-method static list<Proxy<CustomerInterface>> all()
- * @phpstan-method static list<Proxy<CustomerInterface>> createMany(int $number, array|callable $attributes = [])
- * @phpstan-method static list<Proxy<CustomerInterface>> createSequence(iterable|callable $sequence)
- * @phpstan-method static list<Proxy<CustomerInterface>> findBy(array $attributes)
- * @phpstan-method static list<Proxy<CustomerInterface>> randomRange(int $min, int $max, array $attributes = [])
- * @phpstan-method static list<Proxy<CustomerInterface>> randomSet(int $number, array $attributes = [])
  */
 final class CustomerFactory extends ModelFactory implements FactoryWithModelClassAwareInterface
 {

@@ -14,6 +14,8 @@ declare(strict_types=1);
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\CountryDefaultValuesInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\ToggableTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\CountryTransformerInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CountryUpdaterInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
@@ -42,22 +44,6 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static CountryInterface[]|Proxy[] findBy(array $attributes)
  * @method static CountryInterface[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
  * @method static CountryInterface[]|Proxy[] randomSet(int $number, array $attributes = [])
- *
- * @phpstan-method        Proxy<CountryInterface> create(array|callable $attributes = [])
- * @phpstan-method static Proxy<CountryInterface> createOne(array $attributes = [])
- * @phpstan-method static Proxy<CountryInterface> find(object|array|mixed $criteria)
- * @phpstan-method static Proxy<CountryInterface> findOrCreate(array $attributes)
- * @phpstan-method static Proxy<CountryInterface> first(string $sortedField = 'id')
- * @phpstan-method static Proxy<CountryInterface> last(string $sortedField = 'id')
- * @phpstan-method static Proxy<CountryInterface> random(array $attributes = [])
- * @phpstan-method static Proxy<CountryInterface> randomOrCreate(array $attributes = [])
- * @phpstan-method static RepositoryProxy<CountryInterface> repository()
- * @phpstan-method static list<Proxy<CountryInterface>> all()
- * @phpstan-method static list<Proxy<CountryInterface>> createMany(int $number, array|callable $attributes = [])
- * @phpstan-method static list<Proxy<CountryInterface>> createSequence(iterable|callable $sequence)
- * @phpstan-method static list<Proxy<CountryInterface>> findBy(array $attributes)
- * @phpstan-method static list<Proxy<CountryInterface>> randomRange(int $min, int $max, array $attributes = [])
- * @phpstan-method static list<Proxy<CountryInterface>> randomSet(int $number, array $attributes = [])
  */
 final class CountryFactory extends ModelFactory implements FactoryWithModelClassAwareInterface
 {

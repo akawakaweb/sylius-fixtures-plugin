@@ -11,17 +11,18 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
+namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State;
 
+use Sylius\Component\Customer\Model\CustomerInterface;
 use Zenstruck\Foundry\ModelFactory;
 
 /**
  * @mixin ModelFactory
  */
-trait WithPasswordTrait
+trait FemaleTrait
 {
-    public function withPassword(string $password): self
+    public function female(): self
     {
-        return $this->addState(['password' => $password]);
+        return $this->addState(['gender' => CustomerInterface::FEMALE_GENDER]);
     }
 }

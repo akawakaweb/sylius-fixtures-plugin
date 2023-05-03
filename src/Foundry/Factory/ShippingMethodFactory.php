@@ -13,6 +13,11 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\ToggableTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithDescriptionTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithNameTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithZoneTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShippingMethodUpdaterInterface;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\ShippingMethodRepository;
 use Sylius\Component\Core\Model\ShippingMethod;

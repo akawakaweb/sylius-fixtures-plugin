@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithNameTrait;
 use Sylius\Bundle\CustomerBundle\Doctrine\ORM\CustomerGroupRepository;
 use Sylius\Component\Customer\Model\CustomerGroup;
 use Sylius\Component\Customer\Model\CustomerGroupInterface;

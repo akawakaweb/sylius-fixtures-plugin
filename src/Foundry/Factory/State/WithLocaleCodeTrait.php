@@ -11,17 +11,17 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
+namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State;
 
 use Zenstruck\Foundry\ModelFactory;
 
 /**
  * @mixin ModelFactory
  */
-trait WithNameTrait
+trait WithLocaleCodeTrait
 {
-    public function withName(string $name): self
+    public function withLocaleCode(string $localeCode): self
     {
-        return $this->addState(['name' => $name]);
+        return $this->addState(['localeCode' => $localeCode]);
     }
 }

@@ -13,6 +13,9 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithDescriptionTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithNameTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ShippingCategoryTransformerInterface;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\ShippingCategoryRepository;
 use Sylius\Component\Shipping\Model\ShippingCategory;

@@ -11,17 +11,17 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
+namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State;
 
 use Zenstruck\Foundry\ModelFactory;
 
 /**
  * @mixin ModelFactory
  */
-trait WithDescriptionTrait
+trait WithFirstNameTrait
 {
-    public function withDescription(string $description): self
+    public function withFirstName(string $firstName): self
     {
-        return $this->addState(['description' => $description]);
+        return $this->addState(['firstName' => $firstName]);
     }
 }
