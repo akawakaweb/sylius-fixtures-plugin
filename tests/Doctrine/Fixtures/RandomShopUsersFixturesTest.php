@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Acme\SyliusExamplePlugin\Doctrine\Fixture;
+namespace Tests\Acme\SyliusExamplePlugin\Doctrine\Fixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
@@ -19,28 +19,28 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Tests\Acme\SyliusExamplePlugin\PurgeDatabaseTrait;
 use Zenstruck\Foundry\Test\Factories;
 
-final class RandomJeansFixtureTest extends KernelTestCase
+final class RandomShopUsersFixturesTest extends KernelTestCase
 {
     use PurgeDatabaseTrait;
     use Factories;
 
     /** @test */
-    public function it_creates_random_jeans(): void
+    public function it_creates_random_shop_users(): void
     {
         self::bootKernel();
 
         /** @var Fixture $fixture */
-        $fixture = self::getContainer()->get('sylius.shop_fixtures.foundry.fixture.random_jeans');
+        $fixture = self::getContainer()->get('sylius.shop_fixtures.doctrine.fixtures.random_shop_users');
 
         $fixture->load(self::getContainer()->get('doctrine.orm.entity_manager'));
 
-        $products = $this->getProductRepository()->findAll();
+        $shopUsers = $this->getShopUserRepository()->findAll();
 
-        $this->assertCount(8, $products);
+        $this->assertCount(20, $shopUsers);
     }
 
-    private function getProductRepository(): RepositoryInterface
+    private function getShopUserRepository(): RepositoryInterface
     {
-        return static::getContainer()->get('sylius.repository.product');
+        return static::getContainer()->get('sylius.repository.shop_user');
     }
 }

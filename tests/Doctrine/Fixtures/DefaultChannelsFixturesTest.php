@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Acme\SyliusExamplePlugin\Doctrine\Fixture;
+namespace Tests\Acme\SyliusExamplePlugin\Doctrine\Fixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
@@ -19,28 +19,28 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Tests\Acme\SyliusExamplePlugin\PurgeDatabaseTrait;
 use Zenstruck\Foundry\Test\Factories;
 
-final class DefaultGeographicalFixtureTest extends KernelTestCase
+final class DefaultChannelsFixturesTest extends KernelTestCase
 {
     use PurgeDatabaseTrait;
     use Factories;
 
     /** @test */
-    public function it_creates_default_currencies(): void
+    public function it_creates_default_channels(): void
     {
         self::bootKernel();
 
         /** @var Fixture $fixture */
-        $fixture = self::getContainer()->get('sylius.shop_fixtures.foundry.fixture.default_currencies');
+        $fixture = self::getContainer()->get('sylius.shop_fixtures.doctrine.fixtures.default_channels');
 
         $fixture->load(self::getContainer()->get('doctrine.orm.entity_manager'));
 
-        $currencies = $this->getCurrencyRepository()->findAll();
+        $channels = $this->getChannelRepository()->findAll();
 
-        $this->assertCount(9, $currencies);
+        $this->assertCount(1, $channels);
     }
 
-    private function getCurrencyRepository(): RepositoryInterface
+    private function getChannelRepository(): RepositoryInterface
     {
-        return static::getContainer()->get('sylius.repository.currency');
+        return self::getContainer()->get('sylius.repository.channel');
     }
 }

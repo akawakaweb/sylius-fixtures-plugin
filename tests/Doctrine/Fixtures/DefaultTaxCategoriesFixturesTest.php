@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Acme\SyliusExamplePlugin\Doctrine\Fixture;
+namespace Tests\Acme\SyliusExamplePlugin\Doctrine\Fixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
@@ -19,28 +19,28 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Tests\Acme\SyliusExamplePlugin\PurgeDatabaseTrait;
 use Zenstruck\Foundry\Test\Factories;
 
-final class DefaultLocalesFixtureTest extends KernelTestCase
+final class DefaultTaxCategoriesFixturesTest extends KernelTestCase
 {
     use PurgeDatabaseTrait;
     use Factories;
 
     /** @test */
-    public function it_creates_default_locales(): void
+    public function it_creates_default_tax_categories(): void
     {
         self::bootKernel();
 
         /** @var Fixture $fixture */
-        $fixture = self::getContainer()->get('sylius.shop_fixtures.foundry.fixture.default_locales');
+        $fixture = self::getContainer()->get('sylius.shop_fixtures.doctrine.fixtures.default_tax_categories');
 
         $fixture->load(self::getContainer()->get('doctrine.orm.entity_manager'));
 
-        $locales = $this->getLocaleRepository()->findAll();
+        $taxCategories = $this->getTaxCategoryRepository()->findAll();
 
-        $this->assertCount(8, $locales);
+        $this->assertCount(2, $taxCategories);
     }
 
-    private function getLocaleRepository(): RepositoryInterface
+    private function getTaxCategoryRepository(): RepositoryInterface
     {
-        return static::getContainer()->get('sylius.repository.locale');
+        return static::getContainer()->get('sylius.repository.tax_category');
     }
 }

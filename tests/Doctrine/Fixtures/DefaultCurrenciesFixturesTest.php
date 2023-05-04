@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Acme\SyliusExamplePlugin\Doctrine\Fixture;
+namespace Tests\Acme\SyliusExamplePlugin\Doctrine\Fixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
@@ -19,7 +19,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Tests\Acme\SyliusExamplePlugin\PurgeDatabaseTrait;
 use Zenstruck\Foundry\Test\Factories;
 
-final class DefaultCurrenciesFixtureTest extends KernelTestCase
+final class DefaultCurrenciesFixturesTest extends KernelTestCase
 {
     use PurgeDatabaseTrait;
     use Factories;
@@ -30,7 +30,7 @@ final class DefaultCurrenciesFixtureTest extends KernelTestCase
         self::bootKernel();
 
         /** @var Fixture $fixture */
-        $fixture = self::getContainer()->get('sylius.shop_fixtures.foundry.fixture.default_geographical');
+        $fixture = self::getContainer()->get('sylius.shop_fixtures.doctrine.fixtures.default_geographical');
 
         $fixture->load(self::getContainer()->get('doctrine.orm.entity_manager'));
 

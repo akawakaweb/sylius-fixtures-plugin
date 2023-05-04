@@ -17,7 +17,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CurrencyFactory;
 use Zenstruck\Foundry\Factory;
 use Zenstruck\Foundry\Story;
 
-final class DefaultCurrenciesStory extends Story
+final class DefaultCurrenciesStory extends Story implements DefaultCurrenciesStoryInterface
 {
     public function build(): void
     {

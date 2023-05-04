@@ -13,47 +13,7 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture\DefaultCurrenciesFixture;
-use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture\DefaultGeographicalFixture;
-use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture\DefaultLocalesFixture;
-use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture\RandomAddressesFixture;
-use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture\RandomCapsFixture;
-use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture\RandomDressesFixture;
-use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture\RandomJeansFixture;
-use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture\RandomShopUsersFixture;
-use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture\RandomTShirtsFixture;
-use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture\ShopConfigurationFixture;
-
 return static function (ContainerConfigurator $container) {
-    $container->services()
-        ->set('sylius.shop_fixtures.foundry.fixture.default_locales', DefaultLocalesFixture::class)
-            ->tag('doctrine.fixture.orm')
-
-        ->set('sylius.shop_fixtures.foundry.fixture.default_currencies', DefaultCurrenciesFixture::class)
-            ->tag('doctrine.fixture.orm')
-
-        ->set('sylius.shop_fixtures.foundry.fixture.default_geographical', DefaultGeographicalFixture::class)
-            ->tag('doctrine.fixture.orm')
-
-        ->set('sylius.shop_fixtures.foundry.fixture.shop_configuration', ShopConfigurationFixture::class)
-            ->tag('doctrine.fixture.orm')
-
-        ->set('sylius.shop_fixtures.foundry.fixture.random_addresses', RandomAddressesFixture::class)
-            ->tag('doctrine.fixture.orm')
-
-        ->set('sylius.shop_fixtures.foundry.fixture.random_caps', RandomCapsFixture::class)
-            ->tag('doctrine.fixture.orm')
-
-        ->set('sylius.shop_fixtures.foundry.fixture.random_dresses', RandomDressesFixture::class)
-            ->tag('doctrine.fixture.orm')
-
-        ->set('sylius.shop_fixtures.foundry.fixture.random_jeans', RandomJeansFixture::class)
-            ->tag('doctrine.fixture.orm')
-
-        ->set('sylius.shop_fixtures.foundry.fixture.random_shop_users', RandomShopUsersFixture::class)
-            ->tag('doctrine.fixture.orm')
-
-        ->set('sylius.shop_fixtures.foundry.fixture.random_t_shirts', RandomTShirtsFixture::class)
-            ->tag('doctrine.fixture.orm')
-    ;
+    $container->import('fixtures/default.php');
+    $container->import('fixtures/random.php');
 };

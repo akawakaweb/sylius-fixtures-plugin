@@ -11,28 +11,16 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture;
+namespace Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultGeographicalStory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-final class DefaultGeographicalFixture extends Fixture implements FixtureGroupInterface, OrderedFixtureInterface
+final class DefaultGeographicalFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
         DefaultGeographicalStory::load();
-    }
-
-    public static function getGroups(): array
-    {
-        return ['shop_configuration', 'default_geographical'];
-    }
-
-    public function getOrder(): int
-    {
-        return -60;
     }
 }

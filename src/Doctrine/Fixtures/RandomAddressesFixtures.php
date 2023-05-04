@@ -11,28 +11,16 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture;
+namespace Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomAddressesStory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-final class RandomAddressesFixture extends Fixture implements FixtureGroupInterface, OrderedFixtureInterface
+final class RandomAddressesFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
         RandomAddressesStory::load();
-    }
-
-    public static function getGroups(): array
-    {
-        return ['random', 'random_addresses'];
-    }
-
-    public function getOrder(): int
-    {
-        return 2;
     }
 }

@@ -4,6 +4,6 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-return static function (ContainerConfigurator $configurator) {
-    $configurator->import('services/*');
+return static function (ContainerConfigurator $container) {
+    $container->import('services/*');
 };

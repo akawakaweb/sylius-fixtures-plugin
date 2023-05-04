@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Acme\SyliusExamplePlugin\Doctrine\Fixture;
+namespace Tests\Acme\SyliusExamplePlugin\Doctrine\Fixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
@@ -19,28 +19,28 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Tests\Acme\SyliusExamplePlugin\PurgeDatabaseTrait;
 use Zenstruck\Foundry\Test\Factories;
 
-final class RandomTShirtsFixtureTest extends KernelTestCase
+final class DefaultCustomerGroupsFixturesTest extends KernelTestCase
 {
     use PurgeDatabaseTrait;
     use Factories;
 
     /** @test */
-    public function it_creates_random_t_shirts(): void
+    public function it_creates_default_customer_groups(): void
     {
         self::bootKernel();
 
         /** @var Fixture $fixture */
-        $fixture = self::getContainer()->get('sylius.shop_fixtures.foundry.fixture.random_t_shirts');
+        $fixture = self::getContainer()->get('sylius.shop_fixtures.doctrine.fixtures.default_customer_groups');
 
         $fixture->load(self::getContainer()->get('doctrine.orm.entity_manager'));
 
-        $products = $this->getProductRepository()->findAll();
+        $customerGroups = $this->getCustomerGroupRepository()->findAll();
 
-        $this->assertCount(6, $products);
+        $this->assertCount(2, $customerGroups);
     }
 
-    private function getProductRepository(): RepositoryInterface
+    private function getCustomerGroupRepository(): RepositoryInterface
     {
-        return static::getContainer()->get('sylius.repository.product');
+        return static::getContainer()->get('sylius.repository.customer_group');
     }
 }
