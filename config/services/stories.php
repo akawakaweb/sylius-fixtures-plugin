@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultAdminUsersStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultCurrenciesStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultCustomerGroupsStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultGeographicalStory;
@@ -29,6 +30,10 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomTShirtsStory;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
+        ->set('sylius.shop_fixtures.story.default_admin_users', DefaultAdminUsersStory::class)
+            ->tag('foundry.story')
+        ->alias(DefaultAdminUsersStory::class, 'sylius.shop_fixtures.foundry.story.default_admin_users')
+
         ->set('sylius.shop_fixtures.story.default_currencies', DefaultCurrenciesStory::class)
             ->tag('foundry.story')
         ->alias(DefaultCurrenciesStory::class, 'sylius.shop_fixtures.foundry.story.default_currencies')

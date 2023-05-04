@@ -38,10 +38,10 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.foundry.fixture.random_jeans', RandomJeansFixture::class)
             ->tag('doctrine.fixture.orm')
 
-        ->set('sylius.shop_fixtures.foundry.fixture.random_t_shirts', RandomTShirtsFixture::class)
+        ->set('sylius.shop_fixtures.foundry.fixture.random_shop_users', RandomShopUsersFixture::class)
             ->tag('doctrine.fixture.orm')
 
-        ->set('sylius.shop_fixtures.foundry.fixture.random_shop_users', RandomShopUsersFixture::class)
+        ->set('sylius.shop_fixtures.foundry.fixture.random_t_shirts', RandomTShirtsFixture::class)
             ->tag('doctrine.fixture.orm')
     ;
 };
