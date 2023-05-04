@@ -15,10 +15,7 @@ namespace Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultAdminUsersStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultChannelsStory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultCurrenciesStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultCustomerGroupsStory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultGeographicalStory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultLocalesStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultMenuTaxonStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultShippingMethodsStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultShopUsersStory;
@@ -32,9 +29,6 @@ final class ShopConfigurationFixture extends Fixture implements FixtureGroupInte
 {
     public function load(ObjectManager $manager): void
     {
-        DefaultLocalesStory::load();
-        DefaultCurrenciesStory::load();
-        DefaultGeographicalStory::load();
         DefaultMenuTaxonStory::load();
         DefaultChannelsStory::load();
         DefaultShippingMethodsStory::load();

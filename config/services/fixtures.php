@@ -13,6 +13,9 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
+use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture\DefaultCurrenciesFixture;
+use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture\DefaultGeographicalFixture;
+use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture\DefaultLocalesFixture;
 use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture\RandomAddressesFixture;
 use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture\RandomCapsFixture;
 use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture\RandomDressesFixture;
@@ -23,6 +26,15 @@ use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixture\ShopConfigurationFixture;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
+        ->set('sylius.shop_fixtures.foundry.fixture.default_locales', DefaultLocalesFixture::class)
+            ->tag('doctrine.fixture.orm')
+
+        ->set('sylius.shop_fixtures.foundry.fixture.default_currencies', DefaultCurrenciesFixture::class)
+            ->tag('doctrine.fixture.orm')
+
+        ->set('sylius.shop_fixtures.foundry.fixture.default_geographical', DefaultGeographicalFixture::class)
+            ->tag('doctrine.fixture.orm')
+
         ->set('sylius.shop_fixtures.foundry.fixture.shop_configuration', ShopConfigurationFixture::class)
             ->tag('doctrine.fixture.orm')
 

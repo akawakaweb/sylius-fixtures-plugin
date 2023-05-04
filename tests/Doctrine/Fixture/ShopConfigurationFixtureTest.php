@@ -35,10 +35,7 @@ final class ShopConfigurationFixtureTest extends KernelTestCase
         $fixture->load(self::getContainer()->get('doctrine.orm.entity_manager'));
 
         $adminUsers = $this->getAdminUserRepository()->findAll();
-        $locales = $this->getLocaleRepository()->findAll();
         $channels = $this->getChannelRepository()->findAll();
-        $countries = $this->getCountryRepository()->findAll();
-        $currencies = $this->getCurrencyRepository()->findAll();
         $customerGroups = $this->getCustomerGroupRepository()->findAll();
         $customers = $this->getCustomerRepository()->findAll();
         $shippingMethods = $this->getShippingMethodRepository()->findAll();
@@ -46,10 +43,7 @@ final class ShopConfigurationFixtureTest extends KernelTestCase
         $taxCategories = $this->getTaxCategoryRepository()->findAll();
 
         $this->assertCount(2, $adminUsers);
-        $this->assertCount(8, $locales);
         $this->assertCount(1, $channels);
-        $this->assertCount(12, $countries);
-        $this->assertCount(9, $currencies);
         $this->assertCount(1, $customers);
         $this->assertCount(2, $customerGroups);
         $this->assertCount(3, $shippingMethods);
@@ -67,16 +61,6 @@ final class ShopConfigurationFixtureTest extends KernelTestCase
         return self::getContainer()->get('sylius.repository.channel');
     }
 
-    private function getCountryRepository(): RepositoryInterface
-    {
-        return self::getContainer()->get('sylius.repository.country');
-    }
-
-    private function getCurrencyRepository(): RepositoryInterface
-    {
-        return self::getContainer()->get('sylius.repository.currency');
-    }
-
     private function getCustomerRepository(): RepositoryInterface
     {
         return static::getContainer()->get('sylius.repository.customer');
@@ -85,11 +69,6 @@ final class ShopConfigurationFixtureTest extends KernelTestCase
     private function getCustomerGroupRepository(): RepositoryInterface
     {
         return static::getContainer()->get('sylius.repository.customer_group');
-    }
-
-    private function getLocaleRepository(): RepositoryInterface
-    {
-        return static::getContainer()->get('sylius.repository.locale');
     }
 
     private function getShippingMethodRepository(): RepositoryInterface
