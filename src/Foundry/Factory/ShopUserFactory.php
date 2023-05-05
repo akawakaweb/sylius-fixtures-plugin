@@ -14,10 +14,15 @@ declare(strict_types=1);
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ShopUserDefaultValuesInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\FemaleTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\MaleTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithBirthdayTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithEmailTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithFirstNameTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithLastNameTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithPasswordTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithPhoneNumberTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ShopUserTransformerInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShopUserUpdaterInterface;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\UserRepository;
 use Sylius\Component\Core\Model\CustomerInterface;
@@ -54,24 +59,30 @@ final class ShopUserFactory extends ModelFactory implements FactoryWithModelClas
     use WithFirstNameTrait;
     use WithLastNameTrait;
     use WithPasswordTrait;
+    use MaleTrait;
+    use FemaleTrait;
+    use WithPhoneNumberTrait;
+    use WithBirthdayTrait;
 
     public function __construct(
         private FactoryInterface $shopUserFactory,
         private FactoryInterface $customerFactory,
-        private ShopUserDefaultValuesInterface $shopUserDefaultValues,
-        private ShopUserUpdaterInterface $shopUserUpdater,
+        private ShopUserDefaultValuesInterface $defaultValues,
+        private ShopUserTransformerInterface $transformer,
+        private ShopUserUpdaterInterface $updater,
     ) {
         parent::__construct();
     }
 
     protected function getDefaults(): array
     {
-        return $this->shopUserDefaultValues->getDefaultValues(self::faker());
+        return $this->defaultValues->getDefaultValues(self::faker());
     }
 
     protected function initialize(): self
     {
         return $this
+            ->beforeInstantiate(fn (array $attributes): array => $this->transformer->transform($attributes))
             ->instantiateWith(function (): ShopUserInterface {
                 /** @var ShopUserInterface $shopUser */
                 $shopUser = $this->shopUserFactory->createNew();
@@ -84,7 +95,7 @@ final class ShopUserFactory extends ModelFactory implements FactoryWithModelClas
                 return $shopUser;
             })
             ->afterInstantiate(function (ShopUserInterface $shopUser, array $attributes): void {
-                $this->shopUserUpdater->update($shopUser, $attributes);
+                $this->updater->update($shopUser, $attributes);
             })
         ;
     }

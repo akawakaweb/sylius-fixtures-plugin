@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\AddressUpdater;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\AddressUpdaterInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\AdminUserUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\AdminUserUpdaterInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ChannelUpdater;
@@ -33,6 +35,9 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ZoneUpdaterInterface;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
+        ->set('sylius.shop_fixtures.updater.address', AddressUpdater::class)
+        ->alias(AddressUpdaterInterface::class, 'sylius.shop_fixtures.updater.address')
+
         ->set('sylius.shop_fixtures.updater.admin_user', AdminUserUpdater::class)
             ->args([
                 service('sylius.factory.avatar_image'),

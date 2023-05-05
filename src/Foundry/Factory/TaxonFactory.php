@@ -18,6 +18,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithDescriptionTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithNameTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithSlugTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\TaxonTransformerInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\TaxonUpdaterInterface;
 use Sylius\Bundle\TaxonomyBundle\Doctrine\ORM\TaxonRepository;
 use Sylius\Component\Core\Model\Taxon;
@@ -59,6 +60,7 @@ final class TaxonFactory extends ModelFactory implements FactoryWithModelClassAw
         private FactoryInterface $factory,
         private RepositoryInterface $repository,
         private TaxonDefaultValuesInterface $defaultValues,
+        private TaxonTransformerInterface $transformer,
         private TaxonUpdaterInterface $updater,
     ) {
         parent::__construct();
@@ -82,6 +84,7 @@ final class TaxonFactory extends ModelFactory implements FactoryWithModelClassAw
     protected function initialize(): self
     {
         return $this
+            ->beforeInstantiate(fn (array $attributes): array => $this->transformer->transform($attributes))
             ->instantiateWith(function (array $attributes): TaxonInterface {
                 return $this->createTaxon($attributes);
             })

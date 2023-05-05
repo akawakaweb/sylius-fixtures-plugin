@@ -19,6 +19,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithDescriptionTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithNameTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithZoneTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ShippingMethodTransformerInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShippingMethodUpdaterInterface;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\ShippingMethodRepository;
 use Sylius\Component\Core\Model\ShippingMethod;
@@ -60,6 +61,7 @@ final class ShippingMethodFactory extends ModelFactory implements FactoryWithMod
     public function __construct(
         private FactoryInterface $factory,
         private ShippingMethodDefaultValuesInterface $defaultValues,
+        private ShippingMethodTransformerInterface $transformer,
         private ShippingMethodUpdaterInterface $updater,
     ) {
         parent::__construct();
@@ -83,6 +85,7 @@ final class ShippingMethodFactory extends ModelFactory implements FactoryWithMod
     protected function initialize(): self
     {
         return $this
+            ->beforeInstantiate(fn (array $attributes): array => $this->transformer->transform($attributes))
             ->instantiateWith(function (): ShippingMethodInterface {
                 /** @var ShippingMethodInterface $shippingMethod */
                 $shippingMethod = $this->factory->createNew();

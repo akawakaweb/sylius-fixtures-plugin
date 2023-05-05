@@ -22,6 +22,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithLastNameTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithLocaleCodeTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithPasswordTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithUsernameTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\AdminUserTransformerInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\AdminUserUpdaterInterface;
 use Sylius\Bundle\UserBundle\Doctrine\ORM\UserRepository;
 use Sylius\Component\Core\Model\AdminUser;
@@ -65,6 +66,7 @@ final class AdminUserFactory extends ModelFactory implements FactoryWithModelCla
     public function __construct(
         private FactoryInterface $factory,
         private AdminUserDefaultValuesInterface $defaultValues,
+        private AdminUserTransformerInterface $transformer,
         private AdminUserUpdaterInterface $updater,
     ) {
         parent::__construct();
@@ -78,6 +80,7 @@ final class AdminUserFactory extends ModelFactory implements FactoryWithModelCla
     protected function initialize(): self
     {
         return $this
+            ->beforeInstantiate(fn (array $attributes): array => $this->transformer->transform($attributes))
             ->instantiateWith(function (): AdminUserInterface {
                 /** @var AdminUserInterface $adminUser */
                 $adminUser = $this->factory->createNew();

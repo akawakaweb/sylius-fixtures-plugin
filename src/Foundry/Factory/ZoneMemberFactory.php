@@ -15,6 +15,7 @@ namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ZoneMemberDefaultValuesInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ZoneMemberTransformerInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ZoneMemberUpdaterInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Addressing\Model\ZoneMember;
@@ -51,6 +52,7 @@ final class ZoneMemberFactory extends ModelFactory implements FactoryWithModelCl
     public function __construct(
         private FactoryInterface $factory,
         private ZoneMemberDefaultValuesInterface $defaultValues,
+        private ZoneMemberTransformerInterface $transformer,
         private ZoneMemberUpdaterInterface $updater,
     ) {
         parent::__construct();
@@ -64,6 +66,7 @@ final class ZoneMemberFactory extends ModelFactory implements FactoryWithModelCl
     protected function initialize(): self
     {
         return $this
+            ->beforeInstantiate(fn (array $attributes): array => $this->transformer->transform($attributes))
             ->instantiateWith(function (): ZoneMemberInterface {
                 /** @var ZoneMemberInterface $zoneMember */
                 $zoneMember = $this->factory->createNew();

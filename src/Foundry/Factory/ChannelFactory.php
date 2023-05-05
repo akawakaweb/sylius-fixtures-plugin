@@ -19,6 +19,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCurrenciesTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithLocalesTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithNameTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ChannelTransformerInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ChannelUpdaterInterface;
 use Doctrine\ORM\EntityRepository;
 use Sylius\Component\Addressing\Model\ZoneInterface;
@@ -62,6 +63,7 @@ final class ChannelFactory extends ModelFactory implements FactoryWithModelClass
     public function __construct(
         private FactoryInterface $factory,
         private ChannelDefaultValuesInterface $defaultValues,
+        private ChannelTransformerInterface $transformer,
         private ChannelUpdaterInterface $updater,
     ) {
         parent::__construct();
@@ -135,6 +137,7 @@ final class ChannelFactory extends ModelFactory implements FactoryWithModelClass
     protected function initialize(): self
     {
         return $this
+            ->beforeInstantiate(fn (array $attributes): array => $this->transformer->transform($attributes))
             ->instantiateWith(function (): ChannelInterface {
                 /** @var ChannelInterface $channel */
                 $channel = $this->factory->createNew();

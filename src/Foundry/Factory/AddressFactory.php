@@ -14,9 +14,12 @@ declare(strict_types=1);
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\AddressDefaultValuesInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\AddressTransformerInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\AddressUpdaterInterface;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\AddressRepository;
 use Sylius\Component\Core\Model\Address;
 use Sylius\Component\Core\Model\AddressInterface;
+use Sylius\Component\Resource\Factory\FactoryInterface;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;
@@ -45,7 +48,10 @@ final class AddressFactory extends ModelFactory implements FactoryWithModelClass
     use WithModelClassTrait;
 
     public function __construct(
+        private FactoryInterface $factory,
         private AddressDefaultValuesInterface $defaultValues,
+        private AddressTransformerInterface $transformer,
+        private AddressUpdaterInterface $updater,
     ) {
         parent::__construct();
     }
@@ -53,6 +59,22 @@ final class AddressFactory extends ModelFactory implements FactoryWithModelClass
     protected function getDefaults(): array
     {
         return $this->defaultValues->getDefaultValues(self::faker());
+    }
+
+    protected function initialize(): self
+    {
+        return $this
+            ->beforeInstantiate(fn (array $attributes): array => $this->transformer->transform($attributes))
+            ->instantiateWith(function (): AddressInterface {
+                /** @var AddressInterface $address */
+                $address = $this->factory->createNew();
+
+                return $address;
+            })
+            ->afterInstantiate(function (AddressInterface $address, array $attributes): void {
+                $this->updater->update($address, $attributes);
+            })
+        ;
     }
 
     protected static function getClass(): string

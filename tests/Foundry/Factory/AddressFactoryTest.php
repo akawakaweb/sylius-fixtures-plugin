@@ -50,7 +50,7 @@ final class AddressFactoryTest extends KernelTestCase
     /** @test */
     public function it_creates_address_with_given_last_name(): void
     {
-        $address = AddressFactory::createOne(['LastName' => 'McFly']);
+        $address = AddressFactory::createOne(['lastName' => 'McFly']);
 
         $this->assertEquals('McFly', $address->getLastName());
     }
