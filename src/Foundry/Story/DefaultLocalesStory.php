@@ -17,7 +17,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
 use Zenstruck\Foundry\Factory;
 use Zenstruck\Foundry\Story;
 
-final class DefaultLocalesStory extends Story
+final class DefaultLocalesStory extends Story implements DefaultLocalesStoryInterface
 {
     public function build(): void
     {

@@ -16,7 +16,7 @@ namespace Akawakaweb\ShopFixturesPlugin\Foundry\Story;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\AdminUserFactory;
 use Zenstruck\Foundry\Story;
 
-final class DefaultAdminUsersStory extends Story
+final class DefaultAdminUsersStory extends Story implements DefaultAdminUsersStoryInterface
 {
     public function build(): void
     {

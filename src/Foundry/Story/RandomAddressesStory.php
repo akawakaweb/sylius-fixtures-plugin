@@ -16,7 +16,7 @@ namespace Akawakaweb\ShopFixturesPlugin\Foundry\Story;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\AddressFactory;
 use Zenstruck\Foundry\Story;
 
-final class RandomAddressesStory extends Story
+final class RandomAddressesStory extends Story implements RandomAddressesStoryInterface
 {
     public function build(): void
     {

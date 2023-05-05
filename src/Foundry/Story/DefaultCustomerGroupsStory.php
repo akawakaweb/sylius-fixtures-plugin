@@ -17,7 +17,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CustomerGroupFactory;
 use Zenstruck\Foundry\Factory;
 use Zenstruck\Foundry\Story;
 
-final class DefaultCustomerGroupsStory extends Story
+final class DefaultCustomerGroupsStory extends Story implements DefaultCustomerGroupsStoryInterface
 {
     public function build(): void
     {

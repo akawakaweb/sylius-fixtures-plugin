@@ -16,7 +16,7 @@ namespace Akawakaweb\ShopFixturesPlugin\Foundry\Story;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ShopUserFactory;
 use Zenstruck\Foundry\Story;
 
-final class RandomShopUsersStory extends Story
+final class RandomShopUsersStory extends Story implements RandomShopUsersStoryInterface
 {
     public function build(): void
     {

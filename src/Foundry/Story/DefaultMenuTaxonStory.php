@@ -16,7 +16,7 @@ namespace Akawakaweb\ShopFixturesPlugin\Foundry\Story;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxonFactory;
 use Zenstruck\Foundry\Story;
 
-final class DefaultMenuTaxonStory extends Story
+final class DefaultMenuTaxonStory extends Story implements DefaultMenuTaxonStoryInterface
 {
     public function build(): void
     {

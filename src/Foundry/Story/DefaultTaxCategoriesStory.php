@@ -16,7 +16,7 @@ namespace Akawakaweb\ShopFixturesPlugin\Foundry\Story;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxCategoryFactory;
 use Zenstruck\Foundry\Story;
 
-final class DefaultTaxCategoriesStory extends Story
+final class DefaultTaxCategoriesStory extends Story implements DefaultTaxCategoriesStoryInterface
 {
     public function build(): void
     {

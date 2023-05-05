@@ -17,7 +17,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ChannelFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CurrencyFactory;
 use Zenstruck\Foundry\Story;
 
-final class DefaultChannelsStory extends Story
+final class DefaultChannelsStory extends Story implements DefaultChannelsStoryInterface
 {
     public function build(): void
     {

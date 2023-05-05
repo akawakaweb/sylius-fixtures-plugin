@@ -17,7 +17,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ShippingMethodFactory;
 use Zenstruck\Foundry\Factory;
 use Zenstruck\Foundry\Story;
 
-final class DefaultShippingMethodsStory extends Story
+final class DefaultShippingMethodsStory extends Story implements DefaultShippingMethodsStoryInterface
 {
     public function build(): void
     {

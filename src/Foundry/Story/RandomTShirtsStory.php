@@ -20,7 +20,7 @@ use Sylius\Component\Attribute\AttributeType\PercentAttributeType;
 use Sylius\Component\Attribute\AttributeType\TextAttributeType;
 use Zenstruck\Foundry\Story;
 
-final class RandomTShirtsStory extends Story
+final class RandomTShirtsStory extends Story implements RandomTShirtsStoryInterface
 {
     public function build(): void
     {

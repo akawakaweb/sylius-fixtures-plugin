@@ -20,7 +20,7 @@ use Sylius\Component\Attribute\AttributeType\IntegerAttributeType;
 use Sylius\Component\Attribute\AttributeType\TextAttributeType;
 use Zenstruck\Foundry\Story;
 
-final class RandomDressesStory extends Story
+final class RandomDressesStory extends Story implements RandomDressesStoryInterface
 {
     public function build(): void
     {

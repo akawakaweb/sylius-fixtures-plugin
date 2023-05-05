@@ -18,7 +18,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ZoneFactory;
 use Zenstruck\Foundry\Factory;
 use Zenstruck\Foundry\Story;
 
-final class DefaultGeographicalStory extends Story
+final class DefaultGeographicalStory extends Story implements DefaultGeographicalStoryInterface
 {
     public function build(): void
     {

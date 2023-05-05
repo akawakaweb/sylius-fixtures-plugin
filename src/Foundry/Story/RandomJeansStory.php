@@ -19,7 +19,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxonFactory;
 use Sylius\Component\Attribute\AttributeType\TextAttributeType;
 use Zenstruck\Foundry\Story;
 
-final class RandomJeansStory extends Story
+final class RandomJeansStory extends Story implements RandomJeansStoryInterface
 {
     public function build(): void
     {
