@@ -13,19 +13,14 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\AddressDefaultValuesInterface;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\AddressTransformerInterface;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\AddressUpdaterInterface;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\AddressRepository;
 use Sylius\Component\Core\Model\Address;
 use Sylius\Component\Core\Model\AddressInterface;
-use Sylius\Component\Resource\Factory\FactoryInterface;
-use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;
 
 /**
- * @extends ModelFactory<Address>
+ * @extends AbstractModelFactory<AddressInterface>
  *
  * @method        AddressInterface|Proxy create(array|callable $attributes = [])
  * @method static AddressInterface|Proxy createOne(array $attributes = [])
@@ -43,39 +38,9 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static AddressInterface[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
  * @method static AddressInterface[]|Proxy[] randomSet(int $number, array $attributes = [])
  */
-final class AddressFactory extends ModelFactory implements FactoryWithModelClassAwareInterface
+final class AddressFactory extends AbstractModelFactory implements FactoryWithModelClassAwareInterface
 {
     use WithModelClassTrait;
-
-    public function __construct(
-        private FactoryInterface $factory,
-        private AddressDefaultValuesInterface $defaultValues,
-        private AddressTransformerInterface $transformer,
-        private AddressUpdaterInterface $updater,
-    ) {
-        parent::__construct();
-    }
-
-    protected function getDefaults(): array
-    {
-        return $this->defaultValues->getDefaultValues(self::faker());
-    }
-
-    protected function initialize(): self
-    {
-        return $this
-            ->beforeInstantiate(fn (array $attributes): array => $this->transformer->transform($attributes))
-            ->instantiateWith(function (): AddressInterface {
-                /** @var AddressInterface $address */
-                $address = $this->factory->createNew();
-
-                return $address;
-            })
-            ->afterInstantiate(function (AddressInterface $address, array $attributes): void {
-                $this->updater->update($address, $attributes);
-            })
-        ;
-    }
 
     protected static function getClass(): string
     {

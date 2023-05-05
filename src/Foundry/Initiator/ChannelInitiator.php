@@ -11,16 +11,25 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Updater;
+namespace Akawakaweb\ShopFixturesPlugin\Foundry\Initiator;
 
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Currency\Model\CurrencyInterface;
 use Sylius\Component\Locale\Model\LocaleInterface;
+use Sylius\Component\Resource\Factory\FactoryInterface;
 
-final class ChannelUpdater implements ChannelUpdaterInterface
+final class ChannelInitiator implements ChannelInitiatorInterface
 {
-    public function update(ChannelInterface $channel, array $attributes): void
+    public function __construct(
+        private FactoryInterface $channelFactory,
+    ) {
+    }
+
+    public function __invoke(array $attributes): object
     {
+        /** @var ChannelInterface $channel */
+        $channel = $this->channelFactory->createNew();
+
         $channel->setCode($attributes['code'] ?? null);
         $channel->setName($attributes['name'] ?? null);
         $channel->setHostname($attributes['hostname'] ?? null);
@@ -56,5 +65,7 @@ final class ChannelUpdater implements ChannelUpdaterInterface
         if (null !== ($attributes['shopBillingData'] ?? null)) {
             $channel->setShopBillingData($attributes['shopBillingData']);
         }
+
+        return $channel;
     }
 }

@@ -26,7 +26,7 @@ use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;
 
 /**
- * @extends ModelFactory<LocaleInterface>
+ * @extends AbstractModelFactory<LocaleInterface>
  *
  * @method        LocaleInterface|Proxy create(array|callable $attributes = [])
  * @method static LocaleInterface|Proxy createOne(array $attributes = [])

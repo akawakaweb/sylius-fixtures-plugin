@@ -4,16 +4,8 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\AddressUpdater;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\AddressUpdaterInterface;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\AdminUserUpdater;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\AdminUserUpdaterInterface;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ChannelUpdater;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ChannelUpdaterInterface;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CountryUpdater;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CountryUpdaterInterface;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CurrencyUpdater;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CurrencyUpdaterInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CustomerGroupUpdater;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CustomerGroupUpdaterInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CustomerUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CustomerUpdaterInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\LocaleUpdater;
@@ -22,6 +14,8 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ProductAttributeUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ProductAttributeUpdaterInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ProductUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ProductUpdaterInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShippingCategoryUpdater;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShippingCategoryUpdaterInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShippingMethodUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShippingMethodUpdaterInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShopUserUpdater;
@@ -35,28 +29,11 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ZoneUpdaterInterface;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
-        ->set('sylius.shop_fixtures.updater.address', AddressUpdater::class)
-        ->alias(AddressUpdaterInterface::class, 'sylius.shop_fixtures.updater.address')
-
-        ->set('sylius.shop_fixtures.updater.admin_user', AdminUserUpdater::class)
-            ->args([
-                service('sylius.factory.avatar_image'),
-                service('file_locator'),
-                service('sylius.image_uploader'),
-            ])
-        ->alias(AdminUserUpdaterInterface::class, 'sylius.shop_fixtures.updater.admin_user')
-
-        ->set('sylius.shop_fixtures.updater.channel', ChannelUpdater::class)
-        ->alias(ChannelUpdaterInterface::class, 'sylius.shop_fixtures.updater.channel')
-
-        ->set('sylius.shop_fixtures.updater.country', CountryUpdater::class)
-        ->alias(CountryUpdaterInterface::class, 'sylius.shop_fixtures.updater.country')
-
-        ->set('sylius.shop_fixtures.updater.currency', CurrencyUpdater::class)
-        ->alias(CurrencyUpdaterInterface::class, 'sylius.shop_fixtures.updater.currency')
-
         ->set('sylius.shop_fixtures.updater.customer', CustomerUpdater::class)
         ->alias(CustomerUpdaterInterface::class, 'sylius.shop_fixtures.updater.customer')
+
+        ->set('sylius.shop_fixtures.updater.customer_group', CustomerGroupUpdater::class)
+        ->alias(CustomerGroupUpdaterInterface::class, 'sylius.shop_fixtures.updater.customer_group')
 
         ->set('sylius.shop_fixtures.updater.locale', LocaleUpdater::class)
         ->alias(LocaleUpdaterInterface::class, 'sylius.shop_fixtures.updater.locale')
@@ -80,6 +57,9 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.updater.shipping_method', ShippingMethodUpdater::class)
         ->alias(ShippingMethodUpdaterInterface::class, 'sylius.shop_fixtures.updater.shipping_method')
+
+        ->set('sylius.shop_fixtures.updater.shipping_category', ShippingCategoryUpdater::class)
+        ->alias(ShippingCategoryUpdaterInterface::class, 'sylius.shop_fixtures.updater.shipping_category')
 
         ->set('sylius.shop_fixtures.updater.shop_user', ShopUserUpdater::class)
             ->args([

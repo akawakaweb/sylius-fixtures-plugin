@@ -11,11 +11,8 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Updater;
+namespace Akawakaweb\ShopFixturesPlugin\Foundry\Initiator;
 
-use Sylius\Component\Core\Model\ChannelInterface;
-
-interface ChannelUpdaterInterface
+interface AddressInitiatorInterface extends InitiatorInterface
 {
-    public function update(ChannelInterface $channel, array $attributes): void;
 }

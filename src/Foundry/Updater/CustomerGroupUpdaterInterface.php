@@ -13,12 +13,9 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Updater;
 
-use Sylius\Component\Currency\Model\CurrencyInterface;
+use Sylius\Component\Customer\Model\CustomerGroupInterface;
 
-final class CurrencyUpdater implements CurrencyUpdaterInterface
+interface CustomerGroupUpdaterInterface
 {
-    public function update(CurrencyInterface $currency, array $attributes): void
-    {
-        $currency->setCode($attributes['code']);
-    }
+    public function update(CustomerGroupInterface $customerGroup, array $attributes): void;
 }

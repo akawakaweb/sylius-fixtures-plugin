@@ -32,7 +32,7 @@ use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;
 
 /**
- * @extends ModelFactory<CustomerInterface>
+ * @extends AbstractModelFactory<CustomerInterface>
  *
  * @method        CustomerInterface|Proxy create(array|callable $attributes = [])
  * @method static CustomerInterface|Proxy createOne(array $attributes = [])

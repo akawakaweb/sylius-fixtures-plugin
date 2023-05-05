@@ -13,7 +13,9 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Story;
 
+use Zenstruck\Foundry\Story;
+
 interface DefaultChannelsStoryInterface
 {
-    public static function load(): static;
+    public static function load(): Story;
 }

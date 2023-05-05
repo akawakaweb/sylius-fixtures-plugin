@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\AdminUserDefaultValuesInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\ToggableTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithAvatarTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithEmailTrait;
@@ -22,18 +21,14 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithLastNameTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithLocaleCodeTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithPasswordTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithUsernameTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\AdminUserTransformerInterface;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\AdminUserUpdaterInterface;
 use Sylius\Bundle\UserBundle\Doctrine\ORM\UserRepository;
 use Sylius\Component\Core\Model\AdminUser;
 use Sylius\Component\Core\Model\AdminUserInterface;
-use Sylius\Component\Resource\Factory\FactoryInterface;
-use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;
 
 /**
- * @extends ModelFactory<AdminUserInterface>
+ * @extends AbstractModelFactory<AdminUserInterface>
  *
  * @method        AdminUserInterface|Proxy create(array|callable $attributes = [])
  * @method static AdminUserInterface|Proxy createOne(array $attributes = [])
@@ -51,7 +46,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static AdminUserInterface[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
  * @method static AdminUserInterface[]|Proxy[] randomSet(int $number, array $attributes = [])
  */
-final class AdminUserFactory extends ModelFactory implements FactoryWithModelClassAwareInterface
+final class AdminUserFactory extends AbstractModelFactory implements FactoryWithModelClassAwareInterface
 {
     use WithModelClassTrait;
     use WithEmailTrait;
@@ -62,36 +57,6 @@ final class AdminUserFactory extends ModelFactory implements FactoryWithModelCla
     use WithLastNameTrait;
     use WithLocaleCodeTrait;
     use WithAvatarTrait;
-
-    public function __construct(
-        private FactoryInterface $factory,
-        private AdminUserDefaultValuesInterface $defaultValues,
-        private AdminUserTransformerInterface $transformer,
-        private AdminUserUpdaterInterface $updater,
-    ) {
-        parent::__construct();
-    }
-
-    protected function getDefaults(): array
-    {
-        return $this->defaultValues->getDefaultValues(self::faker());
-    }
-
-    protected function initialize(): self
-    {
-        return $this
-            ->beforeInstantiate(fn (array $attributes): array => $this->transformer->transform($attributes))
-            ->instantiateWith(function (): AdminUserInterface {
-                /** @var AdminUserInterface $adminUser */
-                $adminUser = $this->factory->createNew();
-
-                return $adminUser;
-            })
-            ->afterInstantiate(function (AdminUserInterface $adminUser, array $attributes): void {
-                $this->updater->update($adminUser, $attributes);
-            })
-        ;
-    }
 
     protected static function getClass(): string
     {

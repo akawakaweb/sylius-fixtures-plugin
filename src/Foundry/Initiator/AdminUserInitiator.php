@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Updater;
+namespace Akawakaweb\ShopFixturesPlugin\Foundry\Initiator;
 
 use Sylius\Component\Core\Model\AdminUserInterface;
 use Sylius\Component\Core\Model\AvatarImageInterface;
@@ -19,18 +19,23 @@ use Sylius\Component\Core\Uploader\ImageUploaderInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Symfony\Component\Config\FileLocatorInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Webmozart\Assert\Assert;
 
-final class AdminUserUpdater implements AdminUserUpdaterInterface
+final class AdminUserInitiator implements AdminUserInitiatorInterface
 {
     public function __construct(
+        private FactoryInterface $adminUserfactory,
         private FactoryInterface $avatarImageFactory,
         private FileLocatorInterface $fileLocator,
         private ImageUploaderInterface $imageUploader,
     ) {
     }
 
-    public function update(AdminUserInterface $adminUser, array $attributes): void
+    public function __invoke(array $attributes): object
     {
+        $adminUser = $this->adminUserfactory->createNew();
+        Assert::isInstanceOf($adminUser, AdminUserInterface::class);
+
         $adminUser->setEmail($attributes['email'] ?? null);
         $adminUser->setUsername($attributes['username'] ?? null);
         $adminUser->setEnabled($attributes['enabled']);
@@ -46,6 +51,8 @@ final class AdminUserUpdater implements AdminUserUpdaterInterface
         if ('' !== ($attributes['avatar'] ?? '')) {
             $this->createAvatar($adminUser, $attributes);
         }
+
+        return $adminUser;
     }
 
     private function createAvatar(AdminUserInterface $adminUser, array $options): void

@@ -11,11 +11,8 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Updater;
+namespace Akawakaweb\ShopFixturesPlugin\Foundry\Initiator;
 
-use Sylius\Component\Addressing\Model\CountryInterface;
-
-interface CountryUpdaterInterface
+interface ChannelInitiatorInterface extends InitiatorInterface
 {
-    public function update(CountryInterface $country, array $attributes): void;
 }

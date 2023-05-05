@@ -1,14 +1,5 @@
 <?php
 
-/*
- * This file is part of the Sylius package.
- *
- * (c) Paweł Jędrzejewski
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
@@ -45,50 +36,45 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.factory.address', AddressFactory::class)
             ->args([
-                service('sylius.factory.address'),
                 service('sylius.shop_fixtures.default_values.address'),
                 service('sylius.shop_fixtures.transformer.address'),
-                service('sylius.shop_fixtures.updater.address'),
+                service('sylius.shop_fixtures.initiator.address'),
             ])
             ->tag('foundry.factory')
         ->alias(AddressFactory::class, 'sylius.shop_fixtures.factory.address')
 
         ->set('sylius.shop_fixtures.factory.admin_user', AdminUserFactory::class)
             ->args([
-                    service('sylius.factory.admin_user'),
-                    service('sylius.shop_fixtures.default_values.admin_user'),
-                    service('sylius.shop_fixtures.transformer.admin_user'),
-                    service('sylius.shop_fixtures.updater.admin_user'),
+                service('sylius.shop_fixtures.default_values.admin_user'),
+                service('sylius.shop_fixtures.transformer.admin_user'),
+                service('sylius.shop_fixtures.initiator.admin_user'),
             ])
             ->tag('foundry.factory')
         ->alias(AdminUserFactory::class, 'sylius.shop_fixtures.factory.admin_user')
 
         ->set('sylius.shop_fixtures.factory.channel', ChannelFactory::class)
             ->args([
-                service('sylius.factory.channel'),
                 service('sylius.shop_fixtures.default_values.channel'),
                 service('sylius.shop_fixtures.transformer.channel'),
-                service('sylius.shop_fixtures.updater.channel'),
+                service('sylius.shop_fixtures.initiator.channel'),
             ])
             ->tag('foundry.factory')
         ->alias(ChannelFactory::class, 'sylius.shop_fixtures.factory.channel')
 
         ->set('sylius.shop_fixtures.factory.country', CountryFactory::class)
             ->args([
-                service('sylius.factory.country'),
                 service('sylius.shop_fixtures.default_values.country'),
                 service('sylius.shop_fixtures.transformer.country'),
-                service('sylius.shop_fixtures.updater.country'),
+                service('sylius.shop_fixtures.initiator.country'),
             ])
             ->tag('foundry.factory')
         ->alias(CountryFactory::class, 'sylius.shop_fixtures.factory.country')
 
         ->set('sylius.shop_fixtures.factory.currency', CurrencyFactory::class)
             ->args([
-                service('sylius.factory.currency'),
                 service('sylius.shop_fixtures.default_values.currency'),
                 service('sylius.shop_fixtures.transformer.currency'),
-                service('sylius.shop_fixtures.updater.currency'),
+                service('sylius.shop_fixtures.initiator.currency'),
             ])
             ->tag('foundry.factory')
         ->alias(CurrencyFactory::class, 'sylius.shop_fixtures.factory.currency')
@@ -105,10 +91,10 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.factory.customer_group', CustomerGroupFactory::class)
             ->args([
-//                service('sylius.factory.customer_group'),
+                service('sylius.factory.customer_group'),
                 service('sylius.shop_fixtures.default_values.customer_group'),
                 service('sylius.shop_fixtures.transformer.customer_group'),
-//                service('sylius.shop_fixtures.updater.customer_group'),
+                service('sylius.shop_fixtures.updater.customer_group'),
             ])
             ->tag('foundry.factory')
         ->alias(CustomerGroupFactory::class, 'sylius.shop_fixtures.factory.customer_group')
@@ -145,10 +131,10 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.factory.shipping_category', ShippingCategoryFactory::class)
             ->args([
-//                service('sylius.factory.shipping_category'),
+                service('sylius.factory.shipping_category'),
                 service('sylius.shop_fixtures.default_values.shipping_category'),
                 service('sylius.shop_fixtures.transformer.shipping_category'),
-//                service('sylius.shop_fixtures.updater.shipping_category'),
+                service('sylius.shop_fixtures.updater.shipping_category'),
             ])
             ->tag('foundry.factory')
         ->alias(ShippingCategoryFactory::class, 'sylius.shop_fixtures.factory.shipping_category')

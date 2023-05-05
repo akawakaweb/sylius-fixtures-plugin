@@ -30,7 +30,7 @@ use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;
 
 /**
- * @extends ModelFactory<TaxonInterface>
+ * @extends AbstractModelFactory<TaxonInterface>
  *
  * @method        TaxonInterface|Proxy create(array|callable $attributes = [])
  * @method static TaxonInterface|Proxy createOne(array $attributes = [])

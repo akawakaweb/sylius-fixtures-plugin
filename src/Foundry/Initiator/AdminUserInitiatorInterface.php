@@ -11,11 +11,8 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Updater;
+namespace Akawakaweb\ShopFixturesPlugin\Foundry\Initiator;
 
-use Sylius\Component\Core\Model\AddressInterface;
-
-interface AddressUpdaterInterface
+interface AdminUserInitiatorInterface extends InitiatorInterface
 {
-    public function update(AddressInterface $address, array $attributes): void;
 }

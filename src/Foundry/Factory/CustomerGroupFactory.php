@@ -17,15 +17,17 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\CustomerGroupDefaultValu
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithNameTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\CustomerGroupTransformerInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CustomerGroupUpdaterInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Customer\Model\CustomerGroup;
 use Sylius\Component\Customer\Model\CustomerGroupInterface;
+use Sylius\Component\Resource\Factory\FactoryInterface;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;
 
 /**
- * @extends ModelFactory<CustomerGroupInterface>
+ * @extends AbstractModelFactory<CustomerGroupInterface>
  *
  * @method        CustomerGroupInterface|Proxy create(array|callable $attributes = [])
  * @method static CustomerGroupInterface|Proxy createOne(array $attributes = [])
@@ -50,8 +52,10 @@ final class CustomerGroupFactory extends ModelFactory implements FactoryWithMode
     use WithNameTrait;
 
     public function __construct(
+        private FactoryInterface $factory,
         private CustomerGroupDefaultValuesInterface $defaultValues,
         private CustomerGroupTransformerInterface $transformer,
+        private CustomerGroupUpdaterInterface $updater,
     ) {
         parent::__construct();
     }
@@ -66,6 +70,15 @@ final class CustomerGroupFactory extends ModelFactory implements FactoryWithMode
         return $this
             ->beforeInstantiate(function (array $attributes): array {
                 return $this->transformer->transform($attributes);
+            })
+            ->instantiateWith(function (): CustomerGroupInterface {
+                /** @var CustomerGroupInterface $customerGroup */
+                $customerGroup = $this->factory->createNew();
+
+                return $customerGroup;
+            })
+            ->afterInstantiate(function (CustomerGroupInterface $customerGroup, array $attributes): void {
+                $this->updater->update($customerGroup, $attributes);
             })
         ;
     }

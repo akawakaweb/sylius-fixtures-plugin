@@ -13,27 +13,22 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ChannelDefaultValuesInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\ToggableTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCurrenciesTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithLocalesTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithNameTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ChannelTransformerInterface;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ChannelUpdaterInterface;
 use Doctrine\ORM\EntityRepository;
 use Sylius\Component\Addressing\Model\ZoneInterface;
 use Sylius\Component\Core\Model\Channel;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ShopBillingDataInterface;
 use Sylius\Component\Core\Model\TaxonInterface;
-use Sylius\Component\Resource\Factory\FactoryInterface;
-use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;
 
 /**
- * @extends ModelFactory<ChannelInterface>
+ * @extends AbstractModelFactory<ChannelInterface>
  *
  * @method        ChannelInterface|Proxy create(array|callable $attributes = [])
  * @method static ChannelInterface|Proxy createOne(array $attributes = [])
@@ -51,7 +46,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static ChannelInterface[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
  * @method static ChannelInterface[]|Proxy[] randomSet(int $number, array $attributes = [])
  */
-final class ChannelFactory extends ModelFactory implements FactoryWithModelClassAwareInterface
+final class ChannelFactory extends AbstractModelFactory implements FactoryWithModelClassAwareInterface
 {
     use WithModelClassTrait;
     use WithCodeTrait;
@@ -59,15 +54,6 @@ final class ChannelFactory extends ModelFactory implements FactoryWithModelClass
     use WithLocalesTrait;
     use WithCurrenciesTrait;
     use ToggableTrait;
-
-    public function __construct(
-        private FactoryInterface $factory,
-        private ChannelDefaultValuesInterface $defaultValues,
-        private ChannelTransformerInterface $transformer,
-        private ChannelUpdaterInterface $updater,
-    ) {
-        parent::__construct();
-    }
 
     public function withHostname(string $hostname): self
     {
@@ -127,27 +113,6 @@ final class ChannelFactory extends ModelFactory implements FactoryWithModelClass
     public function withMenuTaxon(Proxy|TaxonInterface|string $menuTaxon): self
     {
         return $this->addState(['menuTaxon' => $menuTaxon]);
-    }
-
-    protected function getDefaults(): array
-    {
-        return $this->defaultValues->getDefaultValues(self::faker());
-    }
-
-    protected function initialize(): self
-    {
-        return $this
-            ->beforeInstantiate(fn (array $attributes): array => $this->transformer->transform($attributes))
-            ->instantiateWith(function (): ChannelInterface {
-                /** @var ChannelInterface $channel */
-                $channel = $this->factory->createNew();
-
-                return $channel;
-            })
-            ->afterInstantiate(function (ChannelInterface $channel, array $attributes): void {
-                $this->updater->update($channel, $attributes);
-            })
-        ;
     }
 
     protected static function getClass(): string

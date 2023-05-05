@@ -11,11 +11,9 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Updater;
+namespace Akawakaweb\ShopFixturesPlugin\Foundry\Initiator;
 
-use Sylius\Component\Currency\Model\CurrencyInterface;
-
-interface CurrencyUpdaterInterface
+interface InitiatorInterface
 {
-    public function update(CurrencyInterface $currency, array $attributes): void;
+    public function __invoke(array $attributes): object;
 }

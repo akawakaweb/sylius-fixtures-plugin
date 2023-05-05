@@ -26,7 +26,7 @@ use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;
 
 /**
- * @extends ModelFactory<TaxCategoryInterface>
+ * @extends AbstractModelFactory<TaxCategoryInterface>
  *
  * @method        TaxCategoryInterface|Proxy create(array|callable $attributes = [])
  * @method static TaxCategoryInterface|Proxy createOne(array $attributes = [])

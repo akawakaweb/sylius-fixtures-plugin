@@ -11,14 +11,23 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Updater;
+namespace Akawakaweb\ShopFixturesPlugin\Foundry\Initiator;
 
 use Sylius\Component\Core\Model\AddressInterface;
+use Sylius\Component\Resource\Factory\FactoryInterface;
+use Webmozart\Assert\Assert;
 
-final class AddressUpdater implements AddressUpdaterInterface
+final class AddressInitiator implements AddressInitiatorInterface
 {
-    public function update(AddressInterface $address, array $attributes): void
+    public function __construct(private FactoryInterface $addressFactory)
     {
+    }
+
+    public function __invoke(array $attributes): AddressInterface
+    {
+        $address = $this->addressFactory->createNew();
+        Assert::isInstanceOf($address, AddressInterface::class);
+
         $address->setFirstName($attributes['firstName'] ?? null);
         $address->setLastName($attributes['lastName'] ?? null);
         $address->setPhoneNumber($attributes['phoneNumber'] ?? null);
@@ -30,5 +39,7 @@ final class AddressUpdater implements AddressUpdaterInterface
         $address->setProvinceName($attributes['provinceName'] ?? null);
         $address->setProvinceCode($attributes['provinceCode'] ?? null);
         $address->setCustomer($attributes['customer'] ?? null);
+
+        return $address;
     }
 }

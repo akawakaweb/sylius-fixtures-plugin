@@ -11,11 +11,8 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Story;
+namespace Akawakaweb\ShopFixturesPlugin\Foundry\Initiator;
 
-use Zenstruck\Foundry\Story;
-
-interface RandomShopUsersStoryInterface
+interface CurrencyInitiatorInterface extends InitiatorInterface
 {
-    public static function load(): Story;
 }
