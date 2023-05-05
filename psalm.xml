@@ -47,7 +47,7 @@
 
         <MixedArgument>
             <errorLevel type="suppress">
-                <directory name="src/Foundry/Instantiator" />
+                <directory name="src/Foundry/Initiator" />
                 <directory name="src/Foundry/Updater" />
                 <file name="src/Foundry/Transformer/ProductTransformer.php" />
             </errorLevel>

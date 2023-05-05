@@ -6,8 +6,6 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CustomerGroupUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CustomerGroupUpdaterInterface;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CustomerUpdater;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CustomerUpdaterInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\LocaleUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\LocaleUpdaterInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ProductAttributeUpdater;
@@ -18,8 +16,6 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShippingCategoryUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShippingCategoryUpdaterInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShippingMethodUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShippingMethodUpdaterInterface;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShopUserUpdater;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShopUserUpdaterInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\TaxonUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\TaxonUpdaterInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ZoneMemberUpdater;
@@ -29,9 +25,6 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ZoneUpdaterInterface;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
-        ->set('sylius.shop_fixtures.updater.customer', CustomerUpdater::class)
-        ->alias(CustomerUpdaterInterface::class, 'sylius.shop_fixtures.updater.customer')
-
         ->set('sylius.shop_fixtures.updater.customer_group', CustomerGroupUpdater::class)
         ->alias(CustomerGroupUpdaterInterface::class, 'sylius.shop_fixtures.updater.customer_group')
 
@@ -60,12 +53,6 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.updater.shipping_category', ShippingCategoryUpdater::class)
         ->alias(ShippingCategoryUpdaterInterface::class, 'sylius.shop_fixtures.updater.shipping_category')
-
-        ->set('sylius.shop_fixtures.updater.shop_user', ShopUserUpdater::class)
-            ->args([
-                service('sylius.shop_fixtures.updater.customer'),
-            ])
-        ->alias(ShopUserUpdaterInterface::class, 'sylius.shop_fixtures.updater.shop_user')
 
         ->set('sylius.shop_fixtures.updater.taxon', TaxonUpdater::class)
             ->args([

@@ -81,10 +81,9 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.factory.customer', CustomerFactory::class)
             ->args([
-                service('sylius.factory.customer'),
                 service('sylius.shop_fixtures.default_values.customer'),
                 service('sylius.shop_fixtures.transformer.customer'),
-                service('sylius.shop_fixtures.updater.customer'),
+                service('sylius.shop_fixtures.initiator.customer'),
             ])
             ->tag('foundry.factory')
         ->alias(CustomerFactory::class, 'sylius.shop_fixtures.factory.customer')
@@ -151,11 +150,9 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.factory.shop_user', ShopUserFactory::class)
             ->args([
-                service('sylius.factory.shop_user'),
-                service('sylius.factory.customer'),
                 service('sylius.shop_fixtures.default_values.shop_user'),
                 service('sylius.shop_fixtures.transformer.shop_user'),
-                service('sylius.shop_fixtures.updater.shop_user'),
+                service('sylius.shop_fixtures.initiator.shop_user'),
             ])
             ->tag('foundry.factory')
         ->alias(ShopUserFactory::class, 'sylius.shop_fixtures.factory.shop_user')

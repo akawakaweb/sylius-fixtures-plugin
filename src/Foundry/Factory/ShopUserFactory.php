@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ShopUserDefaultValuesInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\FemaleTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\MaleTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithBirthdayTrait;
@@ -22,14 +21,9 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithFirstNameTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithLastNameTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithPasswordTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithPhoneNumberTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ShopUserTransformerInterface;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShopUserUpdaterInterface;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\UserRepository;
-use Sylius\Component\Core\Model\CustomerInterface;
 use Sylius\Component\Core\Model\ShopUser;
 use Sylius\Component\Core\Model\ShopUserInterface;
-use Sylius\Component\Resource\Factory\FactoryInterface;
-use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;
 
@@ -52,7 +46,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static ShopUserInterface[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
  * @method static ShopUserInterface[]|Proxy[] randomSet(int $number, array $attributes = [])
  */
-final class ShopUserFactory extends ModelFactory implements FactoryWithModelClassAwareInterface
+final class ShopUserFactory extends AbstractModelFactory implements FactoryWithModelClassAwareInterface
 {
     use WithModelClassTrait;
     use WithEmailTrait;
@@ -63,42 +57,6 @@ final class ShopUserFactory extends ModelFactory implements FactoryWithModelClas
     use FemaleTrait;
     use WithPhoneNumberTrait;
     use WithBirthdayTrait;
-
-    public function __construct(
-        private FactoryInterface $shopUserFactory,
-        private FactoryInterface $customerFactory,
-        private ShopUserDefaultValuesInterface $defaultValues,
-        private ShopUserTransformerInterface $transformer,
-        private ShopUserUpdaterInterface $updater,
-    ) {
-        parent::__construct();
-    }
-
-    protected function getDefaults(): array
-    {
-        return $this->defaultValues->getDefaultValues(self::faker());
-    }
-
-    protected function initialize(): self
-    {
-        return $this
-            ->beforeInstantiate(fn (array $attributes): array => $this->transformer->transform($attributes))
-            ->instantiateWith(function (): ShopUserInterface {
-                /** @var ShopUserInterface $shopUser */
-                $shopUser = $this->shopUserFactory->createNew();
-
-                /** @var CustomerInterface $customer */
-                $customer = $this->customerFactory->createNew();
-
-                $shopUser->setCustomer($customer);
-
-                return $shopUser;
-            })
-            ->afterInstantiate(function (ShopUserInterface $shopUser, array $attributes): void {
-                $this->updater->update($shopUser, $attributes);
-            })
-        ;
-    }
 
     protected static function getClass(): string
     {

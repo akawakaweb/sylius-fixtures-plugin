@@ -14,6 +14,10 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CountryInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CountryInitiatorInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CurrencyInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CurrencyInitiatorInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CustomerInitiator;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CustomerInitiatorInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ShopUserInitiator;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ShopUserInitiatorInterface;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
@@ -49,5 +53,18 @@ return static function (ContainerConfigurator $container) {
                 service('sylius.factory.currency'),
             ])
         ->alias(CurrencyInitiatorInterface::class, 'sylius.shop_fixtures.initiator.currency')
+
+        ->set('sylius.shop_fixtures.initiator.customer', CustomerInitiator::class)
+            ->args([
+                service('sylius.factory.customer'),
+            ])
+        ->alias(CustomerInitiatorInterface::class, 'sylius.shop_fixtures.initiator.customer')
+
+        ->set('sylius.shop_fixtures.initiator.shop_user', ShopUserInitiator::class)
+            ->args([
+                service('sylius.factory.shop_user'),
+                service('sylius.shop_fixtures.initiator.customer'),
+            ])
+        ->alias(ShopUserInitiatorInterface::class, 'sylius.shop_fixtures.initiator.shop_user')
     ;
 };

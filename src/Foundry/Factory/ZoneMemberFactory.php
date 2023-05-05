@@ -26,7 +26,7 @@ use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;
 
 /**
- * @extends AbstractModelFactory<ZoneMemberInterface>
+ * @extends ModelFactory<ZoneMemberInterface>
  *
  * @method        ZoneMemberInterface|Proxy create(array|callable $attributes = [])
  * @method static ZoneMemberInterface|Proxy createOne(array $attributes = [])

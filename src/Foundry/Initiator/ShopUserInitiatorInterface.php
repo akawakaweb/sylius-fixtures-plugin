@@ -11,11 +11,8 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Updater;
+namespace Akawakaweb\ShopFixturesPlugin\Foundry\Initiator;
 
-use Sylius\Component\Core\Model\CustomerInterface;
-
-interface CustomerUpdaterInterface
+interface ShopUserInitiatorInterface extends InitiatorInterface
 {
-    public function update(CustomerInterface $customer, array $attributes): void;
 }

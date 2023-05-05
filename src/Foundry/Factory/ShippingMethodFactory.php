@@ -31,7 +31,7 @@ use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;
 
 /**
- * @extends AbstractModelFactory<ShippingMethodInterface>
+ * @extends ModelFactory<ShippingMethodInterface>
  *
  * @method        ShippingMethodInterface|Proxy create(array|callable $attributes = [])
  * @method static ShippingMethodInterface|Proxy createOne(array $attributes = [])
