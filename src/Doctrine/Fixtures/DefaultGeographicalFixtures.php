@@ -13,14 +13,19 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultGeographicalStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultGeographicalStoryInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
 final class DefaultGeographicalFixtures extends Fixture
 {
+    public function __construct(
+        private DefaultGeographicalStoryInterface $defaultGeographicalStory,
+    ) {
+    }
+
     public function load(ObjectManager $manager): void
     {
-        DefaultGeographicalStory::load();
+        $this->defaultGeographicalStory::load();
     }
 }

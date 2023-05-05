@@ -13,14 +13,19 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultChannelsStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultChannelsStoryInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
 final class DefaultChannelsFixtures extends Fixture
 {
+    public function __construct(
+        private DefaultChannelsStoryInterface $defaultChannelsStory,
+    ) {
+    }
+
     public function load(ObjectManager $manager): void
     {
-        DefaultChannelsStory::load();
+        $this->defaultChannelsStory::load();
     }
 }

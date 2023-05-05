@@ -13,14 +13,19 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultTaxCategoriesStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultTaxCategoriesStoryInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
 final class DefaultTaxCategoriesFixtures extends Fixture
 {
+    public function __construct(
+        private DefaultTaxCategoriesStoryInterface $defaultTaxCategoriesStory,
+    ) {
+    }
+
     public function load(ObjectManager $manager): void
     {
-        DefaultTaxCategoriesStory::load();
+        $this->defaultTaxCategoriesStory::load();
     }
 }

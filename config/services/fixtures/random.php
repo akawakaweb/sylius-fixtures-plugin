@@ -23,30 +23,48 @@ use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures\RandomTShirtsFixtures;
 return static function (ContainerConfigurator $container) {
     $container->services()
         ->set('sylius.shop_fixtures.doctrine.fixtures.random_addresses', RandomAddressesFixtures::class)
+            ->args([
+                service('sylius.shop_fixtures.story.random_addresses'),
+            ])
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'sylius'])
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'random_addresses'])
 
         ->set('sylius.shop_fixtures.doctrine.fixtures.random_caps', RandomCapsFixtures::class)
+            ->args([
+                service('sylius.shop_fixtures.story.random_caps'),
+            ])
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'sylius'])
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'random_products'])
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'random_caps'])
 
         ->set('sylius.shop_fixtures.doctrine.fixtures.random_dresses', RandomDressesFixtures::class)
+            ->args([
+                service('sylius.shop_fixtures.story.random_dresses'),
+            ])
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'sylius'])
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'random_products'])
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'random_dresses'])
 
         ->set('sylius.shop_fixtures.doctrine.fixtures.random_jeans', RandomJeansFixtures::class)
+            ->args([
+                service('sylius.shop_fixtures.story.random_jeans'),
+            ])
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'sylius'])
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'random_products'])
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'random_jeans'])
 
         ->set('sylius.shop_fixtures.doctrine.fixtures.random_t_shirts', RandomTShirtsFixtures::class)
+            ->args([
+                service('sylius.shop_fixtures.story.random_t_shirts'),
+            ])
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'sylius'])
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'random_products'])
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'random_t_shirts'])
 
         ->set('sylius.shop_fixtures.doctrine.fixtures.random_shop_users', RandomShopUsersFixtures::class)
+            ->args([
+                service('sylius.shop_fixtures.story.random_shop_users'),
+            ])
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'sylius'])
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'random_shop_users'])
     ;

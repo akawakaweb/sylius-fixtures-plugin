@@ -13,14 +13,19 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomCapsStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomCapsStoryInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
 final class RandomCapsFixtures extends Fixture
 {
+    public function __construct(
+        private RandomCapsStoryInterface $randomAddressesStory,
+    ) {
+    }
+
     public function load(ObjectManager $manager): void
     {
-        RandomCapsStory::load();
+        $this->randomAddressesStory::load();
     }
 }

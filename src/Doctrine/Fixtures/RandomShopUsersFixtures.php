@@ -13,14 +13,19 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomShopUsersStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomShopUsersStoryInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
 final class RandomShopUsersFixtures extends Fixture
 {
+    public function __construct(
+        private RandomShopUsersStoryInterface $randomShopUsersStory,
+    ) {
+    }
+
     public function load(ObjectManager $manager): void
     {
-        RandomShopUsersStory::load();
+        $this->randomShopUsersStory::load();
     }
 }

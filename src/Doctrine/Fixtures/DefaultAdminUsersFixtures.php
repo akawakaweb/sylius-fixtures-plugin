@@ -13,14 +13,19 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultAdminUsersStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultAdminUsersStoryInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
 final class DefaultAdminUsersFixtures extends Fixture
 {
+    public function __construct(
+        private DefaultAdminUsersStoryInterface $defaultAdminUsersStory,
+    ) {
+    }
+
     public function load(ObjectManager $manager): void
     {
-        DefaultAdminUsersStory::load();
+        $this->defaultAdminUsersStory::load();
     }
 }

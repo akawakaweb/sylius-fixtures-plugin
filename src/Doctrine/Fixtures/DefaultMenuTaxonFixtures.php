@@ -13,14 +13,19 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultMenuTaxonStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultMenuTaxonStoryInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
 final class DefaultMenuTaxonFixtures extends Fixture
 {
+    public function __construct(
+        private DefaultMenuTaxonStoryInterface $defaultMenuTaxonStory,
+    ) {
+    }
+
     public function load(ObjectManager $manager): void
     {
-        DefaultMenuTaxonStory::load();
+        $this->defaultMenuTaxonStory::load();
     }
 }

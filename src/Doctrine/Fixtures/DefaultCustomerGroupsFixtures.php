@@ -13,14 +13,19 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultCustomerGroupsStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultCustomerGroupsStoryInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
 final class DefaultCustomerGroupsFixtures extends Fixture
 {
+    public function __construct(
+        private DefaultCustomerGroupsStoryInterface $defaultCustomerGroupsStory,
+    ) {
+    }
+
     public function load(ObjectManager $manager): void
     {
-        DefaultCustomerGroupsStory::load();
+        $this->defaultCustomerGroupsStory::load();
     }
 }

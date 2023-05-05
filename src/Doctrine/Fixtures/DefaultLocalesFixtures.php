@@ -13,14 +13,19 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultLocalesStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultLocalesStoryInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
 final class DefaultLocalesFixtures extends Fixture
 {
+    public function __construct(
+        private DefaultLocalesStoryInterface $defaultLocalesStory,
+    ) {
+    }
+
     public function load(ObjectManager $manager): void
     {
-        DefaultLocalesStory::load();
+        $this->defaultLocalesStory::load();
     }
 }

@@ -14,14 +14,25 @@ declare(strict_types=1);
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultAdminUsersStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultAdminUsersStoryInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultChannelsStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultChannelsStoryInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultCurrenciesStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultCurrenciesStoryInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultCustomerGroupsStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultCustomerGroupsStoryInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultGeographicalStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultGeographicalStoryInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultLocalesStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultLocalesStoryInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultMenuTaxonStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultMenuTaxonStoryInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultShippingMethodsStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultShippingMethodsStoryInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultShopUsersStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultShopUsersStoryInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultTaxCategoriesStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultTaxCategoriesStoryInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomAddressesStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomCapsStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomDressesStory;
@@ -33,7 +44,11 @@ return static function (ContainerConfigurator $container) {
     $container->services()
         ->set('sylius.shop_fixtures.story.default_admin_users', DefaultAdminUsersStory::class)
             ->tag('foundry.story')
-        ->alias(DefaultAdminUsersStory::class, 'sylius.shop_fixtures.foundry.story.default_admin_users')
+        ->alias(DefaultAdminUsersStoryInterface::class, 'sylius.shop_fixtures.foundry.story.default_admin_users')
+
+        ->set('sylius.shop_fixtures.story.default_channels', DefaultChannelsStory::class)
+            ->tag('foundry.story')
+        ->alias(DefaultChannelsStoryInterface::class, 'sylius.shop_fixtures.foundry.story.default_channels')
 
         ->set('sylius.shop_fixtures.story.default_currencies', DefaultCurrenciesStory::class)
             ->tag('foundry.story')
@@ -41,26 +56,30 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.story.default_customer_groups', DefaultCustomerGroupsStory::class)
             ->tag('foundry.story')
-        ->alias(DefaultCustomerGroupsStory::class, 'sylius.shop_fixtures.foundry.story.default_customer_groups')
+        ->alias(DefaultCustomerGroupsStoryInterface::class, 'sylius.shop_fixtures.foundry.story.default_customer_groups')
 
         ->set('sylius.shop_fixtures.story.default_geographical', DefaultGeographicalStory::class)
             ->tag('foundry.story')
-        ->alias(DefaultGeographicalStory::class, 'sylius.shop_fixtures.foundry.story.default_geographical')
+        ->alias(DefaultGeographicalStoryInterface::class, 'sylius.shop_fixtures.foundry.story.default_geographical')
 
         ->set('sylius.shop_fixtures.story.default_locales', DefaultLocalesStory::class)
             ->tag('foundry.story')
-        ->alias(DefaultLocalesStory::class, 'sylius.shop_fixtures.foundry.story.default_locales')
-
-        ->set('sylius.shop_fixtures.story.default_shop_users', DefaultShopUsersStory::class)
-            ->tag('foundry.story')
-        ->alias(DefaultShopUsersStory::class, 'sylius.shop_fixtures.foundry.story.default_shop_users')
+        ->alias(DefaultLocalesStoryInterface::class, 'sylius.shop_fixtures.foundry.story.default_locales')
 
         ->set('sylius.shop_fixtures.story.default_menu_taxon', DefaultMenuTaxonStory::class)
             ->tag('foundry.story')
-        ->alias(DefaultMenuTaxonStory::class, 'sylius.shop_fixtures.foundry.story.default_menu_taxon')
+        ->alias(DefaultMenuTaxonStoryInterface::class, 'sylius.shop_fixtures.foundry.story.default_menu_taxon')
 
-        ->set('sylius.shop_fixtures.story.default_tax_category', DefaultTaxCategoriesStory::class)
+        ->set('sylius.shop_fixtures.story.default_shipping_methods', DefaultShippingMethodsStory::class)
             ->tag('foundry.story')
-        ->alias(DefaultTaxCategoriesStory::class, 'sylius.shop_fixtures.foundry.story.default_tax_category')
+        ->alias(DefaultShippingMethodsStoryInterface::class, 'sylius.shop_fixtures.foundry.story.default_shipping_methods')
+
+        ->set('sylius.shop_fixtures.story.default_shop_users', DefaultShopUsersStory::class)
+            ->tag('foundry.story')
+        ->alias(DefaultShopUsersStoryInterface::class, 'sylius.shop_fixtures.foundry.story.default_shop_users')
+
+        ->set('sylius.shop_fixtures.story.default_tax_categories', DefaultTaxCategoriesStory::class)
+            ->tag('foundry.story')
+        ->alias(DefaultTaxCategoriesStoryInterface::class, 'sylius.shop_fixtures.foundry.story.default_tax_category')
     ;
 };

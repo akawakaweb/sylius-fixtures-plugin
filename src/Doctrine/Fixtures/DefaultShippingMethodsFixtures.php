@@ -13,14 +13,19 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultShippingMethodsStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultShippingMethodsStoryInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
 final class DefaultShippingMethodsFixtures extends Fixture
 {
+    public function __construct(
+        private DefaultShippingMethodsStoryInterface $defaultShippingMethodsStory,
+    ) {
+    }
+
     public function load(ObjectManager $manager): void
     {
-        DefaultShippingMethodsStory::load();
+        $this->defaultShippingMethodsStory::load();
     }
 }
