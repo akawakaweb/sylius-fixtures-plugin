@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ShippingMethodDefaultValuesInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\ToggableTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithDescriptionTrait;
@@ -58,6 +59,7 @@ final class ShippingMethodFactory extends ModelFactory implements FactoryWithMod
 
     public function __construct(
         private FactoryInterface $factory,
+        private ShippingMethodDefaultValuesInterface $defaultValues,
         private ShippingMethodUpdaterInterface $updater,
     ) {
         parent::__construct();
@@ -75,17 +77,7 @@ final class ShippingMethodFactory extends ModelFactory implements FactoryWithMod
 
     protected function getDefaults(): array
     {
-        return [
-            'calculator' => null,
-            'categoryRequirement' => self::faker()->randomNumber(),
-            'code' => self::faker()->text(),
-            'name' => self::faker()->text(),
-            'configuration' => [],
-            'createdAt' => self::faker()->dateTime(),
-            'enabled' => self::faker()->boolean(),
-            'position' => self::faker()->randomNumber(),
-            'zone' => ZoneFactory::new(),
-        ];
+        return $this->defaultValues->getDefaultValues(self::faker());
     }
 
     protected function initialize(): self

@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ProductAttributeDefaultValuesInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\TranslatableTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithConfigurationTrait;
@@ -21,13 +22,6 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithTypeTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ProductAttributeTransformerInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ProductAttributeUpdaterInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
-use Sylius\Component\Attribute\AttributeType\CheckboxAttributeType;
-use Sylius\Component\Attribute\AttributeType\DateAttributeType;
-use Sylius\Component\Attribute\AttributeType\DatetimeAttributeType;
-use Sylius\Component\Attribute\AttributeType\IntegerAttributeType;
-use Sylius\Component\Attribute\AttributeType\PercentAttributeType;
-use Sylius\Component\Attribute\AttributeType\SelectAttributeType;
-use Sylius\Component\Attribute\AttributeType\TextareaAttributeType;
 use Sylius\Component\Attribute\AttributeType\TextAttributeType;
 use Sylius\Component\Attribute\Factory\AttributeFactoryInterface;
 use Sylius\Component\Product\Model\ProductAttribute;
@@ -66,6 +60,7 @@ final class ProductAttributeFactory extends ModelFactory implements FactoryWithM
 
     public function __construct(
         private AttributeFactoryInterface $factory,
+        private ProductAttributeDefaultValuesInterface $defaultValues,
         private ProductAttributeTransformerInterface $transformer,
         private ProductAttributeUpdaterInterface $updater,
     ) {
@@ -74,23 +69,7 @@ final class ProductAttributeFactory extends ModelFactory implements FactoryWithM
 
     protected function getDefaults(): array
     {
-        return [
-            'name' => self::faker()->text(),
-            'configuration' => [],
-            'createdAt' => self::faker()->dateTime(),
-            'position' => self::faker()->randomNumber(),
-            'translatable' => self::faker()->boolean(),
-            'type' => self::faker()->randomElement([
-                CheckboxAttributeType::TYPE,
-                DateAttributeType::TYPE,
-                DatetimeAttributeType::TYPE,
-                IntegerAttributeType::TYPE,
-                PercentAttributeType::TYPE,
-                SelectAttributeType::TYPE,
-                TextareaAttributeType::TYPE,
-                TextAttributeType::TYPE,
-            ]),
-        ];
+        return $this->defaultValues->getDefaultValues(self::faker());
     }
 
     protected function initialize(): self

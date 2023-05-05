@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ZoneMemberDefaultValuesInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ZoneMemberUpdaterInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
@@ -49,6 +50,7 @@ final class ZoneMemberFactory extends ModelFactory implements FactoryWithModelCl
 
     public function __construct(
         private FactoryInterface $factory,
+        private ZoneMemberDefaultValuesInterface $defaultValues,
         private ZoneMemberUpdaterInterface $updater,
     ) {
         parent::__construct();
@@ -56,9 +58,7 @@ final class ZoneMemberFactory extends ModelFactory implements FactoryWithModelCl
 
     protected function getDefaults(): array
     {
-        return [
-            'code' => self::faker()->text(),
-        ];
+        return $this->defaultValues->getDefaultValues(self::faker());
     }
 
     protected function initialize(): self

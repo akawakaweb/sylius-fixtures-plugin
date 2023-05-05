@@ -20,6 +20,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ChannelFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CountryFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CurrencyFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CustomerFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CustomerGroupFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\FactoryWithModelClassAwareInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAttributeFactory;
@@ -45,7 +46,7 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.factory.address', AddressFactory::class)
             ->args([
 //                service('sylius.factory.address'),
-//                service('sylius.shop_fixtures.default_values.address'),
+                service('sylius.shop_fixtures.default_values.address'),
 //                service('sylius.shop_fixtures.transformer.address'),
 //                service('sylius.shop_fixtures.updater.address'),
             ])
@@ -55,7 +56,7 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.factory.admin_user', AdminUserFactory::class)
             ->args([
                     service('sylius.factory.admin_user'),
-//                    service('sylius.shop_fixtures.default_values.admin_user'),
+                    service('sylius.shop_fixtures.default_values.admin_user'),
 //                    service('sylius.shop_fixtures.transformer.admin_user'),
                     service('sylius.shop_fixtures.updater.admin_user'),
             ])
@@ -65,7 +66,7 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.factory.channel', ChannelFactory::class)
             ->args([
                 service('sylius.factory.channel'),
-//                service('sylius.shop_fixtures.default_values.channel'),
+                service('sylius.shop_fixtures.default_values.channel'),
 //                service('sylius.shop_fixtures.transformer.channel'),
                 service('sylius.shop_fixtures.updater.channel'),
             ])
@@ -102,6 +103,16 @@ return static function (ContainerConfigurator $container) {
             ->tag('foundry.factory')
         ->alias(CustomerFactory::class, 'sylius.shop_fixtures.factory.customer')
 
+        ->set('sylius.shop_fixtures.factory.customer_group', CustomerGroupFactory::class)
+            ->args([
+//                service('sylius.factory.customer_group'),
+                service('sylius.shop_fixtures.default_values.customer_group'),
+                service('sylius.shop_fixtures.transformer.customer_group'),
+//                service('sylius.shop_fixtures.updater.customer_group'),
+            ])
+            ->tag('foundry.factory')
+        ->alias(CustomerGroupFactory::class, 'sylius.shop_fixtures.factory.customer_group')
+
         ->set('sylius.shop_fixtures.factory.locale', LocaleFactory::class)
             ->args([
                 service('sylius.factory.locale'),
@@ -115,7 +126,7 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.factory.product', ProductFactory::class)
             ->args([
                 service('sylius.factory.product'),
-//                service('sylius.shop_fixtures.default_values.product'),
+                service('sylius.shop_fixtures.default_values.product'),
                 service('sylius.shop_fixtures.transformer.product'),
                 service('sylius.shop_fixtures.updater.product'),
             ])
@@ -125,7 +136,7 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.factory.product_attribute', ProductAttributeFactory::class)
             ->args([
                 service('sylius.factory.product_attribute'),
-//                service('sylius.shop_fixtures.default_values.product_attribute'),
+                service('sylius.shop_fixtures.default_values.product_attribute'),
                 service('sylius.shop_fixtures.transformer.product_attribute'),
                 service('sylius.shop_fixtures.updater.product_attribute'),
             ])
@@ -135,7 +146,7 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.factory.shipping_category', ShippingCategoryFactory::class)
             ->args([
 //                service('sylius.factory.shipping_category'),
-//                service('sylius.shop_fixtures.default_values.shipping_category'),
+                service('sylius.shop_fixtures.default_values.shipping_category'),
                 service('sylius.shop_fixtures.transformer.shipping_category'),
 //                service('sylius.shop_fixtures.updater.shipping_category'),
             ])
@@ -145,7 +156,7 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.factory.shipping_method', ShippingMethodFactory::class)
             ->args([
                 service('sylius.factory.shipping_method'),
-//                service('sylius.shop_fixtures.default_values.shipping_method'),
+                service('sylius.shop_fixtures.default_values.shipping_method'),
 //                service('sylius.shop_fixtures.transformer.shipping_method'),
                 service('sylius.shop_fixtures.updater.shipping_method'),
             ])
@@ -166,6 +177,7 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.factory.tax_category', TaxCategoryFactory::class)
             ->args([
 //                service('sylius.factory.tax_category'),
+                service('sylius.shop_fixtures.default_values.tax_category'),
                 service('sylius.shop_fixtures.transformer.tax_category'),
 //                service('sylius.shop_fixtures.updater.tax_category'),
             ])
@@ -176,7 +188,7 @@ return static function (ContainerConfigurator $container) {
             ->args([
                 service('sylius.factory.taxon'),
                 service('sylius.repository.taxon'),
-//                service('sylius.shop_fixtures.default_values.taxon'),
+                service('sylius.shop_fixtures.default_values.taxon'),
 //                service('sylius.shop_fixtures.transformer.taxon'),
                 service('sylius.shop_fixtures.updater.taxon'),
             ])
@@ -196,7 +208,7 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.factory.zone_member', ZoneMemberFactory::class)
             ->args([
                 service('sylius.factory.zone_member'),
-//                service('sylius.shop_fixtures.default_values.zone_member'),
+                service('sylius.shop_fixtures.default_values.zone_member'),
 //                service('sylius.shop_fixtures.transformer.zone_member'),
                 service('sylius.shop_fixtures.updater.zone_member'),
             ])

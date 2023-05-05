@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\AdminUserDefaultValuesInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\ToggableTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithAvatarTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithEmailTrait;
@@ -63,6 +64,7 @@ final class AdminUserFactory extends ModelFactory implements FactoryWithModelCla
 
     public function __construct(
         private FactoryInterface $factory,
+        private AdminUserDefaultValuesInterface $defaultValues,
         private AdminUserUpdaterInterface $updater,
     ) {
         parent::__construct();
@@ -70,13 +72,7 @@ final class AdminUserFactory extends ModelFactory implements FactoryWithModelCla
 
     protected function getDefaults(): array
     {
-        return [
-            'createdAt' => self::faker()->dateTime(),
-            'enabled' => self::faker()->boolean(),
-            'localeCode' => self::faker()->text(12),
-            'locked' => self::faker()->boolean(),
-            'roles' => [],
-        ];
+        return $this->defaultValues->getDefaultValues(self::faker());
     }
 
     protected function initialize(): self

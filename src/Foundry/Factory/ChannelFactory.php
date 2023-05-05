@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ChannelDefaultValuesInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\ToggableTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCurrenciesTrait;
@@ -25,10 +26,7 @@ use Sylius\Component\Core\Model\Channel;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ShopBillingDataInterface;
 use Sylius\Component\Core\Model\TaxonInterface;
-use Sylius\Component\Currency\Model\CurrencyInterface;
-use Sylius\Component\Locale\Model\LocaleInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
-use function Zenstruck\Foundry\lazy;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;
@@ -63,6 +61,7 @@ final class ChannelFactory extends ModelFactory implements FactoryWithModelClass
 
     public function __construct(
         private FactoryInterface $factory,
+        private ChannelDefaultValuesInterface $defaultValues,
         private ChannelUpdaterInterface $updater,
     ) {
         parent::__construct();
@@ -130,32 +129,7 @@ final class ChannelFactory extends ModelFactory implements FactoryWithModelClass
 
     protected function getDefaults(): array
     {
-        return [
-            'accountVerificationRequired' => self::faker()->boolean(),
-            'baseCurrency' => lazy(function (): Proxy {
-                /** @var Proxy<CurrencyInterface> $currency */
-                $currency = CurrencyFactory::randomOrCreate();
-
-                return $currency;
-            }),
-            'code' => self::faker()->text(),
-            'createdAt' => self::faker()->dateTime(),
-            'defaultLocale' => lazy(function (): Proxy {
-                /** @var Proxy<LocaleInterface> $locale */
-                $locale = LocaleFactory::randomOrCreate();
-
-                return $locale;
-            }),
-            'enabled' => self::faker()->boolean(),
-            'locales' => lazy(function (): array {
-                return LocaleFactory::all();
-            }),
-            'name' => self::faker()->text(),
-            'shippingAddressInCheckoutRequired' => self::faker()->boolean(),
-            'skippingPaymentStepAllowed' => self::faker()->boolean(),
-            'skippingShippingStepAllowed' => self::faker()->boolean(),
-            'taxCalculationStrategy' => self::faker()->text(),
-        ];
+        return $this->defaultValues->getDefaultValues(self::faker());
     }
 
     protected function initialize(): self

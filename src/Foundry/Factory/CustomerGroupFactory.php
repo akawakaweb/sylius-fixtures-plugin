@@ -13,8 +13,10 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\CustomerGroupDefaultValuesInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithNameTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\CustomerGroupTransformerInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Customer\Model\CustomerGroup;
 use Sylius\Component\Customer\Model\CustomerGroupInterface;
@@ -47,12 +49,25 @@ final class CustomerGroupFactory extends ModelFactory implements FactoryWithMode
     use WithCodeTrait;
     use WithNameTrait;
 
+    public function __construct(
+        private CustomerGroupDefaultValuesInterface $defaultValues,
+        private CustomerGroupTransformerInterface $transformer,
+    ) {
+        parent::__construct();
+    }
+
     protected function getDefaults(): array
     {
-        return [
-            'code' => self::faker()->text(),
-            'name' => self::faker()->text(),
-        ];
+        return $this->defaultValues->getDefaultValues(self::faker());
+    }
+
+    protected function initialize(): self
+    {
+        return $this
+            ->beforeInstantiate(function (array $attributes): array {
+                return $this->transformer->transform($attributes);
+            })
+        ;
     }
 
     protected static function getClass(): string

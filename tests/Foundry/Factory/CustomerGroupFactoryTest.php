@@ -51,6 +51,9 @@ final class CustomerGroupFactoryTest extends KernelTestCase
         $secondCustomerGroup = CustomerGroupFactory::new()->withName('Group B')->create();
 
         $this->assertEquals('Group A', $firstCustomerGroup->getName());
+        $this->assertEquals('Group_A', $firstCustomerGroup->getCode());
+
         $this->assertEquals('Group B', $secondCustomerGroup->getName());
+        $this->assertEquals('Group_B', $secondCustomerGroup->getCode());
     }
 }

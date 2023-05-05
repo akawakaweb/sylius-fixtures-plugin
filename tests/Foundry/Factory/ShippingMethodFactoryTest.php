@@ -38,10 +38,10 @@ final class ShippingMethodFactoryTest extends KernelTestCase
         $this->assertNotNull($shippingMethod->getCode());
         $this->assertNotNull($shippingMethod->getCalculator());
         $this->assertNotNull($shippingMethod->getZone());
-        //$this->assertNotNull($shippingMethod->getName());
+        $this->assertNotNull($shippingMethod->getName());
         //$this->assertNotNull($shippingMethod->getDescription());
         //$this->assertCount(3, $shippingMethod->getChannels());
-        //$this->assertSame('flat_rate', $shippingMethod->getCalculator());
+        $this->assertSame('flat_rate', $shippingMethod->getCalculator());
         //$this->assertCount(3, $shippingMethod->getConfiguration());
         //$this->assertTrue($shippingMethod->isEnabled());
     }

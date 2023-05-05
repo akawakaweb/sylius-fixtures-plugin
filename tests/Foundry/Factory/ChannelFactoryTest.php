@@ -42,13 +42,13 @@ final class ChannelFactoryTest extends KernelTestCase
         //$this->assertFalse($channel->isSkippingPaymentStepAllowed());
         //$this->assertTrue($channel->isAccountVerificationRequired());
         //$this->assertNotNull($channel->getDefaultTaxZone());
-        //$this->assertEquals('order_items_based', $channel->getTaxCalculationStrategy());
-        //$this->assertNotNull($channel->getDefaultLocale());
-        //$this->assertNotNull($channel->getBaseCurrency());
-        //$this->assertNull($channel->getThemeName());
-        //$this->assertNull($channel->getContactEmail());
-        //$this->assertNull($channel->getContactPhoneNumber());
-        //$this->assertNull($channel->getShopBillingData());
+        $this->assertEquals('order_items_based', $channel->getTaxCalculationStrategy());
+        $this->assertNotNull($channel->getDefaultLocale());
+        $this->assertNotNull($channel->getBaseCurrency());
+        $this->assertNull($channel->getThemeName());
+        $this->assertNull($channel->getContactEmail());
+        $this->assertNull($channel->getContactPhoneNumber());
+        $this->assertNull($channel->getShopBillingData());
         //$this->assertNotNull($channel->getMenuTaxon());
     }
 

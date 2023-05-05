@@ -34,10 +34,10 @@ final class AdminUserFactoryTest extends KernelTestCase
         //$this->assertNotNull($adminUser->getUsername());
         //$this->assertTrue($adminUser->isEnabled());
         //$this->assertNotNull($adminUser->getPassword());
-        //$this->assertNotNull($adminUser->getLocaleCode());
+        $this->assertNotNull($adminUser->getLocaleCode());
         //$this->assertNull($adminUser->getFirstName());
         //$this->assertNull($adminUser->getLastName());
-        //$this->assertTrue($adminUser->hasRole('ROLE_ADMINISTRATION_ACCESS'));
+        $this->assertTrue($adminUser->hasRole('ROLE_ADMINISTRATION_ACCESS'));
         $this->assertFalse($adminUser->hasRole('ROLE_API_ACCESS'));
         $this->assertNull($adminUser->getAvatar());
     }

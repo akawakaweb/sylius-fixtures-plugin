@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\TaxonDefaultValuesInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithDescriptionTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithNameTrait;
@@ -57,6 +58,7 @@ final class TaxonFactory extends ModelFactory implements FactoryWithModelClassAw
     public function __construct(
         private FactoryInterface $factory,
         private RepositoryInterface $repository,
+        private TaxonDefaultValuesInterface $defaultValues,
         private TaxonUpdaterInterface $updater,
     ) {
         parent::__construct();
@@ -74,12 +76,7 @@ final class TaxonFactory extends ModelFactory implements FactoryWithModelClassAw
 
     protected function getDefaults(): array
     {
-        return [
-            'code' => self::faker()->text(),
-            'name' => self::faker()->text(),
-            'createdAt' => self::faker()->dateTime(),
-            'enabled' => self::faker()->boolean(),
-        ];
+        return $this->defaultValues->getDefaultValues(self::faker());
     }
 
     protected function initialize(): self

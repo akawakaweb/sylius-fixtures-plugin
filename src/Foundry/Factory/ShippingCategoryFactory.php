@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ShippingCategoryDefaultValuesInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithDescriptionTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithNameTrait;
@@ -51,6 +52,7 @@ final class ShippingCategoryFactory extends ModelFactory implements FactoryWithM
     use WithDescriptionTrait;
 
     public function __construct(
+        private ShippingCategoryDefaultValuesInterface $defaultValues,
         private ShippingCategoryTransformerInterface $transformer,
     ) {
         parent::__construct();
@@ -58,11 +60,7 @@ final class ShippingCategoryFactory extends ModelFactory implements FactoryWithM
 
     protected function getDefaults(): array
     {
-        return [
-            'code' => null,
-            'createdAt' => self::faker()->dateTime(),
-            'name' => self::faker()->text(),
-        ];
+        return $this->defaultValues->getDefaultValues(self::faker());
     }
 
     protected function initialize(): self

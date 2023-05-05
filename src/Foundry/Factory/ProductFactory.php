@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ProductDefaultValuesInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\ToggableTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithChannelsTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
@@ -69,6 +70,7 @@ final class ProductFactory extends ModelFactory implements FactoryWithModelClass
 
     public function __construct(
         private FactoryInterface $factory,
+        private ProductDefaultValuesInterface $defaultValues,
         private ProductTransformerInterface $transformer,
         private ProductUpdaterInterface $updater,
     ) {
@@ -107,13 +109,7 @@ final class ProductFactory extends ModelFactory implements FactoryWithModelClass
 
     protected function getDefaults(): array
     {
-        return [
-            'name' => self::faker()->text(),
-            'averageRating' => self::faker()->randomFloat(),
-            'createdAt' => self::faker()->dateTime(),
-            'enabled' => self::faker()->boolean(),
-            'variantSelectionMethod' => ProductInterface::VARIANT_SELECTION_MATCH,
-        ];
+        return $this->defaultValues->getDefaultValues(self::faker());
     }
 
     protected function initialize(): self

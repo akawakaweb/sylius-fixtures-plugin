@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\AddressDefaultValuesInterface;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\AddressRepository;
 use Sylius\Component\Core\Model\Address;
 use Sylius\Component\Core\Model\AddressInterface;
@@ -43,17 +44,15 @@ final class AddressFactory extends ModelFactory implements FactoryWithModelClass
 {
     use WithModelClassTrait;
 
+    public function __construct(
+        private AddressDefaultValuesInterface $defaultValues,
+    ) {
+        parent::__construct();
+    }
+
     protected function getDefaults(): array
     {
-        return [
-            'city' => self::faker()->text(),
-            'countryCode' => self::faker()->text(),
-            'createdAt' => self::faker()->dateTime(),
-            'firstName' => self::faker()->text(),
-            'lastName' => self::faker()->text(),
-            'postcode' => self::faker()->text(),
-            'street' => self::faker()->text(),
-        ];
+        return $this->defaultValues->getDefaultValues(self::faker());
     }
 
     protected static function getClass(): string

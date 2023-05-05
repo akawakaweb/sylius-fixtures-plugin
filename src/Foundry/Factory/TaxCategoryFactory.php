@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\TaxCategoryDefaultValuesInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithDescriptionTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithNameTrait;
@@ -51,6 +52,7 @@ final class TaxCategoryFactory extends ModelFactory implements FactoryWithModelC
     use WithDescriptionTrait;
 
     public function __construct(
+        private TaxCategoryDefaultValuesInterface $defaultValues,
         private TaxCategoryTransformerInterface $transformer,
     ) {
         parent::__construct();
@@ -58,10 +60,7 @@ final class TaxCategoryFactory extends ModelFactory implements FactoryWithModelC
 
     protected function getDefaults(): array
     {
-        return [
-            'createdAt' => self::faker()->dateTime(),
-            'name' => self::faker()->text(),
-        ];
+        return $this->defaultValues->getDefaultValues(self::faker());
     }
 
     protected function initialize(): self
