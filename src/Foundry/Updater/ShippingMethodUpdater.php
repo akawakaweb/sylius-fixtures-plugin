@@ -35,9 +35,9 @@ final class ShippingMethodUpdater implements ShippingMethodUpdaterInterface
     {
         $shippingMethod->setCode($attributes['code'] ?? null);
         $shippingMethod->setZone($attributes['zone'] ?? null);
-        $shippingMethod->setTaxCategory($attributes['tax_category'] ?? null);
+        $shippingMethod->setTaxCategory($attributes['taxCategory'] ?? null);
         $shippingMethod->setCategory($attributes['category'] ?? null);
-        $shippingMethod->setArchivedAt($attributes['archived_at'] ?? null);
+        $shippingMethod->setArchivedAt($attributes['archivedAt'] ?? null);
         $shippingMethod->setEnabled($attributes['enabled'] ?? true);
 
         /** @var Proxy<LocaleInterface> $locale */

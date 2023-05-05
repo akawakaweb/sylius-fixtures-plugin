@@ -72,7 +72,7 @@ final class ShippingMethodFactory extends ModelFactory implements FactoryWithMod
 
     public function withArchiveDate(\DateTimeInterface $archivedAt): self
     {
-        return $this->addState(['archived_at' => $archivedAt]);
+        return $this->addState(['archivedAt' => $archivedAt]);
     }
 
     protected function getDefaults(): array

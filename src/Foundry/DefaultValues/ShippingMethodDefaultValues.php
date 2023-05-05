@@ -15,9 +15,6 @@ namespace Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ZoneFactory;
 use Faker\Generator;
-use Sylius\Component\Addressing\Model\ZoneInterface;
-use function Zenstruck\Foundry\lazy;
-use Zenstruck\Foundry\Proxy;
 
 final class ShippingMethodDefaultValues implements ShippingMethodDefaultValuesInterface
 {
@@ -29,12 +26,7 @@ final class ShippingMethodDefaultValues implements ShippingMethodDefaultValuesIn
             'name' => $faker->words(3, true),
             'createdAt' => $faker->dateTime(),
             'enabled' => $faker->boolean(),
-            'zone' => lazy(function (): Proxy {
-                /** @var Proxy<ZoneInterface> $zone */
-                $zone = ZoneFactory::randomOrCreate();
-
-                return $zone;
-            }),
+            'zone' => ZoneFactory::new(),
         ];
     }
 }
