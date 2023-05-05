@@ -18,6 +18,8 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CustomerInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CustomerInitiatorInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ShopUserInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ShopUserInitiatorInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ZoneInitiator;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ZoneInitiatorInterface;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
@@ -66,5 +68,11 @@ return static function (ContainerConfigurator $container) {
                 service('sylius.shop_fixtures.initiator.customer'),
             ])
         ->alias(ShopUserInitiatorInterface::class, 'sylius.shop_fixtures.initiator.shop_user')
+
+        ->set('sylius.shop_fixtures.initiator.zone', ZoneInitiator::class)
+            ->args([
+                service('sylius.factory.zone'),
+            ])
+        ->alias(ZoneInitiatorInterface::class, 'sylius.shop_fixtures.initiator.zone')
     ;
 };

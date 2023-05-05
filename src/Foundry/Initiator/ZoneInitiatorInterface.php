@@ -11,11 +11,8 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Updater;
+namespace Akawakaweb\ShopFixturesPlugin\Foundry\Initiator;
 
-use Sylius\Component\Addressing\Model\ZoneInterface;
-
-interface ZoneUpdaterInterface
+interface ZoneInitiatorInterface extends InitiatorInterface
 {
-    public function update(ZoneInterface $zone, array $attributes): void;
 }

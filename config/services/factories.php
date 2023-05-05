@@ -180,10 +180,9 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.factory.zone', ZoneFactory::class)
             ->args([
-                    service('sylius.factory.zone'),
                     service('sylius.shop_fixtures.default_values.zone'),
                     service('sylius.shop_fixtures.transformer.zone'),
-                    service('sylius.shop_fixtures.updater.zone'),
+                    service('sylius.shop_fixtures.initiator.zone'),
             ])
             ->tag('foundry.factory')
         ->alias(ZoneFactory::class, 'sylius.shop_fixtures.factory.zone')

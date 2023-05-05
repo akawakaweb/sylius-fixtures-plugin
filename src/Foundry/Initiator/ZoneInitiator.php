@@ -11,16 +11,26 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Updater;
+namespace Akawakaweb\ShopFixturesPlugin\Foundry\Initiator;
 
 use Sylius\Component\Addressing\Model\Scope;
 use Sylius\Component\Addressing\Model\ZoneInterface;
 use Sylius\Component\Addressing\Model\ZoneMemberInterface;
+use Sylius\Component\Resource\Factory\FactoryInterface;
+use Webmozart\Assert\Assert;
 
-final class ZoneUpdater implements ZoneUpdaterInterface
+final class ZoneInitiator implements ZoneInitiatorInterface
 {
-    public function update(ZoneInterface $zone, array $attributes): void
+    public function __construct(
+        private FactoryInterface $zoneFactory,
+    ) {
+    }
+
+    public function __invoke(array $attributes): object
     {
+        $zone = $this->zoneFactory->createNew();
+        Assert::isInstanceOf($zone, ZoneInterface::class);
+
         $zone->setCode($attributes['code'] ?? null);
         $zone->setName($attributes['name'] ?? null);
         $zone->setType($attributes['type'] ?? null);
@@ -30,5 +40,7 @@ final class ZoneUpdater implements ZoneUpdaterInterface
         foreach ($attributes['members'] ?? [] as $member) {
             $zone->addMember($member);
         }
+
+        return $zone;
     }
 }

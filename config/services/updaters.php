@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ZoneInitiator;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ZoneInitiatorInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CustomerGroupUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CustomerGroupUpdaterInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\LocaleUpdater;
@@ -20,8 +22,6 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\TaxonUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\TaxonUpdaterInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ZoneMemberUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ZoneMemberUpdaterInterface;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ZoneUpdater;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ZoneUpdaterInterface;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
@@ -59,9 +59,6 @@ return static function (ContainerConfigurator $container) {
                 service('sylius.generator.taxon_slug'),
             ])
         ->alias(TaxonUpdaterInterface::class, 'sylius.shop_fixtures.updater.taxon')
-
-        ->set('sylius.shop_fixtures.updater.zone', ZoneUpdater::class)
-        ->alias(ZoneUpdaterInterface::class, 'sylius.shop_fixtures.updater.zone')
 
         ->set('sylius.shop_fixtures.updater.zone_member', ZoneMemberUpdater::class)
         ->alias(ZoneMemberUpdaterInterface::class, 'sylius.shop_fixtures.updater.zone_member')
