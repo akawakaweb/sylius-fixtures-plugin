@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ProductDefaultValuesInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\ToggableTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithChannelsTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
@@ -24,19 +23,15 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithProductAttributesTra
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithShortDescriptionTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithSlugTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithTaxCategoryTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ProductTransformerInterface;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ProductUpdaterInterface;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository;
 use Sylius\Component\Core\Model\Product;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\TaxonInterface;
-use Sylius\Component\Resource\Factory\FactoryInterface;
-use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;
 
 /**
- * @extends ModelFactory<ProductInterface>
+ * @extends AbstractModelFactory<ProductInterface>
  *
  * @method        ProductInterface|Proxy create(array|callable $attributes = [])
  * @method static ProductInterface|Proxy createOne(array $attributes = [])
@@ -54,7 +49,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static ProductInterface[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
  * @method static ProductInterface[]|Proxy[] randomSet(int $number, array $attributes = [])
  */
-final class ProductFactory extends ModelFactory implements FactoryWithModelClassAwareInterface
+final class ProductFactory extends AbstractModelFactory implements FactoryWithModelClassAwareInterface
 {
     use WithModelClassTrait;
     use WithCodeTrait;
@@ -67,15 +62,6 @@ final class ProductFactory extends ModelFactory implements FactoryWithModelClass
     use WithImagesTrait;
     use WithProductAttributesTrait;
     use WithTaxCategoryTrait;
-
-    public function __construct(
-        private FactoryInterface $factory,
-        private ProductDefaultValuesInterface $defaultValues,
-        private ProductTransformerInterface $transformer,
-        private ProductUpdaterInterface $updater,
-    ) {
-        parent::__construct();
-    }
 
     public function tracked(): self
     {
@@ -105,29 +91,6 @@ final class ProductFactory extends ModelFactory implements FactoryWithModelClass
     public function withMainTaxon(Proxy|TaxonInterface|string $mainTaxon): self
     {
         return $this->addState(['mainTaxon' => $mainTaxon]);
-    }
-
-    protected function getDefaults(): array
-    {
-        return $this->defaultValues->getDefaultValues(self::faker());
-    }
-
-    protected function initialize(): self
-    {
-        return $this
-            ->beforeInstantiate(function (array $attributes): array {
-                return $this->transformer->transform($attributes);
-            })
-            ->instantiateWith(function (): ProductInterface {
-                /** @var ProductInterface $product */
-                $product = $this->factory->createNew();
-
-                return $product;
-            })
-            ->afterInstantiate(function (Product $product, array $attributes): void {
-                $this->updater->update($product, $attributes);
-            })
-        ;
     }
 
     protected static function getClass(): string

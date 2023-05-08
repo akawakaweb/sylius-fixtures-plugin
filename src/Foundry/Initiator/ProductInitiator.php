@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Updater;
+namespace Akawakaweb\ShopFixturesPlugin\Foundry\Initiator;
 
 use Faker\Factory;
 use Faker\Generator;
@@ -33,12 +33,14 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Sylius\Component\Taxation\Model\TaxCategoryInterface;
 use Symfony\Component\Config\FileLocatorInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Webmozart\Assert\Assert;
 
-final class ProductUpdater implements ProductUpdaterInterface
+final class ProductInitiator implements InitiatorInterface
 {
     private Generator $faker;
 
     public function __construct(
+        private FactoryInterface $productFactory,
         private RepositoryInterface $localeRepository,
         private FactoryInterface $productVariantFactory,
         private FactoryInterface $channelPricingFactory,
@@ -52,8 +54,11 @@ final class ProductUpdater implements ProductUpdaterInterface
         $this->faker = Factory::create();
     }
 
-    public function update(ProductInterface $product, array $attributes): void
+    public function __invoke(array $attributes): object
     {
+        $product = $this->productFactory->createNew();
+        Assert::isInstanceOf($product, ProductInterface::class);
+
         $product->setCode($attributes['code'] ?? null);
         $product->setVariantSelectionMethod($attributes['variantSelectionMethod'] ?? null);
         $product->setEnabled($attributes['enabled']);
@@ -65,6 +70,8 @@ final class ProductUpdater implements ProductUpdaterInterface
         $this->createVariants($product, $attributes);
         $this->createImages($product, $attributes);
         $this->createProductTaxa($product, $attributes);
+
+        return $product;
     }
 
     private function createTranslations(ProductInterface $product, array $attributes): void

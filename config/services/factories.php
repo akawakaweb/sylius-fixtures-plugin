@@ -108,10 +108,9 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.factory.product', ProductFactory::class)
             ->args([
-                service('sylius.factory.product'),
                 service('sylius.shop_fixtures.default_values.product'),
                 service('sylius.shop_fixtures.transformer.product'),
-                service('sylius.shop_fixtures.updater.product'),
+                service('sylius.shop_fixtures.initiator.product'),
             ])
             ->tag('foundry.factory')
         ->alias(ProductFactory::class, 'sylius.shop_fixtures.factory.product')
