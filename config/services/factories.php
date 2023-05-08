@@ -163,11 +163,9 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.factory.taxon', TaxonFactory::class)
             ->args([
-                service('sylius.factory.taxon'),
-                service('sylius.repository.taxon'),
                 service('sylius.shop_fixtures.default_values.taxon'),
                 service('sylius.shop_fixtures.transformer.taxon'),
-                service('sylius.shop_fixtures.updater.taxon'),
+                service('sylius.shop_fixtures.initiator.taxon'),
             ])
             ->tag('foundry.factory')
         ->alias(TaxonFactory::class, 'sylius.shop_fixtures.factory.taxon')
