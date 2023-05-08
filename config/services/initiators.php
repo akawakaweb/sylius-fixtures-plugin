@@ -27,6 +27,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ShopUserInitiatorInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\TaxonInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ZoneInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ZoneInitiatorInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ZoneMemberInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CustomerGroupUpdaterInterface;
 
 return static function (ContainerConfigurator $container) {
@@ -119,6 +120,11 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.initiator.zone', ZoneInitiator::class)
             ->args([
                 service('sylius.factory.zone'),
+            ])
+
+        ->set('sylius.shop_fixtures.initiator.zone_member', ZoneMemberInitiator::class)
+            ->args([
+                service('sylius.factory.zone_member'),
             ])
     ;
 };
