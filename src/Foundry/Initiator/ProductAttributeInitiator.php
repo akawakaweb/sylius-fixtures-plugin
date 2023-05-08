@@ -11,17 +11,27 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Updater;
+namespace Akawakaweb\ShopFixturesPlugin\Foundry\Initiator;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
+use Sylius\Component\Attribute\Factory\AttributeFactoryInterface;
 use Sylius\Component\Locale\Model\LocaleInterface;
 use Sylius\Component\Product\Model\ProductAttributeInterface;
+use Webmozart\Assert\Assert;
 use Zenstruck\Foundry\Proxy;
 
-final class ProductAttributeUpdater implements ProductAttributeUpdaterInterface
+final class ProductAttributeInitiator implements InitiatorInterface
 {
-    public function update(ProductAttributeInterface $productAttribute, array $attributes): void
+    public function __construct(
+        private AttributeFactoryInterface $productAttributeFactory,
+    ) {
+    }
+
+    public function __invoke(array $attributes): object
     {
+        $productAttribute = $this->productAttributeFactory->createTyped($attributes['type']);
+        Assert::isInstanceOf($productAttribute, ProductAttributeInterface::class);
+
         $productAttribute->setCode($attributes['code'] ?? null);
         $productAttribute->setTranslatable($attributes['translatable'] ?? false);
 
@@ -36,5 +46,7 @@ final class ProductAttributeUpdater implements ProductAttributeUpdaterInterface
         }
 
         $productAttribute->setConfiguration($attributes['configuration'] ?? []);
+
+        return $productAttribute;
     }
 }

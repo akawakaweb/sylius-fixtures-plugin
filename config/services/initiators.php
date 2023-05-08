@@ -18,6 +18,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CustomerGroupInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CustomerInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CustomerInitiatorInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\LocaleInitiator;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ProductAttributeInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ShopUserInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ShopUserInitiatorInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ZoneInitiator;
@@ -67,6 +68,11 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.initiator.locale', LocaleInitiator::class)
             ->args([
                 service('sylius.factory.locale'),
+            ])
+
+        ->set('sylius.shop_fixtures.initiator.product_attribute', ProductAttributeInitiator::class)
+            ->args([
+                service('sylius.factory.product_attribute'),
             ])
 
         ->set('sylius.shop_fixtures.initiator.shop_user', ShopUserInitiator::class)
