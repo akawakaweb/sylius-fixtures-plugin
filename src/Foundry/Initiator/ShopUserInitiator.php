@@ -18,11 +18,11 @@ use Sylius\Component\Core\Model\ShopUserInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Webmozart\Assert\Assert;
 
-final class ShopUserInitiator implements ShopUserInitiatorInterface
+final class ShopUserInitiator implements InitiatorInterface
 {
     public function __construct(
         private FactoryInterface $shopUserFactory,
-        private CustomerInitiatorInterface $customerInitiator,
+        private InitiatorInterface $customerInitiator,
     ) {
     }
 

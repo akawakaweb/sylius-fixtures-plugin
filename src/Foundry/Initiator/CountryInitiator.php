@@ -17,7 +17,7 @@ use Sylius\Component\Addressing\Model\CountryInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Webmozart\Assert\Assert;
 
-final class CountryInitiator implements CountryInitiatorInterface
+final class CountryInitiator implements InitiatorInterface
 {
     public function __construct(
         private FactoryInterface $countryFactory,

@@ -17,7 +17,7 @@ use Sylius\Component\Core\Model\CustomerInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Webmozart\Assert\Assert;
 
-final class CustomerInitiator implements CustomerInitiatorInterface
+final class CustomerInitiator implements InitiatorInterface
 {
     public function __construct(
         private FactoryInterface $customerFactory,

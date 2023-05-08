@@ -21,7 +21,7 @@ use Symfony\Component\Config\FileLocatorInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Webmozart\Assert\Assert;
 
-final class AdminUserInitiator implements AdminUserInitiatorInterface
+final class AdminUserInitiator implements InitiatorInterface
 {
     public function __construct(
         private FactoryInterface $adminUserfactory,

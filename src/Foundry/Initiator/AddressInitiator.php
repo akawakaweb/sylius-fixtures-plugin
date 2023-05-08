@@ -17,7 +17,7 @@ use Sylius\Component\Core\Model\AddressInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Webmozart\Assert\Assert;
 
-final class AddressInitiator implements AddressInitiatorInterface
+final class AddressInitiator implements InitiatorInterface
 {
     public function __construct(private FactoryInterface $addressFactory)
     {

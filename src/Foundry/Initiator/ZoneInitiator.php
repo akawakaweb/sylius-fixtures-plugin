@@ -19,7 +19,7 @@ use Sylius\Component\Addressing\Model\ZoneMemberInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Webmozart\Assert\Assert;
 
-final class ZoneInitiator implements ZoneInitiatorInterface
+final class ZoneInitiator implements InitiatorInterface
 {
     public function __construct(
         private FactoryInterface $zoneFactory,

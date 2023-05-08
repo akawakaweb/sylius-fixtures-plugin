@@ -13,27 +13,25 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Initiator;
 
-use Sylius\Component\Currency\Model\CurrencyInterface;
+use Sylius\Component\Customer\Model\CustomerGroupInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Webmozart\Assert\Assert;
 
-final class CurrencyInitiator implements InitiatorInterface
+final class CustomerGroupInitiator implements InitiatorInterface
 {
     public function __construct(
-        private FactoryInterface $currencyFactory,
+        private FactoryInterface $customerGroupFactory,
     ) {
     }
 
     public function __invoke(array $attributes): object
     {
-        $currency = $this->currencyFactory->createNew();
-        Assert::isInstanceOf($currency, CurrencyInterface::class);
+        $customerGroup = $this->customerGroupFactory->createNew();
+        Assert::isInstanceOf($customerGroup, CustomerGroupInterface::class);
 
-        $code = $attributes['code'] ?? null;
-        Assert::nullOrString($code);
+        $customerGroup->setCode($attributes['code'] ?? null);
+        $customerGroup->setName($attributes['name'] ?? null);
 
-        $currency->setCode($code);
-
-        return $currency;
+        return $customerGroup;
     }
 }

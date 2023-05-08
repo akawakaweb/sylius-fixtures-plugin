@@ -18,7 +18,7 @@ use Sylius\Component\Currency\Model\CurrencyInterface;
 use Sylius\Component\Locale\Model\LocaleInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 
-final class ChannelInitiator implements ChannelInitiatorInterface
+final class ChannelInitiator implements InitiatorInterface
 {
     public function __construct(
         private FactoryInterface $channelFactory,

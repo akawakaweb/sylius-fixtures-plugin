@@ -90,10 +90,9 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.factory.customer_group', CustomerGroupFactory::class)
             ->args([
-                service('sylius.factory.customer_group'),
                 service('sylius.shop_fixtures.default_values.customer_group'),
                 service('sylius.shop_fixtures.transformer.customer_group'),
-                service('sylius.shop_fixtures.updater.customer_group'),
+                service('sylius.shop_fixtures.initiator.customer_group'),
             ])
             ->tag('foundry.factory')
         ->alias(CustomerGroupFactory::class, 'sylius.shop_fixtures.factory.customer_group')
