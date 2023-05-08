@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ShippingCategoryInitiator;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ShippingMethodInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShippingCategoryUpdaterInterface;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShippingMethodUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShippingMethodUpdaterInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\TaxonUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\TaxonUpdaterInterface;
@@ -15,9 +14,6 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ZoneMemberUpdaterInterface;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
-        ->set('sylius.shop_fixtures.updater.shipping_method', ShippingMethodUpdater::class)
-        ->alias(ShippingMethodUpdaterInterface::class, 'sylius.shop_fixtures.updater.shipping_method')
-
         ->set('sylius.shop_fixtures.updater.taxon', TaxonUpdater::class)
             ->args([
                 service('sylius.generator.taxon_slug'),

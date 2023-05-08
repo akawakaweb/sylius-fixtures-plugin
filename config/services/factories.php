@@ -135,10 +135,9 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.factory.shipping_method', ShippingMethodFactory::class)
             ->args([
-                service('sylius.factory.shipping_method'),
                 service('sylius.shop_fixtures.default_values.shipping_method'),
                 service('sylius.shop_fixtures.transformer.shipping_method'),
-                service('sylius.shop_fixtures.updater.shipping_method'),
+                service('sylius.shop_fixtures.initiator.shipping_method'),
             ])
             ->tag('foundry.factory')
         ->alias(ShippingMethodFactory::class, 'sylius.shop_fixtures.factory.shipping_method')
