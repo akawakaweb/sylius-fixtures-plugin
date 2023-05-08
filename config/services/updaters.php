@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CustomerGroupInitiator;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\LocaleInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ZoneInitiatorInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CustomerGroupUpdaterInterface;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\LocaleUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\LocaleUpdaterInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ProductAttributeUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ProductAttributeUpdaterInterface;
@@ -24,9 +23,6 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ZoneMemberUpdaterInterface;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
-        ->set('sylius.shop_fixtures.updater.locale', LocaleUpdater::class)
-        ->alias(LocaleUpdaterInterface::class, 'sylius.shop_fixtures.updater.locale')
-
         ->set('sylius.shop_fixtures.updater.product', ProductUpdater::class)
             ->args([
                 service('sylius.repository.locale'),

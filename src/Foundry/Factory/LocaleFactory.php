@@ -13,20 +13,15 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\LocaleDefaultValuesInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\LocaleTransformerInterface;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\LocaleUpdaterInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Locale\Model\Locale;
 use Sylius\Component\Locale\Model\LocaleInterface;
-use Sylius\Component\Resource\Factory\FactoryInterface;
-use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;
 
 /**
- * @extends ModelFactory<LocaleInterface>
+ * @extends AbstractModelFactory<LocaleInterface>
  *
  * @method        LocaleInterface|Proxy create(array|callable $attributes = [])
  * @method static LocaleInterface|Proxy createOne(array $attributes = [])
@@ -44,48 +39,10 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static LocaleInterface[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
  * @method static LocaleInterface[]|Proxy[] randomSet(int $number, array $attributes = [])
  */
-final class LocaleFactory extends ModelFactory implements FactoryWithModelClassAwareInterface
+final class LocaleFactory extends AbstractModelFactory implements FactoryWithModelClassAwareInterface
 {
+    use WithModelClassTrait;
     use WithCodeTrait;
-
-    private static ?string $modelClass = null;
-
-    public function __construct(
-        private FactoryInterface $factory,
-        private LocaleDefaultValuesInterface $defaultValues,
-        private LocaleTransformerInterface $transformer,
-        private LocaleUpdaterInterface $updater,
-    ) {
-        parent::__construct();
-    }
-
-    public static function withModelClass(string $modelClass): void
-    {
-        self::$modelClass = $modelClass;
-    }
-
-    protected function getDefaults(): array
-    {
-        return $this->defaultValues->getDefaultValues(self::faker());
-    }
-
-    protected function initialize(): self
-    {
-        return $this
-            ->beforeInstantiate(function (array $attributes): array {
-                return $this->transformer->transform($attributes);
-            })
-            ->instantiateWith(function (): LocaleInterface {
-                /** @var LocaleInterface $locale */
-                $locale = $this->factory->createNew();
-
-                return $locale;
-            })
-            ->afterInstantiate(function (LocaleInterface $locale, array $attributes): void {
-                $this->updater->update($locale, $attributes);
-            })
-        ;
-    }
 
     protected static function getClass(): string
     {

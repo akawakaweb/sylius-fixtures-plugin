@@ -99,10 +99,9 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.factory.locale', LocaleFactory::class)
             ->args([
-                service('sylius.factory.locale'),
                 service('sylius.shop_fixtures.default_values.locale'),
                 service('sylius.shop_fixtures.transformer.locale'),
-                service('sylius.shop_fixtures.updater.locale'),
+                service('sylius.shop_fixtures.initiator.locale'),
             ])
             ->tag('foundry.factory')
         ->alias(LocaleFactory::class, 'sylius.shop_fixtures.factory.locale')
