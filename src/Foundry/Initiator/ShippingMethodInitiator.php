@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Initiator;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\UpdaterInterface;
 use Faker\Factory;
 use Faker\Generator;
 use Sylius\Component\Core\Model\ChannelInterface;
@@ -30,6 +31,7 @@ final class ShippingMethodInitiator implements InitiatorInterface
 
     public function __construct(
         private FactoryInterface $shippingMethodFactory,
+        private UpdaterInterface $updater,
     ) {
         $this->faker = Factory::create();
     }
@@ -39,13 +41,6 @@ final class ShippingMethodInitiator implements InitiatorInterface
         $shippingMethod = $this->shippingMethodFactory->createNew();
         Assert::isInstanceOf($shippingMethod, ShippingMethodInterface::class);
 
-        $shippingMethod->setCode($attributes['code'] ?? null);
-        $shippingMethod->setZone($attributes['zone'] ?? null);
-        $shippingMethod->setTaxCategory($attributes['taxCategory'] ?? null);
-        $shippingMethod->setCategory($attributes['category'] ?? null);
-        $shippingMethod->setArchivedAt($attributes['archivedAt'] ?? null);
-        $shippingMethod->setEnabled($attributes['enabled'] ?? true);
-
         /** @var Proxy<LocaleInterface> $locale */
         foreach (LocaleFactory::all() as $locale) {
             $localeCode = $locale->getCode() ?? '';
@@ -53,16 +48,17 @@ final class ShippingMethodInitiator implements InitiatorInterface
             $shippingMethod->setCurrentLocale($localeCode);
             $shippingMethod->setFallbackLocale($localeCode);
 
-            $shippingMethod->setName($attributes['name'] ?? null);
-            $shippingMethod->setDescription($attributes['description'] ?? null);
+            $name = $attributes['name'] ?? null;
+            Assert::nullOrString($name);
+
+            $description = $attributes['description'] ?? null;
+            Assert::nullOrString($description);
+
+            $shippingMethod->setName($name);
+            $shippingMethod->setDescription($description);
         }
 
-        /** @var ChannelInterface $channel */
-        foreach ($attributes['channels'] ?? [] as $channel) {
-            $shippingMethod->addChannel($channel);
-        }
-
-        if (null === ($attributes['calculator'] ?? null)) {
+        if (!array_key_exists('calculator', $attributes)) {
             $configuration = [];
 
             /** @var ChannelInterface $channel */
@@ -70,20 +66,11 @@ final class ShippingMethodInitiator implements InitiatorInterface
                 $configuration[$channel->getCode() ?? ''] = ['amount' => $this->faker->numberBetween(100, 1000)];
             }
 
-            $attributes['calculator'] = [
-                'type' => DefaultCalculators::FLAT_RATE,
-                'configuration' => $configuration,
-            ];
+            $shippingMethod->setCalculator(DefaultCalculators::FLAT_RATE);
+            $shippingMethod->setConfiguration($configuration);
         }
 
-        /** @var string|null $calculator */
-        $calculator = $attributes['calculator']['type'] ?? null;
-
-        /** @var array $configuration */
-        $configuration = $attributes['calculator']['configuration'] ?? [];
-
-        $shippingMethod->setCalculator($calculator);
-        $shippingMethod->setConfiguration($configuration);
+        ($this->updater)($shippingMethod, $attributes);
 
         return $shippingMethod;
     }

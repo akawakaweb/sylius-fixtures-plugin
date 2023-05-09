@@ -17,6 +17,11 @@ final class AdminUserTransformer implements AdminUserTransformerInterface
 {
     public function transform(array $attributes): array
     {
+        $password = $attributes['plainPassword'] ?? $attributes['password'] ?? null;
+        $attributes['plainPassword'] = $password;
+
+        unset($attributes['password']);
+
         return $attributes;
     }
 }

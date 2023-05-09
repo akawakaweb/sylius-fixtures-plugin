@@ -15,6 +15,7 @@ namespace Akawakaweb\ShopFixturesPlugin\Foundry\Initiator;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxonFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\UpdaterInterface;
 use Sylius\Component\Core\Model\TaxonInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
@@ -27,6 +28,7 @@ final class TaxonInitiator implements InitiatorInterface
         private FactoryInterface $taxonFactory,
         private RepositoryInterface $taxonRepository,
         private TaxonSlugGeneratorInterface $taxonSlugGenerator,
+        private UpdaterInterface $updater,
     ) {
     }
 
@@ -43,18 +45,6 @@ final class TaxonInitiator implements InitiatorInterface
         }
 
         Assert::isInstanceOf($taxon, TaxonInterface::class);
-
-        /** @var string|null $code */
-        $code = $attributes['code'] ?? null;
-
-        $taxon->setCode($code);
-
-        /** @var TaxonInterface|null $parentTaxon */
-        $parentTaxon = $attributes['parent'] ?? null;
-
-        if (null !== $parentTaxon) {
-            $taxon->setParent($parentTaxon);
-        }
 
         // add translation for each defined locales
         foreach (LocaleFactory::all() as $locale) {
@@ -81,6 +71,10 @@ final class TaxonInitiator implements InitiatorInterface
             ;
         }
 
+        unset($attributes['name'], $attributes['description'], $attributes['translations'], $attributes['slug'], $attributes['children']);
+
+        ($this->updater)($taxon, $attributes);
+
         return $taxon;
     }
 
@@ -89,11 +83,17 @@ final class TaxonInitiator implements InitiatorInterface
         $taxon->setCurrentLocale($localeCode);
         $taxon->setFallbackLocale($localeCode);
 
-        /** @var string|null $slug */
-        $slug = $attributes['slug'] ?? null;
+        $name = $attributes['name'] ?? null;
+        Assert::nullOrString($name);
 
-        $taxon->setName($attributes['name'] ?? null);
-        $taxon->setDescription($attributes['description'] ?? null);
+        $description = $attributes['description'] ?? null;
+        Assert::nullOrString($description);
+
+        $slug = $attributes['slug'] ?? null;
+        Assert::nullOrString($slug);
+
+        $taxon->setName($name);
+        $taxon->setDescription($description);
         $taxon->setSlug($slug ?? $this->taxonSlugGenerator->generate($taxon, $localeCode));
     }
 }

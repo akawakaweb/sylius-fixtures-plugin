@@ -11,6 +11,8 @@
         <ignoreFiles>
             <directory name="vendor" />
             <directory name="tests" />
+            <file name="src/Foundry/Initiator/Initiator.php" />
+            <file name="src/Foundry/Updater/Updater.php" />
         </ignoreFiles>
     </projectFiles>
 

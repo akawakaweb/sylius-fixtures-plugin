@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Initiator;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\UpdaterInterface;
 use Sylius\Component\Attribute\Factory\AttributeFactoryInterface;
 use Sylius\Component\Locale\Model\LocaleInterface;
 use Sylius\Component\Product\Model\ProductAttributeInterface;
@@ -24,16 +25,17 @@ final class ProductAttributeInitiator implements InitiatorInterface
 {
     public function __construct(
         private AttributeFactoryInterface $productAttributeFactory,
+        private UpdaterInterface $updater,
     ) {
     }
 
     public function __invoke(array $attributes, string $class): object
     {
-        $productAttribute = $this->productAttributeFactory->createTyped($attributes['type']);
-        Assert::isInstanceOf($productAttribute, ProductAttributeInterface::class);
+        $type = $attributes['type'];
+        Assert::string($type);
 
-        $productAttribute->setCode($attributes['code'] ?? null);
-        $productAttribute->setTranslatable($attributes['translatable'] ?? false);
+        $productAttribute = $this->productAttributeFactory->createTyped($type);
+        Assert::isInstanceOf($productAttribute, ProductAttributeInterface::class);
 
         /** @var Proxy<LocaleInterface> $locale */
         foreach (LocaleFactory::all() as $locale) {
@@ -42,10 +44,15 @@ final class ProductAttributeInitiator implements InitiatorInterface
             $productAttribute->setCurrentLocale($localeCode);
             $productAttribute->setFallbackLocale($localeCode);
 
-            $productAttribute->setName($attributes['name'] ?? null);
+            $name = $attributes['name'] ?? null;
+            Assert::nullOrString($name);
+
+            $productAttribute->setName($name);
         }
 
-        $productAttribute->setConfiguration($attributes['configuration'] ?? []);
+        unset($attributes['type'], $attributes['name']);
+
+        ($this->updater)($productAttribute, $attributes);
 
         return $productAttribute;
     }

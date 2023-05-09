@@ -13,9 +13,11 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Initiator;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ChannelFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\UpdaterInterface;
 use Faker\Factory;
 use Faker\Generator;
-use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ChannelPricingInterface;
 use Sylius\Component\Core\Model\ImageInterface;
 use Sylius\Component\Core\Model\ProductInterface;
@@ -29,7 +31,6 @@ use Sylius\Component\Product\Model\ProductAttributeValueInterface;
 use Sylius\Component\Product\Model\ProductOptionInterface;
 use Sylius\Component\Product\Model\ProductOptionValueInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
-use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Sylius\Component\Taxation\Model\TaxCategoryInterface;
 use Symfony\Component\Config\FileLocatorInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -41,15 +42,14 @@ final class ProductInitiator implements InitiatorInterface
 
     public function __construct(
         private FactoryInterface $productFactory,
-        private RepositoryInterface $localeRepository,
         private FactoryInterface $productVariantFactory,
         private FactoryInterface $channelPricingFactory,
         private ProductVariantGeneratorInterface $variantGenerator,
-        private RepositoryInterface $channelRepository,
         private FactoryInterface $productTaxonFactory,
         private FactoryInterface $productImageFactory,
         private FileLocatorInterface $fileLocator,
         private ImageUploaderInterface $imageUploader,
+        private UpdaterInterface $updater,
     ) {
         $this->faker = Factory::create();
     }
@@ -59,42 +59,49 @@ final class ProductInitiator implements InitiatorInterface
         $product = $this->productFactory->createNew();
         Assert::isInstanceOf($product, ProductInterface::class);
 
-        $product->setCode($attributes['code'] ?? null);
-        $product->setVariantSelectionMethod($attributes['variantSelectionMethod'] ?? null);
-        $product->setEnabled($attributes['enabled']);
-        $product->setMainTaxon($attributes['mainTaxon'] ?? null);
-        $product->setCreatedAt($this->faker->dateTimeBetween('-1 week', 'now'));
-
         $this->createTranslations($product, $attributes);
         $this->createRelations($product, $attributes);
         $this->createVariants($product, $attributes);
         $this->createImages($product, $attributes);
         $this->createProductTaxa($product, $attributes);
 
+        ($this->updater)($product, $attributes);
+
         return $product;
     }
 
-    private function createTranslations(ProductInterface $product, array $attributes): void
+    private function createTranslations(ProductInterface $product, array &$attributes): void
     {
-        /** @var string $localeCode */
-        foreach ($this->getLocales() as $localeCode) {
+        $name = $attributes['name'] ?? null;
+        Assert::nullOrString($name);
+
+        $slug = $attributes['slug'] ?? null;
+        Assert::nullOrString($slug);
+
+        $shortDescription = $attributes['shortDescription'] ?? null;
+        Assert::nullOrString($shortDescription);
+
+        $description = $attributes['description'] ?? null;
+        Assert::nullOrString($description);
+
+        /** @var LocaleInterface $locale */
+        foreach (LocaleFactory::all() as $locale) {
+            $localeCode = $locale->getCode() ?? '';
+
             $product->setCurrentLocale($localeCode);
             $product->setFallbackLocale($localeCode);
 
-            $product->setName($attributes['name'] ?? null);
-            $product->setSlug($attributes['slug'] ?? null);
-            $product->setShortDescription($attributes['shortDescription'] ?? null);
-            $product->setDescription($attributes['description'] ?? null);
+            $product->setName($name);
+            $product->setSlug($slug);
+            $product->setShortDescription($shortDescription);
+            $product->setDescription($description);
         }
+
+        unset($attributes['name'], $attributes['slug'], $attributes['shortDescription'], $attributes['description']);
     }
 
     private function createRelations(ProductInterface $product, array $attributes): void
     {
-        /** @var ChannelInterface $channel */
-        foreach ($attributes['channels'] ?? [] as $channel) {
-            $product->addChannel($channel);
-        }
-
         /** @var ProductOptionInterface $option */
         foreach ($attributes['productOptions'] ?? [] as $option) {
             $product->addOption($option);
@@ -129,8 +136,7 @@ final class ProductInitiator implements InitiatorInterface
             }
             $productVariant->setTracked($options['tracked'] ?? false);
 
-            /** @var ChannelInterface $channel */
-            foreach ($this->channelRepository->findAll() as $channel) {
+            foreach (ChannelFactory::all() as $channel) {
                 $this->createChannelPricings($productVariant, $channel->getCode() ?? '');
             }
 
@@ -138,29 +144,15 @@ final class ProductInitiator implements InitiatorInterface
         }
     }
 
-    private function createImages(ProductInterface $product, array $attributes): void
+    private function createImages(ProductInterface $product, array &$attributes): void
     {
         /** @var array $image */
         foreach ($attributes['images'] ?? [] as $image) {
-            if (!array_key_exists('path', $image)) {
-                @trigger_error(
-                    'It is deprecated since Sylius 1.3 to pass indexed array as an image definition. ' .
-                    'Please use associative array with "path" and "type" keys instead.',
-                    \E_USER_DEPRECATED,
-                );
+            /** @var string $imagePath */
+            $imagePath = $image['path'];
 
-                /** @var string $imagePath */
-                $imagePath = array_shift($image);
-
-                /** @var string|null $imageType */
-                $imageType = array_pop($image);
-            } else {
-                /** @var string $imagePath */
-                $imagePath = $image['path'];
-
-                /** @var string|null $imageType */
-                $imageType = $image['type'] ?? null;
-            }
+            /** @var string|null $imageType */
+            $imageType = $image['type'] ?? null;
 
             /** @var string $imagePath */
             $imagePath = $this->fileLocator->locate($imagePath);
@@ -175,6 +167,8 @@ final class ProductInitiator implements InitiatorInterface
 
             $product->addImage($productImage);
         }
+
+        unset($attributes['images']);
     }
 
     private function createProductTaxa(ProductInterface $product, array $attributes): void
@@ -187,15 +181,6 @@ final class ProductInitiator implements InitiatorInterface
             $productTaxon->setTaxon($taxon);
 
             $product->addProductTaxon($productTaxon);
-        }
-    }
-
-    private function getLocales(): iterable
-    {
-        /** @var LocaleInterface[] $locales */
-        $locales = $this->localeRepository->findAll();
-        foreach ($locales as $locale) {
-            yield $locale->getCode();
         }
     }
 

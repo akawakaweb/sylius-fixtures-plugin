@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Initiator;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\UpdaterInterface;
 use Sylius\Component\Core\Model\AdminUserInterface;
 use Sylius\Component\Core\Model\AvatarImageInterface;
 use Sylius\Component\Core\Uploader\ImageUploaderInterface;
@@ -28,6 +29,7 @@ final class AdminUserInitiator implements InitiatorInterface
         private FactoryInterface $avatarImageFactory,
         private FileLocatorInterface $fileLocator,
         private ImageUploaderInterface $imageUploader,
+        private UpdaterInterface $updater,
     ) {
     }
 
@@ -36,29 +38,28 @@ final class AdminUserInitiator implements InitiatorInterface
         $adminUser = $this->adminUserfactory->createNew();
         Assert::isInstanceOf($adminUser, AdminUserInterface::class);
 
-        $adminUser->setEmail($attributes['email'] ?? null);
-        $adminUser->setUsername($attributes['username'] ?? null);
-        $adminUser->setEnabled($attributes['enabled']);
-        $adminUser->setPlainPassword($attributes['password'] ?? null);
-        $adminUser->setLocaleCode($attributes['localeCode'] ?? null);
-        $adminUser->setFirstName($attributes['firstName'] ?? null);
-        $adminUser->setLastName($attributes['lastName'] ?? null);
-
         if ($attributes['api'] ?? null) {
             $adminUser->addRole('ROLE_API_ACCESS');
         }
 
-        if ('' !== ($attributes['avatar'] ?? '')) {
-            $this->createAvatar($adminUser, $attributes);
+        $avatar = $attributes['avatar'] ?? null;
+        Assert::nullOrString($avatar);
+
+        if (null !== $avatar) {
+            $this->createAvatar($adminUser, $avatar);
         }
+
+        unset($attributes['api'], $attributes['avatar']);
+
+        ($this->updater)($adminUser, $attributes);
 
         return $adminUser;
     }
 
-    private function createAvatar(AdminUserInterface $adminUser, array $options): void
+    private function createAvatar(AdminUserInterface $adminUser, string $avatar): void
     {
         /** @var string $imagePath */
-        $imagePath = $this->fileLocator->locate($options['avatar']);
+        $imagePath = $this->fileLocator->locate($avatar);
         $uploadedImage = new UploadedFile($imagePath, basename($imagePath));
 
         /** @var AvatarImageInterface $avatarImage */

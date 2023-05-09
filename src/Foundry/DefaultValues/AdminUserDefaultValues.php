@@ -24,7 +24,6 @@ final class AdminUserDefaultValues implements DefaultValuesInterface
             'enabled' => $faker->boolean(),
             'localeCode' => $faker->locale(),
             'locked' => $faker->boolean(),
-            'roles' => [],
         ];
     }
 }
