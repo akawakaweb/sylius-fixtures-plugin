@@ -23,7 +23,7 @@ final class AddressInitiator implements InitiatorInterface
     {
     }
 
-    public function __invoke(array $attributes): AddressInterface
+    public function __invoke(array $attributes, string $class): AddressInterface
     {
         $address = $this->addressFactory->createNew();
         Assert::isInstanceOf($address, AddressInterface::class);

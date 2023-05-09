@@ -24,7 +24,7 @@ final class CurrencyInitiator implements InitiatorInterface
     ) {
     }
 
-    public function __invoke(array $attributes): object
+    public function __invoke(array $attributes, string $class): object
     {
         $currency = $this->currencyFactory->createNew();
         Assert::isInstanceOf($currency, CurrencyInterface::class);

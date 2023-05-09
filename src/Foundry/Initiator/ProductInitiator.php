@@ -54,7 +54,7 @@ final class ProductInitiator implements InitiatorInterface
         $this->faker = Factory::create();
     }
 
-    public function __invoke(array $attributes): object
+    public function __invoke(array $attributes, string $class): object
     {
         $product = $this->productFactory->createNew();
         Assert::isInstanceOf($product, ProductInterface::class);

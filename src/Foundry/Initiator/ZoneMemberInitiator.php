@@ -24,7 +24,7 @@ final class ZoneMemberInitiator implements InitiatorInterface
     ) {
     }
 
-    public function __invoke(array $attributes): object
+    public function __invoke(array $attributes, string $class): object
     {
         $zoneMember = $this->zoneMemberFactory->createNew();
         Assert::isInstanceOf($zoneMember, ZoneMemberInterface::class);

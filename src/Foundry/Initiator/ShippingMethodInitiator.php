@@ -34,7 +34,7 @@ final class ShippingMethodInitiator implements InitiatorInterface
         $this->faker = Factory::create();
     }
 
-    public function __invoke(array $attributes): object
+    public function __invoke(array $attributes, string $class): object
     {
         $shippingMethod = $this->shippingMethodFactory->createNew();
         Assert::isInstanceOf($shippingMethod, ShippingMethodInterface::class);

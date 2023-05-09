@@ -24,7 +24,7 @@ final class LocaleInitiator implements InitiatorInterface
     ) {
     }
 
-    public function __invoke(array $attributes): object
+    public function __invoke(array $attributes, string $class): object
     {
         $locale = $this->localeFactory->createNew();
         Assert::isInstanceOf($locale, LocaleInterface::class);

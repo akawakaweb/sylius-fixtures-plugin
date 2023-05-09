@@ -30,7 +30,7 @@ final class TaxonInitiator implements InitiatorInterface
     ) {
     }
 
-    public function __invoke(array $attributes): object
+    public function __invoke(array $attributes, string $class): object
     {
         /** @var string|null $code */
         $code = $attributes['code'] ?? null;

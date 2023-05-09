@@ -16,7 +16,7 @@ final class TaxCategoryInitiator implements InitiatorInterface
     {
     }
 
-    public function __invoke(array $attributes): object
+    public function __invoke(array $attributes, string $class): object
     {
         $taxCategory = $this->taxCategoryFactory->createNew();
         Assert::isInstanceOf($taxCategory, TaxCategoryInterface::class);

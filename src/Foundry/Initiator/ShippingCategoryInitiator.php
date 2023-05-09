@@ -24,7 +24,7 @@ final class ShippingCategoryInitiator implements InitiatorInterface
     ) {
     }
 
-    public function __invoke(array $attributes): object
+    public function __invoke(array $attributes, string $class): object
     {
         $shippingCategory = $this->shippingCategoryFactory->createNew();
         Assert::isInstanceOf($shippingCategory, ShippingCategoryInterface::class);

@@ -31,7 +31,7 @@ final class AdminUserInitiator implements InitiatorInterface
     ) {
     }
 
-    public function __invoke(array $attributes): object
+    public function __invoke(array $attributes, string $class): object
     {
         $adminUser = $this->adminUserfactory->createNew();
         Assert::isInstanceOf($adminUser, AdminUserInterface::class);

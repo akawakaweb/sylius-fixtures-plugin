@@ -15,5 +15,8 @@ namespace Akawakaweb\ShopFixturesPlugin\Foundry\Initiator;
 
 interface InitiatorInterface
 {
-    public function __invoke(array $attributes): object;
+    /**
+     * @param class-string $class
+     */
+    public function __invoke(array $attributes, string $class): object;
 }

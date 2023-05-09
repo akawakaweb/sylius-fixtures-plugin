@@ -26,9 +26,9 @@ final class ShopUserInitiator implements InitiatorInterface
     ) {
     }
 
-    public function __invoke(array $attributes): object
+    public function __invoke(array $attributes, string $class): object
     {
-        $customer = ($this->customerInitiator)($attributes);
+        $customer = ($this->customerInitiator)($attributes, $class);
         Assert::isInstanceOf($customer, CustomerInterface::class);
 
         $shopUser = $this->shopUserFactory->createNew();

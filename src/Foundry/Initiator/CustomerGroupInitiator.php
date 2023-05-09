@@ -24,7 +24,7 @@ final class CustomerGroupInitiator implements InitiatorInterface
     ) {
     }
 
-    public function __invoke(array $attributes): object
+    public function __invoke(array $attributes, string $class): object
     {
         $customerGroup = $this->customerGroupFactory->createNew();
         Assert::isInstanceOf($customerGroup, CustomerGroupInterface::class);
