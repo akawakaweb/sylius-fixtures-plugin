@@ -11,8 +11,6 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CountryInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CurrencyInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CustomerGroupInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CustomerInitiator;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\Initiator;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\InitiatorInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\LocaleInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ProductAttributeInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ProductInitiator;
