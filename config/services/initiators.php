@@ -29,10 +29,7 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.initiator.default', Initiator::class)
         ->alias(InitiatorInterface::class, 'sylius.shop_fixtures.initiator.default')
 
-        ->set('sylius.shop_fixtures.initiator.address', AddressInitiator::class)
-            ->args([
-                service('sylius.factory.address'),
-            ])
+        ->alias('sylius.shop_fixtures.initiator.address', 'sylius.shop_fixtures.initiator.default')
 
         ->set('sylius.shop_fixtures.initiator.admin_user', AdminUserInitiator::class)
             ->args([
