@@ -13,6 +13,8 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ProductInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ShippingMethodInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ShopUserInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\TaxonInitiator;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ZoneInitiator;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ZoneMemberInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\Updater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\UpdaterInterface;
 
@@ -99,8 +101,16 @@ return static function (ContainerConfigurator $container) {
                 service('sylius.shop_fixtures.updater'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.zone')->parent('sylius.shop_fixtures.initiator')
+        ->set('sylius.shop_fixtures.initiator.zone', ZoneInitiator::class)
+            ->args([
+                service('sylius.factory.zone'),
+                service('sylius.shop_fixtures.updater'),
+            ])
 
-        ->set('sylius.shop_fixtures.initiator.zone_member')->parent('sylius.shop_fixtures.initiator')
+        ->set('sylius.shop_fixtures.initiator.zone_member', ZoneMemberInitiator::class)
+            ->args([
+                service('sylius.factory.zone_member'),
+                service('sylius.shop_fixtures.updater'),
+            ])
     ;
 };
