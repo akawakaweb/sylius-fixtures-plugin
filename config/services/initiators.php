@@ -14,6 +14,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CustomerInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\LocaleInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ProductAttributeInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ProductInitiator;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ProductReviewInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ShippingCategoryInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ShippingMethodInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ShopUserInitiator;
@@ -97,6 +98,12 @@ return static function (ContainerConfigurator $container) {
                 service('sylius.factory.product_image'),
                 service('file_locator'),
                 service('sylius.image_uploader'),
+                service('sylius.shop_fixtures.updater')
+            ])
+
+        ->set('sylius.shop_fixtures.initiator.product_review', ProductReviewInitiator::class)
+            ->args([
+                service('sylius.factory.product_review'),
                 service('sylius.shop_fixtures.updater')
             ])
 

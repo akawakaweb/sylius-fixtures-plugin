@@ -16,6 +16,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\FactoryWithModelClassAwareInte
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAttributeFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductReviewFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ShippingCategoryFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ShippingMethodFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ShopUserFactory;
@@ -123,6 +124,15 @@ return static function (ContainerConfigurator $container) {
             ])
             ->tag('foundry.factory')
         ->alias(ProductAttributeFactory::class, 'sylius.shop_fixtures.factory.product_attribute')
+
+        ->set('sylius.shop_fixtures.factory.product_review', ProductReviewFactory::class)
+            ->args([
+                service('sylius.shop_fixtures.default_values.product_review'),
+                service('sylius.shop_fixtures.transformer.product_review'),
+                service('sylius.shop_fixtures.initiator.product_review'),
+            ])
+            ->tag('foundry.factory')
+        ->alias(ProductReviewFactory::class, 'sylius.shop_fixtures.factory.product_review')
 
         ->set('sylius.shop_fixtures.factory.shipping_category', ShippingCategoryFactory::class)
             ->args([
