@@ -62,7 +62,7 @@ final class Updater implements UpdaterInterface
                 self::propertyAccessor()->setValue($object, $attribute, $value);
             } catch (NoSuchPropertyException $e) {
                 if (!$this->allowExtraAttributes) {
-                    throw new \InvalidArgumentException(\sprintf('Cannot set attribute "%s" for object "%s" (not public and no setter).', $attribute, $class), 0, $e);
+                    throw new \InvalidArgumentException(\sprintf('Cannot set attribute "%s" for object "%s" (not public and no setter).', $attribute, get_class($object)), 0, $e);
                 }
             }
         }

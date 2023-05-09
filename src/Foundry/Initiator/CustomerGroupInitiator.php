@@ -14,32 +14,25 @@ declare(strict_types=1);
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Initiator;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\UpdaterInterface;
-use Sylius\Component\Core\Model\ChannelInterface;
+use Sylius\Component\Customer\Model\CustomerGroupInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Webmozart\Assert\Assert;
 
-final class ChannelInitiator implements InitiatorInterface
+final class CustomerGroupInitiator implements InitiatorInterface
 {
     public function __construct(
-        private FactoryInterface $channelFactory,
+        private FactoryInterface $customerGroupFactory,
         private UpdaterInterface $updater,
     ) {
     }
 
     public function __invoke(array $attributes, string $class): object
     {
-        $channel = $this->channelFactory->createNew();
-        Assert::isInstanceOf($channel, ChannelInterface::class);
+        $customerGroup = $this->customerGroupFactory->createNew();
+        Assert::isInstanceOf($customerGroup, CustomerGroupInterface::class);
 
-        ($this->updater)($channel, $attributes);
+        ($this->updater)($customerGroup, $attributes);
 
-        $defaultLocale = $channel->getDefaultLocale();
-
-        if (null !== $defaultLocale) {
-            // Ensure Default locale is on available locale
-            $channel->addLocale($defaultLocale);
-        }
-
-        return $channel;
+        return $customerGroup;
     }
 }
