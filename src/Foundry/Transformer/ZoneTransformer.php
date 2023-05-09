@@ -17,7 +17,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ZoneMemberFactory;
 use Sylius\Component\Addressing\Model\ZoneMemberInterface;
 use Zenstruck\Foundry\Proxy;
 
-final class ZoneTransformer implements ZoneTransformerInterface
+final class ZoneTransformer implements TransformerInterface
 {
     use TransformNameToCodeAttributeTrait;
 

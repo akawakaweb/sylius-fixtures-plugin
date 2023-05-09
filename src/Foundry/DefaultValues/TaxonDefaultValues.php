@@ -20,8 +20,7 @@ final class TaxonDefaultValues implements DefaultValuesInterface
     public function __invoke(Generator $faker): array
     {
         return [
-            'code' => $faker->text(),
-            'name' => $faker->text(),
+            'name' => $faker->unique()->words(3, true),
             'createdAt' => $faker->dateTime(),
             'enabled' => $faker->boolean(),
         ];

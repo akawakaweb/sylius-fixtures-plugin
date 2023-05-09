@@ -61,6 +61,7 @@ final class ShippingMethodFactoryTest extends KernelTestCase
         $shippingMethod = ShippingMethodFactory::new()->withName('Shipping method 2')->create();
 
         $this->assertEquals('Shipping method 2', $shippingMethod->getName());
+        $this->assertEquals('Shipping_method_2', $shippingMethod->getCode());
     }
 
     /** @test */

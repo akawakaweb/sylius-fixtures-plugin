@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Transformer;
 
-final class CustomerTransformer implements CustomerTransformerInterface
+final class CustomerTransformer implements TransformerInterface
 {
     use TransformStringToDateAttributeTrait;
 

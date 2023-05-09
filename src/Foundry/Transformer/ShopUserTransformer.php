@@ -13,10 +13,10 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Transformer;
 
-final class ShopUserTransformer implements ShopUserTransformerInterface
+final class ShopUserTransformer implements TransformerInterface
 {
     public function __construct(
-        private CustomerTransformerInterface $customerTransformer,
+        private TransformerInterface $customerTransformer,
     ) {
     }
 

@@ -22,7 +22,6 @@ final class ShippingMethodDefaultValues implements DefaultValuesInterface
     {
         return [
             'categoryRequirement' => $faker->randomNumber(),
-            'code' => $faker->text(),
             'name' => $faker->words(3, true),
             'createdAt' => $faker->dateTime(),
             'enabled' => $faker->boolean(),

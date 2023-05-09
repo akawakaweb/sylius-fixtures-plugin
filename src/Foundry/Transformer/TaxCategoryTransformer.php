@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Transformer;
 
-final class TaxCategoryTransformer implements TaxCategoryTransformerInterface
+final class TaxCategoryTransformer implements TransformerInterface
 {
     use TransformNameToCodeAttributeTrait;
 

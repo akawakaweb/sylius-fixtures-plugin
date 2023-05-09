@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Transformer;
 
-final class CustomerGroupTransformer implements CustomerGroupTransformerInterface
+final class CustomerGroupTransformer implements TransformerInterface
 {
     use TransformNameToCodeAttributeTrait;
 

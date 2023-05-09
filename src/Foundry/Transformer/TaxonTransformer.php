@@ -13,10 +13,12 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Transformer;
 
-final class TaxonTransformer implements TaxonTransformerInterface
+final class TaxonTransformer implements TransformerInterface
 {
+    use TransformNameToCodeAttributeTrait;
+
     public function transform(array $attributes): array
     {
-        return $attributes;
+        return $this->transformNameToCodeAttribute($attributes);
     }
 }

@@ -26,7 +26,7 @@ use Sylius\Component\Resource\Factory\FactoryInterface;
 use Webmozart\Assert\Assert;
 use Zenstruck\Foundry\Proxy;
 
-final class ProductTransformer implements ProductTransformerInterface
+final class ProductTransformer implements TransformerInterface
 {
     use TransformTaxonAttributeTrait;
     use TransformTaxCategoryAttributeTrait;

@@ -13,6 +13,10 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Transformer;
 
-interface ShopUserTransformerInterface extends TransformerInterface
+final class Transformer implements TransformerInterface
 {
+    public function transform(array $attributes): array
+    {
+        return $attributes;
+    }
 }

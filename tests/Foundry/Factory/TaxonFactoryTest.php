@@ -52,6 +52,8 @@ final class TaxonFactoryTest extends KernelTestCase
 
         $this->assertEquals(2, $taxon->getTranslations()->count());
 
+        $this->assertEquals('Board_games', $taxon->getCode());
+
         // testing en_US translation
         $taxon->setCurrentLocale('en_US');
         $taxon->setFallbackLocale('en_US');

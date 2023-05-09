@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Transformer;
 
-final class AdminUserTransformer implements AdminUserTransformerInterface
+final class AdminUserTransformer implements TransformerInterface
 {
     public function transform(array $attributes): array
     {
