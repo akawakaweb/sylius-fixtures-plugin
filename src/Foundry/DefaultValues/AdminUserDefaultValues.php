@@ -15,9 +15,9 @@ namespace Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues;
 
 use Faker\Generator;
 
-final class AdminUserDefaultValues implements AdminUserDefaultValuesInterface
+final class AdminUserDefaultValues implements DefaultValuesInterface
 {
-    public function getDefaultValues(Generator $faker): array
+    public function __invoke(Generator $faker): array
     {
         return [
             'createdAt' => $faker->dateTime(),

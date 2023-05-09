@@ -15,9 +15,9 @@ namespace Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues;
 
 use Faker\Generator;
 
-final class ZoneMemberDefaultValues implements ZoneMemberDefaultValuesInterface
+final class ZoneMemberDefaultValues implements DefaultValuesInterface
 {
-    public function getDefaultValues(Generator $faker): array
+    public function __invoke(Generator $faker): array
     {
         return [
             'code' => $faker->unique()->word(),

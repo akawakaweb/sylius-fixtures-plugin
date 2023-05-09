@@ -15,9 +15,9 @@ namespace Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues;
 
 use Faker\Generator;
 
-final class AddressDefaultValues implements AddressDefaultValuesInterface
+final class AddressDefaultValues implements DefaultValuesInterface
 {
-    public function getDefaultValues(Generator $faker): array
+    public function __invoke(Generator $faker): array
     {
         return [
             'city' => $faker->city(),

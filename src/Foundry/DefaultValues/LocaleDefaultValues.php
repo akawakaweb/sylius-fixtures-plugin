@@ -15,9 +15,9 @@ namespace Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues;
 
 use Faker\Generator;
 
-final class LocaleDefaultValues implements LocaleDefaultValuesInterface
+final class LocaleDefaultValues implements DefaultValuesInterface
 {
-    public function getDefaultValues(Generator $faker): array
+    public function __invoke(Generator $faker): array
     {
         return [
             'code' => $faker->locale(),

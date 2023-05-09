@@ -23,9 +23,9 @@ use Sylius\Component\Attribute\AttributeType\SelectAttributeType;
 use Sylius\Component\Attribute\AttributeType\TextareaAttributeType;
 use Sylius\Component\Attribute\AttributeType\TextAttributeType;
 
-final class ProductAttributeDefaultValues implements ProductAttributeDefaultValuesInterface
+final class ProductAttributeDefaultValues implements DefaultValuesInterface
 {
-    public function getDefaultValues(Generator $faker): array
+    public function __invoke(Generator $faker): array
     {
         return [
             'name' => $faker->words(3, true),

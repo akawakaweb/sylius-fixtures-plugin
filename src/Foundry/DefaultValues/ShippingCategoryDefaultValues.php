@@ -15,9 +15,9 @@ namespace Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues;
 
 use Faker\Generator;
 
-final class ShippingCategoryDefaultValues implements ShippingCategoryDefaultValuesInterface
+final class ShippingCategoryDefaultValues implements DefaultValuesInterface
 {
-    public function getDefaultValues(Generator $faker): array
+    public function __invoke(Generator $faker): array
     {
         return [
             'createdAt' => $faker->dateTime(),

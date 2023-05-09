@@ -16,9 +16,9 @@ namespace Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ZoneFactory;
 use Faker\Generator;
 
-final class ShippingMethodDefaultValues implements ShippingMethodDefaultValuesInterface
+final class ShippingMethodDefaultValues implements DefaultValuesInterface
 {
-    public function getDefaultValues(Generator $faker): array
+    public function __invoke(Generator $faker): array
     {
         return [
             'categoryRequirement' => $faker->randomNumber(),

@@ -35,13 +35,13 @@ abstract class AbstractModelFactory extends ModelFactory
 
     protected function getDefaults(): array
     {
-        return $this->defaultValues->getDefaultValues(self::faker());
+        return ($this->defaultValues)(self::faker());
     }
 
     protected function initialize(): self
     {
         return $this
-            ->beforeInstantiate(fn (array $attributes): array => $this->transformer->transform($attributes))
+            ->beforeInstantiate([$this->transformer, 'transform'])
             ->instantiateWith([$this->initiator, '__invoke'])
         ;
     }

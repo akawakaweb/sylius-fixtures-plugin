@@ -16,9 +16,9 @@ namespace Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues;
 use Faker\Generator;
 use Sylius\Component\Addressing\Model\ZoneInterface;
 
-final class ZoneDefaultValues implements ZoneDefaultValuesInterface
+final class ZoneDefaultValues implements DefaultValuesInterface
 {
-    public function getDefaultValues(Generator $faker): array
+    public function __invoke(Generator $faker): array
     {
         return [
             'name' => $faker->text(),

@@ -17,5 +17,5 @@ use Faker\Generator;
 
 interface DefaultValuesInterface
 {
-    public function getDefaultValues(Generator $faker): array;
+    public function __invoke(Generator $faker): array;
 }

@@ -5,30 +5,22 @@ declare(strict_types=1);
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\AddressInitiator;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\AddressInitiatorInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\AdminUserInitiator;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\AdminUserInitiatorInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ChannelInitiator;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ChannelInitiatorInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CountryInitiator;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CountryInitiatorInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CurrencyInitiator;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CurrencyInitiatorInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CustomerGroupInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CustomerInitiator;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CustomerInitiatorInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\LocaleInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ProductAttributeInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ProductInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ShippingCategoryInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ShippingMethodInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ShopUserInitiator;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ShopUserInitiatorInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\TaxCategoryInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\TaxonInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ZoneInitiator;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ZoneInitiatorInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ZoneMemberInitiator;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CustomerGroupUpdaterInterface;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
@@ -108,6 +100,11 @@ return static function (ContainerConfigurator $container) {
             ->args([
                 service('sylius.factory.shop_user'),
                 service('sylius.shop_fixtures.initiator.customer'),
+            ])
+
+        ->set('sylius.shop_fixtures.initiator.tax_category', TaxCategoryInitiator::class)
+            ->args([
+                service('sylius.factory.tax_category'),
             ])
 
         ->set('sylius.shop_fixtures.initiator.taxon', TaxonInitiator::class)

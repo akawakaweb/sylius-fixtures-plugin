@@ -21,9 +21,9 @@ use Sylius\Component\Locale\Model\LocaleInterface;
 use function Zenstruck\Foundry\lazy;
 use Zenstruck\Foundry\Proxy;
 
-final class ChannelDefaultValues implements ChannelDefaultValuesInterface
+final class ChannelDefaultValues implements DefaultValuesInterface
 {
-    public function getDefaultValues(Generator $faker): array
+    public function __invoke(Generator $faker): array
     {
         return [
             'accountVerificationRequired' => $faker->boolean(),

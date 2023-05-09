@@ -16,9 +16,9 @@ namespace Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues;
 use Faker\Generator;
 use Sylius\Component\Core\Model\CustomerInterface;
 
-final class CustomerDefaultValues implements CustomerDefaultValuesInterface
+final class CustomerDefaultValues implements DefaultValuesInterface
 {
-    public function getDefaultValues(Generator $faker): array
+    public function __invoke(Generator $faker): array
     {
         return [
             'createdAt' => $faker->dateTime(),

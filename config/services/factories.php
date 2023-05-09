@@ -153,10 +153,9 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.factory.tax_category', TaxCategoryFactory::class)
             ->args([
-//                service('sylius.factory.tax_category'),
                 service('sylius.shop_fixtures.default_values.tax_category'),
                 service('sylius.shop_fixtures.transformer.tax_category'),
-//                service('sylius.shop_fixtures.updater.tax_category'),
+                service('sylius.shop_fixtures.initiator.tax_category'),
             ])
             ->tag('foundry.factory')
         ->alias(TaxCategoryFactory::class, 'sylius.shop_fixtures.factory.tax_category')

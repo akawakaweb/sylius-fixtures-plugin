@@ -16,9 +16,9 @@ namespace Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues;
 use Faker\Generator;
 use Sylius\Component\Core\Model\ProductInterface;
 
-final class ProductDefaultValues implements ProductDefaultValuesInterface
+final class ProductDefaultValues implements DefaultValuesInterface
 {
-    public function getDefaultValues(Generator $faker): array
+    public function __invoke(Generator $faker): array
     {
         return [
             'name' => $faker->words(3, true),

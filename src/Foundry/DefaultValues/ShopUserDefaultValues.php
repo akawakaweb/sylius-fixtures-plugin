@@ -15,16 +15,16 @@ namespace Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues;
 
 use Faker\Generator;
 
-final class ShopUserDefaultValues implements ShopUserDefaultValuesInterface
+final class ShopUserDefaultValues implements DefaultValuesInterface
 {
     public function __construct(
-        private CustomerDefaultValuesInterface $customerDefaultValues,
+        private DefaultValuesInterface $customerDefaultValues,
     ) {
     }
 
-    public function getDefaultValues(Generator $faker): array
+    public function __invoke(Generator $faker): array
     {
-        return array_merge($this->customerDefaultValues->getDefaultValues($faker), [
+        return array_merge($this->customerDefaultValues->__invoke($faker), [
             'enabled' => true,
             'password' => 'password123',
         ]);
