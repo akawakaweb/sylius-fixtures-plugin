@@ -14,6 +14,8 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CustomerFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CustomerGroupFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\FactoryWithModelClassAwareInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAssociationFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAssociationTypeFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAttributeFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductReviewFactory;
@@ -115,6 +117,24 @@ return static function (ContainerConfigurator $container) {
             ])
             ->tag('foundry.factory')
         ->alias(ProductFactory::class, 'sylius.shop_fixtures.factory.product')
+
+        ->set('sylius.shop_fixtures.factory.product_association', ProductAssociationFactory::class)
+            ->args([
+                service('sylius.shop_fixtures.default_values.product_association'),
+                service('sylius.shop_fixtures.transformer.product_association'),
+                service('sylius.shop_fixtures.initiator.product_association'),
+            ])
+            ->tag('foundry.factory')
+        ->alias(ProductAssociationFactory::class, 'sylius.shop_fixtures.factory.product_association')
+
+        ->set('sylius.shop_fixtures.factory.product_association_type', ProductAssociationTypeFactory::class)
+            ->args([
+                service('sylius.shop_fixtures.default_values.product_association_type'),
+                service('sylius.shop_fixtures.transformer.product_association_type'),
+                service('sylius.shop_fixtures.initiator.product_association_type'),
+            ])
+            ->tag('foundry.factory')
+        ->alias(ProductAssociationTypeFactory::class, 'sylius.shop_fixtures.factory.product_association_type')
 
         ->set('sylius.shop_fixtures.factory.product_attribute', ProductAttributeFactory::class)
             ->args([

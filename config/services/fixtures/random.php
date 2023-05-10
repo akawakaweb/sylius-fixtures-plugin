@@ -17,6 +17,7 @@ use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures\RandomAddressesFixtures;
 use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures\RandomCapsFixtures;
 use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures\RandomDressesFixtures;
 use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures\RandomJeansFixtures;
+use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures\RandomProductAssociationsFixtures;
 use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures\RandomProductReviewsFixtures;
 use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures\RandomShopUsersFixtures;
 use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures\RandomTShirtsFixtures;
@@ -75,5 +76,12 @@ return static function (ContainerConfigurator $container) {
             ])
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'sylius'])
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'random_product_reviews'])
+
+        ->set('sylius.shop_fixtures.doctrine.fixtures.random_product_associations', RandomProductAssociationsFixtures::class)
+            ->args([
+                service('sylius.shop_fixtures.story.random_product_associations'),
+            ])
+            ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'sylius'])
+            ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'random_product_associations'])
     ;
 };

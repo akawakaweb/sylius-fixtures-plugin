@@ -50,6 +50,12 @@ return static function (ContainerConfigurator $container) {
                 service('sylius.factory.product_attribute_value'),
             ])
 
+        ->set('sylius.shop_fixtures.transformer.product_association')
+            ->parent('sylius.shop_fixtures.transformer')
+
+        ->set('sylius.shop_fixtures.transformer.product_association_type')
+            ->parent('sylius.shop_fixtures.transformer')
+
         ->set('sylius.shop_fixtures.transformer.product_attribute', ProductAttributeTransformer::class)
 
         ->set('sylius.shop_fixtures.transformer.product_review')
