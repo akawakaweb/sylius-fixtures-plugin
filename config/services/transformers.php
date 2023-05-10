@@ -70,6 +70,9 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.transformer.product_review')
             ->parent('sylius.shop_fixtures.transformer')
 
+        ->set('sylius.shop_fixtures.transformer.promotion_rule')
+            ->parent('sylius.shop_fixtures.transformer')
+
         ->set('sylius.shop_fixtures.transformer.shipping_category', ShippingCategoryTransformer::class)
 
         ->set('sylius.shop_fixtures.transformer.shipping_method', ShippingMethodTransformer::class)

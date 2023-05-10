@@ -20,6 +20,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ProductAssociationTypeInitia
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ProductAttributeInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ProductInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ProductReviewInitiator;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\PromotionRuleInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ShippingCategoryInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ShippingMethodInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ShopUserInitiator;
@@ -139,6 +140,12 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.initiator.product_review', ProductReviewInitiator::class)
             ->args([
                 service('sylius.factory.product_review'),
+                service('sylius.shop_fixtures.updater')
+            ])
+
+        ->set('sylius.shop_fixtures.initiator.promotion_rule', PromotionRuleInitiator::class)
+            ->args([
+                service('sylius.factory.promotion_rule'),
                 service('sylius.shop_fixtures.updater')
             ])
 
