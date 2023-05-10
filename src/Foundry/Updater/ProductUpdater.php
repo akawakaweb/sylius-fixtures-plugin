@@ -11,11 +11,10 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Initiator;
+namespace Akawakaweb\ShopFixturesPlugin\Foundry\Updater;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ChannelFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\UpdaterInterface;
 use Faker\Factory;
 use Faker\Generator;
 use Sylius\Component\Core\Model\ChannelPricingInterface;
@@ -36,12 +35,12 @@ use Symfony\Component\Config\FileLocatorInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Webmozart\Assert\Assert;
 
-final class ProductInitiator implements InitiatorInterface
+final class ProductUpdater implements UpdaterInterface
 {
     private Generator $faker;
 
     public function __construct(
-        private FactoryInterface $productFactory,
+        private UpdaterInterface $decorated,
         private FactoryInterface $productVariantFactory,
         private FactoryInterface $channelPricingFactory,
         private ProductVariantGeneratorInterface $variantGenerator,
@@ -49,25 +48,23 @@ final class ProductInitiator implements InitiatorInterface
         private FactoryInterface $productImageFactory,
         private FileLocatorInterface $fileLocator,
         private ImageUploaderInterface $imageUploader,
-        private UpdaterInterface $updater,
     ) {
         $this->faker = Factory::create();
     }
 
-    public function __invoke(array $attributes, string $class): object
+    public function __invoke(object $object, array $attributes): array
     {
-        $product = $this->productFactory->createNew();
-        Assert::isInstanceOf($product, ProductInterface::class);
+        if (!$object instanceof ProductInterface) {
+            return ($this->decorated)($object, $attributes);
+        }
 
-        $this->createTranslations($product, $attributes);
-        $this->createRelations($product, $attributes);
-        $this->createVariants($product, $attributes);
-        $this->createImages($product, $attributes);
-        $this->createProductTaxa($product, $attributes);
+        $this->createTranslations($object, $attributes);
+        $this->createRelations($object, $attributes);
+        $this->createVariants($object, $attributes);
+        $this->createImages($object, $attributes);
+        $this->createProductTaxa($object, $attributes);
 
-        ($this->updater)($product, $attributes);
-
-        return $product;
+        return ($this->decorated)($object, $attributes);
     }
 
     private function createTranslations(ProductInterface $product, array &$attributes): void

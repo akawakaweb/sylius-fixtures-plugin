@@ -11,34 +11,32 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Initiator;
+namespace Akawakaweb\ShopFixturesPlugin\Foundry\Updater;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\UpdaterInterface;
 use Sylius\Component\Core\Model\CatalogPromotionInterface;
 use Sylius\Component\Locale\Model\LocaleInterface;
-use Sylius\Component\Resource\Factory\FactoryInterface;
 use Webmozart\Assert\Assert;
 
-final class CatalogPromotionInitiator implements InitiatorInterface
+final class CatalogPromotionUpdater implements UpdaterInterface
 {
     public function __construct(
-        private FactoryInterface $catalogPromotionFactory,
-        private UpdaterInterface $updater,
+        private UpdaterInterface $decorated,
     ) {
     }
 
-    public function __invoke(array $attributes, string $class): object
+    public function __invoke(object $object, array $attributes): array
     {
-        $catalogPromotion = $this->catalogPromotionFactory->createNew();
-        Assert::isInstanceOf($catalogPromotion, CatalogPromotionInterface::class);
+        if (!$object instanceof CatalogPromotionInterface) {
+            return ($this->decorated)($object, $attributes);
+        }
 
         /** @var LocaleInterface $locale */
         foreach (LocaleFactory::all() as $locale) {
             $localeCode = $locale->getCode() ?? '';
 
-            $catalogPromotion->setCurrentLocale($localeCode);
-            $catalogPromotion->setFallbackLocale($localeCode);
+            $object->setCurrentLocale($localeCode);
+            $object->setFallbackLocale($localeCode);
 
             $label = $attributes['label'] ?? null;
             Assert::nullOrString($label);
@@ -46,14 +44,12 @@ final class CatalogPromotionInitiator implements InitiatorInterface
             $description = $attributes['description'] ?? null;
             Assert::nullOrString($description);
 
-            $catalogPromotion->setLabel($label);
-            $catalogPromotion->setDescription($description);
+            $object->setLabel($label);
+            $object->setDescription($description);
         }
 
         unset($attributes['label'], $attributes['description']);
 
-        ($this->updater)($catalogPromotion, $attributes);
-
-        return $catalogPromotion;
+        return ($this->decorated)($object, $attributes);
     }
 }

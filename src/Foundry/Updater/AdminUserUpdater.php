@@ -11,9 +11,8 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Initiator;
+namespace Akawakaweb\ShopFixturesPlugin\Foundry\Updater;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\UpdaterInterface;
 use Sylius\Component\Core\Model\AdminUserInterface;
 use Sylius\Component\Core\Model\AvatarImageInterface;
 use Sylius\Component\Core\Uploader\ImageUploaderInterface;
@@ -22,38 +21,36 @@ use Symfony\Component\Config\FileLocatorInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Webmozart\Assert\Assert;
 
-final class AdminUserInitiator implements InitiatorInterface
+final class AdminUserUpdater implements UpdaterInterface
 {
     public function __construct(
-        private FactoryInterface $adminUserfactory,
+        private UpdaterInterface $decorated,
         private FactoryInterface $avatarImageFactory,
         private FileLocatorInterface $fileLocator,
         private ImageUploaderInterface $imageUploader,
-        private UpdaterInterface $updater,
     ) {
     }
 
-    public function __invoke(array $attributes, string $class): object
+    public function __invoke(object $object, array $attributes): array
     {
-        $adminUser = $this->adminUserfactory->createNew();
-        Assert::isInstanceOf($adminUser, AdminUserInterface::class);
+        if (!$object instanceof AdminUserInterface) {
+            return ($this->decorated)($object, $attributes);
+        }
 
         if ($attributes['api'] ?? null) {
-            $adminUser->addRole('ROLE_API_ACCESS');
+            $object->addRole('ROLE_API_ACCESS');
         }
 
         $avatar = $attributes['avatar'] ?? null;
         Assert::nullOrString($avatar);
 
         if (null !== $avatar) {
-            $this->createAvatar($adminUser, $avatar);
+            $this->createAvatar($object, $avatar);
         }
 
         unset($attributes['api'], $attributes['avatar']);
 
-        ($this->updater)($adminUser, $attributes);
-
-        return $adminUser;
+        return ($this->decorated)($object, $attributes);
     }
 
     private function createAvatar(AdminUserInterface $adminUser, string $avatar): void

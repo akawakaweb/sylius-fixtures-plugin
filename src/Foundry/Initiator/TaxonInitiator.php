@@ -13,21 +13,16 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Initiator;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxonFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\UpdaterInterface;
 use Sylius\Component\Core\Model\TaxonInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
-use Sylius\Component\Taxonomy\Generator\TaxonSlugGeneratorInterface;
-use Webmozart\Assert\Assert;
 
 final class TaxonInitiator implements InitiatorInterface
 {
     public function __construct(
         private FactoryInterface $taxonFactory,
         private RepositoryInterface $taxonRepository,
-        private TaxonSlugGeneratorInterface $taxonSlugGenerator,
         private UpdaterInterface $updater,
     ) {
     }
@@ -44,56 +39,8 @@ final class TaxonInitiator implements InitiatorInterface
             $taxon = $this->taxonFactory->createNew();
         }
 
-        Assert::isInstanceOf($taxon, TaxonInterface::class);
-
-        // add translation for each defined locales
-        foreach (LocaleFactory::all() as $locale) {
-            $this->createTranslation($taxon, $locale->getCode() ?? '', $attributes);
-        }
-
-        // create or replace with custom translations
-        /**
-         * @var string $localeCode
-         * @var array $translationAttributes
-         */
-        foreach ($attributes['translations'] ?? [] as $localeCode => $translationAttributes) {
-            $this->createTranslation($taxon, $localeCode, array_merge($attributes, $translationAttributes));
-        }
-
-        /** @var array $childAttributes */
-        foreach ($attributes['children'] ?? [] as $childAttributes) {
-            $childAttributes['parent'] = $taxon;
-
-            TaxonFactory::new()
-                ->withAttributes($childAttributes)
-                ->withoutPersisting()
-                ->create()
-            ;
-        }
-
-        unset($attributes['name'], $attributes['description'], $attributes['translations'], $attributes['slug'], $attributes['children']);
-
         ($this->updater)($taxon, $attributes);
 
         return $taxon;
-    }
-
-    private function createTranslation(TaxonInterface $taxon, string $localeCode, array $attributes = []): void
-    {
-        $taxon->setCurrentLocale($localeCode);
-        $taxon->setFallbackLocale($localeCode);
-
-        $name = $attributes['name'] ?? null;
-        Assert::nullOrString($name);
-
-        $description = $attributes['description'] ?? null;
-        Assert::nullOrString($description);
-
-        $slug = $attributes['slug'] ?? null;
-        Assert::nullOrString($slug);
-
-        $taxon->setName($name);
-        $taxon->setDescription($description);
-        $taxon->setSlug($slug ?? $this->taxonSlugGenerator->generate($taxon, $localeCode));
     }
 }
