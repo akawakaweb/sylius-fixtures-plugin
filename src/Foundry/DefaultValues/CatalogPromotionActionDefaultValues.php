@@ -14,16 +14,15 @@ declare(strict_types=1);
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues;
 
 use Faker\Generator;
+use Sylius\Bundle\CoreBundle\CatalogPromotion\Calculator\PercentageDiscountPriceCalculator;
 
-final class CatalogPromotionDefaultValues implements DefaultValuesInterface
+final class CatalogPromotionActionDefaultValues implements DefaultValuesInterface
 {
     public function __invoke(Generator $faker): array
     {
         return [
-            'enabled' => $faker->boolean(),
-            'exclusive' => $faker->boolean(),
-            'name' => $faker->text(),
-            'state' => $faker->text(),
+            'configuration' => [],
+            'type' => PercentageDiscountPriceCalculator::TYPE,
         ];
     }
 }

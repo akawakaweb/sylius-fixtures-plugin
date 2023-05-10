@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\AdminUserTransformer;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\CatalogPromotionTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\CustomerGroupTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\CustomerTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ProductAttributeTransformer;
@@ -28,8 +29,10 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.transformer.admin_user', AdminUserTransformer::class)
 
-        ->set('sylius.shop_fixtures.transformer.catalog_promotion')
+        ->set('sylius.shop_fixtures.transformer.catalog_promotion_action')
             ->parent('sylius.shop_fixtures.transformer')
+
+        ->set('sylius.shop_fixtures.transformer.catalog_promotion', CatalogPromotionTransformer::class)
 
         ->set('sylius.shop_fixtures.transformer.catalog_promotion_scope')
             ->parent('sylius.shop_fixtures.transformer')

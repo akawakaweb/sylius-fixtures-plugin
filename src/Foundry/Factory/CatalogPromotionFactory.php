@@ -13,8 +13,12 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\ToggableTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithChannelsTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithDescriptionTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithNameTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithPriorityTrait;
 use Doctrine\ORM\EntityRepository;
 use Sylius\Component\Core\Model\CatalogPromotion;
 use Sylius\Component\Core\Model\CatalogPromotionInterface;
@@ -45,6 +49,45 @@ final class CatalogPromotionFactory extends AbstractModelFactory implements Fact
     use WithModelClassTrait;
     use WithCodeTrait;
     use WithNameTrait;
+    use WithDescriptionTrait;
+    use WithChannelsTrait;
+    use WithPriorityTrait;
+    use ToggableTrait;
+
+    public function withLabel(string $label): self
+    {
+        return $this->addState(['label' => $label]);
+    }
+
+    public function withScopes(array $scopes): self
+    {
+        return $this->addState(['scopes' => $scopes]);
+    }
+
+    public function withActions(array $actions): self
+    {
+        return $this->addState(['actions' => $actions]);
+    }
+
+    public function exclusive(): self
+    {
+        return $this->addState(['exclusive' => true]);
+    }
+
+    public function notExclusive(): self
+    {
+        return $this->addState(['exclusive' => false]);
+    }
+
+    public function withStartDate(\DateTimeInterface|string $startDate): self
+    {
+        return $this->addState(['startDate' => $startDate]);
+    }
+
+    public function withEndDate(\DateTimeInterface|string $endDate): self
+    {
+        return $this->addState(['endDate' => $endDate]);
+    }
 
     protected static function getClass(): string
     {
