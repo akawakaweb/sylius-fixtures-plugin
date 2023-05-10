@@ -17,6 +17,8 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomAddressesStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomAddressesStoryInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomCapsStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomCapsStoryInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomCatalogPromotionsStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomCatalogPromotionsStoryInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomDressesStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomDressesStoryInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomJeansStory;
@@ -63,5 +65,9 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.story.random_product_associations', RandomProductAssociationsStory::class)
             ->tag('foundry.story')
         ->alias(RandomProductAssociationsStoryInterface::class, 'sylius.shop_fixtures.foundry.story.random_product_associations')
+
+        ->set('sylius.shop_fixtures.story.random_catalog_promotions', RandomCatalogPromotionsStory::class)
+            ->tag('foundry.story')
+        ->alias(RandomCatalogPromotionsStoryInterface::class, 'sylius.shop_fixtures.foundry.story.random_catalog_promotions')
     ;
 };

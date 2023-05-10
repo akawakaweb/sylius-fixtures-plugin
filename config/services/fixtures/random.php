@@ -15,6 +15,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures\RandomAddressesFixtures;
 use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures\RandomCapsFixtures;
+use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures\RandomCatalogPromotionsFixtures;
 use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures\RandomDressesFixtures;
 use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures\RandomJeansFixtures;
 use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures\RandomProductAssociationsFixtures;
@@ -83,5 +84,12 @@ return static function (ContainerConfigurator $container) {
             ])
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'sylius'])
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'random_product_associations'])
+
+        ->set('sylius.shop_fixtures.doctrine.fixtures.random_catalog_promotions', RandomCatalogPromotionsFixtures::class)
+            ->args([
+                service('sylius.shop_fixtures.story.random_catalog_promotions'),
+            ])
+            ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'sylius'])
+            ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'random_catalog_promotions'])
     ;
 };

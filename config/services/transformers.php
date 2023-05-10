@@ -28,6 +28,12 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.transformer.admin_user', AdminUserTransformer::class)
 
+        ->set('sylius.shop_fixtures.transformer.catalog_promotion')
+            ->parent('sylius.shop_fixtures.transformer')
+
+        ->set('sylius.shop_fixtures.transformer.catalog_promotion_scope')
+            ->parent('sylius.shop_fixtures.transformer')
+
         ->set('sylius.shop_fixtures.transformer.channel')
             ->parent('sylius.shop_fixtures.transformer')
 

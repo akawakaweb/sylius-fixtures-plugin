@@ -7,6 +7,8 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Configurator\FactoryConfigurator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\AddressFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\AdminUserFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CatalogPromotionFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CatalogPromotionScopeFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ChannelFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CountryFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CurrencyFactory;
@@ -54,6 +56,24 @@ return static function (ContainerConfigurator $container) {
             ])
             ->tag('foundry.factory')
         ->alias(AdminUserFactory::class, 'sylius.shop_fixtures.factory.admin_user')
+
+        ->set('sylius.shop_fixtures.factory.catalog_promotion', CatalogPromotionFactory::class)
+            ->args([
+                service('sylius.shop_fixtures.default_values.catalog_promotion'),
+                service('sylius.shop_fixtures.transformer.catalog_promotion'),
+                service('sylius.shop_fixtures.initiator.catalog_promotion'),
+            ])
+            ->tag('foundry.factory')
+        ->alias(CatalogPromotionFactory::class, 'sylius.shop_fixtures.factory.catalog_promotion')
+
+        ->set('sylius.shop_fixtures.factory.catalog_promotion_scope', CatalogPromotionScopeFactory::class)
+            ->args([
+                service('sylius.shop_fixtures.default_values.catalog_promotion_scope'),
+                service('sylius.shop_fixtures.transformer.catalog_promotion_scope'),
+                service('sylius.shop_fixtures.initiator.catalog_promotion_scope'),
+            ])
+            ->tag('foundry.factory')
+        ->alias(CatalogPromotionScopeFactory::class, 'sylius.shop_fixtures.factory.catalog_promotion_scope')
 
         ->set('sylius.shop_fixtures.factory.channel', ChannelFactory::class)
             ->args([

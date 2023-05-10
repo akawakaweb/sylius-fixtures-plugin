@@ -6,6 +6,8 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\AddressDefaultValues;
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\AdminUserDefaultValues;
+use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\CatalogPromotionDefaultValues;
+use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\CatalogPromotionScopeDefaultValues;
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ChannelDefaultValues;
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\CountryDefaultValues;
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\CurrencyDefaultValues;
@@ -30,6 +32,10 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.default_values.address', AddressDefaultValues::class)
 
         ->set('sylius.shop_fixtures.default_values.admin_user', AdminUserDefaultValues::class)
+
+        ->set('sylius.shop_fixtures.default_values.catalog_promotion', CatalogPromotionDefaultValues::class)
+
+        ->set('sylius.shop_fixtures.default_values.catalog_promotion_scope', CatalogPromotionScopeDefaultValues::class)
 
         ->set('sylius.shop_fixtures.default_values.channel', ChannelDefaultValues::class)
 

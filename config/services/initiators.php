@@ -6,6 +6,8 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\AddressInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\AdminUserInitiator;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CatalogPromotionInitiator;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CatalogPromotionScopeInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ChannelInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CountryInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CurrencyInitiator;
@@ -45,6 +47,18 @@ return static function (ContainerConfigurator $container) {
                 service('sylius.factory.avatar_image'),
                 service('file_locator'),
                 service('sylius.image_uploader'),
+                service('sylius.shop_fixtures.updater'),
+            ])
+
+        ->set('sylius.shop_fixtures.initiator.catalog_promotion', CatalogPromotionInitiator::class)
+            ->args([
+                service('sylius.factory.catalog_promotion'),
+                service('sylius.shop_fixtures.updater'),
+            ])
+
+        ->set('sylius.shop_fixtures.initiator.catalog_promotion_scope', CatalogPromotionScopeInitiator::class)
+            ->args([
+                service('sylius.factory.catalog_promotion_scope'),
                 service('sylius.shop_fixtures.updater'),
             ])
 
