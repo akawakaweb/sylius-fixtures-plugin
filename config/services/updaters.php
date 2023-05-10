@@ -19,24 +19,53 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.updater', Updater::class)
         ->alias(UpdaterInterface::class, 'sylius.shop_fixtures.updater')
 
+        ->set('sylius.shop_fixtures.updater.address')
+            ->parent('sylius.shop_fixtures.updater')
+
         ->set('sylius.shop_fixtures.updater.admin_user', AdminUserUpdater::class)
             ->args([
                 service('sylius.shop_fixtures.updater'),
                 service('sylius.factory.avatar_image'),
                 service('file_locator'),
                 service('sylius.image_uploader'),
-                service('sylius.shop_fixtures.updater'),
             ])
+
+        ->set('sylius.shop_fixtures.updater.catalog_promotion_action')
+            ->parent('sylius.shop_fixtures.updater')
 
         ->set('sylius.shop_fixtures.updater.catalog_promotion', CatalogPromotionUpdater::class)
             ->args([
                 service('sylius.shop_fixtures.updater'),
             ])
 
+        ->set('sylius.shop_fixtures.updater.catalog_promotion_scope')
+            ->parent('sylius.shop_fixtures.updater')
+
         ->set('sylius.shop_fixtures.updater.channel', ChannelUpdater::class)
             ->args([
                 service('sylius.shop_fixtures.updater'),
             ])
+
+        ->set('sylius.shop_fixtures.updater.country')
+            ->parent('sylius.shop_fixtures.updater')
+
+        ->set('sylius.shop_fixtures.updater.currency')
+            ->parent('sylius.shop_fixtures.updater')
+
+        ->set('sylius.shop_fixtures.updater.customer')
+            ->parent('sylius.shop_fixtures.updater')
+
+        ->set('sylius.shop_fixtures.updater.customer_group')
+            ->parent('sylius.shop_fixtures.updater')
+
+        ->set('sylius.shop_fixtures.updater.locale')
+            ->parent('sylius.shop_fixtures.updater')
+
+        ->set('sylius.shop_fixtures.updater.product_association')
+            ->parent('sylius.shop_fixtures.updater')
+
+        ->set('sylius.shop_fixtures.updater.product_association_type')
+            ->parent('sylius.shop_fixtures.updater')
 
         ->set('sylius.shop_fixtures.updater.product_attribute', ProductAttributeUpdater::class)
             ->args([
@@ -56,15 +85,39 @@ return static function (ContainerConfigurator $container) {
                 service('sylius.shop_fixtures.updater')
             ])
 
+        ->set('sylius.shop_fixtures.updater.product_review')
+            ->parent('sylius.shop_fixtures.updater')
+
+        ->set('sylius.shop_fixtures.updater.promotion')
+            ->parent('sylius.shop_fixtures.updater')
+
+        ->set('sylius.shop_fixtures.updater.promotion_action')
+            ->parent('sylius.shop_fixtures.updater')
+
+        ->set('sylius.shop_fixtures.updater.promotion_rule')
+            ->parent('sylius.shop_fixtures.updater')
+
+        ->set('sylius.shop_fixtures.updater.shipping_category')
+            ->parent('sylius.shop_fixtures.updater')
+
         ->set('sylius.shop_fixtures.updater.shipping_method', ShippingMethodUpdater::class)
             ->args([
                 service('sylius.shop_fixtures.updater'),
             ])
+
+        ->set('sylius.shop_fixtures.updater.tax_category')
+            ->parent('sylius.shop_fixtures.updater')
 
         ->set('sylius.shop_fixtures.updater.taxon', TaxonUpdater::class)
             ->args([
                 service('sylius.shop_fixtures.updater'),
                 service('sylius.generator.taxon_slug'),
             ])
+
+        ->set('sylius.shop_fixtures.updater.zone')
+            ->parent('sylius.shop_fixtures.updater')
+
+        ->set('sylius.shop_fixtures.updater.zone_member')
+            ->parent('sylius.shop_fixtures.updater')
     ;
 };
