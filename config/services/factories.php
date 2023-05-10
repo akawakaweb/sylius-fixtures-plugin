@@ -30,6 +30,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ShippingMethodFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ShopUserFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxCategoryFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxonFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxRateFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ZoneFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ZoneMemberFactory;
 
@@ -249,6 +250,15 @@ return static function (ContainerConfigurator $container) {
             ])
             ->tag('foundry.factory')
         ->alias(TaxCategoryFactory::class, 'sylius.shop_fixtures.factory.tax_category')
+
+        ->set('sylius.shop_fixtures.factory.tax_rate', TaxRateFactory::class)
+            ->args([
+                service('sylius.shop_fixtures.default_values.tax_rate'),
+                service('sylius.shop_fixtures.transformer.tax_rate'),
+                service('sylius.shop_fixtures.initiator.tax_rate'),
+            ])
+            ->tag('foundry.factory')
+        ->alias(TaxRateFactory::class, 'sylius.shop_fixtures.factory.tax_rate')
 
         ->set('sylius.shop_fixtures.factory.taxon', TaxonFactory::class)
             ->args([

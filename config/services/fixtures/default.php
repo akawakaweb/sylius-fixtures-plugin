@@ -23,6 +23,7 @@ use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures\DefaultMenuTaxonFixtures;
 use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures\DefaultShippingMethodsFixtures;
 use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures\DefaultShopUsersFixtures;
 use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures\DefaultTaxCategoriesFixtures;
+use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures\DefaultTaxRatesFixtures;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
@@ -105,5 +106,13 @@ return static function (ContainerConfigurator $container) {
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'sylius'])
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'shop_configuration'])
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'default_tax_categories'])
+
+        ->set('sylius.shop_fixtures.doctrine.fixtures.default_tax_rates', DefaultTaxRatesFixtures::class)
+            ->args([
+                service('sylius.shop_fixtures.story.default_tax_rates'),
+            ])
+            ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'sylius'])
+            ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'shop_configuration'])
+            ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'default_tax_rates'])
     ;
 };

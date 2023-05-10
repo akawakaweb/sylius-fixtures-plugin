@@ -16,6 +16,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ShippingMethodTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ShopUserTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\TaxCategoryTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\TaxonTransformer;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\TaxRateTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\Transformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ZoneTransformer;
 
@@ -73,6 +74,8 @@ return static function (ContainerConfigurator $container) {
             ])
 
         ->set('sylius.shop_fixtures.transformer.tax_category', TaxCategoryTransformer::class)
+
+        ->set('sylius.shop_fixtures.transformer.tax_rate', TaxRateTransformer::class)
 
         ->set('sylius.shop_fixtures.transformer.taxon', TaxonTransformer::class)
 

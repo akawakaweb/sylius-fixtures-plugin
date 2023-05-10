@@ -33,6 +33,8 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultShopUsersStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultShopUsersStoryInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultTaxCategoriesStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultTaxCategoriesStoryInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultTaxRatesStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultTaxRatesStoryInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomAddressesStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomCapsStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomDressesStory;
@@ -81,5 +83,9 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.story.default_tax_categories', DefaultTaxCategoriesStory::class)
             ->tag('foundry.story')
         ->alias(DefaultTaxCategoriesStoryInterface::class, 'sylius.shop_fixtures.foundry.story.default_tax_category')
+
+        ->set('sylius.shop_fixtures.story.default_tax_rates', DefaultTaxRatesStory::class)
+            ->tag('foundry.story')
+        ->alias(DefaultTaxRatesStoryInterface::class, 'sylius.shop_fixtures.foundry.story.default_tax_rates')
     ;
 };

@@ -28,6 +28,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ShippingMethodDefaultVal
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ShopUserDefaultValues;
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\TaxCategoryDefaultValues;
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\TaxonDefaultValues;
+use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\TaxRateDefaultValues;
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ZoneDefaultValues;
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ZoneMemberDefaultValues;
 
@@ -81,6 +82,8 @@ return static function (ContainerConfigurator $container) {
             ])
 
         ->set('sylius.shop_fixtures.default_values.tax_category', TaxCategoryDefaultValues::class)
+
+        ->set('sylius.shop_fixtures.default_values.tax_rate', TaxRateDefaultValues::class)
 
         ->set('sylius.shop_fixtures.default_values.taxon', TaxonDefaultValues::class)
 

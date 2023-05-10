@@ -108,6 +108,9 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.updater.tax_category')
             ->parent('sylius.shop_fixtures.updater')
 
+        ->set('sylius.shop_fixtures.updater.tax_rate')
+            ->parent('sylius.shop_fixtures.updater')
+
         ->set('sylius.shop_fixtures.updater.taxon', TaxonUpdater::class)
             ->args([
                 service('sylius.shop_fixtures.updater'),

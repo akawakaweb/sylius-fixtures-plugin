@@ -20,7 +20,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Tests\Acme\SyliusExamplePlugin\PurgeDatabaseTrait;
 use Zenstruck\Foundry\Test\Factories;
 
-final class RandomTaxCategoriesStoryTest extends KernelTestCase
+final class DefaultTaxCategoriesStoryTest extends KernelTestCase
 {
     use PurgeDatabaseTrait;
     use Factories;
