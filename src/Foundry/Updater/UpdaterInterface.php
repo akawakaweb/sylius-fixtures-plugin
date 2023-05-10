@@ -15,7 +15,7 @@ namespace Akawakaweb\ShopFixturesPlugin\Foundry\Updater;
 
 interface UpdaterInterface
 {
-    public function __invoke(object $object, array $attributes): object;
+    public function __invoke(object $object, array $attributes): array;
 
     public function allowExtraAttributes(array $attributes = []): self;
 

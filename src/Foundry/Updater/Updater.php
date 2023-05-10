@@ -39,7 +39,7 @@ final class Updater implements UpdaterInterface
     /** @var string[] */
     private array $forceProperties = [];
 
-    public function __invoke(object $object, array $attributes): object
+    public function __invoke(object $object, array $attributes): array
     {
         foreach ($attributes as $attribute => $value) {
             if (\in_array($attribute, $this->extraAttributes, true)) {
@@ -67,7 +67,7 @@ final class Updater implements UpdaterInterface
             }
         }
 
-        return $object;
+        return $attributes;
     }
 
     /**

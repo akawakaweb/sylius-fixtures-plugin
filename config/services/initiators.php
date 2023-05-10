@@ -14,6 +14,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CountryInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CurrencyInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CustomerGroupInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\CustomerInitiator;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\Initiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\LocaleInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ProductAssociationInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ProductAssociationTypeInitiator;
@@ -33,11 +34,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\UpdaterInterface;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
-        ->set('sylius.shop_fixtures.updater', Updater::class)
-            ->call('allowExtraAttributes')
-        ->alias(UpdaterInterface::class, 'sylius.shop_fixtures.updater')
-
-        ->set('sylius.shop_fixtures.initiator.address', AddressInitiator::class)
+        ->set('sylius.shop_fixtures.initiator.address', Initiator::class)
             ->args([
                 service('sylius.factory.address'),
                 service('sylius.shop_fixtures.updater'),
@@ -52,7 +49,7 @@ return static function (ContainerConfigurator $container) {
                 service('sylius.shop_fixtures.updater'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.catalog_promotion_action', CatalogPromotionActionInitiator::class)
+        ->set('sylius.shop_fixtures.initiator.catalog_promotion_action', Initiator::class)
             ->args([
                 service('sylius.factory.catalog_promotion_action'),
                 service('sylius.shop_fixtures.updater'),
@@ -64,7 +61,7 @@ return static function (ContainerConfigurator $container) {
                 service('sylius.shop_fixtures.updater'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.catalog_promotion_scope', CatalogPromotionScopeInitiator::class)
+        ->set('sylius.shop_fixtures.initiator.catalog_promotion_scope', Initiator::class)
             ->args([
                 service('sylius.factory.catalog_promotion_scope'),
                 service('sylius.shop_fixtures.updater'),
@@ -76,13 +73,13 @@ return static function (ContainerConfigurator $container) {
                 service('sylius.shop_fixtures.updater'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.country', CountryInitiator::class)
+        ->set('sylius.shop_fixtures.initiator.country', Initiator::class)
             ->args([
                 service('sylius.factory.country'),
                 service('sylius.shop_fixtures.updater'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.currency', CurrencyInitiator::class)
+        ->set('sylius.shop_fixtures.initiator.currency', Initiator::class)
             ->args([
                 service('sylius.factory.currency'),
                 service('sylius.shop_fixtures.updater'),
@@ -94,25 +91,25 @@ return static function (ContainerConfigurator $container) {
                 service('sylius.shop_fixtures.updater'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.customer_group', CustomerGroupInitiator::class)
+        ->set('sylius.shop_fixtures.initiator.customer_group', Initiator::class)
             ->args([
                 service('sylius.factory.customer_group'),
                 service('sylius.shop_fixtures.updater'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.locale', LocaleInitiator::class)
+        ->set('sylius.shop_fixtures.initiator.locale', Initiator::class)
             ->args([
                 service('sylius.factory.locale'),
                 service('sylius.shop_fixtures.updater'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.product_association', ProductAssociationInitiator::class)
+        ->set('sylius.shop_fixtures.initiator.product_association', Initiator::class)
             ->args([
                 service('sylius.factory.product_association'),
                 service('sylius.shop_fixtures.updater'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.product_association_type', ProductAssociationTypeInitiator::class)
+        ->set('sylius.shop_fixtures.initiator.product_association_type', Initiator::class)
             ->args([
                 service('sylius.factory.product_association_type'),
                 service('sylius.shop_fixtures.updater'),
@@ -137,19 +134,31 @@ return static function (ContainerConfigurator $container) {
                 service('sylius.shop_fixtures.updater')
             ])
 
-        ->set('sylius.shop_fixtures.initiator.product_review', ProductReviewInitiator::class)
+        ->set('sylius.shop_fixtures.initiator.product_review', Initiator::class)
             ->args([
                 service('sylius.factory.product_review'),
                 service('sylius.shop_fixtures.updater')
             ])
 
-        ->set('sylius.shop_fixtures.initiator.promotion_rule', PromotionRuleInitiator::class)
+        ->set('sylius.shop_fixtures.initiator.promotion', Initiator::class)
+            ->args([
+                service('sylius.factory.promotion'),
+                service('sylius.shop_fixtures.updater'),
+            ])
+
+        ->set('sylius.shop_fixtures.initiator.promotion_action', Initiator::class)
+            ->args([
+                service('sylius.factory.promotion_action'),
+                service('sylius.shop_fixtures.updater')
+            ])
+
+        ->set('sylius.shop_fixtures.initiator.promotion_rule', Initiator::class)
             ->args([
                 service('sylius.factory.promotion_rule'),
                 service('sylius.shop_fixtures.updater')
             ])
 
-        ->set('sylius.shop_fixtures.initiator.shipping_category', ShippingCategoryInitiator::class)
+        ->set('sylius.shop_fixtures.initiator.shipping_category', Initiator::class)
             ->args([
                 service('sylius.factory.shipping_category'),
                 service('sylius.shop_fixtures.updater'),
@@ -169,7 +178,7 @@ return static function (ContainerConfigurator $container) {
                 service('sylius.shop_fixtures.updater'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.tax_category', TaxCategoryInitiator::class)
+        ->set('sylius.shop_fixtures.initiator.tax_category', Initiator::class)
             ->args([
                 service('sylius.factory.tax_category'),
                 service('sylius.shop_fixtures.updater'),
@@ -183,13 +192,13 @@ return static function (ContainerConfigurator $container) {
                 service('sylius.shop_fixtures.updater'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.zone', ZoneInitiator::class)
+        ->set('sylius.shop_fixtures.initiator.zone', Initiator::class)
             ->args([
                 service('sylius.factory.zone'),
                 service('sylius.shop_fixtures.updater'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.zone_member', ZoneMemberInitiator::class)
+        ->set('sylius.shop_fixtures.initiator.zone_member', Initiator::class)
             ->args([
                 service('sylius.factory.zone_member'),
                 service('sylius.shop_fixtures.updater'),

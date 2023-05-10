@@ -22,6 +22,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAssociationTypeFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAttributeFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductReviewFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\PromotionActionFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\PromotionFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\PromotionRuleFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ShippingCategoryFactory;
@@ -186,11 +187,20 @@ return static function (ContainerConfigurator $container) {
             ->tag('foundry.factory')
         ->alias(ProductReviewFactory::class, 'sylius.shop_fixtures.factory.product_review')
 
+        ->set('sylius.shop_fixtures.factory.promotion_action', PromotionActionFactory::class)
+            ->args([
+                    service('sylius.shop_fixtures.default_values.promotion_action'),
+                    service('sylius.shop_fixtures.transformer.promotion_action'),
+                    service('sylius.shop_fixtures.initiator.promotion_action'),
+            ])
+            ->tag('foundry.factory')
+        ->alias(PromotionActionFactory::class, 'sylius.shop_fixtures.factory.promotion_action')
+
         ->set('sylius.shop_fixtures.factory.promotion', PromotionFactory::class)
             ->args([
-//                service('sylius.shop_fixtures.default_values.promotion'),
-//                service('sylius.shop_fixtures.transformer.promotion'),
-//                service('sylius.shop_fixtures.initiator.promotion'),
+                service('sylius.shop_fixtures.default_values.promotion'),
+                service('sylius.shop_fixtures.transformer.promotion'),
+                service('sylius.shop_fixtures.initiator.promotion'),
             ])
             ->tag('foundry.factory')
         ->alias(PromotionFactory::class, 'sylius.shop_fixtures.factory.promotion')

@@ -10,48 +10,38 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\CustomerGroupTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\CustomerTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ProductAttributeTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ProductTransformer;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\PromotionActionTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ShippingCategoryTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ShippingMethodTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ShopUserTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\TaxCategoryTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\TaxonTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\Transformer;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\TransformerInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ZoneTransformer;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
-        ->set('sylius.shop_fixtures.transformer', Transformer::class)
-        ->alias(TransformerInterface::class, 'sylius.shop_fixtures.transformer')
-
-        ->set('sylius.shop_fixtures.transformer.address')
-            ->parent('sylius.shop_fixtures.transformer')
+        ->set('sylius.shop_fixtures.transformer.address', Transformer::class)
 
         ->set('sylius.shop_fixtures.transformer.admin_user', AdminUserTransformer::class)
 
-        ->set('sylius.shop_fixtures.transformer.catalog_promotion_action')
-            ->parent('sylius.shop_fixtures.transformer')
+        ->set('sylius.shop_fixtures.transformer.catalog_promotion_action', Transformer::class)
 
         ->set('sylius.shop_fixtures.transformer.catalog_promotion', CatalogPromotionTransformer::class)
 
-        ->set('sylius.shop_fixtures.transformer.catalog_promotion_scope')
-            ->parent('sylius.shop_fixtures.transformer')
+        ->set('sylius.shop_fixtures.transformer.catalog_promotion_scope', Transformer::class)
 
-        ->set('sylius.shop_fixtures.transformer.channel')
-            ->parent('sylius.shop_fixtures.transformer')
+        ->set('sylius.shop_fixtures.transformer.channel', Transformer::class)
 
-        ->set('sylius.shop_fixtures.transformer.country')
-            ->parent('sylius.shop_fixtures.transformer')
+        ->set('sylius.shop_fixtures.transformer.country', Transformer::class)
 
-        ->set('sylius.shop_fixtures.transformer.currency')
-            ->parent('sylius.shop_fixtures.transformer')
+        ->set('sylius.shop_fixtures.transformer.currency', Transformer::class)
 
         ->set('sylius.shop_fixtures.transformer.customer', CustomerTransformer::class)
 
         ->set('sylius.shop_fixtures.transformer.customer_group', CustomerGroupTransformer::class)
 
-        ->set('sylius.shop_fixtures.transformer.locale')
-            ->parent('sylius.shop_fixtures.transformer')
+        ->set('sylius.shop_fixtures.transformer.locale', Transformer::class)
 
         ->set('sylius.shop_fixtures.transformer.product', ProductTransformer::class)
             ->args([
@@ -59,19 +49,19 @@ return static function (ContainerConfigurator $container) {
                 service('sylius.factory.product_attribute_value'),
             ])
 
-        ->set('sylius.shop_fixtures.transformer.product_association')
-            ->parent('sylius.shop_fixtures.transformer')
+        ->set('sylius.shop_fixtures.transformer.product_association', Transformer::class)
 
-        ->set('sylius.shop_fixtures.transformer.product_association_type')
-            ->parent('sylius.shop_fixtures.transformer')
+        ->set('sylius.shop_fixtures.transformer.product_association_type', Transformer::class)
 
         ->set('sylius.shop_fixtures.transformer.product_attribute', ProductAttributeTransformer::class)
 
-        ->set('sylius.shop_fixtures.transformer.product_review')
-            ->parent('sylius.shop_fixtures.transformer')
+        ->set('sylius.shop_fixtures.transformer.product_review', Transformer::class)
 
-        ->set('sylius.shop_fixtures.transformer.promotion_rule')
-            ->parent('sylius.shop_fixtures.transformer')
+        ->set('sylius.shop_fixtures.transformer.promotion', Transformer::class)
+
+        ->set('sylius.shop_fixtures.transformer.promotion_action', PromotionActionTransformer::class)
+
+        ->set('sylius.shop_fixtures.transformer.promotion_rule', Transformer::class)
 
         ->set('sylius.shop_fixtures.transformer.shipping_category', ShippingCategoryTransformer::class)
 
@@ -88,7 +78,6 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.transformer.zone', ZoneTransformer::class)
 
-        ->set('sylius.shop_fixtures.transformer.zone_member')
-            ->parent('sylius.shop_fixtures.transformer')
+        ->set('sylius.shop_fixtures.transformer.zone_member', Transformer::class)
     ;
 };

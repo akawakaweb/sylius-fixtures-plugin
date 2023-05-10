@@ -14,25 +14,22 @@ declare(strict_types=1);
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Initiator;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\UpdaterInterface;
-use Sylius\Component\Product\Model\ProductAssociationTypeInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
-use Webmozart\Assert\Assert;
 
-final class ProductAssociationTypeInitiator implements InitiatorInterface
+final class Initiator implements InitiatorInterface
 {
     public function __construct(
-        private FactoryInterface $productAssociationTypeFactory,
+        private FactoryInterface $factory,
         private UpdaterInterface $updater,
     ) {
     }
 
     public function __invoke(array $attributes, string $class): object
     {
-        $productAssociationType = $this->productAssociationTypeFactory->createNew();
-        Assert::isInstanceOf($productAssociationType, ProductAssociationTypeInterface::class);
+        $object = $this->factory->createNew();
 
-        ($this->updater)($productAssociationType, $attributes);
+        ($this->updater)($object, $attributes);
 
-        return $productAssociationType;
+        return $object;
     }
 }
