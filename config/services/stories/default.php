@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Sylius package.
+ * This file is part of ShopFixturesPlugin.
  *
- * (c) Paweł Jędrzejewski
+ * (c) Akawaka
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -35,12 +35,6 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultTaxCategoriesStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultTaxCategoriesStoryInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultTaxRatesStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultTaxRatesStoryInterface;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomAddressesStory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomCapsStory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomDressesStory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomJeansStory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomShopUsersStory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomTShirtsStory;
 
 return static function (ContainerConfigurator $container) {
     $container->services()

@@ -13,10 +13,12 @@ declare(strict_types=1);
 
 use PhpCsFixer\Fixer\ClassNotation\VisibilityRequiredFixer;
 use PhpCsFixer\Fixer\Comment\HeaderCommentFixer;
+use PhpCsFixer\Fixer\FunctionNotation\MethodArgumentSpaceFixer;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
 
 return static function (ECSConfig $ecsConfig): void {
     $ecsConfig->paths([
+        __DIR__ . '/config',
         __DIR__ . '/src',
         __DIR__ . '/tests/Behat',
         __DIR__ . '/tests/Doctrine',
@@ -27,8 +29,9 @@ return static function (ECSConfig $ecsConfig): void {
 
     $ecsConfig->import('vendor/sylius-labs/coding-standard/ecs.php');
 
-    $ecsConfig->skip([
+    $ecsConfig->skip(skips: [
         VisibilityRequiredFixer::class => ['*Spec.php'],
+        MethodArgumentSpaceFixer::class => ['config/services/*'],
     ]);
 
     $header = <<<EOM

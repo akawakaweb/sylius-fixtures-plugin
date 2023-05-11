@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of ShopFixturesPlugin.
+ *
+ * (c) Akawaka
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
@@ -98,13 +107,13 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.initiator.product', Initiator::class)
             ->args([
                 service('sylius.factory.product'),
-                service('sylius.shop_fixtures.updater.product')
+                service('sylius.shop_fixtures.updater.product'),
             ])
 
         ->set('sylius.shop_fixtures.initiator.product_review', Initiator::class)
             ->args([
                 service('sylius.factory.product_review'),
-                service('sylius.shop_fixtures.updater.product_review')
+                service('sylius.shop_fixtures.updater.product_review'),
             ])
 
         ->set('sylius.shop_fixtures.initiator.promotion', Initiator::class)
@@ -116,13 +125,13 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.initiator.promotion_action', Initiator::class)
             ->args([
                 service('sylius.factory.promotion_action'),
-                service('sylius.shop_fixtures.updater.promotion_action')
+                service('sylius.shop_fixtures.updater.promotion_action'),
             ])
 
         ->set('sylius.shop_fixtures.initiator.promotion_rule', Initiator::class)
             ->args([
                 service('sylius.factory.promotion_rule'),
-                service('sylius.shop_fixtures.updater.promotion_rule')
+                service('sylius.shop_fixtures.updater.promotion_rule'),
             ])
 
         ->set('sylius.shop_fixtures.initiator.shipping_category', Initiator::class)
