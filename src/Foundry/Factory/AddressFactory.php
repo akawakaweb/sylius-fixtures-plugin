@@ -42,6 +42,11 @@ final class AddressFactory extends AbstractModelFactory implements FactoryWithMo
 {
     use WithModelClassTrait;
 
+    public function withCountryCode(string $countryCode): self
+    {
+        return $this->addState(['countryCode' => $countryCode]);
+    }
+
     protected static function getClass(): string
     {
         return self::$modelClass ?? Address::class;

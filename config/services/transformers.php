@@ -17,6 +17,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\AdminUserTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\CatalogPromotionTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\CustomerGroupTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\CustomerTransformer;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\OrderTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\PaymentMethodTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ProductAttributeTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ProductTransformer;
@@ -53,6 +54,8 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.transformer.customer_group', CustomerGroupTransformer::class)
 
         ->set('sylius.shop_fixtures.transformer.locale', Transformer::class)
+
+        ->set('sylius.shop_fixtures.transformer.order', OrderTransformer::class)
 
         ->set('sylius.shop_fixtures.transformer.payment_method', PaymentMethodTransformer::class)
 
