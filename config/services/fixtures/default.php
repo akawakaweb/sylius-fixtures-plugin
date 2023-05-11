@@ -20,6 +20,7 @@ use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures\DefaultCustomerGroupsFixture
 use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures\DefaultGeographicalFixtures;
 use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures\DefaultLocalesFixtures;
 use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures\DefaultMenuTaxonFixtures;
+use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures\DefaultPaymentMethodsFixtures;
 use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures\DefaultShippingMethodsFixtures;
 use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures\DefaultShopUsersFixtures;
 use Akawakaweb\ShopFixturesPlugin\Doctrine\Fixtures\DefaultTaxCategoriesFixtures;
@@ -82,6 +83,14 @@ return static function (ContainerConfigurator $container) {
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'sylius'])
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'shop_configuration'])
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'default_channels'])
+
+        ->set('sylius.shop_fixtures.doctrine.fixtures.default_payment_methods', DefaultPaymentMethodsFixtures::class)
+            ->args([
+                service('sylius.shop_fixtures.story.default_payment_methods'),
+            ])
+            ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'sylius'])
+            ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'shop_configuration'])
+            ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'default_payment_methods'])
 
         ->set('sylius.shop_fixtures.doctrine.fixtures.default_shop_users', DefaultShopUsersFixtures::class)
             ->args([

@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\Initiator;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\PaymentMethodInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ProductAttributeInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ShopUserInitiator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\TaxonInitiator;
@@ -84,6 +85,12 @@ return static function (ContainerConfigurator $container) {
             ->args([
                 service('sylius.factory.locale'),
                 service('sylius.shop_fixtures.updater.locale'),
+            ])
+
+        ->set('sylius.shop_fixtures.initiator.payment_method', PaymentMethodInitiator::class)
+            ->args([
+                service('sylius.factory.payment_method'),
+                service('sylius.shop_fixtures.updater.payment_method'),
             ])
 
         ->set('sylius.shop_fixtures.initiator.product_association', Initiator::class)

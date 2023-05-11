@@ -27,6 +27,8 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultLocalesStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultLocalesStoryInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultMenuTaxonStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultMenuTaxonStoryInterface;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultPaymentMethodsStory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultPaymentMethodsStoryInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultShippingMethodsStory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultShippingMethodsStoryInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultShopUsersStory;
@@ -65,6 +67,10 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.story.default_menu_taxon', DefaultMenuTaxonStory::class)
             ->tag('foundry.story')
         ->alias(DefaultMenuTaxonStoryInterface::class, 'sylius.shop_fixtures.foundry.story.default_menu_taxon')
+
+        ->set('sylius.shop_fixtures.story.default_payment_methods', DefaultPaymentMethodsStory::class)
+            ->tag('foundry.story')
+        ->alias(DefaultPaymentMethodsStoryInterface::class, 'sylius.shop_fixtures.foundry.story.default_payment_methods')
 
         ->set('sylius.shop_fixtures.story.default_shipping_methods', DefaultShippingMethodsStory::class)
             ->tag('foundry.story')

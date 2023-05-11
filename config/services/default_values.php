@@ -24,6 +24,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\CurrencyDefaultValues;
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\CustomerDefaultValues;
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\CustomerGroupDefaultValues;
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\LocaleDefaultValues;
+use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\PaymentMethodDefaultValues;
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ProductAssociationDefaultValues;
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ProductAssociationTypeDefaultValues;
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ProductAttributeDefaultValues;
@@ -64,6 +65,8 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.default_values.customer_group', CustomerGroupDefaultValues::class)
 
         ->set('sylius.shop_fixtures.default_values.locale', LocaleDefaultValues::class)
+
+        ->set('sylius.shop_fixtures.default_values.payment_method', PaymentMethodDefaultValues::class)
 
         ->set('sylius.shop_fixtures.default_values.product_association', ProductAssociationDefaultValues::class)
 

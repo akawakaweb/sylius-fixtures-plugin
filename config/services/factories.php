@@ -26,6 +26,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CustomerFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CustomerGroupFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\FactoryWithModelClassAwareInterface;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\PaymentMethodFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAssociationFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAssociationTypeFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAttributeFactory;
@@ -151,6 +152,15 @@ return static function (ContainerConfigurator $container) {
             ])
             ->tag('foundry.factory')
         ->alias(LocaleFactory::class, 'sylius.shop_fixtures.factory.locale')
+
+        ->set('sylius.shop_fixtures.factory.payment_method', PaymentMethodFactory::class)
+            ->args([
+                service('sylius.shop_fixtures.default_values.payment_method'),
+                service('sylius.shop_fixtures.transformer.payment_method'),
+                service('sylius.shop_fixtures.initiator.payment_method'),
+            ])
+            ->tag('foundry.factory')
+        ->alias(PaymentMethodFactory::class, 'sylius.shop_fixtures.factory.payment_method')
 
         ->set('sylius.shop_fixtures.factory.product', ProductFactory::class)
             ->args([
