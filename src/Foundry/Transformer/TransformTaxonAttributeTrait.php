@@ -22,7 +22,7 @@ trait TransformTaxonAttributeTrait
         $key ??= 'taxon';
 
         if (\is_string($attributes[$key] ?? null)) {
-            $attributes[$key] = TaxonFactory::randomOrCreate(['code' => $attributes[$key]]);
+            $attributes[$key] = TaxonFactory::findOrCreate(['code' => $attributes[$key]]);
         }
 
         return $attributes;

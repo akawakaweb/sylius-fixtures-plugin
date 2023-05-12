@@ -27,7 +27,7 @@ trait TransformChannelsAttributeTrait
          */
         foreach ($channels ?? [] as $key => $channel) {
             if (\is_string($channel)) {
-                $channel = ChannelFactory::randomOrCreate(['code' => $channel]);
+                $channel = ChannelFactory::findOrCreate(['code' => $channel]);
                 $channels[$key] = $channel;
             }
         }

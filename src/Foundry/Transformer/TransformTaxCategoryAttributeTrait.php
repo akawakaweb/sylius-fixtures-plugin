@@ -20,7 +20,7 @@ trait TransformTaxCategoryAttributeTrait
     private function transformTaxCategoryAttribute(array $attributes, string $key = 'taxCategory'): array
     {
         if (\is_string($attributes[$key] ?? null)) {
-            $attributes[$key] = TaxCategoryFactory::randomOrCreate(['code' => $attributes[$key]]);
+            $attributes[$key] = TaxCategoryFactory::findOrCreate(['code' => $attributes[$key]]);
         }
 
         return $attributes;
