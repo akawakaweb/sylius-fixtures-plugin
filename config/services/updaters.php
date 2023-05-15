@@ -76,6 +76,8 @@ return static function (ContainerConfigurator $container) {
             ->args([
                 service('sylius.shop_fixtures.updater'),
                 service('sm.factory'),
+                service('sylius.repository.shipping_method'),
+                service('sylius.repository.payment_method'),
             ])
 
         ->set('sylius.shop_fixtures.updater.payment_method', PaymentMethodUpdater::class)
