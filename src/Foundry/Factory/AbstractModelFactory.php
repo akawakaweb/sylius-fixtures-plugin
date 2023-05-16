@@ -38,7 +38,7 @@ abstract class AbstractModelFactory extends ModelFactory
         return ($this->defaultValues)(self::faker());
     }
 
-    protected function initialize(): self
+    protected function initialize(): ModelFactory
     {
         return $this
             ->beforeInstantiate([$this->transformer, 'transform'])

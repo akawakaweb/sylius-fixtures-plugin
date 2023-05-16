@@ -31,8 +31,14 @@ final class PaymentMethodUpdater implements UpdaterInterface
             return ($this->decorated)($object, $attributes);
         }
 
-        $object->getGatewayConfig()->setConfig($attributes['gatewayConfig'] ?? []);
-        $object->getGatewayConfig()->setGatewayName($attributes['gatewayName']);
+        $gatewayConfig = $attributes['gatewayConfig'] ?? [];
+        Assert::isArray($gatewayConfig);
+
+        $gatewayName = $attributes['gatewayName'] ?? '';
+        Assert::string($gatewayName);
+
+        $object->getGatewayConfig()?->setConfig($gatewayConfig);
+        $object->getGatewayConfig()?->setGatewayName($gatewayName);
 
         /** @var LocaleInterface $locale */
         foreach (LocaleFactory::all() as $locale) {

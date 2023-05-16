@@ -20,7 +20,7 @@ final class PaymentMethodDefaultValues implements DefaultValuesInterface
     public function __invoke(Generator $faker): array
     {
         return [
-            'name' => (string) $faker->words(3, true),
+            'name' => $faker->words(3, true),
             'createdAt' => $faker->dateTime(),
             'enabled' => $faker->boolean(),
             'position' => $faker->randomNumber(),
