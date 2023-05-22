@@ -39,6 +39,13 @@ final class DefaultChannelsStoryTest extends KernelTestCase
         $channel = $channels[0];
         $this->assertInstanceOf(ChannelInterface::class, $channel);
         $this->assertEquals('FASHION_WEB', $channel->getCode());
+        $this->assertEquals('Fashion Web Store', $channel->getName());
+        $this->assertEquals('en_US', $channel->getLocales()->first()->getCode());
+        $this->assertEquals('localhost', $channel->getHostname());
+        $this->assertNull($channel->getThemeName());
+        $this->assertEquals('MENU_CATEGORY', $channel->getMenuTaxon()->getCode());
+        $this->assertEquals('+41 123 456 789', $channel->getContactPhoneNumber());
+        $this->assertEquals('contact@example.com', $channel->getContactEmail());
     }
 
     private function getChannelRepository(): RepositoryInterface

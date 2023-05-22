@@ -13,9 +13,11 @@ declare(strict_types=1);
 
 namespace Tests\Acme\SyliusExamplePlugin\Foundry\Factory;
 
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ChannelFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ShippingCategoryFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ShippingMethodFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxCategoryFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ZoneFactory;
 use Sylius\Component\Core\Model\ShippingMethodInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -39,7 +41,7 @@ final class ShippingMethodFactoryTest extends KernelTestCase
         $this->assertNotNull($shippingMethod->getCalculator());
         $this->assertNotNull($shippingMethod->getZone());
         $this->assertNotNull($shippingMethod->getName());
-        //$this->assertNotNull($shippingMethod->getDescription());
+        $this->assertNull($shippingMethod->getDescription());
         //$this->assertCount(3, $shippingMethod->getChannels());
         $this->assertSame('flat_rate', $shippingMethod->getCalculator());
         //$this->assertCount(3, $shippingMethod->getConfiguration());
@@ -91,48 +93,48 @@ final class ShippingMethodFactoryTest extends KernelTestCase
         $this->assertEquals($zone, $shippingMethod->getZone());
     }
 
-//    /** @test */
-//    function it_creates_shipping_method_with_zone_as_string(): void
-//    {
-//        $shippingMethod = ShippingMethodFactory::new()->withZone('world')->create();
-//
-//        $this->assertEquals('world', $shippingMethod->getZone()->getCode());
-//    }
+    /** @test */
+    function it_creates_shipping_method_with_zone_as_string(): void
+    {
+        $shippingMethod = ShippingMethodFactory::new()->withZone('world')->create();
 
-//    /** @test */
-//    function it_creates_shipping_method_with_tax_category_as_proxy(): void
-//    {
-//        $taxCategory = TaxCategoryFactory::createOne();
-//        $shippingMethod = ShippingMethodFactory::new()->withTaxCategory($taxCategory)->create();
-//
-//        $this->assertEquals($taxCategory->object(), $shippingMethod->getTaxCategory());
-//    }
+        $this->assertEquals('world', $shippingMethod->getZone()->getCode());
+    }
 
-//    /** @test */
-//    function it_creates_shipping_method_with_tax_category(): void
-//    {
-//        $taxCategory = TaxCategoryFactory::createOne()->object();
-//        $shippingMethod = ShippingMethodFactory::new()->withTaxCategory($taxCategory)->create();
-//
-//        $this->assertEquals($taxCategory, $shippingMethod->getTaxCategory());
-//    }
+    /** @test */
+    function it_creates_shipping_method_with_tax_category_as_proxy(): void
+    {
+        $taxCategory = TaxCategoryFactory::createOne();
+        $shippingMethod = ShippingMethodFactory::new()->withTaxCategory($taxCategory)->create();
 
-//    /** @test */
-//    function it_creates_shipping_method_with_tax_category_as_string(): void
-//    {;
-//        $shippingMethod = ShippingMethodFactory::new()->withTaxCategory('TC1')->create();
-//
-//        $this->assertEquals('TC1', $shippingMethod->getTaxCategory()->getCode());
-//    }
-//
-//    /** @test */
-//    function it_creates_shipping_method_with_category_as_proxy(): void
-//    {
-//        $shippingCategory = ShippingCategoryFactory::createOne();
-//        $shippingMethod = ShippingMethodFactory::new()->withCategory($shippingCategory)->create();
-//
-//        $this->assertEquals($shippingCategory->object(), $shippingMethod->getCategory());
-//    }
+        $this->assertEquals($taxCategory->object(), $shippingMethod->getTaxCategory());
+    }
+
+    /** @test */
+    function it_creates_shipping_method_with_tax_category(): void
+    {
+        $taxCategory = TaxCategoryFactory::createOne()->object();
+        $shippingMethod = ShippingMethodFactory::new()->withTaxCategory($taxCategory)->create();
+
+        $this->assertEquals($taxCategory, $shippingMethod->getTaxCategory());
+    }
+
+    /** @test */
+    function it_creates_shipping_method_with_tax_category_as_string(): void
+    {;
+        $shippingMethod = ShippingMethodFactory::new()->withTaxCategory('TC1')->create();
+
+        $this->assertEquals('TC1', $shippingMethod->getTaxCategory()->getCode());
+    }
+
+    /** @test */
+    function it_creates_shipping_method_with_category_as_proxy(): void
+    {
+        $shippingCategory = ShippingCategoryFactory::createOne();
+        $shippingMethod = ShippingMethodFactory::new()->withCategory($shippingCategory)->create();
+
+        $this->assertEquals($shippingCategory->object(), $shippingMethod->getCategory());
+    }
 
     /** @test */
     public function it_creates_shipping_method_with_category(): void
@@ -143,39 +145,39 @@ final class ShippingMethodFactoryTest extends KernelTestCase
         $this->assertEquals($shippingCategory, $shippingMethod->getCategory());
     }
 
-//    /** @test */
-//    function it_creates_shipping_method_with_category_as_string(): void
-//    {
-//        $shippingMethod = ShippingMethodFactory::new()->withCategory('SC1')->create();
-//
-//        $this->assertEquals('SC1', $shippingMethod->getCategory()->getCode());
-//    }
+    /** @test */
+    function it_creates_shipping_method_with_category_as_string(): void
+    {
+        $shippingMethod = ShippingMethodFactory::new()->withCategory('SC1')->create();
 
-//    /** @test */
-//    function it_creates_shipping_method_with_given_channels_as_proxy(): void
-//    {
-//        $channel = ChannelFactory::createOne();
-//        $shippingMethod = ShippingMethodFactory::new()->withChannels([$channel])->create();
-//
-//        $this->assertEquals($channel->object(), $shippingMethod->getChannels()->first());
-//    }
+        $this->assertEquals('SC1', $shippingMethod->getCategory()->getCode());
+    }
 
-//    /** @test */
-//    function it_creates_shipping_method_with_given_channels(): void
-//    {
-//        $channel = ChannelFactory::createOne()->object();
-//        $shippingMethod = ShippingMethodFactory::new()->withChannels([$channel])->create();
-//
-//        $this->assertEquals($channel, $shippingMethod->getChannels()->first());
-//    }
+    /** @test */
+    function it_creates_shipping_method_with_given_channels_as_proxy(): void
+    {
+        $channel = ChannelFactory::createOne();
+        $shippingMethod = ShippingMethodFactory::new()->withChannels([$channel])->create();
 
-//    /** @test */
-//    function it_creates_shipping_method_with_given_channel_as_string(): void
-//    {
-//        $shippingMethod = ShippingMethodFactory::new()->withChannels(['default'])->create();
-//
-//        $this->assertEquals('default', $shippingMethod->getChannels()->first()->getCode());
-//    }
+        $this->assertEquals($channel->object(), $shippingMethod->getChannels()->first());
+    }
+
+    /** @test */
+    function it_creates_shipping_method_with_given_channels(): void
+    {
+        $channel = ChannelFactory::createOne()->object();
+        $shippingMethod = ShippingMethodFactory::new()->withChannels([$channel])->create();
+
+        $this->assertEquals($channel, $shippingMethod->getChannels()->first());
+    }
+
+    /** @test */
+    function it_creates_shipping_method_with_given_channel_as_string(): void
+    {
+        $shippingMethod = ShippingMethodFactory::new()->withChannels(['default'])->create();
+
+        $this->assertEquals('default', $shippingMethod->getChannels()->first()->getCode());
+    }
 
     /** @test */
     public function it_creates_shipping_method_with_archive_date(): void

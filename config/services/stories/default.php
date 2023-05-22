@@ -45,6 +45,11 @@ return static function (ContainerConfigurator $container) {
         ->alias(DefaultAdminUsersStoryInterface::class, 'sylius.shop_fixtures.foundry.story.default_admin_users')
 
         ->set('sylius.shop_fixtures.story.default_channels', DefaultChannelsStory::class)
+            ->args([
+                param('sylius_locale.locale'),
+                param('env(resolve:SYLIUS_FIXTURES_HOSTNAME)'),
+                param('env(resolve:SYLIUS_FIXTURES_THEME_NAME)'),
+            ])
             ->tag('foundry.story')
         ->alias(DefaultChannelsStoryInterface::class, 'sylius.shop_fixtures.foundry.story.default_channels')
 

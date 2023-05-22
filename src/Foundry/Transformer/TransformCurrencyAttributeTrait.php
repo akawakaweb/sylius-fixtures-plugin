@@ -13,16 +13,16 @@ declare(strict_types=1);
 
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Transformer;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ZoneFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CurrencyFactory;
 
-trait TransformZoneAttributeTrait
+trait TransformCurrencyAttributeTrait
 {
-    private function transformZoneAttribute(array $attributes, ?string $key = null): array
+    private function transformCurrencyAttribute(array $attributes, ?string $key = null): array
     {
-        $key ??= 'zone';
+        $key ??= 'currency';
 
         if (\is_string($attributes[$key] ?? null)) {
-            $attributes[$key] = ZoneFactory::findOrCreate(['code' => $attributes[$key]]);
+            $attributes[$key] = CurrencyFactory::findOrCreate(['code' => $attributes[$key]]);
         }
 
         return $attributes;

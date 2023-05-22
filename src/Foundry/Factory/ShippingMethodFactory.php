@@ -14,9 +14,11 @@ declare(strict_types=1);
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\ToggableTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithChannelsTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithDescriptionTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithNameTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithTaxCategoryTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithZoneTrait;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\ShippingMethodRepository;
 use Sylius\Component\Core\Model\ShippingMethod;
@@ -51,6 +53,8 @@ final class ShippingMethodFactory extends AbstractModelFactory implements Factor
     use WithNameTrait;
     use WithDescriptionTrait;
     use WithZoneTrait;
+    use WithTaxCategoryTrait;
+    use WithChannelsTrait;
     use ToggableTrait;
 
     public function withCategory(Proxy|ShippingCategoryInterface|string $category): self

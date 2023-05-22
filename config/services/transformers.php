@@ -15,6 +15,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\AdminUserTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\CatalogPromotionTransformer;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ChannelTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\CustomerGroupTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\CustomerTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\OrderTransformer;
@@ -43,7 +44,7 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.transformer.catalog_promotion_scope', Transformer::class)
 
-        ->set('sylius.shop_fixtures.transformer.channel', Transformer::class)
+        ->set('sylius.shop_fixtures.transformer.channel', ChannelTransformer::class)
 
         ->set('sylius.shop_fixtures.transformer.country', Transformer::class)
 

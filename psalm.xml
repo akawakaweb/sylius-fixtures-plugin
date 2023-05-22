@@ -56,7 +56,9 @@
 
         <MixedArrayAssignment>
             <errorLevel type="suppress">
+                <file name="src/Foundry/Transformer/TransformCurrenciesAttributeTrait.php" />
                 <file name="src/Foundry/Transformer/TransformChannelsAttributeTrait.php" />
+                <file name="src/Foundry/Transformer/TransformLocalesAttributeTrait.php" />
             </errorLevel>
         </MixedArrayAssignment>
 

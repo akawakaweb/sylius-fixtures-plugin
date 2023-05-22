@@ -14,24 +14,28 @@ declare(strict_types=1);
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Story;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ChannelFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CurrencyFactory;
 use Zenstruck\Foundry\Story;
 
 final class DefaultChannelsStory extends Story implements DefaultChannelsStoryInterface
 {
+    public function __construct(
+        private string $basedLocaleCode,
+        private string $fixturesHostname,
+        private ?string $fixturesThemeName,
+    ) {
+    }
+
     public function build(): void
     {
-        $baseCurrency = CurrencyFactory::findOrCreate(['code' => 'USD']);
-
         ChannelFactory::new()
             ->withName('Fashion Web Store')
             ->withCode('FASHION_WEB')
-            //->withLocales([$this->basedLocaleCode])
-            ->withAttributes(['baseCurrency' => $baseCurrency])
-            ->withCurrencies([$baseCurrency])
+            ->withLocales([$this->basedLocaleCode])
+            ->withAttributes(['baseCurrency' => 'USD'])
+            ->withCurrencies(['USD'])
             ->enabled()
-            //->withHostname($this->fixturesHostname)
-            //->withThemeName($this->fixturesThemeName)
+            ->withHostname($this->fixturesHostname)
+            ->withThemeName($this->fixturesThemeName)
 //            ->withShopBillingData([
 //                'company' => 'Sylius',
 //                'tax_id' => '0001112222',
@@ -40,7 +44,7 @@ final class DefaultChannelsStory extends Story implements DefaultChannelsStoryIn
 //                'city' => 'eCommerce Town',
 //                'postcode' => '00 33 22',
 //            ])
-            //->withMenuTaxon('MENU_CATEGORY')
+            ->withMenuTaxon('MENU_CATEGORY')
             ->withContactPhoneNumber('+41 123 456 789')
             ->withContactEmail('contact@example.com')
             ->create()

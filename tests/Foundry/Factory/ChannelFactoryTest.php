@@ -49,7 +49,7 @@ final class ChannelFactoryTest extends KernelTestCase
         $this->assertNull($channel->getContactEmail());
         $this->assertNull($channel->getContactPhoneNumber());
         $this->assertNull($channel->getShopBillingData());
-        //$this->assertNotNull($channel->getMenuTaxon());
+        $this->assertNull($channel->getMenuTaxon());
     }
 
     /** @test */
@@ -146,15 +146,15 @@ final class ChannelFactoryTest extends KernelTestCase
         $this->assertEquals('world', $channel->getDefaultTaxZone()->getCode());
     }
 
-//    /** @test */
-//    function it_creates_channel_with_given_already_existing_default_tax_zone_code(): void
-//    {
-//        ZoneFactory::new()->withCode('world')->create();
-//
-//        $channel = ChannelFactory::new()->withDefaultTaxZone('world')->create();
-//
-//        $this->assertEquals('world', $channel->getDefaultTaxZone()->getCode());
-//    }
+    /** @test */
+    function it_creates_channel_with_given_already_existing_default_tax_zone_code(): void
+    {
+        ZoneFactory::new()->withCode('world')->create();
+
+        $channel = ChannelFactory::new()->withDefaultTaxZone('world')->create();
+
+        $this->assertEquals('world', $channel->getDefaultTaxZone()->getCode());
+    }
 
     /** @test */
     public function it_creates_channel_with_given_tax_calculation_strategy(): void
@@ -225,14 +225,14 @@ final class ChannelFactoryTest extends KernelTestCase
         $this->assertEquals($locale->object(), $channel->getLocales()->first());
     }
 
-//    /** @test */
-//    function it_creates_channel_with_given_locales_as_string(): void
-//    {
-//        $channel = ChannelFactory::new()->withLocales(['fr_FR'])->create();
-//
-//        // a default locale has been created first, so it is the last one or the only one
-//        $this->assertEquals('fr_FR', $channel->getLocales()->last()->getCode());
-//    }
+    /** @test */
+    function it_creates_channel_with_given_locales_as_string(): void
+    {
+        $channel = ChannelFactory::new()->withLocales(['fr_FR'])->create();
+
+        // a default locale has been created first, so it is the last one or the only one
+        $this->assertEquals('fr_FR', $channel->getLocales()->last()->getCode());
+    }
 
     /** @test */
     public function it_creates_channel_with_given_proxy_currencies(): void
@@ -243,13 +243,13 @@ final class ChannelFactoryTest extends KernelTestCase
         $this->assertEquals($currency->object(), $channel->getCurrencies()->first());
     }
 
-//    /** @test */
-//    function it_creates_channel_with_given_currencies_as_string(): void
-//    {
-//        $channel = ChannelFactory::new()->withCurrencies(['USD'])->create();
-//
-//        $this->assertEquals('USD', $channel->getCurrencies()->first()->getCode());
-//    }
+    /** @test */
+    function it_creates_channel_with_given_currencies_as_string(): void
+    {
+        $channel = ChannelFactory::new()->withCurrencies(['USD'])->create();
+
+        $this->assertEquals('USD', $channel->getCurrencies()->first()->getCode());
+    }
 
     /** @test */
     public function it_creates_channel_with_given_proxy_menu_taxon(): void
@@ -269,19 +269,11 @@ final class ChannelFactoryTest extends KernelTestCase
         $this->assertEquals($taxon, $channel->getMenuTaxon());
     }
 
-//    /** @test */
-//    function it_creates_channel_with_given_menu_taxon_as_string(): void
-//    {
-//        $channel = ChannelFactory::new()->withMenuTaxon('MENU_CATEGORY')->create();
-//
-//        $this->assertEquals('MENU_CATEGORY', $channel->getMenuTaxon()->getCode());
-//    }
+    /** @test */
+    function it_creates_channel_with_given_menu_taxon_as_string(): void
+    {
+        $channel = ChannelFactory::new()->withMenuTaxon('MENU_CATEGORY')->create();
 
-//    /** @test */
-//    function it_creates_channel_without_menu_taxon(): void
-//    {
-//        $channel = ChannelFactory::new()->withoutMenuTaxon()->create();
-//
-//        $this->assertNull($channel->getMenuTaxon());
-//    }
+        $this->assertEquals('MENU_CATEGORY', $channel->getMenuTaxon()->getCode());
+    }
 }

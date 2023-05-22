@@ -17,8 +17,10 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxCategoryFactory;
 
 trait TransformTaxCategoryAttributeTrait
 {
-    private function transformTaxCategoryAttribute(array $attributes, string $key = 'taxCategory'): array
+    private function transformTaxCategoryAttribute(array $attributes, ?string $key = null): array
     {
+        $key ??= 'taxCategory';
+
         if (\is_string($attributes[$key] ?? null)) {
             $attributes[$key] = TaxCategoryFactory::findOrCreate(['code' => $attributes[$key]]);
         }
