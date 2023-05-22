@@ -24,6 +24,7 @@ use Sylius\Component\Core\Model\Channel;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ShopBillingDataInterface;
 use Sylius\Component\Core\Model\TaxonInterface;
+use Sylius\Component\Locale\Model\LocaleInterface;
 use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;
 
@@ -54,6 +55,11 @@ final class ChannelFactory extends AbstractModelFactory implements FactoryWithMo
     use WithLocalesTrait;
     use WithCurrenciesTrait;
     use ToggableTrait;
+
+    public function withBaseLocale(Proxy|LocaleInterface|string $baseLocale): self
+    {
+        return $this->addState(['baseLocale' => $baseLocale]);
+    }
 
     public function withHostname(string $hostname): self
     {
