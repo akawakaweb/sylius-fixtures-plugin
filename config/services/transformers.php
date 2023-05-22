@@ -21,6 +21,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\CustomerTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\OrderTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\PaymentMethodTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ProductAttributeTransformer;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ProductOptionTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ProductTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\PromotionActionTransformer;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\ShippingCategoryTransformer;
@@ -73,6 +74,10 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.transformer.product_association_type', Transformer::class)
 
         ->set('sylius.shop_fixtures.transformer.product_attribute', ProductAttributeTransformer::class)
+
+        ->set('sylius.shop_fixtures.transformer.product_option', ProductOptionTransformer::class)
+
+        ->set('sylius.shop_fixtures.transformer.product_option_value', Transformer::class)
 
         ->set('sylius.shop_fixtures.transformer.product_review', Transformer::class)
 

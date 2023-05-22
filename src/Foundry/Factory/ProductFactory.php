@@ -22,6 +22,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithNameTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithProductAttributesTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithShortDescriptionTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithSlugTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithTaxaTrait;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithTaxCategoryTrait;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository;
 use Sylius\Component\Core\Model\Product;
@@ -62,6 +63,7 @@ final class ProductFactory extends AbstractModelFactory implements FactoryWithMo
     use WithImagesTrait;
     use WithProductAttributesTrait;
     use WithTaxCategoryTrait;
+    use WithTaxaTrait;
 
     public function tracked(): self
     {
@@ -91,6 +93,11 @@ final class ProductFactory extends AbstractModelFactory implements FactoryWithMo
     public function withMainTaxon(Proxy|TaxonInterface|string $mainTaxon): self
     {
         return $this->addState(['mainTaxon' => $mainTaxon]);
+    }
+
+    public function withProductOptions(array $productOptions): self
+    {
+        return $this->addState(['productOptions' => $productOptions]);
     }
 
     protected static function getClass(): string

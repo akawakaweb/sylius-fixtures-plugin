@@ -52,14 +52,6 @@ return static function (ContainerConfigurator $container) {
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'shop_configuration'])
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'default_geographical'])
 
-        ->set('sylius.shop_fixtures.doctrine.fixtures.default_shipping_methods', DefaultShippingMethodsFixtures::class)
-            ->args([
-                service('sylius.shop_fixtures.story.default_shipping_methods'),
-            ])
-            ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'sylius'])
-            ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'shop_configuration'])
-            ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'default_shipping_methods'])
-
         ->set('sylius.shop_fixtures.doctrine.fixtures.default_customer_groups', DefaultCustomerGroupsFixtures::class)
             ->args([
                 service('sylius.shop_fixtures.story.default_customer_groups'),
@@ -83,6 +75,14 @@ return static function (ContainerConfigurator $container) {
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'sylius'])
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'shop_configuration'])
             ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'default_channels'])
+
+        ->set('sylius.shop_fixtures.doctrine.fixtures.default_shipping_methods', DefaultShippingMethodsFixtures::class)
+            ->args([
+                service('sylius.shop_fixtures.story.default_shipping_methods'),
+            ])
+            ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'sylius'])
+            ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'shop_configuration'])
+            ->tag(name: 'doctrine.fixture.orm', attributes: ['group' => 'default_shipping_methods'])
 
         ->set('sylius.shop_fixtures.doctrine.fixtures.default_payment_methods', DefaultPaymentMethodsFixtures::class)
             ->args([

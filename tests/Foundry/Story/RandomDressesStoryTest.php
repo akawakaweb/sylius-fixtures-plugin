@@ -44,8 +44,10 @@ final class RandomDressesStoryTest extends KernelTestCase
         $this->assertEquals('clothing', $product->getVariants()[0]->getTaxCategory()->getCode());
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('dresses', $product->getMainTaxon()->getCode());
+        $this->assertEquals('dresses', $product->getTaxons()->first()->getCode());
         $this->assertStringEndsWith('dress_01.jpg', $product->getImagesByType('main')[0]->getPath());
         $this->assertCount(3, $product->getAttributes());
+        $this->assertCount(2, $product->getOptions());
 
         $product = $products[1];
         $this->assertInstanceOf(ProductInterface::class, $product);
@@ -53,8 +55,10 @@ final class RandomDressesStoryTest extends KernelTestCase
         $this->assertEquals('clothing', $product->getVariants()[0]->getTaxCategory()->getCode());
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('dresses', $product->getMainTaxon()->getCode());
+        $this->assertEquals('dresses', $product->getTaxons()->first()->getCode());
         $this->assertStringEndsWith('dress_02.jpg', $product->getImagesByType('main')[0]->getPath());
         $this->assertCount(3, $product->getAttributes());
+        $this->assertCount(2, $product->getOptions());
 
         $product = $products[2];
         $this->assertInstanceOf(ProductInterface::class, $product);
@@ -62,8 +66,10 @@ final class RandomDressesStoryTest extends KernelTestCase
         $this->assertEquals('clothing', $product->getVariants()[0]->getTaxCategory()->getCode());
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('dresses', $product->getMainTaxon()->getCode());
+        $this->assertEquals('dresses', $product->getTaxons()->first()->getCode());
         $this->assertStringEndsWith('dress_03.jpg', $product->getImagesByType('main')[0]->getPath());
         $this->assertCount(4, $product->getAttributes());
+        $this->assertCount(2, $product->getOptions());
     }
 
     private function getProductRepository(): RepositoryInterface

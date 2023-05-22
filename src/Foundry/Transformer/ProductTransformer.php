@@ -15,6 +15,7 @@ namespace Akawakaweb\ShopFixturesPlugin\Foundry\Transformer;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAttributeFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductOptionFactory;
 use Faker\Factory;
 use Faker\Generator;
 use Sylius\Component\Attribute\AttributeType\SelectAttributeType;
@@ -31,6 +32,7 @@ final class ProductTransformer implements TransformerInterface
     use TransformTaxonAttributeTrait;
     use TransformTaxCategoryAttributeTrait;
     use TransformChannelsAttributeTrait;
+    use TransformTaxaAttributeTrait;
     use TransformNameToCodeAttributeTrait;
     use TransformNameToSlugAttributeTrait;
 
@@ -48,10 +50,29 @@ final class ProductTransformer implements TransformerInterface
         $attributes = $this->transformTaxonAttribute($attributes, 'mainTaxon');
         $attributes = $this->transformTaxCategoryAttribute($attributes);
         $attributes = $this->transformProductAttributeValues($attributes);
+        $attributes = $this->transformProductOptionsAttribute($attributes);
         $attributes = $this->transformChannelsAttribute($attributes);
+        $attributes = $this->transformTaxaAttribute($attributes);
         $attributes = $this->transformNameToCodeAttribute($attributes);
 
         return $this->transformNameToSlugAttribute($attributes, $this->slugGenerator);
+    }
+
+    private function transformProductOptionsAttribute(array $attributes): array
+    {
+        $productOptions = &$attributes['productOptions'];
+
+        /**
+         * @var int $key
+         * @var mixed $option
+         */
+        foreach ($productOptions ?? [] as $key => $option) {
+            if (\is_string($option)) {
+                $productOptions[$key] = ProductOptionFactory::findOrCreate(['code' => $option]);
+            }
+        }
+
+        return $attributes;
     }
 
     private function transformProductAttributeValues(array $attributes): array

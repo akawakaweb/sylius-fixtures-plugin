@@ -18,15 +18,10 @@ use Zenstruck\Foundry\ModelFactory;
 /**
  * @mixin ModelFactory
  */
-trait WithCodeTrait
+trait WithTaxaTrait
 {
-    public function withCode(string $code): self
+    public function withTaxa(array $taxa): self
     {
-        return $this->addState(['code' => $code]);
-    }
-
-    public function withValue(string $value): self
-    {
-        return $this->addState(['value' => $value]);
+        return $this->addState(['taxa' => $taxa]);
     }
 }

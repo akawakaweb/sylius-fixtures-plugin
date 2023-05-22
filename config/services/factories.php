@@ -34,6 +34,8 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAssociationFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAssociationTypeFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAttributeFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductOptionFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductOptionValueFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductReviewFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\PromotionActionFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\PromotionFactory;
@@ -222,6 +224,24 @@ return static function (ContainerConfigurator $container) {
             ])
             ->tag('foundry.factory')
         ->alias(ProductAttributeFactory::class, 'sylius.shop_fixtures.factory.product_attribute')
+
+        ->set('sylius.shop_fixtures.factory.product_option', ProductOptionFactory::class)
+            ->args([
+                service('sylius.shop_fixtures.default_values.product_option'),
+                service('sylius.shop_fixtures.transformer.product_option'),
+                service('sylius.shop_fixtures.initiator.product_option'),
+            ])
+            ->tag('foundry.factory')
+        ->alias(ProductOptionFactory::class, 'sylius.shop_fixtures.factory.product_option')
+
+        ->set('sylius.shop_fixtures.factory.product_option_value', ProductOptionValueFactory::class)
+            ->args([
+                service('sylius.shop_fixtures.default_values.product_option_value'),
+                service('sylius.shop_fixtures.transformer.product_option_value'),
+                service('sylius.shop_fixtures.initiator.product_option_value'),
+            ])
+            ->tag('foundry.factory')
+        ->alias(ProductOptionValueFactory::class, 'sylius.shop_fixtures.factory.product_option_value')
 
         ->set('sylius.shop_fixtures.factory.product_review', ProductReviewFactory::class)
             ->args([

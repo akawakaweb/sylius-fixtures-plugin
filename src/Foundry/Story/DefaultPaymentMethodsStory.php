@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Story;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\PaymentMethodFactory;
-use Zenstruck\Foundry\Factory;
 use Zenstruck\Foundry\Story;
 
 final class DefaultPaymentMethodsStory extends Story implements DefaultPaymentMethodsStoryInterface

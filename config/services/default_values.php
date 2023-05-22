@@ -31,6 +31,8 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ProductAssociationDefaul
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ProductAssociationTypeDefaultValues;
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ProductAttributeDefaultValues;
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ProductDefaultValues;
+use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ProductOptionDefaultValues;
+use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ProductOptionValueDefaultValues;
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\ProductReviewDefaultValues;
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\PromotionActionDefaultValues;
 use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\PromotionDefaultValues;
@@ -81,6 +83,10 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.shop_fixtures.default_values.product_attribute', ProductAttributeDefaultValues::class)
 
         ->set('sylius.shop_fixtures.default_values.product', ProductDefaultValues::class)
+
+        ->set('sylius.shop_fixtures.default_values.product_option', ProductOptionDefaultValues::class)
+
+        ->set('sylius.shop_fixtures.default_values.product_option_value', ProductOptionValueDefaultValues::class)
 
         ->set('sylius.shop_fixtures.default_values.product_review', ProductReviewDefaultValues::class)
 

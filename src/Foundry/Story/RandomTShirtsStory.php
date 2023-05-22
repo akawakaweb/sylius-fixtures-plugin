@@ -15,6 +15,7 @@ namespace Akawakaweb\ShopFixturesPlugin\Foundry\Story;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAttributeFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductOptionFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxonFactory;
 use Sylius\Component\Attribute\AttributeType\PercentAttributeType;
 use Sylius\Component\Attribute\AttributeType\TextAttributeType;
@@ -26,7 +27,7 @@ final class RandomTShirtsStory extends Story implements RandomTShirtsStoryInterf
     {
         $this->createTaxa();
         $this->createAttributes();
-//        $this->createOptions();
+        $this->createOptions();
         $this->createProducts();
     }
 
@@ -112,22 +113,22 @@ final class RandomTShirtsStory extends Story implements RandomTShirtsStoryInterf
             ->create()
         ;
     }
-//
-//    private function createOptions(): void
-//    {
-//        $this->productOptionFactory::new()
-//            ->withCode('t_shirt_size')
-//            ->withName('T-shirt size')
-//            ->withValues([
-//                't_shirt_size_s' => 'S',
-//                't_shirt_size_m' => 'M',
-//                't_shirt_size_l' => 'L',
-//                't_shirt_size_xl' => 'XL',
-//                't_shirt_size_xxl' => 'XXL',
-//            ])
-//            ->create()
-//        ;
-//    }
+
+    private function createOptions(): void
+    {
+        ProductOptionFactory::new()
+            ->withCode('t_shirt_size')
+            //->withName('T-shirt size')
+            ->withValues([
+                't_shirt_size_s' => 'S',
+                't_shirt_size_m' => 'M',
+                't_shirt_size_l' => 'L',
+                't_shirt_size_xl' => 'XL',
+                't_shirt_size_xxl' => 'XXL',
+            ])
+            ->create()
+        ;
+    }
 
     private function createProducts(): void
     {

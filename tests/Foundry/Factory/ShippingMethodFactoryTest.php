@@ -94,7 +94,7 @@ final class ShippingMethodFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_shipping_method_with_zone_as_string(): void
+    public function it_creates_shipping_method_with_zone_as_string(): void
     {
         $shippingMethod = ShippingMethodFactory::new()->withZone('world')->create();
 
@@ -102,7 +102,7 @@ final class ShippingMethodFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_shipping_method_with_tax_category_as_proxy(): void
+    public function it_creates_shipping_method_with_tax_category_as_proxy(): void
     {
         $taxCategory = TaxCategoryFactory::createOne();
         $shippingMethod = ShippingMethodFactory::new()->withTaxCategory($taxCategory)->create();
@@ -111,7 +111,7 @@ final class ShippingMethodFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_shipping_method_with_tax_category(): void
+    public function it_creates_shipping_method_with_tax_category(): void
     {
         $taxCategory = TaxCategoryFactory::createOne()->object();
         $shippingMethod = ShippingMethodFactory::new()->withTaxCategory($taxCategory)->create();
@@ -120,15 +120,15 @@ final class ShippingMethodFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_shipping_method_with_tax_category_as_string(): void
-    {;
+    public function it_creates_shipping_method_with_tax_category_as_string(): void
+    {
         $shippingMethod = ShippingMethodFactory::new()->withTaxCategory('TC1')->create();
 
         $this->assertEquals('TC1', $shippingMethod->getTaxCategory()->getCode());
     }
 
     /** @test */
-    function it_creates_shipping_method_with_category_as_proxy(): void
+    public function it_creates_shipping_method_with_category_as_proxy(): void
     {
         $shippingCategory = ShippingCategoryFactory::createOne();
         $shippingMethod = ShippingMethodFactory::new()->withCategory($shippingCategory)->create();
@@ -146,7 +146,7 @@ final class ShippingMethodFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_shipping_method_with_category_as_string(): void
+    public function it_creates_shipping_method_with_category_as_string(): void
     {
         $shippingMethod = ShippingMethodFactory::new()->withCategory('SC1')->create();
 
@@ -154,7 +154,7 @@ final class ShippingMethodFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_shipping_method_with_given_channels_as_proxy(): void
+    public function it_creates_shipping_method_with_given_channels_as_proxy(): void
     {
         $channel = ChannelFactory::createOne();
         $shippingMethod = ShippingMethodFactory::new()->withChannels([$channel])->create();
@@ -163,7 +163,7 @@ final class ShippingMethodFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_shipping_method_with_given_channels(): void
+    public function it_creates_shipping_method_with_given_channels(): void
     {
         $channel = ChannelFactory::createOne()->object();
         $shippingMethod = ShippingMethodFactory::new()->withChannels([$channel])->create();
@@ -172,7 +172,7 @@ final class ShippingMethodFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_shipping_method_with_given_channel_as_string(): void
+    public function it_creates_shipping_method_with_given_channel_as_string(): void
     {
         $shippingMethod = ShippingMethodFactory::new()->withChannels(['default'])->create();
 

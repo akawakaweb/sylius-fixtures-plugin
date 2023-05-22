@@ -17,6 +17,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ChannelFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAttributeFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductOptionFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxCategoryFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxonFactory;
 use Sylius\Component\Core\Model\ProductInterface;
@@ -47,8 +48,8 @@ final class ProductFactoryTest extends KernelTestCase
         $variant = $product->getVariants()->first();
         $this->assertNotFalse($variant);
 
-//        $this->assertNotNull($product->getShortDescription());
-//        $this->assertNotNull($product->getDescription());
+        $this->assertNull($product->getShortDescription());
+        $this->assertNull($product->getDescription());
         $this->assertFalse($variant->isTracked());
         $this->assertTrue($variant->isShippingRequired());
     }
@@ -288,39 +289,39 @@ final class ProductFactoryTest extends KernelTestCase
         $this->assertEquals('caps', $product->getMainTaxon()->getCode());
     }
 
-//    /** @test */
-//    function it_creates_product_with_given_taxa_as_proxy(): void
-//    {
-//        LocaleFactory::new()->withCode('en_US')->create();
-//        $firstTaxon = TaxonFactory::createOne();
-//        $secondTaxon = TaxonFactory::createOne();
-//        $product = ProductFactory::new()->withTaxa([$firstTaxon, $secondTaxon])->create();
-//
-//        $this->assertEquals($firstTaxon->object(), $product->getTaxons()->first());
-//        $this->assertEquals($secondTaxon->object(), $product->getTaxons()->last());
-//    }
-//
-//    /** @test */
-//    function it_creates_product_with_given_taxa(): void
-//    {
-//        LocaleFactory::new()->withCode('en_US')->create();
-//        $firstTaxon = TaxonFactory::createOne()->object();
-//        $secondTaxon = TaxonFactory::createOne()->object();
-//        $product = ProductFactory::new()->withTaxa([$firstTaxon, $secondTaxon])->create();
-//
-//        $this->assertEquals($firstTaxon, $product->getTaxons()->first());
-//        $this->assertEquals($secondTaxon, $product->getTaxons()->last());
-//    }
+    /** @test */
+    public function it_creates_product_with_given_taxa_as_proxy(): void
+    {
+        LocaleFactory::new()->withCode('en_US')->create();
+        $firstTaxon = TaxonFactory::createOne();
+        $secondTaxon = TaxonFactory::createOne();
+        $product = ProductFactory::new()->withTaxa([$firstTaxon, $secondTaxon])->create();
 
-//    /** @test */
-//    function it_creates_product_with_given_taxa_as_string(): void
-//    {
-//        LocaleFactory::new()->withCode('en_US')->create();
-//        $product = ProductFactory::new()->withTaxa(['jeans', 'men_jeans'])->create();
-//
-//        $this->assertEquals('jeans', $product->getTaxons()->first()->getCode());
-//        $this->assertEquals('men_jeans', $product->getTaxons()->last()->getCode());
-//    }
+        $this->assertEquals($firstTaxon->object(), $product->getTaxons()->first());
+        $this->assertEquals($secondTaxon->object(), $product->getTaxons()->last());
+    }
+
+    /** @test */
+    public function it_creates_product_with_given_taxa(): void
+    {
+        LocaleFactory::new()->withCode('en_US')->create();
+        $firstTaxon = TaxonFactory::createOne()->object();
+        $secondTaxon = TaxonFactory::createOne()->object();
+        $product = ProductFactory::new()->withTaxa([$firstTaxon, $secondTaxon])->create();
+
+        $this->assertEquals($firstTaxon, $product->getTaxons()->first());
+        $this->assertEquals($secondTaxon, $product->getTaxons()->last());
+    }
+
+    /** @test */
+    public function it_creates_product_with_given_taxa_as_string(): void
+    {
+        LocaleFactory::new()->withCode('en_US')->create();
+        $product = ProductFactory::new()->withTaxa(['jeans', 'men_jeans'])->create();
+
+        $this->assertEquals('jeans', $product->getTaxons()->first()->getCode());
+        $this->assertEquals('men_jeans', $product->getTaxons()->last()->getCode());
+    }
 
     /** @test */
     public function it_creates_product_with_given_product_attributes(): void
@@ -335,26 +336,26 @@ final class ProductFactoryTest extends KernelTestCase
 
         $this->assertEquals('jeans_brand', $product->getAttributes()->first()->getCode());
     }
-//
-//    /** @test */
-//    function it_creates_product_with_given_product_options(): void
-//    {
-//        LocaleFactory::new()->withCode('en_US')->create();
-//
-//        ProductOptionFactory::new()->withCode('jean_size')->withValues([
-//            'jeans_size_s' => 'S',
-//            'jeans_size_m' => 'M',
-//            'jeans_size_l' => 'L',
-//            'jeans_size_xl' => 'XL',
-//            'jeans_size_xxl'=> 'XXL',
-//        ])->create();
-//
-//        $product = ProductFactory::new()->withProductOptions([
-//            'jeans_size'
-//        ])->create();
-//
-//        $this->assertEquals('jeans_size', $product->getOptions()->first()->getCode());
-//    }
+
+    /** @test */
+    public function it_creates_product_with_given_product_options(): void
+    {
+        LocaleFactory::new()->withCode('en_US')->create();
+
+        ProductOptionFactory::new()->withCode('jeans_size')->withValues([
+            'jeans_size_s' => 'S',
+            'jeans_size_m' => 'M',
+            'jeans_size_l' => 'L',
+            'jeans_size_xl' => 'XL',
+            'jeans_size_xxl' => 'XXL',
+        ])->create();
+
+        $product = ProductFactory::new()->withProductOptions([
+            'jeans_size',
+        ])->create();
+
+        $this->assertEquals('jeans_size', $product->getOptions()->first()->getCode());
+    }
 
     /** @test */
     public function it_creates_product_with_given_product_images(): void

@@ -20,6 +20,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\OrderItemUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\OrderUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\PaymentMethodUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ProductAttributeUpdater;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ProductOptionValueUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ProductUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShippingMethodUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\TaxonUpdater;
@@ -112,6 +113,14 @@ return static function (ContainerConfigurator $container) {
                 service('sylius.factory.product_image'),
                 service('file_locator'),
                 service('sylius.image_uploader'),
+                service('sylius.shop_fixtures.updater'),
+            ])
+
+        ->set('sylius.shop_fixtures.updater.product_option')
+            ->parent('sylius.shop_fixtures.updater')
+
+        ->set('sylius.shop_fixtures.updater.product_option_value', ProductOptionValueUpdater::class)
+            ->args([
                 service('sylius.shop_fixtures.updater'),
             ])
 

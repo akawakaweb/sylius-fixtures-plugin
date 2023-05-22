@@ -15,6 +15,7 @@ namespace Akawakaweb\ShopFixturesPlugin\Foundry\Story;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAttributeFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductOptionFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxonFactory;
 use Sylius\Component\Attribute\AttributeType\TextAttributeType;
 use Zenstruck\Foundry\Story;
@@ -25,7 +26,7 @@ final class RandomJeansStory extends Story implements RandomJeansStoryInterface
     {
         $this->createTaxa();
         $this->createAttributes();
-        //$this->createOptions();
+        $this->createOptions();
         $this->createProducts();
     }
 
@@ -104,21 +105,21 @@ final class RandomJeansStory extends Story implements RandomJeansStoryInterface
         ;
     }
 
-//    private function createOptions(): void
-//    {
-//        $this->productOptionFactory::new()
-//            ->withCode('jeans_size')
-//            ->withName('Jeans size')
-//            ->withValues([
-//                'jeans_size_s' => 'S',
-//                'jeans_size_m' => 'M',
-//                'jeans_size_l' => 'L',
-//                'jeans_size_xl' => 'XL',
-//                'jeans_size_xxl' => 'XXL',
-//            ])
-//            ->create()
-//        ;
-//    }
+    private function createOptions(): void
+    {
+        ProductOptionFactory::new()
+            ->withCode('jeans_size')
+            //->withName('Jeans size')
+            ->withValues([
+                'jeans_size_s' => 'S',
+                'jeans_size_m' => 'M',
+                'jeans_size_l' => 'L',
+                'jeans_size_xl' => 'XL',
+                'jeans_size_xxl' => 'XXL',
+            ])
+            ->create()
+        ;
+    }
 
     private function createProducts(): void
     {

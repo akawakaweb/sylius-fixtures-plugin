@@ -147,7 +147,7 @@ final class ChannelFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_channel_with_given_already_existing_default_tax_zone_code(): void
+    public function it_creates_channel_with_given_already_existing_default_tax_zone_code(): void
     {
         ZoneFactory::new()->withCode('world')->create();
 
@@ -226,7 +226,7 @@ final class ChannelFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_channel_with_given_locales_as_string(): void
+    public function it_creates_channel_with_given_locales_as_string(): void
     {
         $channel = ChannelFactory::new()->withLocales(['fr_FR'])->create();
 
@@ -244,7 +244,7 @@ final class ChannelFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_channel_with_given_currencies_as_string(): void
+    public function it_creates_channel_with_given_currencies_as_string(): void
     {
         $channel = ChannelFactory::new()->withCurrencies(['USD'])->create();
 
@@ -270,7 +270,7 @@ final class ChannelFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    function it_creates_channel_with_given_menu_taxon_as_string(): void
+    public function it_creates_channel_with_given_menu_taxon_as_string(): void
     {
         $channel = ChannelFactory::new()->withMenuTaxon('MENU_CATEGORY')->create();
 

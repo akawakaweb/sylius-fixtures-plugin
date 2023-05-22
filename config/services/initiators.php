@@ -129,6 +129,18 @@ return static function (ContainerConfigurator $container) {
                 service('sylius.shop_fixtures.updater.product'),
             ])
 
+        ->set('sylius.shop_fixtures.initiator.product_option', Initiator::class)
+            ->args([
+                service('sylius.factory.product_option'),
+                service('sylius.shop_fixtures.updater.product_option'),
+            ])
+
+        ->set('sylius.shop_fixtures.initiator.product_option_value', Initiator::class)
+            ->args([
+                service('sylius.factory.product_option_value'),
+                service('sylius.shop_fixtures.updater.product_option_value'),
+            ])
+
         ->set('sylius.shop_fixtures.initiator.product_review', Initiator::class)
             ->args([
                 service('sylius.factory.product_review'),

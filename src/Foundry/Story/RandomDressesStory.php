@@ -15,6 +15,7 @@ namespace Akawakaweb\ShopFixturesPlugin\Foundry\Story;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAttributeFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductOptionFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxonFactory;
 use Sylius\Component\Attribute\AttributeType\IntegerAttributeType;
 use Sylius\Component\Attribute\AttributeType\TextAttributeType;
@@ -26,7 +27,7 @@ final class RandomDressesStory extends Story implements RandomDressesStoryInterf
     {
         $this->createTaxa();
         $this->createAttributes();
-        //$this->createOptions();
+        $this->createOptions();
         $this->createProducts();
     }
 
@@ -83,32 +84,32 @@ final class RandomDressesStory extends Story implements RandomDressesStoryInterf
         ;
     }
 
-//    private function createOptions(): void
-//    {
-//        $this->productOptionFactory::new()
-//            ->withCode('dress_size')
-//            ->withName('Dress size')
-//            ->withValues([
-//                'dress_s' => 'S',
-//                'dress_m' => 'M',
-//                'dress_l' => 'L',
-//                'dress_xl' => 'XL',
-//                'dress_xxl' => 'XXL',
-//            ])
-//            ->create()
-//        ;
-//
-//        $this->productOptionFactory::new()
-//            ->withCode('dress_height')
-//            ->withName('Dress height')
-//            ->withValues([
-//                'dress_height_petite' => 'Petite',
-//                'dress_height_regular' => 'Regular',
-//                'dress_height_tall' => 'Tall',
-//            ])
-//            ->create()
-//        ;
-//    }
+    private function createOptions(): void
+    {
+        ProductOptionFactory::new()
+            ->withCode('dress_size')
+            //->withName('Dress size')
+            ->withValues([
+                'dress_s' => 'S',
+                'dress_m' => 'M',
+                'dress_l' => 'L',
+                'dress_xl' => 'XL',
+                'dress_xxl' => 'XXL',
+            ])
+            ->create()
+        ;
+
+        ProductOptionFactory::new()
+            ->withCode('dress_height')
+            //->withName('Dress height')
+            ->withValues([
+                'dress_height_petite' => 'Petite',
+                'dress_height_regular' => 'Regular',
+                'dress_height_tall' => 'Tall',
+            ])
+            ->create()
+        ;
+    }
 
     private function createProducts(): void
     {
@@ -119,16 +120,16 @@ final class RandomDressesStory extends Story implements RandomDressesStoryInterf
             ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('dresses')
-//            ->withTaxa(['dresses'])
+            ->withTaxa(['dresses'])
             ->withProductAttributes([
                 'dress_brand' => 'You are breathtaking',
                 'dress_collection' => 'Sylius Winter ' . $year,
                 'dress_material' => '100% polyester',
             ])
-//            ->withProductOptions([
-//                'dress_size',
-//                'dress_height',
-//            ])
+            ->withProductOptions([
+                'dress_size',
+                'dress_height',
+            ])
             ->withImages([
                 ['path' => '@SyliusCoreBundle/Resources/fixtures/dresses/dress_01.jpg', 'type' => 'main'],
             ])
@@ -140,16 +141,16 @@ final class RandomDressesStory extends Story implements RandomDressesStoryInterf
             ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('dresses')
-//            ->withTaxa(['dresses'])
+            ->withTaxa(['dresses'])
             ->withProductAttributes([
                 'dress_brand' => 'You are breathtaking',
                 'dress_collection' => 'Sylius Winter ' . $year,
                 'dress_material' => '100% wool',
             ])
-//            ->withProductOptions([
-//                'dress_size',
-//                'dress_height',
-//            ])
+            ->withProductOptions([
+                'dress_size',
+                'dress_height',
+            ])
             ->withImages([
                 ['path' => '@SyliusCoreBundle/Resources/fixtures/dresses/dress_02.jpg', 'type' => 'main'],
             ])
@@ -161,17 +162,17 @@ final class RandomDressesStory extends Story implements RandomDressesStoryInterf
             ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('dresses')
-//            ->withTaxa(['dresses'])
+            ->withTaxa(['dresses'])
             ->withProductAttributes([
                 'dress_brand' => 'You are breathtaking',
                 'dress_collection' => 'Sylius Winter ' . $year,
                 'dress_material' => '100% polyester',
                 'length' => 100,
             ])
-//            ->withProductOptions([
-//                'dress_size',
-//                'dress_height',
-//            ])
+            ->withProductOptions([
+                'dress_size',
+                'dress_height',
+            ])
             ->withImages([
                 ['path' => '@SyliusCoreBundle/Resources/fixtures/dresses/dress_03.jpg', 'type' => 'main'],
             ])

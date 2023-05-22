@@ -56,9 +56,12 @@
 
         <MixedArrayAssignment>
             <errorLevel type="suppress">
+                <file name="src/Foundry/Transformer/ProductOptionTransformer.php" />
+                <file name="src/Foundry/Transformer/ProductTransformer.php" />
                 <file name="src/Foundry/Transformer/TransformCurrenciesAttributeTrait.php" />
                 <file name="src/Foundry/Transformer/TransformChannelsAttributeTrait.php" />
                 <file name="src/Foundry/Transformer/TransformLocalesAttributeTrait.php" />
+                <file name="src/Foundry/Transformer/TransformTaxaAttributeTrait.php" />
             </errorLevel>
         </MixedArrayAssignment>
 
