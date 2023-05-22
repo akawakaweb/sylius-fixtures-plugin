@@ -44,6 +44,7 @@ final class RandomCapsStoryTest extends KernelTestCase
         $this->assertEquals('other', $product->getVariants()[0]->getTaxCategory()->getCode());
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('caps_with_pompons', $product->getMainTaxon()->getCode());
+        $this->assertEquals('caps', $product->getTaxons()->first()->getCode());
         $this->assertStringEndsWith('cap_01.jpg', $product->getImagesByType('main')[0]->getPath());
         $this->assertCount(3, $product->getAttributes());
 
@@ -53,6 +54,7 @@ final class RandomCapsStoryTest extends KernelTestCase
         $this->assertEquals('other', $product->getVariants()[0]->getTaxCategory()->getCode());
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('simple_caps', $product->getMainTaxon()->getCode());
+        $this->assertEquals('caps', $product->getTaxons()->first()->getCode());
         $this->assertStringEndsWith('cap_02.jpg', $product->getImagesByType('main')[0]->getPath());
         $this->assertCount(3, $product->getAttributes());
 
@@ -62,6 +64,7 @@ final class RandomCapsStoryTest extends KernelTestCase
         $this->assertEquals('other', $product->getVariants()[0]->getTaxCategory()->getCode());
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('caps_with_pompons', $product->getMainTaxon()->getCode());
+        $this->assertEquals('caps', $product->getTaxons()->first()->getCode());
         $this->assertStringEndsWith('cap_03.jpg', $product->getImagesByType('main')[0]->getPath());
         $this->assertCount(3, $product->getAttributes());
 
@@ -71,6 +74,7 @@ final class RandomCapsStoryTest extends KernelTestCase
         $this->assertEquals('other', $product->getVariants()[0]->getTaxCategory()->getCode());
         $this->assertEquals('FASHION_WEB', $product->getChannels()[0]->getCode());
         $this->assertEquals('simple_caps', $product->getMainTaxon()->getCode());
+        $this->assertEquals('caps', $product->getTaxons()->first()->getCode());
         $this->assertStringEndsWith('cap_04.jpg', $product->getImagesByType('main')[0]->getPath());
         $this->assertCount(3, $product->getAttributes());
     }

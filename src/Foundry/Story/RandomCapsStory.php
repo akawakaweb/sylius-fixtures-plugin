@@ -113,7 +113,7 @@ final class RandomCapsStory extends Story implements RandomCapsStoryInterface
             ->withTaxCategory('other')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('caps_with_pompons')
-//            ->withTaxa(['caps', 'caps_with_pompons'])
+            ->withTaxa(['caps', 'caps_with_pompons'])
             ->withProductAttributes([
                 'cap_brand' => 'You are breathtaking',
                 'cap_collection' => 'Sylius Winter ' . $year,
@@ -130,7 +130,7 @@ final class RandomCapsStory extends Story implements RandomCapsStoryInterface
             ->withTaxCategory('other')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('simple_caps')
-//            ->withTaxa(['caps', 'simple_caps'])
+            ->withTaxa(['caps', 'simple_caps'])
             ->withProductAttributes([
                 'cap_brand' => 'Modern Wear',
                 'cap_collection' => 'Sylius Winter ' . $year,
@@ -147,7 +147,7 @@ final class RandomCapsStory extends Story implements RandomCapsStoryInterface
             ->withTaxCategory('other')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('caps_with_pompons')
-//            ->withTaxa(['caps', 'caps_with_pompons'])
+            ->withTaxa(['caps', 'caps_with_pompons'])
             ->withProductAttributes([
                 'cap_brand' => 'Celsius Small',
                 'cap_collection' => 'Sylius Winter ' . $year,
@@ -164,7 +164,7 @@ final class RandomCapsStory extends Story implements RandomCapsStoryInterface
             ->withTaxCategory('other')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('simple_caps')
-//            ->withTaxa(['caps', 'simple_caps'])
+            ->withTaxa(['caps', 'simple_caps'])
             ->withProductAttributes([
                 'cap_brand' => 'Date & Banana',
                 'cap_collection' => 'Sylius Winter ' . $year,

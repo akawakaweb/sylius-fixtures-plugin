@@ -139,16 +139,16 @@ final class RandomTShirtsStory extends Story implements RandomTShirtsStoryInterf
 //            ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('women_t_shirts')
-//            ->withTaxa(['t_shirts', 'women_t_shirts'])
+            ->withTaxa(['t_shirts', 'women_t_shirts'])
             ->withProductAttributes([
                 't_shirt_brand' => 'You are breathtaking',
                 't_shirt_collection' => 'Sylius Winter ' . $year,
                 't_shirt_material' => '100% cotton',
                 'damage_reduction' => 0.1,
             ])
-//            ->withProductOptions([
-//                't_shirt_size',
-//            ])
+            ->withProductOptions([
+                't_shirt_size',
+            ])
             ->withImages([
                 ['path' => '@SyliusCoreBundle/Resources/fixtures/t-shirts/woman/t-shirt_01.jpg', 'type' => 'main'],
             ])
@@ -160,15 +160,15 @@ final class RandomTShirtsStory extends Story implements RandomTShirtsStoryInterf
 //            ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('women_t_shirts')
-//            ->withTaxa(['t_shirts', 'women_t_shirts'])
+            ->withTaxa(['t_shirts', 'women_t_shirts'])
             ->withProductAttributes([
                 't_shirt_brand' => 'Modern Wear',
                 't_shirt_collection' => 'Sylius Winter ' . $year,
                 't_shirt_material' => '100% cotton',
             ])
-//            ->withProductOptions([
-//                't_shirt_size',
-//            ])
+            ->withProductOptions([
+                't_shirt_size',
+            ])
             ->withImages([
                 ['path' => '@SyliusCoreBundle/Resources/fixtures/t-shirts/woman/t-shirt_02.jpg', 'type' => 'main'],
             ])
@@ -180,15 +180,15 @@ final class RandomTShirtsStory extends Story implements RandomTShirtsStoryInterf
 //            ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('women_t_shirts')
-//            ->withTaxa(['t_shirts', 'women_t_shirts'])
+            ->withTaxa(['t_shirts', 'women_t_shirts'])
             ->withProductAttributes([
                 't_shirt_brand' => 'Celsius Small',
                 't_shirt_collection' => 'Sylius Winter ' . $year,
                 't_shirt_material' => '100% viscose',
             ])
-//            ->withProductOptions([
-//                't_shirt_size',
-//            ])
+            ->withProductOptions([
+                't_shirt_size',
+            ])
             ->withImages([
                 ['path' => '@SyliusCoreBundle/Resources/fixtures/t-shirts/woman/t-shirt_03.jpg', 'type' => 'main'],
             ])
@@ -200,15 +200,15 @@ final class RandomTShirtsStory extends Story implements RandomTShirtsStoryInterf
 //            ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('men_t_shirts')
-//            ->withTaxa(['t_shirts', 'men_t_shirts'])
+            ->withTaxa(['t_shirts', 'men_t_shirts'])
             ->withProductAttributes([
                 't_shirt_brand' => 'You are breathtaking',
                 't_shirt_collection' => 'Sylius Winter ' . $year,
                 't_shirt_material' => '100% viscose',
             ])
-//            ->withProductOptions([
-//                't_shirt_size',
-//            ])
+            ->withProductOptions([
+                't_shirt_size',
+            ])
             ->withImages([
                 ['path' => '@SyliusCoreBundle/Resources/fixtures/t-shirts/man/t-shirt_01.jpg', 'type' => 'main'],
             ])
@@ -220,15 +220,15 @@ final class RandomTShirtsStory extends Story implements RandomTShirtsStoryInterf
 //            ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('men_t_shirts')
-//            ->withTaxa(['t_shirts', 'men_t_shirts'])
+            ->withTaxa(['t_shirts', 'men_t_shirts'])
             ->withProductAttributes([
                 't_shirt_brand' => 'You are breathtaking',
                 't_shirt_collection' => 'Sylius Winter ' . $year,
                 't_shirt_material' => '100% cotton',
             ])
-//            ->withProductOptions([
-//                't_shirt_size',
-//            ])
+            ->withProductOptions([
+                't_shirt_size',
+            ])
             ->withImages([
                 ['path' => '@SyliusCoreBundle/Resources/fixtures/t-shirts/man/t-shirt_02.jpg', 'type' => 'main'],
             ])
@@ -240,15 +240,15 @@ final class RandomTShirtsStory extends Story implements RandomTShirtsStoryInterf
 //            ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('men_t_shirts')
-//            ->withTaxa(['t_shirts', 'men_t_shirts'])
+            ->withTaxa(['t_shirts', 'men_t_shirts'])
             ->withProductAttributes([
                 't_shirt_brand' => 'Modern Wear',
                 't_shirt_collection' => 'Sylius Winter ' . $year,
                 't_shirt_material' => '100% cotton',
             ])
-//            ->withProductOptions([
-//                't_shirt_size',
-//            ])
+            ->withProductOptions([
+                't_shirt_size',
+            ])
             ->withImages([
                 ['path' => '@SyliusCoreBundle/Resources/fixtures/t-shirts/man/t-shirt_03.jpg', 'type' => 'main'],
             ])

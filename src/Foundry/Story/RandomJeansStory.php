@@ -130,15 +130,15 @@ final class RandomJeansStory extends Story implements RandomJeansStoryInterface
             ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('mens_jeans')
-//            ->withTaxa(['jeans', 'men_jeans'])
+            ->withTaxa(['jeans', 'men_jeans'])
             ->withProductAttributes([
                 'jeans_brand' => 'You are breathtaking',
                 'jeans_collection' => 'Sylius Winter ' . $year,
                 'jeans_material' => '100% jeans',
             ])
-//            ->withProductOptions([
-//                'jeans_size',
-//            ])
+            ->withProductOptions([
+                'jeans_size',
+            ])
             ->withImages([
                 ['path' => '@SyliusCoreBundle/Resources/fixtures/jeans/man/jeans_01.jpg', 'type' => 'main'],
             ])
@@ -150,15 +150,15 @@ final class RandomJeansStory extends Story implements RandomJeansStoryInterface
             ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('mens_jeans')
-//            ->withTaxa(['jeans', 'men_jeans'])
+            ->withTaxa(['jeans', 'men_jeans'])
             ->withProductAttributes([
                 'jeans_brand' => 'Modern Wear',
                 'jeans_collection' => 'Sylius Winter ' . $year,
                 'jeans_material' => '100% jeans',
             ])
-//            ->withProductOptions([
-//                'jeans_size',
-//            ])
+            ->withProductOptions([
+                'jeans_size',
+            ])
             ->withImages([
                 ['path' => '@SyliusCoreBundle/Resources/fixtures/jeans/man/jeans_02.jpg', 'type' => 'main'],
             ])
@@ -170,15 +170,15 @@ final class RandomJeansStory extends Story implements RandomJeansStoryInterface
             ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('mens_jeans')
-//            ->withTaxa(['jeans', 'men_jeans'])
+            ->withTaxa(['jeans', 'men_jeans'])
             ->withProductAttributes([
                 'jeans_brand' => 'Celsius Small',
                 'jeans_collection' => 'Sylius Winter ' . $year,
                 'jeans_material' => '100% jeans',
             ])
-//            ->withProductOptions([
-//                'jeans_size',
-//            ])
+            ->withProductOptions([
+                'jeans_size',
+            ])
             ->withImages([
                 ['path' => '@SyliusCoreBundle/Resources/fixtures/jeans/man/jeans_03.jpg', 'type' => 'main'],
             ])
@@ -190,15 +190,15 @@ final class RandomJeansStory extends Story implements RandomJeansStoryInterface
             ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('mens_jeans')
-//            ->withTaxa(['jeans', 'men_jeans'])
+            ->withTaxa(['jeans', 'men_jeans'])
             ->withProductAttributes([
                 'jeans_brand' => 'Date & Banana',
                 'jeans_collection' => 'Sylius Winter ' . $year,
                 'jeans_material' => '100% jeans',
             ])
-//            ->withProductOptions([
-//                'jeans_size',
-//            ])
+            ->withProductOptions([
+                'jeans_size',
+            ])
             ->withImages([
                 ['path' => '@SyliusCoreBundle/Resources/fixtures/jeans/man/jeans_04.svg', 'type' => 'main'],
             ])
@@ -210,15 +210,15 @@ final class RandomJeansStory extends Story implements RandomJeansStoryInterface
             ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('women_jeans')
-//            ->withTaxa(['jeans', 'women_jeans'])
+            ->withTaxa(['jeans', 'women_jeans'])
             ->withProductAttributes([
                 'jeans_brand' => 'You are breathtaking',
                 'jeans_collection' => 'Sylius Winter ' . $year,
                 'jeans_material' => '100% jeans',
             ])
-//            ->withProductOptions([
-//                'jeans_size',
-//            ])
+            ->withProductOptions([
+                'jeans_size',
+            ])
             ->withImages([
                 ['path' => '@SyliusCoreBundle/Resources/fixtures/jeans/woman/jeans_01.jpg', 'type' => 'main'],
             ])
@@ -230,15 +230,15 @@ final class RandomJeansStory extends Story implements RandomJeansStoryInterface
             ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('women_jeans')
-//            ->withTaxa(['jeans', 'women_jeans'])
+            ->withTaxa(['jeans', 'women_jeans'])
             ->withProductAttributes([
                 'jeans_brand' => 'You are breathtaking',
                 'jeans_collection' => 'Sylius Winter ' . $year,
                 'jeans_material' => '100% jeans',
             ])
-//            ->withProductOptions([
-//                'jeans_size',
-//            ])
+            ->withProductOptions([
+                'jeans_size',
+            ])
             ->withImages([
                 ['path' => '@SyliusCoreBundle/Resources/fixtures/jeans/woman/jeans_02.jpg', 'type' => 'main'],
             ])
@@ -250,15 +250,15 @@ final class RandomJeansStory extends Story implements RandomJeansStoryInterface
             ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('women_jeans')
-//            ->withTaxa(['jeans', 'women_jeans'])
+            ->withTaxa(['jeans', 'women_jeans'])
             ->withProductAttributes([
                 'jeans_brand' => 'Modern Wear',
                 'jeans_collection' => 'Sylius Winter ' . $year,
                 'jeans_material' => '100% jeans',
             ])
-//            ->withProductOptions([
-//                'jeans_size',
-//            ])
+            ->withProductOptions([
+                'jeans_size',
+            ])
             ->withImages([
                 ['path' => '@SyliusCoreBundle/Resources/fixtures/jeans/woman/jeans_03.jpg', 'type' => 'main'],
             ])
@@ -270,15 +270,15 @@ final class RandomJeansStory extends Story implements RandomJeansStoryInterface
             ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('women_jeans')
-//            ->withTaxa(['jeans', 'women_jeans'])
+            ->withTaxa(['jeans', 'women_jeans'])
             ->withProductAttributes([
                 'jeans_brand' => 'Modern Wear',
                 'jeans_collection' => 'Sylius Winter ' . $year,
                 'jeans_material' => '100% jeans',
             ])
-//            ->withProductOptions([
-//                'jeans_size',
-//            ])
+            ->withProductOptions([
+                'jeans_size',
+            ])
             ->withImages([
                 ['path' => '@SyliusCoreBundle/Resources/fixtures/jeans/woman/jeans_04.jpg', 'type' => 'main'],
             ])
