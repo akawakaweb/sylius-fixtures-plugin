@@ -57,6 +57,8 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.shop_fixtures.transformer.order', OrderTransformer::class)
 
+        ->set('sylius.shop_fixtures.transformer.order_item', Transformer::class)
+
         ->set('sylius.shop_fixtures.transformer.payment_method', PaymentMethodTransformer::class)
 
         ->set('sylius.shop_fixtures.transformer.product', ProductTransformer::class)

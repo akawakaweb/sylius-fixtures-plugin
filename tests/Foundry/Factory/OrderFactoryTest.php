@@ -18,6 +18,7 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CountryFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CustomerFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\OrderFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductFactory;
 use Sylius\Component\Core\Model\OrderInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Tests\Acme\SyliusExamplePlugin\PurgeDatabaseTrait;
@@ -33,10 +34,11 @@ final class OrderFactoryTest extends KernelTestCase
     {
         LocaleFactory::new()->withCode('en_US')->create();
         ChannelFactory::createOne();
+        ProductFactory::new()->enabled()->many(5)->create();
         $order = OrderFactory::createOne();
 
         $this->assertInstanceOf(OrderInterface::class, $order->object());
-        //$this->assertNotNull($order->getChannel());
+        $this->assertNotNull($order->getChannel());
         $this->assertNotNull($order->getCurrencyCode());
         $this->assertNotNull($order->getLocaleCode());
     }

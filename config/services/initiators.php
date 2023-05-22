@@ -93,6 +93,12 @@ return static function (ContainerConfigurator $container) {
                 service('sylius.shop_fixtures.updater.order'),
             ])
 
+        ->set('sylius.shop_fixtures.initiator.order_item', Initiator::class)
+            ->args([
+                service('sylius.factory.order_item'),
+                service('sylius.shop_fixtures.updater.order_item'),
+            ])
+
         ->set('sylius.shop_fixtures.initiator.payment_method', PaymentMethodInitiator::class)
             ->args([
                 service('sylius.factory.payment_method'),

@@ -66,6 +66,12 @@
             </errorLevel>
         </MixedInferredReturnType>
 
+        <MixedMethodCall>
+            <errorLevel type="suppress">
+                <file name="src/Foundry/DefaultValues/OrderItemDefaultValues.php" />
+            </errorLevel>
+        </MixedMethodCall>
+
         <MixedReturnStatement>
             <errorLevel type="suppress">
                 <file name="src/Symfony/ShopFixturesPlugin.php" />

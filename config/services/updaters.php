@@ -16,6 +16,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\AdminUserUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CatalogPromotionUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ChannelUpdater;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\OrderItemUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\OrderUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\PaymentMethodUpdater;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ProductAttributeUpdater;
@@ -77,7 +78,12 @@ return static function (ContainerConfigurator $container) {
                 service('sylius.shop_fixtures.updater'),
                 service('sm.factory'),
                 service('sylius.repository.shipping_method'),
-                service('sylius.repository.payment_method'),
+            ])
+
+        ->set('sylius.shop_fixtures.updater.order_item', OrderItemUpdater::class)
+            ->args([
+                service('sylius.shop_fixtures.updater'),
+                service('sylius.order_item_quantity_modifier'),
             ])
 
         ->set('sylius.shop_fixtures.updater.payment_method', PaymentMethodUpdater::class)

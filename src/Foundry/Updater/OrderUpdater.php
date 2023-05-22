@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Updater;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\AddressFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\OrderItemFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\OrderSequenceFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ShippingMethodFactory;
 use Faker\Factory;
@@ -27,8 +28,9 @@ use Sylius\Component\Core\Model\PaymentMethodInterface;
 use Sylius\Component\Core\Model\ShippingMethodInterface;
 use Sylius\Component\Core\OrderCheckoutStates;
 use Sylius\Component\Core\OrderCheckoutTransitions;
-use Sylius\Component\Core\Repository\PaymentMethodRepositoryInterface;
 use Sylius\Component\Core\Repository\ShippingMethodRepositoryInterface;
+use Sylius\Component\Payment\PaymentTransitions;
+use Sylius\Component\Shipping\ShipmentTransitions;
 use Webmozart\Assert\Assert;
 use Zenstruck\Foundry\Proxy;
 
@@ -40,23 +42,25 @@ final class OrderUpdater implements UpdaterInterface
         private UpdaterInterface $decorated,
         private StateMachineFactoryInterface $stateMachineFactory,
         private ShippingMethodRepositoryInterface $shippingMethodRepository,
-        private PaymentMethodRepositoryInterface $paymentMethodRepository,
     ) {
         $this->faker = Factory::create();
     }
 
     public function __invoke(object $object, array $attributes): array
     {
+        Assert::isInstanceOf($object, OrderInterface::class);
+
         // Ensure the order number sequence is stored in the database.
         if (0 === OrderSequenceFactory::count()) {
             OrderSequenceFactory::createOne();
         }
 
-        $attributes = ($this->decorated)($object, $attributes);
+        $paymentMethod = $attributes['paymentMethod'] ?? null;
+        Assert::isInstanceOf($paymentMethod, PaymentMethodInterface::class);
 
-        if (!$object instanceof OrderInterface) {
-            return $attributes;
-        }
+        unset($attributes['paymentMethod']);
+
+        $attributes = ($this->decorated)($object, $attributes);
 
         $country = $attributes['country'] ?? null;
         Assert::nullOrIsInstanceOf($country, CountryInterface::class);
@@ -66,12 +70,28 @@ final class OrderUpdater implements UpdaterInterface
         /** @var \DateTimeInterface $createdAt */
         $createdAt = $attributes['completeDate'] ?? new \DateTimeImmutable();
 
+        $this->generateItems($object);
+
         $this->address($object, $countryCode);
         $this->selectShipping($object, $createdAt);
-        $this->selectPayment($object, $createdAt);
+        $this->selectPayment($object, $paymentMethod, $createdAt);
         $this->completeCheckout($object);
 
+        if ($attributes['fulfilled'] ?? false) {
+            $this->fulfillOrder($object);
+        }
+
         return $attributes;
+    }
+
+    private function generateItems(OrderInterface $order): void
+    {
+        OrderItemFactory::new()
+            ->withOrder($order)
+            ->withoutPersisting()
+            ->many(1, 5)
+            ->create()
+        ;
     }
 
     private function address(OrderInterface $order, string $countryCode): void
@@ -124,22 +144,11 @@ final class OrderUpdater implements UpdaterInterface
         $this->applyCheckoutStateTransition($order, OrderCheckoutTransitions::TRANSITION_SELECT_SHIPPING);
     }
 
-    private function selectPayment(OrderInterface $order, \DateTimeInterface $createdAt): void
+    private function selectPayment(OrderInterface $order, PaymentMethodInterface $paymentMethod, \DateTimeInterface $createdAt): void
     {
         if ($order->getCheckoutState() === OrderCheckoutStates::STATE_PAYMENT_SKIPPED) {
             return;
         }
-
-        /** @var ChannelInterface $channel */
-        $channel = $order->getChannel();
-
-        /** @var PaymentMethodInterface|null $paymentMethod */
-        $paymentMethod = $this
-            ->faker
-            ->randomElement($this->paymentMethodRepository->findEnabledForChannel($channel))
-        ;
-
-        Assert::notNull($paymentMethod, $this->generateInvalidSkipMessage('payment', $channel->getCode() ?? ''));
 
         foreach ($order->getPayments() as $payment) {
             $payment->setMethod($paymentMethod);
@@ -173,5 +182,31 @@ final class OrderUpdater implements UpdaterInterface
             $type,
             $type,
         );
+    }
+
+    private function fulfillOrder(OrderInterface $order): void
+    {
+        $this->completePayments($order);
+        $this->completeShipments($order);
+    }
+
+    private function completePayments(OrderInterface $order): void
+    {
+        foreach ($order->getPayments() as $payment) {
+            $stateMachine = $this->stateMachineFactory->get($payment, PaymentTransitions::GRAPH);
+            if ($stateMachine->can(PaymentTransitions::TRANSITION_COMPLETE)) {
+                $stateMachine->apply(PaymentTransitions::TRANSITION_COMPLETE);
+            }
+        }
+    }
+
+    private function completeShipments(OrderInterface $order): void
+    {
+        foreach ($order->getShipments() as $shipment) {
+            $stateMachine = $this->stateMachineFactory->get($shipment, ShipmentTransitions::GRAPH);
+            if ($stateMachine->can(ShipmentTransitions::TRANSITION_SHIP)) {
+                $stateMachine->apply(ShipmentTransitions::TRANSITION_SHIP);
+            }
+        }
     }
 }

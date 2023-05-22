@@ -15,6 +15,7 @@ namespace Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ChannelFactory;
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CustomerFactory;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\PaymentMethodFactory;
 use Faker\Generator;
 use Zenstruck\Foundry\LazyValue;
 
@@ -25,10 +26,11 @@ final class OrderDefaultValues implements DefaultValuesInterface
         return [
             'createdAt' => $faker->dateTime(),
             'createdByGuest' => $faker->boolean(),
-            'currencyCode' => $faker->currencyCode(),
-            'localeCode' => $faker->locale(),
             'channel' => new LazyValue(fn () => ChannelFactory::randomOrCreate()),
             'customer' => new LazyValue(fn () => CustomerFactory::randomOrCreate()),
+            'completeDate' => $faker->dateTimeBetween('-1 years', 'now'),
+            'fulfilled' => $faker->boolean(),
+            'paymentMethod' => new LazyValue(fn () => PaymentMethodFactory::new()->enabled()->create()),
         ];
     }
 }
