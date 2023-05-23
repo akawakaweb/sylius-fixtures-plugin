@@ -118,7 +118,7 @@ final class RandomTShirtsStory extends Story implements RandomTShirtsStoryInterf
     {
         ProductOptionFactory::new()
             ->withCode('t_shirt_size')
-            //->withName('T-shirt size')
+            ->withName('T-shirt size')
             ->withValues([
                 't_shirt_size_s' => 'S',
                 't_shirt_size_m' => 'M',
@@ -136,7 +136,7 @@ final class RandomTShirtsStory extends Story implements RandomTShirtsStoryInterf
 
         ProductFactory::new()
             ->withName('Everyday white basic T-Shirt')
-//            ->withTaxCategory('clothing')
+            ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('women_t_shirts')
             ->withTaxa(['t_shirts', 'women_t_shirts'])
@@ -157,7 +157,7 @@ final class RandomTShirtsStory extends Story implements RandomTShirtsStoryInterf
 
         ProductFactory::new()
             ->withName('Loose white designer T-Shirt')
-//            ->withTaxCategory('clothing')
+            ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('women_t_shirts')
             ->withTaxa(['t_shirts', 'women_t_shirts'])
@@ -177,7 +177,7 @@ final class RandomTShirtsStory extends Story implements RandomTShirtsStoryInterf
 
         ProductFactory::new()
             ->withName('Ribbed copper slim fit Tee')
-//            ->withTaxCategory('clothing')
+            ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('women_t_shirts')
             ->withTaxa(['t_shirts', 'women_t_shirts'])
@@ -197,7 +197,7 @@ final class RandomTShirtsStory extends Story implements RandomTShirtsStoryInterf
 
         ProductFactory::new()
             ->withName('Sport basic white T-Shirt')
-//            ->withTaxCategory('clothing')
+            ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('men_t_shirts')
             ->withTaxa(['t_shirts', 'men_t_shirts'])
@@ -217,7 +217,7 @@ final class RandomTShirtsStory extends Story implements RandomTShirtsStoryInterf
 
         ProductFactory::new()
             ->withName('Raglan grey & black Tee')
-//            ->withTaxCategory('clothing')
+            ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('men_t_shirts')
             ->withTaxa(['t_shirts', 'men_t_shirts'])
@@ -237,7 +237,7 @@ final class RandomTShirtsStory extends Story implements RandomTShirtsStoryInterf
 
         ProductFactory::new()
             ->withName('Oversize white cotton T-Shirt')
-//            ->withTaxCategory('clothing')
+            ->withTaxCategory('clothing')
             ->withChannels(['FASHION_WEB'])
             ->withMainTaxon('men_t_shirts')
             ->withTaxa(['t_shirts', 'men_t_shirts'])

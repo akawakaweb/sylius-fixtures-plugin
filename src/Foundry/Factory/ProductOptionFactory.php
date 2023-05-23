@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
 
 use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
+use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithNameTrait;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductOptionRepository;
 use Sylius\Component\Product\Model\ProductOption;
 use Sylius\Component\Product\Model\ProductOptionInterface;
@@ -43,18 +44,11 @@ final class ProductOptionFactory extends AbstractModelFactory implements Factory
 {
     use WithModelClassTrait;
     use WithCodeTrait;
+    use WithNameTrait;
 
     public function withValues(array $values): self
     {
         return $this->addState(['values' => $values]);
-    }
-
-    protected function getDefaults(): array
-    {
-        return [
-            'code' => self::faker()->text(),
-            'createdAt' => self::faker()->dateTime(),
-        ];
     }
 
     protected static function getClass(): string

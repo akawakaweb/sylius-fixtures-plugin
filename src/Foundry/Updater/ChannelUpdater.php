@@ -26,9 +26,9 @@ final class ChannelUpdater implements UpdaterInterface
 
     public function __invoke(object $object, array $attributes): array
     {
-        if (!$object instanceof ChannelInterface) {
-            return ($this->decorated)($object, $attributes);
-        }
+        Assert::isInstanceOf($object, ChannelInterface::class);
+
+        $attributes = ($this->decorated)($object, $attributes);
 
         $defaultLocale = $attributes['defaultLocale'] ?? null;
         Assert::nullOrIsInstanceOf($defaultLocale, LocaleInterface::class);
@@ -38,6 +38,6 @@ final class ChannelUpdater implements UpdaterInterface
             $object->addLocale($defaultLocale);
         }
 
-        return ($this->decorated)($object, $attributes);
+        return $attributes;
     }
 }

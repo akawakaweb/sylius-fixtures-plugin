@@ -231,7 +231,7 @@ final class ChannelFactoryTest extends KernelTestCase
         $channel = ChannelFactory::new()->withLocales(['fr_FR'])->create();
 
         // a default locale has been created first, so it is the last one or the only one
-        $this->assertEquals('fr_FR', $channel->getLocales()->last()->getCode());
+        $this->assertEquals('fr_FR', $channel->getLocales()->first()->getCode());
     }
 
     /** @test */

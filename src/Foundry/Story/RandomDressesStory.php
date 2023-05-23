@@ -88,7 +88,7 @@ final class RandomDressesStory extends Story implements RandomDressesStoryInterf
     {
         ProductOptionFactory::new()
             ->withCode('dress_size')
-            //->withName('Dress size')
+            ->withName('Dress size')
             ->withValues([
                 'dress_s' => 'S',
                 'dress_m' => 'M',
@@ -101,7 +101,7 @@ final class RandomDressesStory extends Story implements RandomDressesStoryInterf
 
         ProductOptionFactory::new()
             ->withCode('dress_height')
-            //->withName('Dress height')
+            ->withName('Dress height')
             ->withValues([
                 'dress_height_petite' => 'Petite',
                 'dress_height_regular' => 'Regular',

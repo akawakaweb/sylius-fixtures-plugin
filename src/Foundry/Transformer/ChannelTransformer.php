@@ -17,12 +17,14 @@ final class ChannelTransformer implements TransformerInterface
 {
     use TransformCurrencyAttributeTrait;
     use TransformCurrenciesAttributeTrait;
+    use TransformLocaleAttributeTrait;
     use TransformLocalesAttributeTrait;
     use TransformTaxonAttributeTrait;
     use TransformZoneAttributeTrait;
 
     public function transform(array $attributes): array
     {
+        $attributes = $this->transformLocaleAttribute($attributes, 'defaultLocale');
         $attributes = $this->transformCurrencyAttribute($attributes, 'baseCurrency');
         $attributes = $this->transformCurrenciesAttribute($attributes);
         $attributes = $this->transformTaxonAttribute($attributes, 'menuTaxon');

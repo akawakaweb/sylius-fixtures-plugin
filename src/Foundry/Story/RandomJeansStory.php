@@ -109,7 +109,7 @@ final class RandomJeansStory extends Story implements RandomJeansStoryInterface
     {
         ProductOptionFactory::new()
             ->withCode('jeans_size')
-            //->withName('Jeans size')
+            ->withName('Jeans size')
             ->withValues([
                 'jeans_size_s' => 'S',
                 'jeans_size_m' => 'M',

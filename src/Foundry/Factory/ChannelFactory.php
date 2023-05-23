@@ -56,9 +56,9 @@ final class ChannelFactory extends AbstractModelFactory implements FactoryWithMo
     use WithCurrenciesTrait;
     use ToggableTrait;
 
-    public function withBaseLocale(Proxy|LocaleInterface|string $baseLocale): self
+    public function withDefaultLocale(Proxy|LocaleInterface|string $defaultLocale): self
     {
-        return $this->addState(['baseLocale' => $baseLocale]);
+        return $this->addState(['defaultLocale' => $defaultLocale]);
     }
 
     public function withHostname(string $hostname): self

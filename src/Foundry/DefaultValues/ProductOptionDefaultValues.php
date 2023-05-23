@@ -20,7 +20,7 @@ final class ProductOptionDefaultValues implements DefaultValuesInterface
     public function __invoke(Generator $faker): array
     {
         return [
-            'code' => $faker->text(),
+            'name' => $faker->words(3, true),
             'createdAt' => $faker->dateTime(),
         ];
     }

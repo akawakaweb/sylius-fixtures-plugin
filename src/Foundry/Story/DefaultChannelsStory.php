@@ -19,7 +19,7 @@ use Zenstruck\Foundry\Story;
 final class DefaultChannelsStory extends Story implements DefaultChannelsStoryInterface
 {
     public function __construct(
-        private string $basedLocaleCode,
+        private string $defaultLocaleCode,
         private string $fixturesHostname,
         private ?string $fixturesThemeName,
     ) {
@@ -30,7 +30,7 @@ final class DefaultChannelsStory extends Story implements DefaultChannelsStoryIn
         ChannelFactory::new()
             ->withName('Fashion Web Store')
             ->withCode('FASHION_WEB')
-            ->withBaseLocale($this->basedLocaleCode)
+            ->withDefaultLocale($this->defaultLocaleCode)
             ->withAttributes(['baseCurrency' => 'USD'])
             ->withCurrencies(['USD'])
             ->enabled()

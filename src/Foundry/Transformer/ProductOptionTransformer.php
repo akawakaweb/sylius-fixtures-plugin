@@ -17,8 +17,12 @@ use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductOptionValueFactory;
 
 final class ProductOptionTransformer implements TransformerInterface
 {
+    use TransformNameToCodeAttributeTrait;
+
     public function transform(array $attributes): array
     {
+        $attributes = $this->transformNameToCodeAttribute($attributes);
+
         return $this->transformValuesAttribute($attributes);
     }
 

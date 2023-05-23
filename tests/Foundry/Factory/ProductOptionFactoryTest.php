@@ -61,6 +61,37 @@ final class ProductOptionFactoryTest extends KernelTestCase
     }
 
     /** @test */
+    public function it_creates_product_option_with_translations_for_each_locales(): void
+    {
+        LocaleFactory::createMany(2);
+
+        $productOption = ProductOptionFactory::createOne();
+
+        $this->assertCount(2, $productOption->getTranslations());
+    }
+
+    /** @test */
+    public function it_creates_product_option_with_given_name(): void
+    {
+        LocaleFactory::new()->withCode('en_US')->create();
+        LocaleFactory::new()->withCode('fr_FR')->create();
+
+        $productOption = ProductOptionFactory::new()->withName('Color')->create();
+
+        // test en_US translation
+        $productOption->setCurrentLocale('en_US');
+        $productOption->setFallbackLocale('en_US');
+        $this->assertEquals('Color', $productOption->getName());
+        $this->assertEquals('Color', $productOption->getCode());
+
+        // test fr_FR translation
+        $productOption->setCurrentLocale('fr_FR');
+        $productOption->setFallbackLocale('en_Ufr_FRS');
+        $this->assertEquals('Color', $productOption->getName());
+        $this->assertEquals('Color', $productOption->getCode());
+    }
+
+    /** @test */
     public function it_creates_product_option_with_given_values(): void
     {
         LocaleFactory::createOne();
