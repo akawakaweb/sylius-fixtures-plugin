@@ -11,13 +11,13 @@
 
 declare(strict_types=1);
 
-namespace Tests\Acme\SyliusExamplePlugin\Foundry\Story;
+namespace Tests\Akawakaweb\SyliusFixturesPlugin\Foundry\Story;
 
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Story\DefaultChannelsStory;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Tests\Acme\SyliusExamplePlugin\PurgeDatabaseTrait;
+use Tests\Akawakaweb\SyliusFixturesPlugin\PurgeDatabaseTrait;
 use Zenstruck\Foundry\Test\Factories;
 
 final class DefaultChannelsStoryTest extends KernelTestCase

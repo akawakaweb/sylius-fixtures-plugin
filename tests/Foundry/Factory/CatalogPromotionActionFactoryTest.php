@@ -11,12 +11,12 @@
 
 declare(strict_types=1);
 
-namespace Tests\Acme\SyliusExamplePlugin\Foundry\Factory;
+namespace Tests\Akawakaweb\SyliusFixturesPlugin\Foundry\Factory;
 
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\CatalogPromotionActionFactory;
 use Sylius\Component\Promotion\Model\CatalogPromotionActionInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Tests\Acme\SyliusExamplePlugin\PurgeDatabaseTrait;
+use Tests\Akawakaweb\SyliusFixturesPlugin\PurgeDatabaseTrait;
 use Zenstruck\Foundry\Test\Factories;
 
 final class CatalogPromotionActionFactoryTest extends KernelTestCase

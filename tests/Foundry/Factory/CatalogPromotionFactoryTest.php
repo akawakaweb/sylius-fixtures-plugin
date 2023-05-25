@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Acme\SyliusExamplePlugin\Foundry\Factory;
+namespace Tests\Akawakaweb\SyliusFixturesPlugin\Foundry\Factory;
 
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\CatalogPromotionActionFactory;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\CatalogPromotionFactory;
@@ -20,7 +20,7 @@ use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ChannelFactory;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\LocaleFactory;
 use Sylius\Component\Core\Model\CatalogPromotionInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Tests\Acme\SyliusExamplePlugin\PurgeDatabaseTrait;
+use Tests\Akawakaweb\SyliusFixturesPlugin\PurgeDatabaseTrait;
 use Zenstruck\Foundry\Test\Factories;
 
 final class CatalogPromotionFactoryTest extends KernelTestCase

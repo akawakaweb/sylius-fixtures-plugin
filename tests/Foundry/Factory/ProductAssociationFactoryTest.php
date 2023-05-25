@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Acme\SyliusExamplePlugin\Foundry\Factory;
+namespace Tests\Akawakaweb\SyliusFixturesPlugin\Foundry\Factory;
 
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\LocaleFactory;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ProductAssociationFactory;
@@ -19,7 +19,7 @@ use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ProductAssociationTypeFactor
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ProductFactory;
 use Sylius\Component\Product\Model\ProductAssociationInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Tests\Acme\SyliusExamplePlugin\PurgeDatabaseTrait;
+use Tests\Akawakaweb\SyliusFixturesPlugin\PurgeDatabaseTrait;
 use Zenstruck\Foundry\Test\Factories;
 
 final class ProductAssociationFactoryTest extends KernelTestCase

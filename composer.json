@@ -76,7 +76,8 @@
             "tests/Application/Kernel.php"
         ],
         "psr-4": {
-            "Tests\\Acme\\SyliusExamplePlugin\\": "tests/"
+            "Tests\\Akawakaweb\\SyliusFixturesPlugin\\": "tests",
+            "App\\": "tests/Application"
         }
     },
     "scripts": {
