@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -11,13 +11,13 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
+namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\TranslatableTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithConfigurationTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithNameTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithTypeTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\TranslatableTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithConfigurationTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithNameTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithTypeTrait;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Product\Model\ProductAttribute;
 use Sylius\Component\Product\Model\ProductAttributeInterface;

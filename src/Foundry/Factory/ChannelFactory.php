@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -11,13 +11,13 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
+namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\ToggableTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCurrenciesTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithLocalesTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithNameTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\ToggableTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithCurrenciesTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithLocalesTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithNameTrait;
 use Doctrine\ORM\EntityRepository;
 use Sylius\Component\Addressing\Model\ZoneInterface;
 use Sylius\Component\Core\Model\Channel;

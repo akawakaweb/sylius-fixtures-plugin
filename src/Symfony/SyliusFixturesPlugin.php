@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -11,11 +11,11 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Symfony;
+namespace Akawakaweb\SyliusFixturesPlugin\Symfony;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-final class ShopFixturesPlugin extends Bundle
+final class SyliusFixturesPlugin extends Bundle
 {
     public function getPath(): string
     {

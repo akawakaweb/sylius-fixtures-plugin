@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -11,15 +11,15 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
+namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\FemaleTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\MaleTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithBirthdayTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithEmailTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithFirstNameTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithLastNameTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithPhoneNumberTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\FemaleTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\MaleTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithBirthdayTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithEmailTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithFirstNameTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithLastNameTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithPhoneNumberTrait;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\CustomerRepository;
 use Sylius\Component\Core\Model\Customer;
 use Sylius\Component\Core\Model\CustomerInterface;

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -11,16 +11,16 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
+namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\ToggableTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithAvatarTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithEmailTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithFirstNameTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithLastNameTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithLocaleCodeTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithPasswordTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithUsernameTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\ToggableTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithAvatarTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithEmailTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithFirstNameTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithLastNameTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithLocaleCodeTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithPasswordTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithUsernameTrait;
 use Sylius\Bundle\UserBundle\Doctrine\ORM\UserRepository;
 use Sylius\Component\Core\Model\AdminUser;
 use Sylius\Component\Core\Model\AdminUserInterface;

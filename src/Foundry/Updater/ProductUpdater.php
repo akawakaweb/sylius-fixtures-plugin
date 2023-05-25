@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -11,10 +11,10 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Updater;
+namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Updater;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ChannelFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ChannelFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\LocaleFactory;
 use Faker\Factory;
 use Faker\Generator;
 use Sylius\Component\Core\Model\ChannelPricingInterface;

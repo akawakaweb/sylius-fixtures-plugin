@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -11,10 +11,10 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues;
+namespace Akawakaweb\SyliusFixturesPlugin\Foundry\DefaultValues;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CurrencyFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\CurrencyFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\LocaleFactory;
 use Faker\Generator;
 use Sylius\Component\Currency\Model\CurrencyInterface;
 use Sylius\Component\Locale\Model\LocaleInterface;

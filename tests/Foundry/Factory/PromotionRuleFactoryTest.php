@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Tests\Acme\SyliusExamplePlugin\Foundry\Factory;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\PromotionRuleFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\PromotionRuleFactory;
 use Sylius\Component\Promotion\Checker\Rule\ItemTotalRuleChecker;
 use Sylius\Component\Promotion\Model\PromotionRuleInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;

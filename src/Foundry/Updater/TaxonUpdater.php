@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -11,10 +11,10 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Updater;
+namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Updater;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxonFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\LocaleFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\TaxonFactory;
 use Sylius\Component\Core\Model\TaxonInterface;
 use Sylius\Component\Taxonomy\Generator\TaxonSlugGeneratorInterface;
 use Webmozart\Assert\Assert;

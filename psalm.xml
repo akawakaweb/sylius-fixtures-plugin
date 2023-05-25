@@ -67,7 +67,7 @@
 
         <MixedInferredReturnType>
             <errorLevel type="suppress">
-                <file name="src/Symfony/ShopFixturesPlugin.php" />
+                <file name="src/Symfony/SyliusFixturesPlugin.php" />
             </errorLevel>
         </MixedInferredReturnType>
 
@@ -79,7 +79,7 @@
 
         <MixedReturnStatement>
             <errorLevel type="suppress">
-                <file name="src/Symfony/ShopFixturesPlugin.php" />
+                <file name="src/Symfony/SyliusFixturesPlugin.php" />
             </errorLevel>
         </MixedReturnStatement>
 

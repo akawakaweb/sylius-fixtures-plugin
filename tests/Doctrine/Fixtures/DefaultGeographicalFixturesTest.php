@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -30,7 +30,7 @@ final class DefaultGeographicalFixturesTest extends KernelTestCase
         self::bootKernel();
 
         /** @var Fixture $fixture */
-        $fixture = self::getContainer()->get('sylius.shop_fixtures.doctrine.fixtures.default_currencies');
+        $fixture = self::getContainer()->get('sylius.fixtures_plugin.doctrine.fixtures.default_currencies');
 
         $fixture->load(self::getContainer()->get('doctrine.orm.entity_manager'));
 

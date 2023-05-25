@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -11,9 +11,9 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Story;
+namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Story;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ChannelFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ChannelFactory;
 use Zenstruck\Foundry\Story;
 
 final class DefaultChannelsStory extends Story implements DefaultChannelsStoryInterface

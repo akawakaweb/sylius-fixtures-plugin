@@ -68,14 +68,16 @@
     },
     "autoload": {
         "psr-4": {
-            "Akawakaweb\\ShopFixturesPlugin\\": "src/",
-            "Tests\\Acme\\SyliusExamplePlugin\\": "tests/"
+            "Akawakaweb\\SyliusFixturesPlugin\\": "src/"
         }
     },
     "autoload-dev": {
         "classmap": [
             "tests/Application/Kernel.php"
-        ]
+        ],
+        "psr-4": {
+            "Tests\\Acme\\SyliusExamplePlugin\\": "tests/"
+        }
     },
     "scripts": {
         "post-install-cmd": [

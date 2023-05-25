@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -11,9 +11,9 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Story;
+namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Story;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\PaymentMethodFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\PaymentMethodFactory;
 use Zenstruck\Foundry\Story;
 
 final class DefaultPaymentMethodsStory extends Story implements DefaultPaymentMethodsStoryInterface

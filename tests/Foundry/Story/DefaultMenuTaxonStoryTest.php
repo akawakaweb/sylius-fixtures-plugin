@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Tests\Acme\SyliusExamplePlugin\Foundry\Story;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultMenuTaxonStory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Story\DefaultMenuTaxonStory;
 use Sylius\Component\Core\Model\TaxonInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;

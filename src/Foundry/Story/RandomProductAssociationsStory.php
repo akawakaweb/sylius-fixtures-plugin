@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -11,11 +11,11 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Story;
+namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Story;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAssociationFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAssociationTypeFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ProductAssociationFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ProductAssociationTypeFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ProductFactory;
 use Zenstruck\Foundry\Story;
 
 final class RandomProductAssociationsStory extends Story implements RandomProductAssociationsStoryInterface

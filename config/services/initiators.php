@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -13,207 +13,207 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\Initiator;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\PaymentMethodInitiator;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ProductAttributeInitiator;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\ShopUserInitiator;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\TaxonInitiator;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Initiator\Initiator;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Initiator\PaymentMethodInitiator;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Initiator\ProductAttributeInitiator;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Initiator\ShopUserInitiator;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Initiator\TaxonInitiator;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
-        ->set('sylius.shop_fixtures.initiator.address', Initiator::class)
+        ->set('sylius.fixtures_plugin.initiator.address', Initiator::class)
             ->args([
                 service('sylius.factory.address'),
-                service('sylius.shop_fixtures.updater.address'),
+                service('sylius.fixtures_plugin.updater.address'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.admin_user', Initiator::class)
+        ->set('sylius.fixtures_plugin.initiator.admin_user', Initiator::class)
             ->args([
                 service('sylius.factory.admin_user'),
-                service('sylius.shop_fixtures.updater.admin_user'),
+                service('sylius.fixtures_plugin.updater.admin_user'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.catalog_promotion_action', Initiator::class)
+        ->set('sylius.fixtures_plugin.initiator.catalog_promotion_action', Initiator::class)
             ->args([
                 service('sylius.factory.catalog_promotion_action'),
-                service('sylius.shop_fixtures.updater.catalog_promotion_action'),
+                service('sylius.fixtures_plugin.updater.catalog_promotion_action'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.catalog_promotion', Initiator::class)
+        ->set('sylius.fixtures_plugin.initiator.catalog_promotion', Initiator::class)
             ->args([
                 service('sylius.factory.catalog_promotion'),
-                service('sylius.shop_fixtures.updater.catalog_promotion'),
+                service('sylius.fixtures_plugin.updater.catalog_promotion'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.catalog_promotion_scope', Initiator::class)
+        ->set('sylius.fixtures_plugin.initiator.catalog_promotion_scope', Initiator::class)
             ->args([
                 service('sylius.factory.catalog_promotion_scope'),
-                service('sylius.shop_fixtures.updater.catalog_promotion_scope'),
+                service('sylius.fixtures_plugin.updater.catalog_promotion_scope'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.channel', Initiator::class)
+        ->set('sylius.fixtures_plugin.initiator.channel', Initiator::class)
             ->args([
                 service('sylius.factory.channel'),
-                service('sylius.shop_fixtures.updater.channel'),
+                service('sylius.fixtures_plugin.updater.channel'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.country', Initiator::class)
+        ->set('sylius.fixtures_plugin.initiator.country', Initiator::class)
             ->args([
                 service('sylius.factory.country'),
-                service('sylius.shop_fixtures.updater.country'),
+                service('sylius.fixtures_plugin.updater.country'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.currency', Initiator::class)
+        ->set('sylius.fixtures_plugin.initiator.currency', Initiator::class)
             ->args([
                 service('sylius.factory.currency'),
-                service('sylius.shop_fixtures.updater.currency'),
+                service('sylius.fixtures_plugin.updater.currency'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.customer', Initiator::class)
+        ->set('sylius.fixtures_plugin.initiator.customer', Initiator::class)
             ->args([
                 service('sylius.factory.customer'),
-                service('sylius.shop_fixtures.updater.customer'),
+                service('sylius.fixtures_plugin.updater.customer'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.customer_group', Initiator::class)
+        ->set('sylius.fixtures_plugin.initiator.customer_group', Initiator::class)
             ->args([
                 service('sylius.factory.customer_group'),
-                service('sylius.shop_fixtures.updater.customer_group'),
+                service('sylius.fixtures_plugin.updater.customer_group'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.locale', Initiator::class)
+        ->set('sylius.fixtures_plugin.initiator.locale', Initiator::class)
             ->args([
                 service('sylius.factory.locale'),
-                service('sylius.shop_fixtures.updater.locale'),
+                service('sylius.fixtures_plugin.updater.locale'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.order', Initiator::class)
+        ->set('sylius.fixtures_plugin.initiator.order', Initiator::class)
             ->args([
                 service('sylius.factory.order'),
-                service('sylius.shop_fixtures.updater.order'),
+                service('sylius.fixtures_plugin.updater.order'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.order_item', Initiator::class)
+        ->set('sylius.fixtures_plugin.initiator.order_item', Initiator::class)
             ->args([
                 service('sylius.factory.order_item'),
-                service('sylius.shop_fixtures.updater.order_item'),
+                service('sylius.fixtures_plugin.updater.order_item'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.payment_method', PaymentMethodInitiator::class)
+        ->set('sylius.fixtures_plugin.initiator.payment_method', PaymentMethodInitiator::class)
             ->args([
                 service('sylius.factory.payment_method'),
-                service('sylius.shop_fixtures.updater.payment_method'),
+                service('sylius.fixtures_plugin.updater.payment_method'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.product_association', Initiator::class)
+        ->set('sylius.fixtures_plugin.initiator.product_association', Initiator::class)
             ->args([
                 service('sylius.factory.product_association'),
-                service('sylius.shop_fixtures.updater.product_association'),
+                service('sylius.fixtures_plugin.updater.product_association'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.product_association_type', Initiator::class)
+        ->set('sylius.fixtures_plugin.initiator.product_association_type', Initiator::class)
             ->args([
                 service('sylius.factory.product_association_type'),
-                service('sylius.shop_fixtures.updater.product_association_type'),
+                service('sylius.fixtures_plugin.updater.product_association_type'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.product_attribute', ProductAttributeInitiator::class)
+        ->set('sylius.fixtures_plugin.initiator.product_attribute', ProductAttributeInitiator::class)
             ->args([
                 service('sylius.factory.product_attribute'),
-                service('sylius.shop_fixtures.updater.product_attribute'),
+                service('sylius.fixtures_plugin.updater.product_attribute'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.product', Initiator::class)
+        ->set('sylius.fixtures_plugin.initiator.product', Initiator::class)
             ->args([
                 service('sylius.factory.product'),
-                service('sylius.shop_fixtures.updater.product'),
+                service('sylius.fixtures_plugin.updater.product'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.product_option', Initiator::class)
+        ->set('sylius.fixtures_plugin.initiator.product_option', Initiator::class)
             ->args([
                 service('sylius.factory.product_option'),
-                service('sylius.shop_fixtures.updater.product_option'),
+                service('sylius.fixtures_plugin.updater.product_option'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.product_option_value', Initiator::class)
+        ->set('sylius.fixtures_plugin.initiator.product_option_value', Initiator::class)
             ->args([
                 service('sylius.factory.product_option_value'),
-                service('sylius.shop_fixtures.updater.product_option_value'),
+                service('sylius.fixtures_plugin.updater.product_option_value'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.product_review', Initiator::class)
+        ->set('sylius.fixtures_plugin.initiator.product_review', Initiator::class)
             ->args([
                 service('sylius.factory.product_review'),
-                service('sylius.shop_fixtures.updater.product_review'),
+                service('sylius.fixtures_plugin.updater.product_review'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.promotion', Initiator::class)
+        ->set('sylius.fixtures_plugin.initiator.promotion', Initiator::class)
             ->args([
                 service('sylius.factory.promotion'),
-                service('sylius.shop_fixtures.updater.promotion'),
+                service('sylius.fixtures_plugin.updater.promotion'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.promotion_action', Initiator::class)
+        ->set('sylius.fixtures_plugin.initiator.promotion_action', Initiator::class)
             ->args([
                 service('sylius.factory.promotion_action'),
-                service('sylius.shop_fixtures.updater.promotion_action'),
+                service('sylius.fixtures_plugin.updater.promotion_action'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.promotion_rule', Initiator::class)
+        ->set('sylius.fixtures_plugin.initiator.promotion_rule', Initiator::class)
             ->args([
                 service('sylius.factory.promotion_rule'),
-                service('sylius.shop_fixtures.updater.promotion_rule'),
+                service('sylius.fixtures_plugin.updater.promotion_rule'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.shipping_category', Initiator::class)
+        ->set('sylius.fixtures_plugin.initiator.shipping_category', Initiator::class)
             ->args([
                 service('sylius.factory.shipping_category'),
-                service('sylius.shop_fixtures.updater.shipping_category'),
+                service('sylius.fixtures_plugin.updater.shipping_category'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.shipping_method', Initiator::class)
+        ->set('sylius.fixtures_plugin.initiator.shipping_method', Initiator::class)
             ->args([
                 service('sylius.factory.shipping_method'),
-                service('sylius.shop_fixtures.updater.shipping_method'),
+                service('sylius.fixtures_plugin.updater.shipping_method'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.shop_user', ShopUserInitiator::class)
+        ->set('sylius.fixtures_plugin.initiator.shop_user', ShopUserInitiator::class)
             ->args([
                 service('sylius.factory.shop_user'),
-                service('sylius.shop_fixtures.initiator.customer'),
+                service('sylius.fixtures_plugin.initiator.customer'),
                 param('sylius.model.customer.class'),
-                service('sylius.shop_fixtures.updater'),
+                service('sylius.fixtures_plugin.updater'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.tax_category', Initiator::class)
+        ->set('sylius.fixtures_plugin.initiator.tax_category', Initiator::class)
             ->args([
                 service('sylius.factory.tax_category'),
-                service('sylius.shop_fixtures.updater.tax_category'),
+                service('sylius.fixtures_plugin.updater.tax_category'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.tax_rate', Initiator::class)
+        ->set('sylius.fixtures_plugin.initiator.tax_rate', Initiator::class)
             ->args([
                 service('sylius.factory.tax_rate'),
-                service('sylius.shop_fixtures.updater.tax_rate'),
+                service('sylius.fixtures_plugin.updater.tax_rate'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.taxon', TaxonInitiator::class)
+        ->set('sylius.fixtures_plugin.initiator.taxon', TaxonInitiator::class)
             ->args([
                 service('sylius.factory.taxon'),
                 service('sylius.repository.taxon'),
-                service('sylius.shop_fixtures.updater.taxon'),
+                service('sylius.fixtures_plugin.updater.taxon'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.zone', Initiator::class)
+        ->set('sylius.fixtures_plugin.initiator.zone', Initiator::class)
             ->args([
                 service('sylius.factory.zone'),
-                service('sylius.shop_fixtures.updater.zone'),
+                service('sylius.fixtures_plugin.updater.zone'),
             ])
 
-        ->set('sylius.shop_fixtures.initiator.zone_member', Initiator::class)
+        ->set('sylius.fixtures_plugin.initiator.zone_member', Initiator::class)
             ->args([
                 service('sylius.factory.zone_member'),
-                service('sylius.shop_fixtures.updater.zone_member'),
+                service('sylius.fixtures_plugin.updater.zone_member'),
             ])
     ;
 };

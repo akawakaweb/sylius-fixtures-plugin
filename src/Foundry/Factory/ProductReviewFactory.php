@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -11,11 +11,11 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
+namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCommentTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithStatusTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithTitleTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithCommentTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithStatusTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithTitleTrait;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductReviewRepository;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductReview;

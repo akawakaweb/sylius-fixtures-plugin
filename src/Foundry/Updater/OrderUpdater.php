@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -11,12 +11,12 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Updater;
+namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Updater;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\AddressFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\OrderItemFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\OrderSequenceFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ShippingMethodFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\AddressFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\OrderItemFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\OrderSequenceFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ShippingMethodFactory;
 use Faker\Factory;
 use Faker\Generator;
 use SM\Factory\FactoryInterface as StateMachineFactoryInterface;

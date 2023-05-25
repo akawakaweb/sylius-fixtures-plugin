@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -11,11 +11,11 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
+namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues\DefaultValuesInterface;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Initiator\InitiatorInterface;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Transformer\TransformerInterface;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\DefaultValues\DefaultValuesInterface;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Initiator\InitiatorInterface;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Transformer\TransformerInterface;
 use Zenstruck\Foundry\ModelFactory;
 
 /**

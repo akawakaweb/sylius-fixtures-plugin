@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -11,9 +11,9 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Configurator;
+namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Configurator;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\FactoryWithModelClassAwareInterface;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\FactoryWithModelClassAwareInterface;
 use Sylius\Component\Resource\Metadata\MetadataInterface;
 use Sylius\Component\Resource\Metadata\RegistryInterface;
 use Zenstruck\Foundry\ModelFactory;

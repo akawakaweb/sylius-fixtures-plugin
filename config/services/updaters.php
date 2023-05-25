@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -13,100 +13,100 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\AdminUserUpdater;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\CatalogPromotionUpdater;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ChannelUpdater;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\OrderItemUpdater;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\OrderUpdater;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\PaymentMethodUpdater;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ProductAttributeUpdater;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ProductOptionUpdater;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ProductOptionValueUpdater;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ProductUpdater;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\ShippingMethodUpdater;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\TaxonUpdater;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\Updater;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\UpdaterInterface;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Updater\AdminUserUpdater;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Updater\CatalogPromotionUpdater;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Updater\ChannelUpdater;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Updater\OrderItemUpdater;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Updater\OrderUpdater;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Updater\PaymentMethodUpdater;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Updater\ProductAttributeUpdater;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Updater\ProductOptionUpdater;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Updater\ProductOptionValueUpdater;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Updater\ProductUpdater;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Updater\ShippingMethodUpdater;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Updater\TaxonUpdater;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Updater\Updater;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Updater\UpdaterInterface;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
-        ->set('sylius.shop_fixtures.updater', Updater::class)
-        ->alias(UpdaterInterface::class, 'sylius.shop_fixtures.updater')
+        ->set('sylius.fixtures_plugin.updater', Updater::class)
+        ->alias(UpdaterInterface::class, 'sylius.fixtures_plugin.updater')
 
-        ->set('sylius.shop_fixtures.updater.address')
-            ->parent('sylius.shop_fixtures.updater')
+        ->set('sylius.fixtures_plugin.updater.address')
+            ->parent('sylius.fixtures_plugin.updater')
 
-        ->set('sylius.shop_fixtures.updater.admin_user', AdminUserUpdater::class)
+        ->set('sylius.fixtures_plugin.updater.admin_user', AdminUserUpdater::class)
             ->args([
-                service('sylius.shop_fixtures.updater'),
+                service('sylius.fixtures_plugin.updater'),
                 service('sylius.factory.avatar_image'),
                 service('file_locator'),
                 service('sylius.image_uploader'),
             ])
 
-        ->set('sylius.shop_fixtures.updater.catalog_promotion_action')
-            ->parent('sylius.shop_fixtures.updater')
+        ->set('sylius.fixtures_plugin.updater.catalog_promotion_action')
+            ->parent('sylius.fixtures_plugin.updater')
 
-        ->set('sylius.shop_fixtures.updater.catalog_promotion', CatalogPromotionUpdater::class)
+        ->set('sylius.fixtures_plugin.updater.catalog_promotion', CatalogPromotionUpdater::class)
             ->args([
-                service('sylius.shop_fixtures.updater'),
+                service('sylius.fixtures_plugin.updater'),
             ])
 
-        ->set('sylius.shop_fixtures.updater.catalog_promotion_scope')
-            ->parent('sylius.shop_fixtures.updater')
+        ->set('sylius.fixtures_plugin.updater.catalog_promotion_scope')
+            ->parent('sylius.fixtures_plugin.updater')
 
-        ->set('sylius.shop_fixtures.updater.channel', ChannelUpdater::class)
+        ->set('sylius.fixtures_plugin.updater.channel', ChannelUpdater::class)
             ->args([
-                service('sylius.shop_fixtures.updater'),
+                service('sylius.fixtures_plugin.updater'),
             ])
 
-        ->set('sylius.shop_fixtures.updater.country')
-            ->parent('sylius.shop_fixtures.updater')
+        ->set('sylius.fixtures_plugin.updater.country')
+            ->parent('sylius.fixtures_plugin.updater')
 
-        ->set('sylius.shop_fixtures.updater.currency')
-            ->parent('sylius.shop_fixtures.updater')
+        ->set('sylius.fixtures_plugin.updater.currency')
+            ->parent('sylius.fixtures_plugin.updater')
 
-        ->set('sylius.shop_fixtures.updater.customer')
-            ->parent('sylius.shop_fixtures.updater')
+        ->set('sylius.fixtures_plugin.updater.customer')
+            ->parent('sylius.fixtures_plugin.updater')
 
-        ->set('sylius.shop_fixtures.updater.customer_group')
-            ->parent('sylius.shop_fixtures.updater')
+        ->set('sylius.fixtures_plugin.updater.customer_group')
+            ->parent('sylius.fixtures_plugin.updater')
 
-        ->set('sylius.shop_fixtures.updater.locale')
-            ->parent('sylius.shop_fixtures.updater')
+        ->set('sylius.fixtures_plugin.updater.locale')
+            ->parent('sylius.fixtures_plugin.updater')
 
-        ->set('sylius.shop_fixtures.updater.order', OrderUpdater::class)
+        ->set('sylius.fixtures_plugin.updater.order', OrderUpdater::class)
             ->args([
-                service('sylius.shop_fixtures.updater'),
+                service('sylius.fixtures_plugin.updater'),
                 service('sm.factory'),
                 service('sylius.repository.shipping_method'),
             ])
 
-        ->set('sylius.shop_fixtures.updater.order_item', OrderItemUpdater::class)
+        ->set('sylius.fixtures_plugin.updater.order_item', OrderItemUpdater::class)
             ->args([
-                service('sylius.shop_fixtures.updater'),
+                service('sylius.fixtures_plugin.updater'),
                 service('sylius.order_item_quantity_modifier'),
             ])
 
-        ->set('sylius.shop_fixtures.updater.payment_method', PaymentMethodUpdater::class)
+        ->set('sylius.fixtures_plugin.updater.payment_method', PaymentMethodUpdater::class)
             ->args([
-                service('sylius.shop_fixtures.updater'),
+                service('sylius.fixtures_plugin.updater'),
             ])
 
-        ->set('sylius.shop_fixtures.updater.product_association')
-            ->parent('sylius.shop_fixtures.updater')
+        ->set('sylius.fixtures_plugin.updater.product_association')
+            ->parent('sylius.fixtures_plugin.updater')
 
-        ->set('sylius.shop_fixtures.updater.product_association_type')
-            ->parent('sylius.shop_fixtures.updater')
+        ->set('sylius.fixtures_plugin.updater.product_association_type')
+            ->parent('sylius.fixtures_plugin.updater')
 
-        ->set('sylius.shop_fixtures.updater.product_attribute', ProductAttributeUpdater::class)
+        ->set('sylius.fixtures_plugin.updater.product_attribute', ProductAttributeUpdater::class)
             ->args([
-                service('sylius.shop_fixtures.updater'),
+                service('sylius.fixtures_plugin.updater'),
             ])
 
-        ->set('sylius.shop_fixtures.updater.product', ProductUpdater::class)
+        ->set('sylius.fixtures_plugin.updater.product', ProductUpdater::class)
             ->args([
-                service('sylius.shop_fixtures.updater'),
+                service('sylius.fixtures_plugin.updater'),
                 service('sylius.factory.product_variant'),
                 service('sylius.factory.channel_pricing'),
                 service('sylius.generator.product_variant'),
@@ -114,55 +114,55 @@ return static function (ContainerConfigurator $container) {
                 service('sylius.factory.product_image'),
                 service('file_locator'),
                 service('sylius.image_uploader'),
-                service('sylius.shop_fixtures.updater'),
+                service('sylius.fixtures_plugin.updater'),
             ])
 
-        ->set('sylius.shop_fixtures.updater.product_option', ProductOptionUpdater::class)
+        ->set('sylius.fixtures_plugin.updater.product_option', ProductOptionUpdater::class)
             ->args([
-                service('sylius.shop_fixtures.updater'),
+                service('sylius.fixtures_plugin.updater'),
             ])
 
-        ->set('sylius.shop_fixtures.updater.product_option_value', ProductOptionValueUpdater::class)
+        ->set('sylius.fixtures_plugin.updater.product_option_value', ProductOptionValueUpdater::class)
             ->args([
-                service('sylius.shop_fixtures.updater'),
+                service('sylius.fixtures_plugin.updater'),
             ])
 
-        ->set('sylius.shop_fixtures.updater.product_review')
-            ->parent('sylius.shop_fixtures.updater')
+        ->set('sylius.fixtures_plugin.updater.product_review')
+            ->parent('sylius.fixtures_plugin.updater')
 
-        ->set('sylius.shop_fixtures.updater.promotion')
-            ->parent('sylius.shop_fixtures.updater')
+        ->set('sylius.fixtures_plugin.updater.promotion')
+            ->parent('sylius.fixtures_plugin.updater')
 
-        ->set('sylius.shop_fixtures.updater.promotion_action')
-            ->parent('sylius.shop_fixtures.updater')
+        ->set('sylius.fixtures_plugin.updater.promotion_action')
+            ->parent('sylius.fixtures_plugin.updater')
 
-        ->set('sylius.shop_fixtures.updater.promotion_rule')
-            ->parent('sylius.shop_fixtures.updater')
+        ->set('sylius.fixtures_plugin.updater.promotion_rule')
+            ->parent('sylius.fixtures_plugin.updater')
 
-        ->set('sylius.shop_fixtures.updater.shipping_category')
-            ->parent('sylius.shop_fixtures.updater')
+        ->set('sylius.fixtures_plugin.updater.shipping_category')
+            ->parent('sylius.fixtures_plugin.updater')
 
-        ->set('sylius.shop_fixtures.updater.shipping_method', ShippingMethodUpdater::class)
+        ->set('sylius.fixtures_plugin.updater.shipping_method', ShippingMethodUpdater::class)
             ->args([
-                service('sylius.shop_fixtures.updater'),
+                service('sylius.fixtures_plugin.updater'),
             ])
 
-        ->set('sylius.shop_fixtures.updater.tax_category')
-            ->parent('sylius.shop_fixtures.updater')
+        ->set('sylius.fixtures_plugin.updater.tax_category')
+            ->parent('sylius.fixtures_plugin.updater')
 
-        ->set('sylius.shop_fixtures.updater.tax_rate')
-            ->parent('sylius.shop_fixtures.updater')
+        ->set('sylius.fixtures_plugin.updater.tax_rate')
+            ->parent('sylius.fixtures_plugin.updater')
 
-        ->set('sylius.shop_fixtures.updater.taxon', TaxonUpdater::class)
+        ->set('sylius.fixtures_plugin.updater.taxon', TaxonUpdater::class)
             ->args([
-                service('sylius.shop_fixtures.updater'),
+                service('sylius.fixtures_plugin.updater'),
                 service('sylius.generator.taxon_slug'),
             ])
 
-        ->set('sylius.shop_fixtures.updater.zone')
-            ->parent('sylius.shop_fixtures.updater')
+        ->set('sylius.fixtures_plugin.updater.zone')
+            ->parent('sylius.fixtures_plugin.updater')
 
-        ->set('sylius.shop_fixtures.updater.zone_member')
-            ->parent('sylius.shop_fixtures.updater')
+        ->set('sylius.fixtures_plugin.updater.zone_member')
+            ->parent('sylius.fixtures_plugin.updater')
     ;
 };

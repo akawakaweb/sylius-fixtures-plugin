@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -11,11 +11,11 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
+namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithChannelTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCountryTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCustomerTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithChannelTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithCountryTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithCustomerTrait;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\OrderRepository;
 use Sylius\Component\Core\Model\Order;
 use Sylius\Component\Core\Model\OrderInterface;

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -13,12 +13,12 @@ declare(strict_types=1);
 
 namespace Tests\Acme\SyliusExamplePlugin\Foundry\Factory;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ChannelFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CountryFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CustomerFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\OrderFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ChannelFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\CountryFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\CustomerFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\LocaleFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\OrderFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ProductFactory;
 use Sylius\Component\Core\Model\OrderInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Tests\Acme\SyliusExamplePlugin\PurgeDatabaseTrait;

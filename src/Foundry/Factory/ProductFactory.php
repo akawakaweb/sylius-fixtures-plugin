@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -11,19 +11,19 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Factory;
+namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\ToggableTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithChannelsTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithDescriptionTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithImagesTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithNameTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithProductAttributesTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithShortDescriptionTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithSlugTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithTaxaTrait;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\State\WithTaxCategoryTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\ToggableTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithChannelsTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithDescriptionTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithImagesTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithNameTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithProductAttributesTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithShortDescriptionTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithSlugTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithTaxaTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithTaxCategoryTrait;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository;
 use Sylius\Component\Core\Model\Product;
 use Sylius\Component\Core\Model\ProductInterface;

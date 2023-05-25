@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -13,13 +13,13 @@ declare(strict_types=1);
 
 namespace Tests\Acme\SyliusExamplePlugin\Foundry\Factory;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ChannelFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAttributeFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductOptionFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxCategoryFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxonFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ChannelFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\LocaleFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ProductAttributeFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ProductFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ProductOptionFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\TaxCategoryFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\TaxonFactory;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductVariantInterface;
 use Sylius\Component\Product\Model\ProductAttributeValueInterface;

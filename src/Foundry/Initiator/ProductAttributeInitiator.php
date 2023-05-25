@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -11,9 +11,9 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Initiator;
+namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Initiator;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Updater\UpdaterInterface;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Updater\UpdaterInterface;
 use Sylius\Component\Attribute\Factory\AttributeFactoryInterface;
 use Webmozart\Assert\Assert;
 

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -11,12 +11,12 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\Story;
+namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Story;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductAttributeFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ProductOptionFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxonFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ProductAttributeFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ProductFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ProductOptionFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\TaxonFactory;
 use Sylius\Component\Attribute\AttributeType\PercentAttributeType;
 use Sylius\Component\Attribute\AttributeType\TextAttributeType;
 use Zenstruck\Foundry\Story;

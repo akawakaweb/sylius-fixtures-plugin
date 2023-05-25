@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -13,72 +13,72 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomAddressesStory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomAddressesStoryInterface;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomCapsStory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomCapsStoryInterface;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomCatalogPromotionsStory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomCatalogPromotionsStoryInterface;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomDressesStory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomDressesStoryInterface;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomJeansStory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomJeansStoryInterface;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomOrdersStory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomOrdersStoryInterface;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomProductAssociationsStory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomProductAssociationsStoryInterface;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomProductReviewsStory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomProductReviewsStoryInterface;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomPromotionsStory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomShopUsersStory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomShopUsersStoryInterface;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomTShirtsStory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\RandomTShirtsStoryInterface;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Story\RandomAddressesStory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Story\RandomAddressesStoryInterface;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Story\RandomCapsStory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Story\RandomCapsStoryInterface;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Story\RandomCatalogPromotionsStory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Story\RandomCatalogPromotionsStoryInterface;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Story\RandomDressesStory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Story\RandomDressesStoryInterface;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Story\RandomJeansStory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Story\RandomJeansStoryInterface;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Story\RandomOrdersStory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Story\RandomOrdersStoryInterface;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Story\RandomProductAssociationsStory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Story\RandomProductAssociationsStoryInterface;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Story\RandomProductReviewsStory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Story\RandomProductReviewsStoryInterface;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Story\RandomPromotionsStory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Story\RandomShopUsersStory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Story\RandomShopUsersStoryInterface;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Story\RandomTShirtsStory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Story\RandomTShirtsStoryInterface;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
-        ->set('sylius.shop_fixtures.story.random_addresses', RandomAddressesStory::class)
+        ->set('sylius.fixtures_plugin.story.random_addresses', RandomAddressesStory::class)
             ->tag('foundry.story')
-        ->alias(RandomAddressesStoryInterface::class, 'sylius.shop_fixtures.foundry.story.random_addresses')
+        ->alias(RandomAddressesStoryInterface::class, 'sylius.fixtures_plugin.foundry.story.random_addresses')
 
-        ->set('sylius.shop_fixtures.story.random_caps', RandomCapsStory::class)
+        ->set('sylius.fixtures_plugin.story.random_caps', RandomCapsStory::class)
             ->tag('foundry.story')
-        ->alias(RandomCapsStoryInterface::class, 'sylius.shop_fixtures.foundry.story.random_caps')
+        ->alias(RandomCapsStoryInterface::class, 'sylius.fixtures_plugin.foundry.story.random_caps')
 
-        ->set('sylius.shop_fixtures.story.random_dresses', RandomDressesStory::class)
+        ->set('sylius.fixtures_plugin.story.random_dresses', RandomDressesStory::class)
             ->tag('foundry.story')
-        ->alias(RandomDressesStoryInterface::class, 'sylius.shop_fixtures.foundry.story.random_dresses')
+        ->alias(RandomDressesStoryInterface::class, 'sylius.fixtures_plugin.foundry.story.random_dresses')
 
-        ->set('sylius.shop_fixtures.story.random_jeans', RandomJeansStory::class)
+        ->set('sylius.fixtures_plugin.story.random_jeans', RandomJeansStory::class)
             ->tag('foundry.story')
-        ->alias(RandomJeansStoryInterface::class, 'sylius.shop_fixtures.foundry.story.random_jeans')
+        ->alias(RandomJeansStoryInterface::class, 'sylius.fixtures_plugin.foundry.story.random_jeans')
 
-        ->set('sylius.shop_fixtures.story.random_t_shirts', RandomTShirtsStory::class)
+        ->set('sylius.fixtures_plugin.story.random_t_shirts', RandomTShirtsStory::class)
             ->tag('foundry.story')
-        ->alias(RandomTShirtsStoryInterface::class, 'sylius.shop_fixtures.foundry.story.random_t_shirts')
+        ->alias(RandomTShirtsStoryInterface::class, 'sylius.fixtures_plugin.foundry.story.random_t_shirts')
 
-        ->set('sylius.shop_fixtures.story.random_orders', RandomOrdersStory::class)
+        ->set('sylius.fixtures_plugin.story.random_orders', RandomOrdersStory::class)
             ->tag('foundry.story')
-        ->alias(RandomOrdersStoryInterface::class, 'sylius.shop_fixtures.foundry.story.random_orders')
+        ->alias(RandomOrdersStoryInterface::class, 'sylius.fixtures_plugin.foundry.story.random_orders')
 
-        ->set('sylius.shop_fixtures.story.random_shop_users', RandomShopUsersStory::class)
+        ->set('sylius.fixtures_plugin.story.random_shop_users', RandomShopUsersStory::class)
             ->tag('foundry.story')
-        ->alias(RandomShopUsersStoryInterface::class, 'sylius.shop_fixtures.foundry.story.random_shop_users')
+        ->alias(RandomShopUsersStoryInterface::class, 'sylius.fixtures_plugin.foundry.story.random_shop_users')
 
-        ->set('sylius.shop_fixtures.story.random_product_reviews', RandomProductReviewsStory::class)
+        ->set('sylius.fixtures_plugin.story.random_product_reviews', RandomProductReviewsStory::class)
             ->tag('foundry.story')
-        ->alias(RandomProductReviewsStoryInterface::class, 'sylius.shop_fixtures.foundry.story.random_product_reviews')
+        ->alias(RandomProductReviewsStoryInterface::class, 'sylius.fixtures_plugin.foundry.story.random_product_reviews')
 
-        ->set('sylius.shop_fixtures.story.random_product_associations', RandomProductAssociationsStory::class)
+        ->set('sylius.fixtures_plugin.story.random_product_associations', RandomProductAssociationsStory::class)
             ->tag('foundry.story')
-        ->alias(RandomProductAssociationsStoryInterface::class, 'sylius.shop_fixtures.foundry.story.random_product_associations')
+        ->alias(RandomProductAssociationsStoryInterface::class, 'sylius.fixtures_plugin.foundry.story.random_product_associations')
 
-        ->set('sylius.shop_fixtures.story.random_catalog_promotions', RandomCatalogPromotionsStory::class)
+        ->set('sylius.fixtures_plugin.story.random_catalog_promotions', RandomCatalogPromotionsStory::class)
             ->tag('foundry.story')
-        ->alias(RandomCatalogPromotionsStoryInterface::class, 'sylius.shop_fixtures.foundry.story.random_catalog_promotions')
+        ->alias(RandomCatalogPromotionsStoryInterface::class, 'sylius.fixtures_plugin.foundry.story.random_catalog_promotions')
 
-        ->set('sylius.shop_fixtures.story.random_promotions', RandomPromotionsStory::class)
+        ->set('sylius.fixtures_plugin.story.random_promotions', RandomPromotionsStory::class)
             ->tag('foundry.story')
-        ->alias(RandomCatalogPromotionsStoryInterface::class, 'sylius.shop_fixtures.foundry.story.random_promotions')
+        ->alias(RandomCatalogPromotionsStoryInterface::class, 'sylius.fixtures_plugin.foundry.story.random_promotions')
     ;
 };

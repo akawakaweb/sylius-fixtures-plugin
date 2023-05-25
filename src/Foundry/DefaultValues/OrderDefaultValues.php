@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -11,11 +11,11 @@
 
 declare(strict_types=1);
 
-namespace Akawakaweb\ShopFixturesPlugin\Foundry\DefaultValues;
+namespace Akawakaweb\SyliusFixturesPlugin\Foundry\DefaultValues;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ChannelFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CustomerFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\PaymentMethodFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ChannelFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\CustomerFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\PaymentMethodFactory;
 use Faker\Generator;
 use Zenstruck\Foundry\LazyValue;
 

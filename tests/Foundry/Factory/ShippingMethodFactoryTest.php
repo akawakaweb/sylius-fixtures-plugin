@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -13,12 +13,12 @@ declare(strict_types=1);
 
 namespace Tests\Acme\SyliusExamplePlugin\Foundry\Factory;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ChannelFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\LocaleFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ShippingCategoryFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ShippingMethodFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\TaxCategoryFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ZoneFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ChannelFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\LocaleFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ShippingCategoryFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ShippingMethodFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\TaxCategoryFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ZoneFactory;
 use Sylius\Component\Core\Model\ShippingMethodInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Tests\Acme\SyliusExamplePlugin\PurgeDatabaseTrait;

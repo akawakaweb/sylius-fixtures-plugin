@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ShopFixturesPlugin.
+ * This file is part of SyliusFixturesPlugin.
  *
  * (c) Akawaka
  *
@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Tests\Acme\SyliusExamplePlugin\Foundry\Factory;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ZoneFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\ZoneMemberFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ZoneFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ZoneMemberFactory;
 use Sylius\Component\Addressing\Model\ZoneInterface;
 use Sylius\Component\Core\Model\Scope;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
