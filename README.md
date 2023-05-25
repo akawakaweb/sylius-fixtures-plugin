@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://www.akawaka.fr" target="_blank">
-        <img src="https://www.akawaka.fr/build/front/images/logo_akawaka_noir.png" alt="Akawaka logo" />
+        <img src="https://www.akawaka.fr/build/front/images/logo_akawaka_noir.png" width="500" alt="Akawaka logo" />
     </a>
 </p>
 
