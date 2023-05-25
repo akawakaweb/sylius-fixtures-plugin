@@ -1,10 +1,10 @@
 <p align="center">
-    <a href="https://sylius.com" target="_blank">
-        <img src="https://demo.sylius.com/assets/shop/img/logo.png" />
+    <a href="https://www.akawaka.fr" target="_blank">
+        <img src="https://www.akawaka.fr/build/front/images/logo_akawaka_noir.png" alt="Akawaka logo" />
     </a>
 </p>
 
-<h1 align="center">Fixtures Plugin</h1>
+<h1 align="center">Sylius Fixtures Plugin</h1>
 
 ⚙️ Installation
 ===============
@@ -21,9 +21,9 @@ Documentation is available on [docs directory](/docs).
 📃 License
 ----------
 
-SyliusFixturesPlugin is completely free and released under the [MIT License](https://github.com/akawakaweb/sylius-fixtures-plugin/blob/master/LICENSE).
+Sylius Fixtures Plugin is completely free and released under the [MIT License](https://github.com/akawakaweb/sylius-fixtures-plugin/blob/master/LICENSE).
 
 ✍️ Authors
 ---------
 
-SyliusFixturesPlugin was originally created by [Loïc Frémont](https://loic425.github.io).
+Sylius Fixtures Plugin was originally created by [Loïc Frémont](https://loic425.github.io).
