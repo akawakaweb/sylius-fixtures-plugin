@@ -1,10 +1,27 @@
 # Documentation
 
 <!-- TOC -->
+* [Installation](#installation)
 * [Customizing stories](#customizing-stories)
 * [Customizing factories](#customizing-factories)
   * [Adding default values](#adding-default-values)
 <!-- TOC -->
+
+## Installation
+
+```bash
+composer require --dev akawakaweb/sylius-fixtures-plugin
+```
+
+```yaml
+# config/packages/services.yaml
+
+when@dev: &fixtures_dev
+    services:
+        # You will define here your customization
+    
+when@test: *fixtures_dev        
+```
 
 ## Customizing stories
 
