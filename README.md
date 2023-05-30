@@ -16,7 +16,7 @@ composer require --dev akawakaweb/sylius-fixtures-plugin
 📖 Documentation
 ----------------
 
-Documentation is available on [docs directory](/docs).
+Documentation is available on [docs directory](/docs/index.md).
 
 📃 License
 ----------
