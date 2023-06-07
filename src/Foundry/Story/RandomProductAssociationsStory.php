@@ -28,7 +28,7 @@ final class RandomProductAssociationsStory extends Story implements RandomProduc
     {
         $productAssociationType = ProductAssociationTypeFactory::new()
             ->withCode('similar_products')
-            //->withName('Similar products')
+            ->withName('Similar products')
             ->create()
         ;
 

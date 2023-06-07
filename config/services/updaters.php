@@ -19,6 +19,7 @@ use Akawakaweb\SyliusFixturesPlugin\Foundry\Updater\ChannelUpdater;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Updater\OrderItemUpdater;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Updater\OrderUpdater;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Updater\PaymentMethodUpdater;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Updater\ProductAssociationTypeUpdater;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Updater\ProductAttributeUpdater;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Updater\ProductOptionUpdater;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Updater\ProductOptionValueUpdater;
@@ -96,8 +97,10 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.fixtures_plugin.updater.product_association')
             ->parent('sylius.fixtures_plugin.updater')
 
-        ->set('sylius.fixtures_plugin.updater.product_association_type')
-            ->parent('sylius.fixtures_plugin.updater')
+        ->set('sylius.fixtures_plugin.updater.product_association_type', ProductAssociationTypeUpdater::class)
+            ->args([
+                service('sylius.fixtures_plugin.updater'),
+            ])
 
         ->set('sylius.fixtures_plugin.updater.product_attribute', ProductAttributeUpdater::class)
             ->args([

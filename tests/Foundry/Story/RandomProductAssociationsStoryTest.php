@@ -15,6 +15,7 @@ namespace Tests\Akawakaweb\SyliusFixturesPlugin\Foundry\Story;
 
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\LocaleFactory;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Story\RandomProductAssociationsStory;
+use Sylius\Component\Product\Model\ProductAssociationTypeInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Tests\Akawakaweb\SyliusFixturesPlugin\PurgeDatabaseTrait;
@@ -40,6 +41,12 @@ final class RandomProductAssociationsStoryTest extends KernelTestCase
         $this->assertCount(3, $productAssociations);
         $this->assertCount(1, $productAssociationTypes);
         $this->assertCount(3, $products);
+
+        /** @var ProductAssociationTypeInterface $productAssociationType */
+        $productAssociationType = $productAssociationTypes[0];
+        $this->assertInstanceOf(ProductAssociationTypeInterface::class, $productAssociationType);
+        $this->assertEquals('similar_products', $productAssociationType->getCode());
+        $this->assertEquals('Similar products', $productAssociationType->getName());
     }
 
     private function getProductRepository(): RepositoryInterface
