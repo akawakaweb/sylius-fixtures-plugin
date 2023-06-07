@@ -14,7 +14,9 @@ composer require --dev akawakaweb/sylius-fixtures-plugin
 ```
 
 ```yaml
-# config/packages/services.yaml
+# config/services.yaml
+services:
+    # [...]
 
 when@dev: &fixtures_dev
     services:

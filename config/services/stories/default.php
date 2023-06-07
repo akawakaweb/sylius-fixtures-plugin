@@ -66,6 +66,9 @@ return static function (ContainerConfigurator $container) {
         ->alias(DefaultGeographicalStoryInterface::class, 'sylius.fixtures_plugin.foundry.story.default_geographical')
 
         ->set('sylius.fixtures_plugin.story.default_locales', DefaultLocalesStory::class)
+            ->args([
+                param('sylius_locale.locale'),
+            ])
             ->tag('foundry.story')
         ->alias(DefaultLocalesStoryInterface::class, 'sylius.fixtures_plugin.foundry.story.default_locales')
 
