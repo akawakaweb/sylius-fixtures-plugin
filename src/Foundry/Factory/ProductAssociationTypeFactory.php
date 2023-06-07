@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory;
 
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithNameTrait;
 use Sylius\Bundle\ProductBundle\Doctrine\ORM\ProductAssociationTypeRepository;
 use Sylius\Component\Product\Model\ProductAssociationType;
 use Sylius\Component\Product\Model\ProductAssociationTypeInterface;
@@ -43,6 +44,7 @@ final class ProductAssociationTypeFactory extends AbstractModelFactory implement
 {
     use WithModelClassTrait;
     use WithCodeTrait;
+    use WithNameTrait;
 
     protected static function getClass(): string
     {
