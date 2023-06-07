@@ -32,8 +32,10 @@ final class ChannelTransformer implements TransformerInterface
         $attributes = $this->transformTaxonAttribute($attributes, 'menuTaxon');
         $attributes = $this->transformZoneAttribute($attributes, 'defaultTaxZone');
 
-        if (\is_array($attributes['shopBillingData'] ?? null)) {
-            $attributes['shopBillingData'] = ShopBillingDataFactory::new($attributes['shopBillingData']);
+        $shopBillingData = $attributes['shopBillingData'] ?? null;
+
+        if (\is_array($shopBillingData)) {
+            $attributes['shopBillingData'] = ShopBillingDataFactory::new($shopBillingData);
         }
 
         return $this->transformLocalesAttribute($attributes);
