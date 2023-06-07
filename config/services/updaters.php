@@ -147,6 +147,9 @@ return static function (ContainerConfigurator $container) {
                 service('sylius.fixtures_plugin.updater'),
             ])
 
+        ->set('sylius.fixtures_plugin.updater.shop_billing_data')
+            ->parent('sylius.fixtures_plugin.updater')
+
         ->set('sylius.fixtures_plugin.updater.tax_category')
             ->parent('sylius.fixtures_plugin.updater')
 

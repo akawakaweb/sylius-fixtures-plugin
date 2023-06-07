@@ -16,6 +16,7 @@ namespace Tests\Akawakaweb\SyliusFixturesPlugin\Foundry\Factory;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ChannelFactory;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\CurrencyFactory;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\LocaleFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ShopBillingDataFactory;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\TaxonFactory;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ZoneFactory;
 use Sylius\Component\Core\Model\ChannelInterface;
@@ -188,33 +189,33 @@ final class ChannelFactoryTest extends KernelTestCase
         $this->assertEquals('0666-0666', $channel->getContactPhoneNumber());
     }
 
-//    /** @test */
-//    function it_creates_channel_with_given_array_of_shop_billing_data(): void
-//    {
-//        $channel = ChannelFactory::new()->withShopBillingData(['company' => 'Sylius'])->create();
-//
-//        $this->assertEquals('Sylius', $channel->getShopBillingData()->getCompany());
-//    }
+    /** @test */
+    public function it_creates_channel_with_given_array_of_shop_billing_data(): void
+    {
+        $channel = ChannelFactory::new()->withShopBillingData(['company' => 'Sylius'])->create();
 
-//    /** @test */
-//    function it_creates_channel_with_given_proxy_shop_billing_data(): void
-//    {
-//        $shopBillingData = ShopBillingDataFactory::new()->withCompany('Sylius')->create();
-//
-//        $channel = ChannelFactory::new()->withShopBillingData($shopBillingData)->create();
-//
-//        $this->assertEquals('Sylius', $channel->getShopBillingData()->getCompany());
-//    }
-//
-//    /** @test */
-//    function it_creates_channel_with_given_shop_billing_data(): void
-//    {
-//        $shopBillingData = ShopBillingDataFactory::new()->withCompany('Sylius')->create()->object();
-//
-//        $channel = ChannelFactory::new()->withShopBillingData($shopBillingData)->create();
-//
-//        $this->assertEquals('Sylius', $channel->getShopBillingData()->getCompany());
-//    }
+        $this->assertEquals('Sylius', $channel->getShopBillingData()->getCompany());
+    }
+
+    /** @test */
+    public function it_creates_channel_with_given_proxy_shop_billing_data(): void
+    {
+        $shopBillingData = ShopBillingDataFactory::new()->withCompany('Sylius')->create();
+
+        $channel = ChannelFactory::new()->withShopBillingData($shopBillingData)->create();
+
+        $this->assertEquals('Sylius', $channel->getShopBillingData()->getCompany());
+    }
+
+    /** @test */
+    public function it_creates_channel_with_given_shop_billing_data(): void
+    {
+        $shopBillingData = ShopBillingDataFactory::new()->withCompany('Sylius')->create()->object();
+
+        $channel = ChannelFactory::new()->withShopBillingData($shopBillingData)->create();
+
+        $this->assertEquals('Sylius', $channel->getShopBillingData()->getCompany());
+    }
 
     /** @test */
     public function it_creates_channel_with_given_proxy_locales(): void

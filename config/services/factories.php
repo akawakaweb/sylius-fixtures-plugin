@@ -42,6 +42,7 @@ use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\PromotionFactory;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\PromotionRuleFactory;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ShippingCategoryFactory;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ShippingMethodFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ShopBillingDataFactory;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ShopUserFactory;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\TaxCategoryFactory;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\TaxonFactory;
@@ -296,6 +297,15 @@ return static function (ContainerConfigurator $container) {
             ])
             ->tag('foundry.factory')
         ->alias(ShippingMethodFactory::class, 'sylius.fixtures_plugin.factory.shipping_method')
+
+        ->set('sylius.fixtures_plugin.factory.shop_billing_data', ShopBillingDataFactory::class)
+            ->args([
+                service('sylius.fixtures_plugin.default_values.shop_billing_data'),
+                service('sylius.fixtures_plugin.transformer.shop_billing_data'),
+                service('sylius.fixtures_plugin.initiator.shop_billing_data'),
+            ])
+            ->tag('foundry.factory')
+        ->alias(ShopBillingDataFactory::class, 'sylius.fixtures_plugin.factory.shop_billing_data')
 
         ->set('sylius.fixtures_plugin.factory.shop_user', ShopUserFactory::class)
             ->args([

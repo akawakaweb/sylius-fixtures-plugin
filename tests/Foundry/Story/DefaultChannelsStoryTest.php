@@ -46,6 +46,7 @@ final class DefaultChannelsStoryTest extends KernelTestCase
         $this->assertEquals('MENU_CATEGORY', $channel->getMenuTaxon()->getCode());
         $this->assertEquals('+41 123 456 789', $channel->getContactPhoneNumber());
         $this->assertEquals('contact@example.com', $channel->getContactEmail());
+        $this->assertNotNull($channel->getShopBillingData());
     }
 
     private function getChannelRepository(): RepositoryInterface

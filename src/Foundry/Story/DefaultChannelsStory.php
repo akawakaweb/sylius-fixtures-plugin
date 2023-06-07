@@ -36,14 +36,14 @@ final class DefaultChannelsStory extends Story implements DefaultChannelsStoryIn
             ->enabled()
             ->withHostname($this->fixturesHostname)
             ->withThemeName($this->fixturesThemeName)
-//            ->withShopBillingData([
-//                'company' => 'Sylius',
-//                'tax_id' => '0001112222',
-//                'country_code' => 'US',
-//                'street' => 'Test St. 15',
-//                'city' => 'eCommerce Town',
-//                'postcode' => '00 33 22',
-//            ])
+            ->withShopBillingData([
+                'company' => 'Sylius',
+                'tax_id' => '0001112222',
+                'country_code' => 'US',
+                'street' => 'Test St. 15',
+                'city' => 'eCommerce Town',
+                'postcode' => '00 33 22',
+            ])
             ->withMenuTaxon('MENU_CATEGORY')
             ->withContactPhoneNumber('+41 123 456 789')
             ->withContactEmail('contact@example.com')

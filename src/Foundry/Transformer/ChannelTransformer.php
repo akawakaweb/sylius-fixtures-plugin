@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Transformer;
 
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ShopBillingDataFactory;
+
 final class ChannelTransformer implements TransformerInterface
 {
     use TransformCurrencyAttributeTrait;
@@ -29,6 +31,10 @@ final class ChannelTransformer implements TransformerInterface
         $attributes = $this->transformCurrenciesAttribute($attributes);
         $attributes = $this->transformTaxonAttribute($attributes, 'menuTaxon');
         $attributes = $this->transformZoneAttribute($attributes, 'defaultTaxZone');
+
+        if (\is_array($attributes['shopBillingData'] ?? null)) {
+            $attributes['shopBillingData'] = ShopBillingDataFactory::new($attributes['shopBillingData']);
+        }
 
         return $this->transformLocalesAttribute($attributes);
     }
