@@ -19,6 +19,11 @@ use Zenstruck\Foundry\Story;
 
 final class DefaultLocalesStory extends Story implements DefaultLocalesStoryInterface
 {
+    public function __construct(
+        private string $baseLocaleCode,
+    ) {
+    }
+
     public function build(): void
     {
         Factory::delayFlush(function () {
@@ -33,7 +38,7 @@ final class DefaultLocalesStory extends Story implements DefaultLocalesStoryInte
      */
     private function getLocaleCodes(): array
     {
-        return [
+        $localeCodes = [
             'en_US',
             'de_DE',
             'fr_FR',
@@ -43,5 +48,11 @@ final class DefaultLocalesStory extends Story implements DefaultLocalesStoryInte
             'pt_PT',
             'zh_CN',
         ];
+
+        if (!in_array($this->baseLocaleCode, $localeCodes, true)) {
+            $localeCodes[] = $this->baseLocaleCode;
+        }
+
+        return $localeCodes;
     }
 }
