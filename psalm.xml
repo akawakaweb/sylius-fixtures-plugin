@@ -65,6 +65,12 @@
             </errorLevel>
         </MixedArrayAssignment>
 
+        <MixedAssignment>
+            <errorLevel type="suppress">
+                <file name="src/Foundry/Transformer/ChannelTransformer.php" />
+            </errorLevel>
+        </MixedAssignment>
+
         <MixedInferredReturnType>
             <errorLevel type="suppress">
                 <file name="src/Symfony/SyliusFixturesPlugin.php" />

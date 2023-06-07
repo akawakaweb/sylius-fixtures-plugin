@@ -91,6 +91,8 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.fixtures_plugin.transformer.shipping_method', ShippingMethodTransformer::class)
 
+        ->set('sylius.fixtures_plugin.transformer.shop_billing_data', Transformer::class)
+
         ->set('sylius.fixtures_plugin.transformer.shop_user', ShopUserTransformer::class)
             ->args([
                 service('sylius.fixtures_plugin.transformer.customer'),

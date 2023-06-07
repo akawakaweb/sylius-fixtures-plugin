@@ -177,6 +177,12 @@ return static function (ContainerConfigurator $container) {
                 service('sylius.fixtures_plugin.updater.shipping_method'),
             ])
 
+        ->set('sylius.fixtures_plugin.initiator.shop_billing_data', Initiator::class)
+            ->args([
+                service('sylius.factory.shop_billing_data'),
+                service('sylius.fixtures_plugin.updater.shop_billing_data'),
+            ])
+
         ->set('sylius.fixtures_plugin.initiator.shop_user', ShopUserInitiator::class)
             ->args([
                 service('sylius.factory.shop_user'),

@@ -39,6 +39,7 @@ use Akawakaweb\SyliusFixturesPlugin\Foundry\DefaultValues\PromotionDefaultValues
 use Akawakaweb\SyliusFixturesPlugin\Foundry\DefaultValues\PromotionRuleDefaultValues;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\DefaultValues\ShippingCategoryDefaultValues;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\DefaultValues\ShippingMethodDefaultValues;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\DefaultValues\ShopBillingDataDefaultValues;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\DefaultValues\ShopUserDefaultValues;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\DefaultValues\TaxCategoryDefaultValues;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\DefaultValues\TaxonDefaultValues;
@@ -99,6 +100,8 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.fixtures_plugin.default_values.shipping_category', ShippingCategoryDefaultValues::class)
 
         ->set('sylius.fixtures_plugin.default_values.shipping_method', ShippingMethodDefaultValues::class)
+
+        ->set('sylius.fixtures_plugin.default_values.shop_billing_data', ShopBillingDataDefaultValues::class)
 
         ->set('sylius.fixtures_plugin.default_values.shop_user', ShopUserDefaultValues::class)
             ->args([
