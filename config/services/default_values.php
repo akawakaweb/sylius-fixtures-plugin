@@ -35,6 +35,7 @@ use Akawakaweb\SyliusFixturesPlugin\Foundry\DefaultValues\ProductOptionDefaultVa
 use Akawakaweb\SyliusFixturesPlugin\Foundry\DefaultValues\ProductOptionValueDefaultValues;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\DefaultValues\ProductReviewDefaultValues;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\DefaultValues\PromotionActionDefaultValues;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\DefaultValues\PromotionCouponDefaultValues;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\DefaultValues\PromotionDefaultValues;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\DefaultValues\PromotionRuleDefaultValues;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\DefaultValues\ShippingCategoryDefaultValues;
@@ -94,6 +95,8 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.fixtures_plugin.default_values.promotion_action', PromotionActionDefaultValues::class)
 
         ->set('sylius.fixtures_plugin.default_values.promotion', PromotionDefaultValues::class)
+
+        ->set('sylius.fixtures_plugin.default_values.promotion_coupon', PromotionCouponDefaultValues::class)
 
         ->set('sylius.fixtures_plugin.default_values.promotion_rule', PromotionRuleDefaultValues::class)
 

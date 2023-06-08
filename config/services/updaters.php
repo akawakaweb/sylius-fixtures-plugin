@@ -139,6 +139,9 @@ return static function (ContainerConfigurator $container) {
         ->set('sylius.fixtures_plugin.updater.promotion_action')
             ->parent('sylius.fixtures_plugin.updater')
 
+        ->set('sylius.fixtures_plugin.updater.promotion_coupon')
+            ->parent('sylius.fixtures_plugin.updater')
+
         ->set('sylius.fixtures_plugin.updater.promotion_rule')
             ->parent('sylius.fixtures_plugin.updater')
 

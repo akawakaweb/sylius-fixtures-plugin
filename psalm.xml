@@ -54,10 +54,17 @@
             </errorLevel>
         </MixedArgument>
 
+        <MixedArrayAccess>
+            <errorLevel type="suppress">
+                <file name="src/Foundry/Transformer/PromotionRuleTransformer.php" />
+            </errorLevel>
+        </MixedArrayAccess>
+
         <MixedArrayAssignment>
             <errorLevel type="suppress">
                 <file name="src/Foundry/Transformer/ProductOptionTransformer.php" />
                 <file name="src/Foundry/Transformer/ProductTransformer.php" />
+                <file name="src/Foundry/Transformer/PromotionRuleTransformer.php" />
                 <file name="src/Foundry/Transformer/TransformCurrenciesAttributeTrait.php" />
                 <file name="src/Foundry/Transformer/TransformChannelsAttributeTrait.php" />
                 <file name="src/Foundry/Transformer/TransformLocalesAttributeTrait.php" />
@@ -65,9 +72,16 @@
             </errorLevel>
         </MixedArrayAssignment>
 
+        <MixedArrayOffset>
+            <errorLevel type="suppress">
+                <file name="src/Foundry/Transformer/PromotionRuleTransformer.php" />
+            </errorLevel>
+        </MixedArrayOffset>
+
         <MixedAssignment>
             <errorLevel type="suppress">
                 <file name="src/Foundry/Transformer/ChannelTransformer.php" />
+                <file name="src/Foundry/Transformer/PromotionRuleTransformer.php" />
             </errorLevel>
         </MixedAssignment>
 
@@ -82,6 +96,12 @@
                 <file name="src/Foundry/DefaultValues/OrderItemDefaultValues.php" />
             </errorLevel>
         </MixedMethodCall>
+
+        <MixedOperand>
+            <errorLevel type="suppress">
+                <file name="src/Foundry/Transformer/PromotionRuleTransformer.php" />
+            </errorLevel>
+        </MixedOperand>
 
         <MixedReturnStatement>
             <errorLevel type="suppress">
