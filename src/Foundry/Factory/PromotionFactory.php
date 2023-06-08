@@ -20,12 +20,11 @@ use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithNameTrait;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithPriorityTrait;
 use Doctrine\ORM\EntityRepository;
 use Sylius\Component\Core\Model\Promotion;
-use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;
 
 /**
- * @extends ModelFactory<Promotion>
+ * @extends AbstractModelFactory<Promotion>
  *
  * @method        Promotion|Proxy create(array|callable $attributes = [])
  * @method static Promotion|Proxy createOne(array $attributes = [])
@@ -43,7 +42,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static Promotion[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
  * @method static Promotion[]|Proxy[] randomSet(int $number, array $attributes = [])
  */
-final class PromotionFactory extends ModelFactory implements FactoryWithModelClassAwareInterface
+final class PromotionFactory extends AbstractModelFactory implements FactoryWithModelClassAwareInterface
 {
     use WithModelClassTrait;
     use WithCodeTrait;

@@ -159,6 +159,12 @@ return static function (ContainerConfigurator $container) {
                 service('sylius.fixtures_plugin.updater.promotion_action'),
             ])
 
+        ->set('sylius.fixtures_plugin.initiator.promotion_coupon', Initiator::class)
+            ->args([
+                service('sylius.factory.promotion_coupon'),
+                service('sylius.fixtures_plugin.updater.promotion_coupon'),
+            ])
+
         ->set('sylius.fixtures_plugin.initiator.promotion_rule', Initiator::class)
             ->args([
                 service('sylius.factory.promotion_rule'),

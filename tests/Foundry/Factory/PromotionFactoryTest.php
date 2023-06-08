@@ -14,8 +14,11 @@ declare(strict_types=1);
 namespace Tests\Akawakaweb\SyliusFixturesPlugin\Foundry\Factory;
 
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ChannelFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\PromotionActionFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\PromotionCouponFactory;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\PromotionFactory;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\PromotionRuleFactory;
+use Sylius\Component\Core\Model\PromotionCouponInterface;
 use Sylius\Component\Core\Model\PromotionInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Tests\Akawakaweb\SyliusFixturesPlugin\PurgeDatabaseTrait;
@@ -127,7 +130,7 @@ final class PromotionFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    public function it_creates_catalog_promotion_with_given_start_date(): void
+    public function it_creates_promotion_with_given_start_date(): void
     {
         $startDate = new \DateTimeImmutable('today');
         $promotion = PromotionFactory::new()->withStartDate($startDate)->create();
@@ -136,7 +139,7 @@ final class PromotionFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    public function it_creates_catalog_promotion_with_given_end_date(): void
+    public function it_creates_promotion_with_given_end_date(): void
     {
         $endDate = new \DateTimeImmutable('tomorrow');
         $promotion = PromotionFactory::new()->withEndDate($endDate)->create();
@@ -145,7 +148,7 @@ final class PromotionFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    public function it_creates_shipping_method_with_given_channels_as_proxy(): void
+    public function it_creates_promotion_with_given_channels_as_proxy(): void
     {
         $channel = ChannelFactory::createOne();
         $promotion = PromotionFactory::new()->withChannels([$channel])->create();
@@ -154,7 +157,7 @@ final class PromotionFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    public function it_creates_shipping_method_with_given_channels(): void
+    public function it_creates_promotion_with_given_channels(): void
     {
         $channel = ChannelFactory::createOne()->object();
         $promotion = PromotionFactory::new()->withChannels([$channel])->create();
@@ -162,16 +165,16 @@ final class PromotionFactoryTest extends KernelTestCase
         $this->assertEquals($channel, $promotion->getChannels()->first());
     }
 
-//    /** @test */
-//    function it_creates_shipping_method_with_given_channels_as_string(): void
-//    {
-//        $promotion = PromotionFactory::new()->withChannels(['default'])->create();
-//
-//        $this->assertEquals('default', $promotion->getChannels()->first()->getCode());
-//    }
+    /** @test */
+    public function it_creates_promotion_with_given_channels_as_string(): void
+    {
+        $promotion = PromotionFactory::new()->withChannels(['default'])->create();
+
+        $this->assertEquals('default', $promotion->getChannels()->first()->getCode());
+    }
 
     /** @test */
-    public function it_creates_shipping_method_with_given_rules_as_proxy(): void
+    public function it_creates_promotion_with_given_rules_as_proxy(): void
     {
         $promotionRule = PromotionRuleFactory::createOne();
         $promotion = PromotionFactory::new()->withRules([$promotionRule])->create();
@@ -182,7 +185,7 @@ final class PromotionFactoryTest extends KernelTestCase
     }
 
     /** @test */
-    public function it_creates_shipping_method_with_given_rules(): void
+    public function it_creates_promotion_with_given_rules(): void
     {
         $promotionRule = PromotionRuleFactory::createOne()->object();
         $promotion = PromotionFactory::new()->withRules([$promotionRule])->create();
@@ -192,78 +195,98 @@ final class PromotionFactoryTest extends KernelTestCase
         $this->assertEquals($promotionRule, $firstRule);
     }
 
-//    /** @test */
-//    function it_creates_shipping_method_with_given_rules_as_array(): void
-//    {
-//        $promotion = PromotionFactory::new()->withRules([
-//            [
-//                'type' => 'item_total',
-//                'configuration' => [
-//                    'FASHION_WEB' => ['amount' => 100.00],
-//                ]
-//            ],
-//        ])->create();
-//
-//        $firstRule = $promotion->getRules()->first() ?: null;
-//        $this->assertNotNull($firstRule);
-//        $this->assertEquals('item_total', $firstRule->getType());
-//        $this->assertEquals([
-//            'FASHION_WEB' => ['amount' => 10000],
-//        ], $firstRule->getConfiguration());
-//    }
+    /** @test */
+    public function it_creates_promotion_with_given_rules_as_array(): void
+    {
+        $promotion = PromotionFactory::new()->withRules([
+            [
+                'type' => 'item_total',
+                'configuration' => [
+                    'FASHION_WEB' => ['amount' => 100.00],
+                ],
+            ],
+        ])->create();
 
-//    /** @test */
-//    function it_creates_shipping_method_with_given_actions_as_proxy(): void
-//    {
-//        $promotionAction = PromotionActionFactory::createOne();
-//        $promotion = PromotionFactory::new()->withActions([$promotionAction])->create();
-//
-//        $firstAction = $promotion->getActions()->first() ?: null;
-//        $this->assertEquals($promotionAction->object(), $firstAction);
-//    }
+        $firstRule = $promotion->getRules()->first() ?: null;
+        $this->assertNotNull($firstRule);
+        $this->assertEquals('item_total', $firstRule->getType());
+        $this->assertEquals([
+            'FASHION_WEB' => ['amount' => 10000],
+        ], $firstRule->getConfiguration());
+    }
 
-//    /** @test */
-//    function it_creates_shipping_method_with_given_actions(): void
-//    {
-//        $promotionAction = PromotionActionFactory::createOne()->object();
-//        $promotion = PromotionFactory::new()->withActions([$promotionAction])->create();
-//
-//        $firstAction = $promotion->getActions()->first() ?: null;
-//        $this->assertEquals($promotionAction, $firstAction);
-//    }
+    /** @test */
+    public function it_creates_promotion_with_given_actions_as_proxy(): void
+    {
+        $promotionAction = PromotionActionFactory::createOne();
+        $promotion = PromotionFactory::new()->withActions([$promotionAction])->create();
 
-//    /** @test */
-//    function it_creates_shipping_method_with_given_actions_as_array(): void
-//    {
-//        $promotion = PromotionFactory::new()->withActions([
-//            [
-//                'configuration' => ['foo' => 'fighters'],
-//            ],
-//        ])->create();
-//
-//        $firstAction = $promotion->getActions()->first();
-//        $this->assertEquals(['foo' => 'fighters'], $firstAction->getConfiguration());
-//    }
+        $firstAction = $promotion->getActions()->first() ?: null;
+        $this->assertEquals($promotionAction->object(), $firstAction);
+    }
 
-//    /** @test */
-//    function it_creates_shipping_method_with_given_coupons(): void
-//    {
-//        $promotion = PromotionFactory::new()->withCoupons([
-//            [
-//                'code' => 'xyz',
-//                'per_customer_usage_limit' => 1,
-//                'reusable_from_cancelled_orders' => true,
-//                'usage_limit' => 20,
-//                'expires_at' => '2 days ago',
-//            ],
-//        ])->create();
-//
-//        /** @var PromotionCouponInterface $firstCoupon */
-//        $firstCoupon = $promotion->getCoupons()->first();
-//        $this->assertEquals('xyz', $firstCoupon->getCode());
-//        $this->assertEquals(1, $firstCoupon->getPerCustomerUsageLimit());
-//        $this->assertTrue($firstCoupon->isReusableFromCancelledOrders());
-//        $this->assertEquals(20, $firstCoupon->getUsageLimit());
-//        $this->assertInstanceOf(\DateTimeInterface::class, $firstCoupon->getExpiresAt());
-//    }
+    /** @test */
+    public function it_creates_promotion_with_given_actions(): void
+    {
+        $promotionAction = PromotionActionFactory::createOne()->object();
+        $promotion = PromotionFactory::new()->withActions([$promotionAction])->create();
+
+        $firstAction = $promotion->getActions()->first() ?: null;
+        $this->assertEquals($promotionAction, $firstAction);
+    }
+
+    /** @test */
+    public function it_creates_promotion_with_given_actions_as_array(): void
+    {
+        $promotion = PromotionFactory::new()->withActions([
+            [
+                'configuration' => ['foo' => 'fighters'],
+            ],
+        ])->create();
+
+        $firstAction = $promotion->getActions()->first();
+        $this->assertEquals(['foo' => 'fighters'], $firstAction->getConfiguration());
+    }
+
+    /** @test */
+    public function it_creates_promotion_with_given_coupons_as_proxy(): void
+    {
+        $promotionCoupon = PromotionCouponFactory::createOne();
+        $promotion = PromotionFactory::new()->withCoupons([$promotionCoupon])->create();
+
+        $firstCoupon = $promotion->getCoupons()->first() ?: null;
+        $this->assertEquals($promotionCoupon->object(), $firstCoupon);
+    }
+
+    /** @test */
+    public function it_creates_promotion_with_given_coupons(): void
+    {
+        $promotionCoupon = PromotionCouponFactory::createOne()->object();
+        $promotion = PromotionFactory::new()->withCoupons([$promotionCoupon])->create();
+
+        $firstCoupon = $promotion->getCoupons()->first() ?: null;
+        $this->assertEquals($promotionCoupon, $firstCoupon);
+    }
+
+    /** @test */
+    public function it_creates_promotion_with_given_coupons_as_array(): void
+    {
+        $promotion = PromotionFactory::new()->withCoupons([
+            [
+                'code' => 'xyz',
+                'perCustomerUsageLimit' => 1,
+                'reusableFromCancelledOrders' => true,
+                'usageLimit' => 20,
+                'expiresAt' => '2 days ago',
+            ],
+        ])->create();
+
+        /** @var PromotionCouponInterface $firstCoupon */
+        $firstCoupon = $promotion->getCoupons()->first();
+        $this->assertEquals('xyz', $firstCoupon->getCode());
+        $this->assertEquals(1, $firstCoupon->getPerCustomerUsageLimit());
+        $this->assertTrue($firstCoupon->isReusableFromCancelledOrders());
+        $this->assertEquals(20, $firstCoupon->getUsageLimit());
+        $this->assertInstanceOf(\DateTimeInterface::class, $firstCoupon->getExpiresAt());
+    }
 }

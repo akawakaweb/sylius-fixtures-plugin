@@ -51,11 +51,11 @@ final class PromotionRuleFactoryTest extends KernelTestCase
         $this->assertEquals(['foo' => 'fighters'], $promotionRule->getConfiguration());
     }
 
-//    /** @test */
-//    function it_transforms_the_amount(): void
-//    {
-//        $promotionRule = PromotionRuleFactory::new()->withConfiguration(['default_channel' => ['amount' => 1]])->create();
-//
-//        $this->assertEquals(['default_channel' => ['amount' => 100]], $promotionRule->getConfiguration());
-//    }
+    /** @test */
+    public function it_transforms_the_amount(): void
+    {
+        $promotionRule = PromotionRuleFactory::new()->withConfiguration(['default_channel' => ['amount' => 1]])->create();
+
+        $this->assertEquals(['default_channel' => ['amount' => 100]], $promotionRule->getConfiguration());
+    }
 }

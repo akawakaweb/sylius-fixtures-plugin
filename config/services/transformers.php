@@ -24,6 +24,9 @@ use Akawakaweb\SyliusFixturesPlugin\Foundry\Transformer\ProductAttributeTransfor
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Transformer\ProductOptionTransformer;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Transformer\ProductTransformer;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Transformer\PromotionActionTransformer;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Transformer\PromotionCouponTransformer;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Transformer\PromotionRuleTransformer;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Transformer\PromotionTransformer;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Transformer\ShippingCategoryTransformer;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Transformer\ShippingMethodTransformer;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Transformer\ShopUserTransformer;
@@ -81,11 +84,15 @@ return static function (ContainerConfigurator $container) {
 
         ->set('sylius.fixtures_plugin.transformer.product_review', Transformer::class)
 
-        ->set('sylius.fixtures_plugin.transformer.promotion', Transformer::class)
+        ->set('sylius.fixtures_plugin.transformer.promotion', PromotionTransformer::class)
 
         ->set('sylius.fixtures_plugin.transformer.promotion_action', PromotionActionTransformer::class)
 
-        ->set('sylius.fixtures_plugin.transformer.promotion_rule', Transformer::class)
+        ->set('sylius.fixtures_plugin.transformer.promotion_action', PromotionActionTransformer::class)
+
+        ->set('sylius.fixtures_plugin.transformer.promotion_coupon', PromotionCouponTransformer::class)
+
+        ->set('sylius.fixtures_plugin.transformer.promotion_rule', PromotionRuleTransformer::class)
 
         ->set('sylius.fixtures_plugin.transformer.shipping_category', ShippingCategoryTransformer::class)
 

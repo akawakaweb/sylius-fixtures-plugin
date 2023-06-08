@@ -38,6 +38,7 @@ use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ProductOptionFactory;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ProductOptionValueFactory;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ProductReviewFactory;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\PromotionActionFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\PromotionCouponFactory;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\PromotionFactory;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\PromotionRuleFactory;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ShippingCategoryFactory;
@@ -261,6 +262,15 @@ return static function (ContainerConfigurator $container) {
             ])
             ->tag('foundry.factory')
         ->alias(PromotionActionFactory::class, 'sylius.fixtures_plugin.factory.promotion_action')
+
+        ->set('sylius.fixtures_plugin.factory.promotion_coupon', PromotionCouponFactory::class)
+            ->args([
+                service('sylius.fixtures_plugin.default_values.promotion_coupon'),
+                service('sylius.fixtures_plugin.transformer.promotion_coupon'),
+                service('sylius.fixtures_plugin.initiator.promotion_coupon'),
+            ])
+            ->tag('foundry.factory')
+        ->alias(PromotionCouponFactory::class, 'sylius.fixtures_plugin.factory.promotion_coupon')
 
         ->set('sylius.fixtures_plugin.factory.promotion', PromotionFactory::class)
             ->args([

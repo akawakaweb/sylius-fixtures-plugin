@@ -24,16 +24,16 @@ final class RandomPromotionsStory extends Story implements RandomPromotionsStory
         PromotionFactory::new()
             ->withCode('christmas')
             ->withName('Christmas')
-//            ->withChannels(['FASHION_WEB'])
+            ->withChannels(['FASHION_WEB'])
             ->couponBased()
-//            ->withCoupons([
-//                [
-//                    'code' => 'CHRISTMAS_SALE',
-//                    'expires_at' => 'December 24',
-//                    'usage_limit' => 10,
-//                    'per_customer_usage_limit' => 1,
-//                ],
-//            ])
+            ->withCoupons([
+                [
+                    'code' => 'CHRISTMAS_SALE',
+                    'expiresAt' => 'December 24',
+                    'usageLimit' => 10,
+                    'perCustomerUsageLimit' => 1,
+                ],
+            ])
             ->create()
         ;
 
@@ -44,24 +44,24 @@ final class RandomPromotionsStory extends Story implements RandomPromotionsStory
             ->withPriority(2)
             ->withStartDate(new \DateTimeImmutable('-7 day'))
             ->withEndDate(new \DateTimeImmutable('-7 day'))
-//            ->withChannels(['FASHION_WEB'])
+            ->withChannels(['FASHION_WEB'])
             ->couponBased()
-//            ->withRules([
-//                [
-//                    'type' => 'item_total',
-//                    'configuration' => [
-//                        'FASHION_WEB' => ['amount' => 100.00],
-//                    ]
-//                ],
-//            ])
-//            ->withActions([
-//                [
-//                    'type' => FixedDiscountPromotionActionCommand::TYPE,
-//                    'configuration' => [
-//                        'FASHION_WEB' => ['amount' => 10.00],
-//                    ]
-//                ],
-//            ])
+            ->withRules([
+                [
+                    'type' => 'item_total',
+                    'configuration' => [
+                        'FASHION_WEB' => ['amount' => 100.00],
+                    ],
+                ],
+            ])
+            ->withActions([
+                [
+                    'type' => FixedDiscountPromotionActionCommand::TYPE,
+                    'configuration' => [
+                        'FASHION_WEB' => ['amount' => 10.00],
+                    ],
+                ],
+            ])
             ->create()
         ;
     }
