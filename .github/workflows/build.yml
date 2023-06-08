@@ -30,7 +30,9 @@ jobs:
                     -
                         php: "8.0"
                         symfony: "~5.4.0"
+                        sylius: "^1.12"
                         mysql: "5.7"
+                        node: "18.x"
 
         env:
             APP_ENV: test
