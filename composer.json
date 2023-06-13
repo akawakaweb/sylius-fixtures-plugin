@@ -46,7 +46,7 @@
         "symfony/maker-bundle": "^1.48",
         "symfony/web-profiler-bundle": "^5.4 || ^6.0",
         "symfony/webpack-encore-bundle": "^1.15",
-        "vimeo/psalm": "5.9.0"
+        "vimeo/psalm": "^5.9.0"
     },
     "conflict": {
         "symfony/framework-bundle": "6.2.8"
