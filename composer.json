@@ -73,12 +73,9 @@
         }
     },
     "autoload-dev": {
-        "classmap": [
-            "tests/Application/Kernel.php"
-        ],
         "psr-4": {
             "Tests\\Akawakaweb\\SyliusFixturesPlugin\\": "tests",
-            "App\\": "tests/Application"
+            "App\\": "tests/Application/src"
         }
     },
     "scripts": {
