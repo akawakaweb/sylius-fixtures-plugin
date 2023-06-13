@@ -1,5 +1,5 @@
 {
-    "name": "akawakaweb/shop-fixtures-plugin",
+    "name": "akawakaweb/sylius-fixtures-plugin",
     "type": "sylius-plugin",
     "description": "Shop fixtures plugin for Sylius shops.",
     "keywords": [
