@@ -1,10 +1,13 @@
 /.gitattributes export-ignore
 /.docker export-ignore
+/.editorconfig export-ignore
 /.github export-ignore
 /.gitignore export-ignore
+/bin export-ignore
 /docker-compose.yml export-ignore
 /ecs.php export-ignore
 /Makefile export-ignore
+/migrations export-ignore
 /phpspec.yml.dist export-ignore
 /phpstan.neon export-ignore
 /phpunit.xml.dist export-ignore
