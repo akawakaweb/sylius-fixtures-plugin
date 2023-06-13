@@ -13,6 +13,9 @@ declare(strict_types=1);
 
 namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory;
 
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithFirstNameTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithLastNameTrait;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithPhoneNumberTrait;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\AddressRepository;
 use Sylius\Component\Core\Model\Address;
 use Sylius\Component\Core\Model\AddressInterface;
@@ -41,10 +44,43 @@ use Zenstruck\Foundry\RepositoryProxy;
 final class AddressFactory extends AbstractModelFactory implements FactoryWithModelClassAwareInterface
 {
     use WithModelClassTrait;
+    use WithFirstNameTrait;
+    use WithLastNameTrait;
+    use WithPhoneNumberTrait;
+
+    public function withCompany(?string $company = null): self
+    {
+        return $this->addState(['company' => $company ?? self::faker()->company()]);
+    }
+
+    public function withStreet(string $street): self
+    {
+        return $this->addState(['street' => $street]);
+    }
+
+    public function withCity(string $city): self
+    {
+        return $this->addState(['city' => $city]);
+    }
+
+    public function withPostcode(string $postcode): self
+    {
+        return $this->addState(['postcode' => $postcode]);
+    }
 
     public function withCountryCode(string $countryCode): self
     {
         return $this->addState(['countryCode' => $countryCode]);
+    }
+
+    public function withProvinceName(string $provinceName): self
+    {
+        return $this->addState(['provinceName' => $provinceName]);
+    }
+
+    public function withProvinceCode(string $provinceCode): self
+    {
+        return $this->addState(['provinceCode' => $provinceCode]);
     }
 
     protected static function getClass(): string

@@ -13,6 +13,14 @@
 composer require --dev akawakaweb/sylius-fixtures-plugin
 ```
 
+```php
+// config/bundles.php
+return [
+    // [...]
+    Akawakaweb\SyliusFixturesPlugin\Symfony\SyliusFixturesPlugin::class => ['dev' => true, 'test' => true, 'test_cached' => true],
+];
+```
+
 ```yaml
 # config/services.yaml
 services:

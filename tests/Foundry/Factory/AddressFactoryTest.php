@@ -37,12 +37,13 @@ final class AddressFactoryTest extends KernelTestCase
         $this->assertNotNull($address->getPostcode());
         $this->assertNotNull($address->getCountryCode());
         // $this->assertNotNull($address->getCustomer());
+        $this->assertNull($address->getProvinceCode());
     }
 
     /** @test */
     public function it_creates_address_with_given_first_name(): void
     {
-        $address = AddressFactory::createOne(['firstName' => 'Marty']);
+        $address = AddressFactory::new()->withFirstName('Marty')->create();
 
         $this->assertEquals('Marty', $address->getFirstName());
     }
@@ -50,23 +51,55 @@ final class AddressFactoryTest extends KernelTestCase
     /** @test */
     public function it_creates_address_with_given_last_name(): void
     {
-        $address = AddressFactory::createOne(['lastName' => 'McFly']);
+        $address = AddressFactory::new()->withLastName('McFly')->create();
 
         $this->assertEquals('McFly', $address->getLastName());
     }
 
     /** @test */
+    public function it_has_no_phone_number_by_default(): void
+    {
+        $address = AddressFactory::new()->create();
+
+        $this->assertNull($address->getPhoneNumber());
+    }
+
+    /** @test */
+    public function it_creates_address_with_random_phone_number(): void
+    {
+        $address = AddressFactory::new()->withPhoneNumber()->create();
+
+        $this->assertNotNull($address->getPhoneNumber());
+    }
+
+    /** @test */
     public function it_creates_address_with_given_phone_number(): void
     {
-        $address = AddressFactory::createOne(['phoneNumber' => '1955-1985-2015']);
+        $address = AddressFactory::new()->withPhoneNumber('1955-1985-2015')->create();
 
         $this->assertEquals('1955-1985-2015', $address->getPhoneNumber());
     }
 
     /** @test */
+    public function it_has_no_company_by_default(): void
+    {
+        $address = AddressFactory::new()->create();
+
+        $this->assertNull($address->getCompany());
+    }
+
+    /** @test */
+    public function it_creates_address_with_random_company(): void
+    {
+        $address = AddressFactory::new()->withCompany()->create();
+
+        $this->assertNotNull($address->getCompany());
+    }
+
+    /** @test */
     public function it_creates_address_with_given_company(): void
     {
-        $address = AddressFactory::createOne(['company' => 'Universal Pictures']);
+        $address = AddressFactory::new()->withCompany('Universal Pictures')->create();
 
         $this->assertEquals('Universal Pictures', $address->getCompany());
     }
@@ -74,7 +107,7 @@ final class AddressFactoryTest extends KernelTestCase
     /** @test */
     public function it_creates_address_with_given_street(): void
     {
-        $address = AddressFactory::createOne(['street' => '9303 Lyon Drive, Lyon Estates']);
+        $address = AddressFactory::new()->withStreet('9303 Lyon Drive, Lyon Estates')->create();
 
         $this->assertEquals('9303 Lyon Drive, Lyon Estates', $address->getStreet());
     }
@@ -82,7 +115,7 @@ final class AddressFactoryTest extends KernelTestCase
     /** @test */
     public function it_creates_address_with_given_city(): void
     {
-        $address = AddressFactory::createOne(['city' => 'Hill Valley']);
+        $address = AddressFactory::new()->withCity('Hill Valley')->create();
 
         $this->assertEquals('Hill Valley', $address->getCity());
     }
@@ -90,7 +123,7 @@ final class AddressFactoryTest extends KernelTestCase
     /** @test */
     public function it_creates_address_with_given_post_code(): void
     {
-        $address = AddressFactory::createOne(['postcode' => '95420']);
+        $address = AddressFactory::new()->withPostcode('95420')->create();
 
         $this->assertEquals('95420', $address->getPostcode());
     }
@@ -98,7 +131,7 @@ final class AddressFactoryTest extends KernelTestCase
     /** @test */
     public function it_creates_address_with_given_country_code(): void
     {
-        $address = AddressFactory::createOne(['countryCode' => 'US']);
+        $address = AddressFactory::new()->withCountryCode('US')->create();
 
         $this->assertEquals('US', $address->getCountryCode());
     }
@@ -106,15 +139,23 @@ final class AddressFactoryTest extends KernelTestCase
     /** @test */
     public function it_creates_address_with_given_province_name(): void
     {
-        $address = AddressFactory::createOne(['provinceName' => 'California']);
+        $address = AddressFactory::new()->withProvinceName('California')->create();
 
         $this->assertEquals('California', $address->getProvinceName());
     }
 
     /** @test */
+    public function it_has_no_province_code_by_default(): void
+    {
+        $address = AddressFactory::new()->create();
+
+        $this->assertNull($address->getProvinceCode());
+    }
+
+    /** @test */
     public function it_creates_address_with_given_province_code(): void
     {
-        $address = AddressFactory::createOne(['provinceCode' => 'CA']);
+        $address = AddressFactory::new()->withProvinceCode('CA')->create();
 
         $this->assertEquals('CA', $address->getProvinceCode());
     }

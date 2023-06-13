@@ -20,8 +20,8 @@ use Zenstruck\Foundry\ModelFactory;
  */
 trait WithPhoneNumberTrait
 {
-    public function withPhoneNumber(string $phoneNumber): self
+    public function withPhoneNumber(?string $phoneNumber = null): self
     {
-        return $this->addState(['phoneNumber' => $phoneNumber]);
+        return $this->addState(['phoneNumber' => $phoneNumber ?? self::faker()->phoneNumber()]);
     }
 }
