@@ -44,9 +44,8 @@ declare(strict_types=1);
 
 namespace App\Foundry\Story;
 
-use Akawakaweb\ShopFixturesPlugin\Foundry\Factory\CurrencyFactory;
-use Akawakaweb\ShopFixturesPlugin\Foundry\Story\DefaultCurrenciesStoryInterface;
-use Zenstruck\Foundry\Factory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\CurrencyFactory;
+use Akawakaweb\SyliusFixturesPlugin\Foundry\Story\DefaultCurrenciesStoryInterface;
 use Zenstruck\Foundry\Story;
 
 final class DefaultCurrenciesStory extends Story implements DefaultCurrenciesStoryInterface
