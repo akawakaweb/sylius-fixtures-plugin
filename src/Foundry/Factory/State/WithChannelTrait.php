@@ -14,16 +14,16 @@ declare(strict_types=1);
 namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State;
 
 use Sylius\Component\Core\Model\ChannelInterface;
-use Zenstruck\Foundry\ModelFactory;
-use Zenstruck\Foundry\Proxy;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
+use Zenstruck\Foundry\Persistence\Proxy;
 
 /**
- * @mixin ModelFactory
+ * @mixin PersistentProxyObjectFactory
  */
 trait WithChannelTrait
 {
     public function withChannel(Proxy|ChannelInterface|string $channel): self
     {
-        return $this->addState(['channel' => $channel]);
+        return $this->with(['channel' => $channel]);
     }
 }

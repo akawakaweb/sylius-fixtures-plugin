@@ -13,15 +13,15 @@ declare(strict_types=1);
 
 namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State;
 
-use Zenstruck\Foundry\ModelFactory;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
- * @mixin ModelFactory
+ * @mixin PersistentProxyObjectFactory
  */
 trait WithShortDescriptionTrait
 {
     public function withShortDescription(string $shortDescription): self
     {
-        return $this->addState(['shortDescription' => $shortDescription]);
+        return $this->with(['shortDescription' => $shortDescription]);
     }
 }

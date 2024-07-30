@@ -19,13 +19,13 @@ use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithNameTrait;
 use Doctrine\ORM\EntityRepository;
 use Sylius\Component\Taxation\Model\TaxCategory;
 use Sylius\Component\Taxation\Model\TaxCategoryInterface;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @extends AbstractModelFactory<TaxCategoryInterface>
  *
- * @method        TaxCategoryInterface|Proxy create(array|callable $attributes = [])
+ * @method        TaxCategoryInterface|Proxy create(array|callable $attributes = [], bool $noProxy = false)
  * @method static TaxCategoryInterface|Proxy createOne(array $attributes = [])
  * @method static TaxCategoryInterface|Proxy find(object|array|mixed $criteria)
  * @method static TaxCategoryInterface|Proxy findOrCreate(array $attributes)
@@ -33,7 +33,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static TaxCategoryInterface|Proxy last(string $sortedField = 'id')
  * @method static TaxCategoryInterface|Proxy random(array $attributes = [])
  * @method static TaxCategoryInterface|Proxy randomOrCreate(array $attributes = [])
- * @method static EntityRepository|RepositoryProxy repository()
+ * @method static EntityRepository|ProxyRepositoryDecorator repository()
  * @method static TaxCategoryInterface[]|Proxy[] all()
  * @method static TaxCategoryInterface[]|Proxy[] createMany(int $number, array|callable $attributes = [])
  * @method static TaxCategoryInterface[]|Proxy[] createSequence(iterable|callable $sequence)
@@ -48,7 +48,7 @@ final class TaxCategoryFactory extends AbstractModelFactory implements FactoryWi
     use WithNameTrait;
     use WithDescriptionTrait;
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return self::$modelClass ?? TaxCategory::class;
     }

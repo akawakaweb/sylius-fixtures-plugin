@@ -20,13 +20,13 @@ use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithSlugTrait;
 use Sylius\Bundle\TaxonomyBundle\Doctrine\ORM\TaxonRepository;
 use Sylius\Component\Core\Model\Taxon;
 use Sylius\Component\Core\Model\TaxonInterface;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @extends AbstractModelFactory<TaxonInterface>
  *
- * @method        TaxonInterface|Proxy create(array|callable $attributes = [])
+ * @method        TaxonInterface|Proxy create(array|callable $attributes = [], bool $noProxy = false)
  * @method static TaxonInterface|Proxy createOne(array $attributes = [])
  * @method static TaxonInterface|Proxy find(object|array|mixed $criteria)
  * @method static TaxonInterface|Proxy findOrCreate(array $attributes)
@@ -34,7 +34,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static TaxonInterface|Proxy last(string $sortedField = 'id')
  * @method static TaxonInterface|Proxy random(array $attributes = [])
  * @method static TaxonInterface|Proxy randomOrCreate(array $attributes = [])
- * @method static TaxonRepository|RepositoryProxy repository()
+ * @method static TaxonRepository|ProxyRepositoryDecorator repository()
  * @method static TaxonInterface[]|Proxy[] all()
  * @method static TaxonInterface[]|Proxy[] createMany(int $number, array|callable $attributes = [])
  * @method static TaxonInterface[]|Proxy[] createSequence(iterable|callable $sequence)
@@ -52,15 +52,15 @@ final class TaxonFactory extends AbstractModelFactory implements FactoryWithMode
 
     public function withTranslations(array $translations): self
     {
-        return $this->addState(['translations' => $translations]);
+        return $this->with(['translations' => $translations]);
     }
 
     public function withChildren(array $children): self
     {
-        return $this->addState(['children' => $children]);
+        return $this->with(['children' => $children]);
     }
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return self::$modelClass ?? Taxon::class;
     }

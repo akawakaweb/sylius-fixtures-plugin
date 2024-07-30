@@ -13,15 +13,15 @@ declare(strict_types=1);
 
 namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State;
 
-use Zenstruck\Foundry\ModelFactory;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
- * @mixin ModelFactory
+ * @mixin PersistentProxyObjectFactory
  */
 trait WithLastNameTrait
 {
     public function withLastName(string $lastName): self
     {
-        return $this->addState(['lastName' => $lastName]);
+        return $this->with(['lastName' => $lastName]);
     }
 }

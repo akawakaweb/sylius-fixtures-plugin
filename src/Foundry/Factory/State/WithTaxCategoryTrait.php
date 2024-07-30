@@ -14,16 +14,16 @@ declare(strict_types=1);
 namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State;
 
 use Sylius\Component\Taxation\Model\TaxCategoryInterface;
-use Zenstruck\Foundry\ModelFactory;
-use Zenstruck\Foundry\Proxy;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
+use Zenstruck\Foundry\Persistence\Proxy;
 
 /**
- * @mixin ModelFactory
+ * @mixin PersistentProxyObjectFactory
  */
 trait WithTaxCategoryTrait
 {
     public function withTaxCategory(Proxy|TaxCategoryInterface|string $taxCategory): self
     {
-        return $this->addState(['taxCategory' => $taxCategory]);
+        return $this->with(['taxCategory' => $taxCategory]);
     }
 }

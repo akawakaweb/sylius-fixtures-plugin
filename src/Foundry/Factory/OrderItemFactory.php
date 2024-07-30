@@ -17,13 +17,13 @@ use Sylius\Bundle\CoreBundle\Doctrine\ORM\OrderItemRepository;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\OrderItem;
 use Sylius\Component\Core\Model\OrderItemInterface;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @extends AbstractModelFactory<OrderItemInterface>
  *
- * @method        OrderItemInterface|Proxy create(array|callable $attributes = [])
+ * @method        OrderItemInterface|Proxy create(array|callable $attributes = [], bool $noProxy = false)
  * @method static OrderItemInterface|Proxy createOne(array $attributes = [])
  * @method static OrderItemInterface|Proxy find(object|array|mixed $criteria)
  * @method static OrderItemInterface|Proxy findOrCreate(array $attributes)
@@ -31,7 +31,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static OrderItemInterface|Proxy last(string $sortedField = 'id')
  * @method static OrderItemInterface|Proxy random(array $attributes = [])
  * @method static OrderItemInterface|Proxy randomOrCreate(array $attributes = [])
- * @method static OrderItemRepository|RepositoryProxy repository()
+ * @method static OrderItemRepository|ProxyRepositoryDecorator repository()
  * @method static OrderItemInterface[]|Proxy[] all()
  * @method static OrderItemInterface[]|Proxy[] createMany(int $number, array|callable $attributes = [])
  * @method static OrderItemInterface[]|Proxy[] createSequence(iterable|callable $sequence)
@@ -45,10 +45,10 @@ final class OrderItemFactory extends AbstractModelFactory implements FactoryWith
 
     public function withOrder(Proxy|OrderInterface $order): self
     {
-        return $this->addState(['order' => $order]);
+        return $this->with(['order' => $order]);
     }
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return self::$modelClass ?? OrderItem::class;
     }

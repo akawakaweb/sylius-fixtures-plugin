@@ -18,13 +18,13 @@ use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithNameTrait;
 use Sylius\Bundle\ProductBundle\Doctrine\ORM\ProductAssociationTypeRepository;
 use Sylius\Component\Product\Model\ProductAssociationType;
 use Sylius\Component\Product\Model\ProductAssociationTypeInterface;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @extends AbstractModelFactory<ProductAssociationTypeInterface>
  *
- * @method        ProductAssociationTypeInterface|Proxy create(array|callable $attributes = [])
+ * @method        ProductAssociationTypeInterface|Proxy create(array|callable $attributes = [], bool $noProxy = false)
  * @method static ProductAssociationTypeInterface|Proxy createOne(array $attributes = [])
  * @method static ProductAssociationTypeInterface|Proxy find(object|array|mixed $criteria)
  * @method static ProductAssociationTypeInterface|Proxy findOrCreate(array $attributes)
@@ -32,7 +32,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static ProductAssociationTypeInterface|Proxy last(string $sortedField = 'id')
  * @method static ProductAssociationTypeInterface|Proxy random(array $attributes = [])
  * @method static ProductAssociationTypeInterface|Proxy randomOrCreate(array $attributes = [])
- * @method static ProductAssociationTypeRepository|RepositoryProxy repository()
+ * @method static ProductAssociationTypeRepository|ProxyRepositoryDecorator repository()
  * @method static ProductAssociationTypeInterface[]|Proxy[] all()
  * @method static ProductAssociationTypeInterface[]|Proxy[] createMany(int $number, array|callable $attributes = [])
  * @method static ProductAssociationTypeInterface[]|Proxy[] createSequence(iterable|callable $sequence)
@@ -46,7 +46,7 @@ final class ProductAssociationTypeFactory extends AbstractModelFactory implement
     use WithCodeTrait;
     use WithNameTrait;
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return self::$modelClass ?? ProductAssociationType::class;
     }

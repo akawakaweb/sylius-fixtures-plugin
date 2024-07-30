@@ -18,13 +18,13 @@ use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithNameTrait;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Addressing\Model\Zone;
 use Sylius\Component\Addressing\Model\ZoneInterface;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @extends AbstractModelFactory<ZoneInterface>
  *
- * @method        ZoneInterface|Proxy create(array|callable $attributes = [])
+ * @method        ZoneInterface|Proxy create(array|callable $attributes = [], bool $noProxy = false)
  * @method static ZoneInterface|Proxy createOne(array $attributes = [])
  * @method static ZoneInterface|Proxy find(object|array|mixed $criteria)
  * @method static ZoneInterface|Proxy findOrCreate(array $attributes)
@@ -32,7 +32,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static ZoneInterface|Proxy last(string $sortedField = 'id')
  * @method static ZoneInterface|Proxy random(array $attributes = [])
  * @method static ZoneInterface|Proxy randomOrCreate(array $attributes = [])
- * @method static EntityRepository|RepositoryProxy repository()
+ * @method static EntityRepository|ProxyRepositoryDecorator repository()
  * @method static ZoneInterface[]|Proxy[] all()
  * @method static ZoneInterface[]|Proxy[] createMany(int $number, array|callable $attributes = [])
  * @method static ZoneInterface[]|Proxy[] createSequence(iterable|callable $sequence)
@@ -48,7 +48,7 @@ final class ZoneFactory extends AbstractModelFactory implements FactoryWithModel
 
     public function withMembers(array $members, string $type = ZoneInterface::TYPE_ZONE): self
     {
-        return $this->addState([
+        return $this->with([
             'type' => $type,
             'members' => $members,
         ]);
@@ -66,10 +66,10 @@ final class ZoneFactory extends AbstractModelFactory implements FactoryWithModel
 
     public function withScope(string $scope): self
     {
-        return $this->addState(['scope' => $scope]);
+        return $this->with(['scope' => $scope]);
     }
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return self::$modelClass ?? Zone::class;
     }

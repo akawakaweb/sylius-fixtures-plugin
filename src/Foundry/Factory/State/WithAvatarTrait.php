@@ -13,15 +13,15 @@ declare(strict_types=1);
 
 namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State;
 
-use Zenstruck\Foundry\ModelFactory;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
- * @mixin ModelFactory
+ * @mixin PersistentProxyObjectFactory
  */
 trait WithAvatarTrait
 {
     public function withAvatar(string $avatar): self
     {
-        return $this->addState(['avatar' => $avatar]);
+        return $this->with(['avatar' => $avatar]);
     }
 }

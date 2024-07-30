@@ -14,14 +14,14 @@ declare(strict_types=1);
 namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Story;
 
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\AdminUserFactory;
-use Zenstruck\Foundry\Factory;
+use function Zenstruck\Foundry\Persistence\flush_after;
 use Zenstruck\Foundry\Story;
 
 final class DefaultAdminUsersStory extends Story implements DefaultAdminUsersStoryInterface
 {
     public function build(): void
     {
-        Factory::delayFlush(function () {
+        flush_after(function () {
             AdminUserFactory::new()
                 ->withEmail('sylius@example.com')
                 ->withUsername('sylius')

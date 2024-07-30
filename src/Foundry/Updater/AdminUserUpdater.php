@@ -37,7 +37,7 @@ final class AdminUserUpdater implements UpdaterInterface
             return ($this->decorated)($object, $attributes);
         }
 
-        if ($attributes['api'] ?? null) {
+        if ($attributes['api'] === true) {
             $object->addRole('ROLE_API_ACCESS');
         }
 

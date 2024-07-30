@@ -16,13 +16,13 @@ namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Promotion\Model\PromotionAction;
 use Sylius\Component\Promotion\Model\PromotionActionInterface;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @extends AbstractModelFactory<PromotionActionInterface>
  *
- * @method        PromotionActionInterface|Proxy create(array|callable $attributes = [])
+ * @method        PromotionActionInterface|Proxy create(array|callable $attributes = [], bool $noProxy = false)
  * @method static PromotionActionInterface|Proxy createOne(array $attributes = [])
  * @method static PromotionActionInterface|Proxy find(object|array|mixed $criteria)
  * @method static PromotionActionInterface|Proxy findOrCreate(array $attributes)
@@ -30,7 +30,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static PromotionActionInterface|Proxy last(string $sortedField = 'id')
  * @method static PromotionActionInterface|Proxy random(array $attributes = [])
  * @method static PromotionActionInterface|Proxy randomOrCreate(array $attributes = [])
- * @method static EntityRepository|RepositoryProxy repository()
+ * @method static EntityRepository|ProxyRepositoryDecorator repository()
  * @method static PromotionActionInterface[]|Proxy[] all()
  * @method static PromotionActionInterface[]|Proxy[] createMany(int $number, array|callable $attributes = [])
  * @method static PromotionActionInterface[]|Proxy[] createSequence(iterable|callable $sequence)
@@ -44,15 +44,15 @@ final class PromotionActionFactory extends AbstractModelFactory implements Facto
 
     public function withType(string $type): self
     {
-        return $this->addState(['type' => $type]);
+        return $this->with(['type' => $type]);
     }
 
     public function withConfiguration(array $configuration): self
     {
-        return $this->addState(['configuration' => $configuration]);
+        return $this->with(['configuration' => $configuration]);
     }
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return self::$modelClass ?? PromotionAction::class;
     }

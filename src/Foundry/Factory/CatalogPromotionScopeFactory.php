@@ -16,13 +16,13 @@ namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Core\Model\CatalogPromotionScope;
 use Sylius\Component\Core\Model\CatalogPromotionScopeInterface;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @extends AbstractModelFactory<CatalogPromotionScopeInterface>
  *
- * @method        CatalogPromotionScopeInterface|Proxy create(array|callable $attributes = [])
+ * @method        CatalogPromotionScopeInterface|Proxy create(array|callable $attributes = [], bool $noProxy = false)
  * @method static CatalogPromotionScopeInterface|Proxy createOne(array $attributes = [])
  * @method static CatalogPromotionScopeInterface|Proxy find(object|array|mixed $criteria)
  * @method static CatalogPromotionScopeInterface|Proxy findOrCreate(array $attributes)
@@ -30,7 +30,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static CatalogPromotionScopeInterface|Proxy last(string $sortedField = 'id')
  * @method static CatalogPromotionScopeInterface|Proxy random(array $attributes = [])
  * @method static CatalogPromotionScopeInterface|Proxy randomOrCreate(array $attributes = [])
- * @method static EntityRepository|RepositoryProxy repository()
+ * @method static EntityRepository|ProxyRepositoryDecorator repository()
  * @method static CatalogPromotionScopeInterface[]|Proxy[] all()
  * @method static CatalogPromotionScopeInterface[]|Proxy[] createMany(int $number, array|callable $attributes = [])
  * @method static CatalogPromotionScopeInterface[]|Proxy[] createSequence(iterable|callable $sequence)
@@ -44,15 +44,15 @@ final class CatalogPromotionScopeFactory extends AbstractModelFactory implements
 
     public function withType(string $type): self
     {
-        return $this->addState(['type' => $type]);
+        return $this->with(['type' => $type]);
     }
 
     public function withConfiguration(array $configuration): self
     {
-        return $this->addState(['configuration' => $configuration]);
+        return $this->with(['configuration' => $configuration]);
     }
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return self::$modelClass ?? CatalogPromotionScope::class;
     }

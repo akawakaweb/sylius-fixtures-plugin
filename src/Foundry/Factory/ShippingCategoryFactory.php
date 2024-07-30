@@ -19,13 +19,13 @@ use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithNameTrait;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\ShippingCategoryRepository;
 use Sylius\Component\Shipping\Model\ShippingCategory;
 use Sylius\Component\Shipping\Model\ShippingCategoryInterface;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @extends AbstractModelFactory<ShippingCategoryInterface>
  *
- * @method        ShippingCategoryInterface|Proxy create(array|callable $attributes = [])
+ * @method        ShippingCategoryInterface|Proxy create(array|callable $attributes = [], bool $noProxy = false)
  * @method static ShippingCategoryInterface|Proxy createOne(array $attributes = [])
  * @method static ShippingCategoryInterface|Proxy find(object|array|mixed $criteria)
  * @method static ShippingCategoryInterface|Proxy findOrCreate(array $attributes)
@@ -33,7 +33,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static ShippingCategoryInterface|Proxy last(string $sortedField = 'id')
  * @method static ShippingCategoryInterface|Proxy random(array $attributes = [])
  * @method static ShippingCategoryInterface|Proxy randomOrCreate(array $attributes = [])
- * @method static ShippingCategoryRepository|RepositoryProxy repository()
+ * @method static ShippingCategoryRepository|ProxyRepositoryDecorator repository()
  * @method static ShippingCategoryInterface[]|Proxy[] all()
  * @method static ShippingCategoryInterface[]|Proxy[] createMany(int $number, array|callable $attributes = [])
  * @method static ShippingCategoryInterface[]|Proxy[] createSequence(iterable|callable $sequence)
@@ -48,7 +48,7 @@ final class ShippingCategoryFactory extends AbstractModelFactory implements Fact
     use WithNameTrait;
     use WithDescriptionTrait;
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return self::$modelClass ?? ShippingCategory::class;
     }

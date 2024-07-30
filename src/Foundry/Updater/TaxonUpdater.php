@@ -52,7 +52,7 @@ final class TaxonUpdater implements UpdaterInterface
             $childAttributes['parent'] = $object;
 
             TaxonFactory::new()
-                ->withAttributes($childAttributes)
+                ->with($childAttributes)
                 ->withoutPersisting()
                 ->create()
             ;

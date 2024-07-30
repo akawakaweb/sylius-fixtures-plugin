@@ -17,7 +17,7 @@ use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\LocaleFactory;
 use Sylius\Component\Locale\Model\LocaleInterface;
 use Sylius\Component\Product\Model\ProductOptionInterface;
 use Webmozart\Assert\Assert;
-use Zenstruck\Foundry\Proxy;
+use Zenstruck\Foundry\Persistence\Proxy;
 
 final class ProductOptionUpdater implements UpdaterInterface
 {

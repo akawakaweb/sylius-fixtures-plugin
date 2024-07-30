@@ -13,15 +13,15 @@ declare(strict_types=1);
 
 namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State;
 
-use Zenstruck\Foundry\ModelFactory;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
- * @mixin ModelFactory
+ * @mixin PersistentProxyObjectFactory
  */
 trait WithPhoneNumberTrait
 {
     public function withPhoneNumber(?string $phoneNumber = null): self
     {
-        return $this->addState(['phoneNumber' => $phoneNumber ?? self::faker()->phoneNumber()]);
+        return $this->with(['phoneNumber' => $phoneNumber ?? self::faker()->phoneNumber()]);
     }
 }

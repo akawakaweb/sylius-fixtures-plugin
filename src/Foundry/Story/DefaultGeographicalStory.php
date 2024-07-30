@@ -15,7 +15,7 @@ namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Story;
 
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\CountryFactory;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ZoneFactory;
-use Zenstruck\Foundry\Factory;
+use function Zenstruck\Foundry\Persistence\flush_after;
 use Zenstruck\Foundry\Story;
 
 final class DefaultGeographicalStory extends Story implements DefaultGeographicalStoryInterface
@@ -24,7 +24,7 @@ final class DefaultGeographicalStory extends Story implements DefaultGeographica
     {
         $countryCodes = $this->getCountryCodes();
 
-        Factory::delayFlush(function () use ($countryCodes) {
+        flush_after(function () use ($countryCodes) {
             foreach ($countryCodes as $countryCode) {
                 CountryFactory::new()->withCode($countryCode)->create();
             }

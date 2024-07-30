@@ -17,13 +17,13 @@ use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Locale\Model\Locale;
 use Sylius\Component\Locale\Model\LocaleInterface;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @extends AbstractModelFactory<LocaleInterface>
  *
- * @method        LocaleInterface|Proxy create(array|callable $attributes = [])
+ * @method        LocaleInterface|Proxy create(array|callable $attributes = [], bool $noProxy = false)
  * @method static LocaleInterface|Proxy createOne(array $attributes = [])
  * @method static LocaleInterface|Proxy find(object|array|mixed $criteria)
  * @method static LocaleInterface|Proxy findOrCreate(array $attributes)
@@ -31,7 +31,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static LocaleInterface|Proxy last(string $sortedField = 'id')
  * @method static LocaleInterface|Proxy random(array $attributes = [])
  * @method static LocaleInterface|Proxy randomOrCreate(array $attributes = [])
- * @method static EntityRepository|RepositoryProxy repository()
+ * @method static EntityRepository|ProxyRepositoryDecorator repository()
  * @method static LocaleInterface[]|Proxy[] all()
  * @method static LocaleInterface[]|Proxy[] createMany(int $number, array|callable $attributes = [])
  * @method static LocaleInterface[]|Proxy[] createSequence(iterable|callable $sequence)
@@ -44,7 +44,7 @@ final class LocaleFactory extends AbstractModelFactory implements FactoryWithMod
     use WithModelClassTrait;
     use WithCodeTrait;
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return self::$modelClass ?? Locale::class;
     }

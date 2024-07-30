@@ -32,7 +32,7 @@ use Sylius\Component\Core\Repository\ShippingMethodRepositoryInterface;
 use Sylius\Component\Payment\PaymentTransitions;
 use Sylius\Component\Shipping\ShipmentTransitions;
 use Webmozart\Assert\Assert;
-use Zenstruck\Foundry\Proxy;
+use Zenstruck\Foundry\Persistence\Proxy;
 
 final class OrderUpdater implements UpdaterInterface
 {
@@ -77,7 +77,7 @@ final class OrderUpdater implements UpdaterInterface
         $this->selectPayment($object, $paymentMethod, $createdAt);
         $this->completeCheckout($object);
 
-        if ($attributes['fulfilled'] ?? false) {
+        if ($attributes['fulfilled'] === true) {
             $this->fulfillOrder($object);
         }
 
@@ -102,8 +102,8 @@ final class OrderUpdater implements UpdaterInterface
             ->create()
         ;
 
-        $order->setShippingAddress($address->object());
-        $order->setBillingAddress(clone $address->object());
+        $order->setShippingAddress($address->_real());
+        $order->setBillingAddress(clone $address->_real());
 
         $this->applyCheckoutStateTransition($order, OrderCheckoutTransitions::TRANSITION_ADDRESS);
     }
@@ -126,7 +126,7 @@ final class OrderUpdater implements UpdaterInterface
                 ->create()
             ;
 
-            $shippingMethods[] = $shippingMethod->object();
+            $shippingMethods[] = $shippingMethod->_real();
         }
 
         /** @var ShippingMethodInterface|null $shippingMethod */

@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Story;
 
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\LocaleFactory;
-use Zenstruck\Foundry\Factory;
+use function Zenstruck\Foundry\Persistence\flush_after;
 use Zenstruck\Foundry\Story;
 
 final class DefaultLocalesStory extends Story implements DefaultLocalesStoryInterface
@@ -26,7 +26,7 @@ final class DefaultLocalesStory extends Story implements DefaultLocalesStoryInte
 
     public function build(): void
     {
-        Factory::delayFlush(function () {
+        flush_after(function () {
             foreach ($this->getLocaleCodes() as $currencyCode) {
                 LocaleFactory::new()->withCode($currencyCode)->create();
             }

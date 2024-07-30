@@ -21,13 +21,13 @@ use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductReview;
 use Sylius\Component\Review\Model\ReviewerInterface;
 use Sylius\Component\Review\Model\ReviewInterface;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @extends AbstractModelFactory<ReviewInterface>
  *
- * @method        ReviewInterface|Proxy create(array|callable $attributes = [])
+ * @method        ReviewInterface|Proxy create(array|callable $attributes = [], bool $noProxy = false)
  * @method static ReviewInterface|Proxy createOne(array $attributes = [])
  * @method static ReviewInterface|Proxy find(object|array|mixed $criteria)
  * @method static ReviewInterface|Proxy findOrCreate(array $attributes)
@@ -35,7 +35,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static ReviewInterface|Proxy last(string $sortedField = 'id')
  * @method static ReviewInterface|Proxy random(array $attributes = [])
  * @method static ReviewInterface|Proxy randomOrCreate(array $attributes = [])
- * @method static ProductReviewRepository|RepositoryProxy repository()
+ * @method static ProductReviewRepository|ProxyRepositoryDecorator repository()
  * @method static ReviewInterface[]|Proxy[] all()
  * @method static ReviewInterface[]|Proxy[] createMany(int $number, array|callable $attributes = [])
  * @method static ReviewInterface[]|Proxy[] createSequence(iterable|callable $sequence)
@@ -52,20 +52,20 @@ final class ProductReviewFactory extends AbstractModelFactory implements Factory
 
     public function withRating(int $rating): self
     {
-        return $this->addState(['rating' => $rating]);
+        return $this->with(['rating' => $rating]);
     }
 
     public function withAuthor(Proxy|ReviewerInterface|string $author): self
     {
-        return $this->addState(['author' => $author]);
+        return $this->with(['author' => $author]);
     }
 
     public function withReviewSubject(Proxy|ProductInterface|string $reviewSubject): self
     {
-        return $this->addState(['reviewSubject' => $reviewSubject]);
+        return $this->with(['reviewSubject' => $reviewSubject]);
     }
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return ProductReview::class;
     }

@@ -13,15 +13,15 @@ declare(strict_types=1);
 
 namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State;
 
-use Zenstruck\Foundry\ModelFactory;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
- * @mixin ModelFactory
+ * @mixin PersistentProxyObjectFactory
  */
 trait WithConfigurationTrait
 {
     public function withConfiguration(array $configuration): self
     {
-        return $this->addState(['configuration' => $configuration]);
+        return $this->with(['configuration' => $configuration]);
     }
 }

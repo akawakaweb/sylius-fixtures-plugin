@@ -13,15 +13,15 @@ declare(strict_types=1);
 
 namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State;
 
-use Zenstruck\Foundry\ModelFactory;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
- * @mixin ModelFactory
+ * @mixin PersistentProxyObjectFactory
  */
 trait WithLocaleCodeTrait
 {
     public function withLocaleCode(string $localeCode): self
     {
-        return $this->addState(['localeCode' => $localeCode]);
+        return $this->with(['localeCode' => $localeCode]);
     }
 }

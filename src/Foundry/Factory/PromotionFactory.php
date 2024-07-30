@@ -20,13 +20,13 @@ use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithNameTrait;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithPriorityTrait;
 use Doctrine\ORM\EntityRepository;
 use Sylius\Component\Core\Model\Promotion;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @extends AbstractModelFactory<Promotion>
  *
- * @method        Promotion|Proxy create(array|callable $attributes = [])
+ * @method        Promotion|Proxy create(array|callable $attributes = [], bool $noProxy = false)
  * @method static Promotion|Proxy createOne(array $attributes = [])
  * @method static Promotion|Proxy find(object|array|mixed $criteria)
  * @method static Promotion|Proxy findOrCreate(array $attributes)
@@ -34,7 +34,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static Promotion|Proxy last(string $sortedField = 'id')
  * @method static Promotion|Proxy random(array $attributes = [])
  * @method static Promotion|Proxy randomOrCreate(array $attributes = [])
- * @method static EntityRepository|RepositoryProxy repository()
+ * @method static EntityRepository|ProxyRepositoryDecorator repository()
  * @method static Promotion[]|Proxy[] all()
  * @method static Promotion[]|Proxy[] createMany(int $number, array|callable $attributes = [])
  * @method static Promotion[]|Proxy[] createSequence(iterable|callable $sequence)
@@ -53,55 +53,55 @@ final class PromotionFactory extends AbstractModelFactory implements FactoryWith
 
     public function withUsageLimit(int $usageLimit): self
     {
-        return $this->addState(['usageLimit' => $usageLimit]);
+        return $this->with(['usageLimit' => $usageLimit]);
     }
 
     public function couponBased(): self
     {
-        return $this->addState(['couponBased' => true]);
+        return $this->with(['couponBased' => true]);
     }
 
     public function notCouponBased(): self
     {
-        return $this->addState(['couponBased' => false]);
+        return $this->with(['couponBased' => false]);
     }
 
     public function exclusive(): self
     {
-        return $this->addState(['exclusive' => true]);
+        return $this->with(['exclusive' => true]);
     }
 
     public function notExclusive(): self
     {
-        return $this->addState(['exclusive' => false]);
+        return $this->with(['exclusive' => false]);
     }
 
     public function withStartDate(\DateTimeInterface|string $startAt): self
     {
-        return $this->addState(['startsAt' => $startAt]);
+        return $this->with(['startsAt' => $startAt]);
     }
 
     public function withEndDate(\DateTimeInterface|string $endAt): self
     {
-        return $this->addState(['endsAt' => $endAt]);
+        return $this->with(['endsAt' => $endAt]);
     }
 
     public function withRules(array $rules): self
     {
-        return $this->addState(['rules' => $rules]);
+        return $this->with(['rules' => $rules]);
     }
 
     public function withActions(array $actions): self
     {
-        return $this->addState(['actions' => $actions]);
+        return $this->with(['actions' => $actions]);
     }
 
     public function withCoupons(array $coupons): self
     {
-        return $this->addState(['coupons' => $coupons]);
+        return $this->with(['coupons' => $coupons]);
     }
 
-    protected function getDefaults(): array
+    public function defaults(): array
     {
         return [
             'appliesToDiscounted' => self::faker()->boolean(),
@@ -115,7 +115,7 @@ final class PromotionFactory extends AbstractModelFactory implements FactoryWith
         ];
     }
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return self::$modelClass ?? Promotion::class;
     }

@@ -14,16 +14,16 @@ declare(strict_types=1);
 namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State;
 
 use Sylius\Component\Addressing\Model\ZoneInterface;
-use Zenstruck\Foundry\ModelFactory;
-use Zenstruck\Foundry\Proxy;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
+use Zenstruck\Foundry\Persistence\Proxy;
 
 /**
- * @mixin ModelFactory
+ * @mixin PersistentProxyObjectFactory
  */
 trait WithZoneTrait
 {
     public function withZone(Proxy|ZoneInterface|string $zone): self
     {
-        return $this->addState(['zone' => $zone]);
+        return $this->with(['zone' => $zone]);
     }
 }

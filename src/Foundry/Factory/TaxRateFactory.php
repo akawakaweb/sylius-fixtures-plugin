@@ -20,13 +20,13 @@ use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Core\Model\TaxRate;
 use Sylius\Component\Core\Model\TaxRateInterface;
 use Sylius\Component\Taxation\Model\TaxCategoryInterface;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @extends AbstractModelFactory<TaxRateInterface>
  *
- * @method        TaxRateInterface|Proxy create(array|callable $attributes = [])
+ * @method        TaxRateInterface|Proxy create(array|callable $attributes = [], bool $noProxy = false)
  * @method static TaxRateInterface|Proxy createOne(array $attributes = [])
  * @method static TaxRateInterface|Proxy find(object|array|mixed $criteria)
  * @method static TaxRateInterface|Proxy findOrCreate(array $attributes)
@@ -34,7 +34,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static TaxRateInterface|Proxy last(string $sortedField = 'id')
  * @method static TaxRateInterface|Proxy random(array $attributes = [])
  * @method static TaxRateInterface|Proxy randomOrCreate(array $attributes = [])
- * @method static EntityRepository|RepositoryProxy repository()
+ * @method static EntityRepository|ProxyRepositoryDecorator repository()
  * @method static TaxRateInterface[]|Proxy[] all()
  * @method static TaxRateInterface[]|Proxy[] createMany(int $number, array|callable $attributes = [])
  * @method static TaxRateInterface[]|Proxy[] createSequence(iterable|callable $sequence)
@@ -51,30 +51,30 @@ final class TaxRateFactory extends AbstractModelFactory implements FactoryWithMo
 
     public function withAmount(float $amount): self
     {
-        return $this->addState(['amount' => $amount]);
+        return $this->with(['amount' => $amount]);
     }
 
     public function includedInPrice(): self
     {
-        return $this->addState(['included_in_price' => true]);
+        return $this->with(['included_in_price' => true]);
     }
 
     public function notIncludedInPrice(): self
     {
-        return $this->addState(['included_in_price' => false]);
+        return $this->with(['included_in_price' => false]);
     }
 
     public function withCalculator(string $calculator): self
     {
-        return $this->addState(['calculator' => $calculator]);
+        return $this->with(['calculator' => $calculator]);
     }
 
     public function withCategory(Proxy|TaxCategoryInterface|string $category): self
     {
-        return $this->addState(['category' => $category]);
+        return $this->with(['category' => $category]);
     }
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return self::$modelClass ?? TaxRate::class;
     }
