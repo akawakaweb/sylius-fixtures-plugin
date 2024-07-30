@@ -13,15 +13,15 @@ declare(strict_types=1);
 
 namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State;
 
-use Zenstruck\Foundry\ModelFactory;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
- * @mixin ModelFactory
+ * @mixin PersistentProxyObjectFactory
  */
 trait WithTaxaTrait
 {
     public function withTaxa(array $taxa): self
     {
-        return $this->addState(['taxa' => $taxa]);
+        return $this->with(['taxa' => $taxa]);
     }
 }

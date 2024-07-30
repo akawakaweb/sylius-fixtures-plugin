@@ -13,20 +13,20 @@ declare(strict_types=1);
 
 namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State;
 
-use Zenstruck\Foundry\ModelFactory;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
- * @mixin ModelFactory
+ * @mixin PersistentProxyObjectFactory
  */
 trait ToggableTrait
 {
     public function enabled(): self
     {
-        return $this->addState(['enabled' => true]);
+        return $this->with(['enabled' => true]);
     }
 
     public function disabled(): self
     {
-        return $this->addState(['enabled' => false]);
+        return $this->with(['enabled' => false]);
     }
 }

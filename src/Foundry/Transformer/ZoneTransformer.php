@@ -15,7 +15,7 @@ namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Transformer;
 
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\ZoneMemberFactory;
 use Sylius\Component\Addressing\Model\ZoneMemberInterface;
-use Zenstruck\Foundry\Proxy;
+use Zenstruck\Foundry\Persistence\Proxy;
 
 final class ZoneTransformer implements TransformerInterface
 {

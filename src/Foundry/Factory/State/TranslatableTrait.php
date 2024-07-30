@@ -13,20 +13,20 @@ declare(strict_types=1);
 
 namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State;
 
-use Zenstruck\Foundry\ModelFactory;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
- * @mixin ModelFactory
+ * @mixin PersistentProxyObjectFactory
  */
 trait TranslatableTrait
 {
     public function translatable(): self
     {
-        return $this->addState(['translatable' => true]);
+        return $this->with(['translatable' => true]);
     }
 
     public function untranslatable(): self
     {
-        return $this->addState(['translatable' => false]);
+        return $this->with(['translatable' => false]);
     }
 }

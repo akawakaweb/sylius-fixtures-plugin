@@ -18,13 +18,13 @@ use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Product\Model\ProductAssociation;
 use Sylius\Component\Product\Model\ProductAssociationInterface;
 use Sylius\Component\Product\Model\ProductAssociationTypeInterface;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @extends AbstractModelFactory<ProductAssociation>
  *
- * @method        ProductAssociationInterface|Proxy create(array|callable $attributes = [])
+ * @method        ProductAssociationInterface|Proxy create(array|callable $attributes = [], bool $noProxy = false)
  * @method static ProductAssociationInterface|Proxy createOne(array $attributes = [])
  * @method static ProductAssociationInterface|Proxy find(object|array|mixed $criteria)
  * @method static ProductAssociationInterface|Proxy findOrCreate(array $attributes)
@@ -32,7 +32,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static ProductAssociationInterface|Proxy last(string $sortedField = 'id')
  * @method static ProductAssociationInterface|Proxy random(array $attributes = [])
  * @method static ProductAssociationInterface|Proxy randomOrCreate(array $attributes = [])
- * @method static ProductAssociationRepository|RepositoryProxy repository()
+ * @method static ProductAssociationRepository|ProxyRepositoryDecorator repository()
  * @method static ProductAssociationInterface[]|Proxy[] all()
  * @method static ProductAssociationInterface[]|Proxy[] createMany(int $number, array|callable $attributes = [])
  * @method static ProductAssociationInterface[]|Proxy[] createSequence(iterable|callable $sequence)
@@ -46,20 +46,20 @@ final class ProductAssociationFactory extends AbstractModelFactory implements Fa
 
     public function withType(Proxy|ProductAssociationTypeInterface|string $type): self
     {
-        return $this->addState(['type' => $type]);
+        return $this->with(['type' => $type]);
     }
 
     public function withOwner(Proxy|ProductInterface|string $owner): self
     {
-        return $this->addState(['owner' => $owner]);
+        return $this->with(['owner' => $owner]);
     }
 
     public function withAssociatedProducts(array $associatedProducts): self
     {
-        return $this->addState(['associatedProducts' => $associatedProducts]);
+        return $this->with(['associatedProducts' => $associatedProducts]);
     }
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return self::$modelClass ?? ProductAssociation::class;
     }

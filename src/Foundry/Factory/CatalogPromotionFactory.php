@@ -22,13 +22,13 @@ use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithPriorityTrait;
 use Doctrine\ORM\EntityRepository;
 use Sylius\Component\Core\Model\CatalogPromotion;
 use Sylius\Component\Core\Model\CatalogPromotionInterface;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @extends AbstractModelFactory<CatalogPromotionInterface>
  *
- * @method        CatalogPromotionInterface|Proxy create(array|callable $attributes = [])
+ * @method        CatalogPromotionInterface|Proxy create(array|callable $attributes = [], bool $noProxy = false)
  * @method static CatalogPromotionInterface|Proxy createOne(array $attributes = [])
  * @method static CatalogPromotionInterface|Proxy find(object|array|mixed $criteria)
  * @method static CatalogPromotionInterface|Proxy findOrCreate(array $attributes)
@@ -36,7 +36,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static CatalogPromotionInterface|Proxy last(string $sortedField = 'id')
  * @method static CatalogPromotionInterface|Proxy random(array $attributes = [])
  * @method static CatalogPromotionInterface|Proxy randomOrCreate(array $attributes = [])
- * @method static EntityRepository|RepositoryProxy repository()
+ * @method static EntityRepository|ProxyRepositoryDecorator repository()
  * @method static CatalogPromotionInterface[]|Proxy[] all()
  * @method static CatalogPromotionInterface[]|Proxy[] createMany(int $number, array|callable $attributes = [])
  * @method static CatalogPromotionInterface[]|Proxy[] createSequence(iterable|callable $sequence)
@@ -56,40 +56,40 @@ final class CatalogPromotionFactory extends AbstractModelFactory implements Fact
 
     public function withLabel(string $label): self
     {
-        return $this->addState(['label' => $label]);
+        return $this->with(['label' => $label]);
     }
 
     public function withScopes(array $scopes): self
     {
-        return $this->addState(['scopes' => $scopes]);
+        return $this->with(['scopes' => $scopes]);
     }
 
     public function withActions(array $actions): self
     {
-        return $this->addState(['actions' => $actions]);
+        return $this->with(['actions' => $actions]);
     }
 
     public function exclusive(): self
     {
-        return $this->addState(['exclusive' => true]);
+        return $this->with(['exclusive' => true]);
     }
 
     public function notExclusive(): self
     {
-        return $this->addState(['exclusive' => false]);
+        return $this->with(['exclusive' => false]);
     }
 
     public function withStartDate(\DateTimeInterface|string $startDate): self
     {
-        return $this->addState(['startDate' => $startDate]);
+        return $this->with(['startDate' => $startDate]);
     }
 
     public function withEndDate(\DateTimeInterface|string $endDate): self
     {
-        return $this->addState(['endDate' => $endDate]);
+        return $this->with(['endDate' => $endDate]);
     }
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return self::$modelClass ?? CatalogPromotion::class;
     }

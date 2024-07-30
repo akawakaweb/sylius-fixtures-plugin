@@ -13,15 +13,15 @@ declare(strict_types=1);
 
 namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State;
 
-use Zenstruck\Foundry\ModelFactory;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
- * @mixin ModelFactory
+ * @mixin PersistentProxyObjectFactory
  */
 trait WithCurrenciesTrait
 {
     public function withCurrencies(array $currencies): self
     {
-        return $this->addState(['currencies' => $currencies]);
+        return $this->with(['currencies' => $currencies]);
     }
 }

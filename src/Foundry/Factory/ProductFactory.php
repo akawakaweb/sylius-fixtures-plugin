@@ -28,13 +28,13 @@ use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository;
 use Sylius\Component\Core\Model\Product;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\TaxonInterface;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @extends AbstractModelFactory<ProductInterface>
  *
- * @method        ProductInterface|Proxy create(array|callable $attributes = [])
+ * @method        ProductInterface|Proxy create(array|callable $attributes = [], bool $noProxy = false)
  * @method static ProductInterface|Proxy createOne(array $attributes = [])
  * @method static ProductInterface|Proxy find(object|array|mixed $criteria)
  * @method static ProductInterface|Proxy findOrCreate(array $attributes)
@@ -42,7 +42,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static ProductInterface|Proxy last(string $sortedField = 'id')
  * @method static ProductInterface|Proxy random(array $attributes = [])
  * @method static ProductInterface|Proxy randomOrCreate(array $attributes = [])
- * @method static ProductRepository|RepositoryProxy repository()
+ * @method static ProductRepository|ProxyRepositoryDecorator<ProxyRepositoryDecorator> repository()
  * @method static ProductInterface[]|Proxy[] all()
  * @method static ProductInterface[]|Proxy[] createMany(int $number, array|callable $attributes = [])
  * @method static ProductInterface[]|Proxy[] createSequence(iterable|callable $sequence)
@@ -67,40 +67,40 @@ final class ProductFactory extends AbstractModelFactory implements FactoryWithMo
 
     public function tracked(): self
     {
-        return $this->addState(['tracked' => true]);
+        return $this->with(['tracked' => true]);
     }
 
     public function untracked(): self
     {
-        return $this->addState(['tracked' => false]);
+        return $this->with(['tracked' => false]);
     }
 
     public function withShippingRequired(): self
     {
-        return $this->addState(['shippingRequired' => true]);
+        return $this->with(['shippingRequired' => true]);
     }
 
     public function withShippingNotRequired(): self
     {
-        return $this->addState(['shippingRequired' => false]);
+        return $this->with(['shippingRequired' => false]);
     }
 
     public function withVariantSelectionMethod(string $variantSelectionMethod): self
     {
-        return $this->addState(['variantSelectionMethod' => $variantSelectionMethod]);
+        return $this->with(['variantSelectionMethod' => $variantSelectionMethod]);
     }
 
     public function withMainTaxon(Proxy|TaxonInterface|string $mainTaxon): self
     {
-        return $this->addState(['mainTaxon' => $mainTaxon]);
+        return $this->with(['mainTaxon' => $mainTaxon]);
     }
 
     public function withProductOptions(array $productOptions): self
     {
-        return $this->addState(['productOptions' => $productOptions]);
+        return $this->with(['productOptions' => $productOptions]);
     }
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return self::$modelClass ?? Product::class;
     }

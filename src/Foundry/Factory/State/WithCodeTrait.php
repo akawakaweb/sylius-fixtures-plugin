@@ -13,20 +13,20 @@ declare(strict_types=1);
 
 namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State;
 
-use Zenstruck\Foundry\ModelFactory;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
- * @mixin ModelFactory
+ * @mixin PersistentProxyObjectFactory
  */
 trait WithCodeTrait
 {
     public function withCode(string $code): self
     {
-        return $this->addState(['code' => $code]);
+        return $this->with(['code' => $code]);
     }
 
     public function withValue(string $value): self
     {
-        return $this->addState(['value' => $value]);
+        return $this->with(['value' => $value]);
     }
 }

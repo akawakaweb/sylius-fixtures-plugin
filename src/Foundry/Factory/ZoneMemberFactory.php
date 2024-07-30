@@ -17,13 +17,13 @@ use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Addressing\Model\ZoneMember;
 use Sylius\Component\Addressing\Model\ZoneMemberInterface;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @extends AbstractModelFactory<ZoneMemberInterface>
  *
- * @method        ZoneMemberInterface|Proxy create(array|callable $attributes = [])
+ * @method        ZoneMemberInterface|Proxy create(array|callable $attributes = [], bool $noProxy = false)
  * @method static ZoneMemberInterface|Proxy createOne(array $attributes = [])
  * @method static ZoneMemberInterface|Proxy find(object|array|mixed $criteria)
  * @method static ZoneMemberInterface|Proxy findOrCreate(array $attributes)
@@ -31,7 +31,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static ZoneMemberInterface|Proxy last(string $sortedField = 'id')
  * @method static ZoneMemberInterface|Proxy random(array $attributes = [])
  * @method static ZoneMemberInterface|Proxy randomOrCreate(array $attributes = [])
- * @method static EntityRepository|RepositoryProxy repository()
+ * @method static EntityRepository|ProxyRepositoryDecorator repository()
  * @method static ZoneMemberInterface[]|Proxy[] all()
  * @method static ZoneMemberInterface[]|Proxy[] createMany(int $number, array|callable $attributes = [])
  * @method static ZoneMemberInterface[]|Proxy[] createSequence(iterable|callable $sequence)
@@ -44,7 +44,7 @@ final class ZoneMemberFactory extends AbstractModelFactory implements FactoryWit
     use WithModelClassTrait;
     use WithCodeTrait;
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return self::$modelClass ?? ZoneMember::class;
     }

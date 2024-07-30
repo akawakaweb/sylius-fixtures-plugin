@@ -18,13 +18,13 @@ use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Addressing\Model\Country;
 use Sylius\Component\Addressing\Model\CountryInterface;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @extends AbstractModelFactory<CountryInterface>
  *
- * @method        CountryInterface|Proxy create(array|callable $attributes = [])
+ * @method        CountryInterface|Proxy create(array|callable $attributes = [], bool $noProxy = false)
  * @method static CountryInterface|Proxy createOne(array $attributes = [])
  * @method static CountryInterface|Proxy find(object|array|mixed $criteria)
  * @method static CountryInterface|Proxy findOrCreate(array $attributes)
@@ -32,7 +32,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static CountryInterface|Proxy last(string $sortedField = 'id')
  * @method static CountryInterface|Proxy random(array $attributes = [])
  * @method static CountryInterface|Proxy randomOrCreate(array $attributes = [])
- * @method static EntityRepository|RepositoryProxy repository()
+ * @method static EntityRepository|ProxyRepositoryDecorator repository()
  * @method static CountryInterface[]|Proxy[] all()
  * @method static CountryInterface[]|Proxy[] createMany(int $number, array|callable $attributes = [])
  * @method static CountryInterface[]|Proxy[] createSequence(iterable|callable $sequence)
@@ -46,7 +46,7 @@ final class CountryFactory extends AbstractModelFactory implements FactoryWithMo
     use WithCodeTrait;
     use ToggableTrait;
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return self::$modelClass ?? Country::class;
     }

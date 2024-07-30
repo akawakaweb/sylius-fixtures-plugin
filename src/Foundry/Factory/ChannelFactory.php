@@ -25,13 +25,13 @@ use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ShopBillingDataInterface;
 use Sylius\Component\Core\Model\TaxonInterface;
 use Sylius\Component\Locale\Model\LocaleInterface;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @extends AbstractModelFactory<ChannelInterface>
  *
- * @method        ChannelInterface|Proxy create(array|callable $attributes = [])
+ * @method        ChannelInterface|Proxy create(array|callable $attributes = [], bool $noProxy = false)
  * @method static ChannelInterface|Proxy createOne(array $attributes = [])
  * @method static ChannelInterface|Proxy find(object|array|mixed $criteria)
  * @method static ChannelInterface|Proxy findOrCreate(array $attributes)
@@ -39,7 +39,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static ChannelInterface|Proxy last(string $sortedField = 'id')
  * @method static ChannelInterface|Proxy random(array $attributes = [])
  * @method static ChannelInterface|Proxy randomOrCreate(array $attributes = [])
- * @method static EntityRepository|RepositoryProxy repository()
+ * @method static EntityRepository|ProxyRepositoryDecorator repository()
  * @method static ChannelInterface[]|Proxy[] all()
  * @method static ChannelInterface[]|Proxy[] createMany(int $number, array|callable $attributes = [])
  * @method static ChannelInterface[]|Proxy[] createSequence(iterable|callable $sequence)
@@ -58,70 +58,70 @@ final class ChannelFactory extends AbstractModelFactory implements FactoryWithMo
 
     public function withDefaultLocale(Proxy|LocaleInterface|string $defaultLocale): self
     {
-        return $this->addState(['defaultLocale' => $defaultLocale]);
+        return $this->with(['defaultLocale' => $defaultLocale]);
     }
 
     public function withHostname(string $hostname): self
     {
-        return $this->addState(['hostname' => $hostname]);
+        return $this->with(['hostname' => $hostname]);
     }
 
     public function withColor(string $color): self
     {
-        return $this->addState(['color' => $color]);
+        return $this->with(['color' => $color]);
     }
 
     public function withSkippingShippingStepAllowed(): self
     {
-        return $this->addState(['skippingShippingStepAllowed' => true]);
+        return $this->with(['skippingShippingStepAllowed' => true]);
     }
 
     public function withSkippingPaymentStepAllowed(): self
     {
-        return $this->addState(['skippingPaymentStepAllowed' => true]);
+        return $this->with(['skippingPaymentStepAllowed' => true]);
     }
 
     public function withoutAccountVerificationRequired(): self
     {
-        return $this->addState(['accountVerificationRequired' => false]);
+        return $this->with(['accountVerificationRequired' => false]);
     }
 
     public function withDefaultTaxZone(Proxy|ZoneInterface|string $defaultTaxZone): self
     {
-        return $this->addState(['defaultTaxZone' => $defaultTaxZone]);
+        return $this->with(['defaultTaxZone' => $defaultTaxZone]);
     }
 
     public function withTaxCalculationStrategy(string $taxCalculationStrategy): self
     {
-        return $this->addState(['taxCalculationStrategy' => $taxCalculationStrategy]);
+        return $this->with(['taxCalculationStrategy' => $taxCalculationStrategy]);
     }
 
     public function withThemeName(?string $themeName): self
     {
-        return $this->addState(['themeName' => $themeName]);
+        return $this->with(['themeName' => $themeName]);
     }
 
     public function withContactEmail(string $contactEmail): self
     {
-        return $this->addState(['contactEmail' => $contactEmail]);
+        return $this->with(['contactEmail' => $contactEmail]);
     }
 
     public function withContactPhoneNumber(string $contactPhoneNumber): self
     {
-        return $this->addState(['contactPhoneNumber' => $contactPhoneNumber]);
+        return $this->with(['contactPhoneNumber' => $contactPhoneNumber]);
     }
 
     public function withShopBillingData(Proxy|ShopBillingDataInterface|array $shopBillingData): self
     {
-        return $this->addState(['shopBillingData' => $shopBillingData]);
+        return $this->with(['shopBillingData' => $shopBillingData]);
     }
 
     public function withMenuTaxon(Proxy|TaxonInterface|string $menuTaxon): self
     {
-        return $this->addState(['menuTaxon' => $menuTaxon]);
+        return $this->with(['menuTaxon' => $menuTaxon]);
     }
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return self::$modelClass ?? Channel::class;
     }

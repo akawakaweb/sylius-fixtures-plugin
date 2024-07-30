@@ -19,13 +19,13 @@ use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithPhoneNumberTrait;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\AddressRepository;
 use Sylius\Component\Core\Model\Address;
 use Sylius\Component\Core\Model\AddressInterface;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @extends AbstractModelFactory<AddressInterface>
  *
- * @method        AddressInterface|Proxy create(array|callable $attributes = [])
+ * @method        AddressInterface|Proxy create(array|callable $attributes = [], bool $noProxy = false)
  * @method static AddressInterface|Proxy createOne(array $attributes = [])
  * @method static AddressInterface|Proxy find(object|array|mixed $criteria)
  * @method static AddressInterface|Proxy findOrCreate(array $attributes)
@@ -33,7 +33,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static AddressInterface|Proxy last(string $sortedField = 'id')
  * @method static AddressInterface|Proxy random(array $attributes = [])
  * @method static AddressInterface|Proxy randomOrCreate(array $attributes = [])
- * @method static AddressRepository|RepositoryProxy repository()
+ * @method static AddressRepository|ProxyRepositoryDecorator repository()
  * @method static AddressInterface[]|Proxy[] all()
  * @method static AddressInterface[]|Proxy[] createMany(int $number, array|callable $attributes = [])
  * @method static AddressInterface[]|Proxy[] createSequence(iterable|callable $sequence)
@@ -50,40 +50,40 @@ final class AddressFactory extends AbstractModelFactory implements FactoryWithMo
 
     public function withCompany(?string $company = null): self
     {
-        return $this->addState(['company' => $company ?? self::faker()->company()]);
+        return $this->with(['company' => $company ?? self::faker()->company()]);
     }
 
     public function withStreet(string $street): self
     {
-        return $this->addState(['street' => $street]);
+        return $this->with(['street' => $street]);
     }
 
     public function withCity(string $city): self
     {
-        return $this->addState(['city' => $city]);
+        return $this->with(['city' => $city]);
     }
 
     public function withPostcode(string $postcode): self
     {
-        return $this->addState(['postcode' => $postcode]);
+        return $this->with(['postcode' => $postcode]);
     }
 
     public function withCountryCode(string $countryCode): self
     {
-        return $this->addState(['countryCode' => $countryCode]);
+        return $this->with(['countryCode' => $countryCode]);
     }
 
     public function withProvinceName(string $provinceName): self
     {
-        return $this->addState(['provinceName' => $provinceName]);
+        return $this->with(['provinceName' => $provinceName]);
     }
 
     public function withProvinceCode(string $provinceCode): self
     {
-        return $this->addState(['provinceCode' => $provinceCode]);
+        return $this->with(['provinceCode' => $provinceCode]);
     }
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return self::$modelClass ?? Address::class;
     }

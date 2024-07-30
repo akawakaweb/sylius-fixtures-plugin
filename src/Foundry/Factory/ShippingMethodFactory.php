@@ -24,13 +24,13 @@ use Sylius\Bundle\CoreBundle\Doctrine\ORM\ShippingMethodRepository;
 use Sylius\Component\Core\Model\ShippingMethod;
 use Sylius\Component\Core\Model\ShippingMethodInterface;
 use Sylius\Component\Shipping\Model\ShippingCategoryInterface;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @extends AbstractModelFactory<ShippingMethodInterface>
  *
- * @method        ShippingMethodInterface|Proxy create(array|callable $attributes = [])
+ * @method        ShippingMethodInterface|Proxy create(array|callable $attributes = [], bool $noProxy = false)
  * @method static ShippingMethodInterface|Proxy createOne(array $attributes = [])
  * @method static ShippingMethodInterface|Proxy find(object|array|mixed $criteria)
  * @method static ShippingMethodInterface|Proxy findOrCreate(array $attributes)
@@ -38,7 +38,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static ShippingMethodInterface|Proxy last(string $sortedField = 'id')
  * @method static ShippingMethodInterface|Proxy random(array $attributes = [])
  * @method static ShippingMethodInterface|Proxy randomOrCreate(array $attributes = [])
- * @method static ShippingMethodRepository|RepositoryProxy repository()
+ * @method static ShippingMethodRepository|ProxyRepositoryDecorator repository()
  * @method static ShippingMethodInterface[]|Proxy[] all()
  * @method static ShippingMethodInterface[]|Proxy[] createMany(int $number, array|callable $attributes = [])
  * @method static ShippingMethodInterface[]|Proxy[] createSequence(iterable|callable $sequence)
@@ -59,15 +59,15 @@ final class ShippingMethodFactory extends AbstractModelFactory implements Factor
 
     public function withCategory(Proxy|ShippingCategoryInterface|string $category): self
     {
-        return $this->addState(['category' => $category]);
+        return $this->with(['category' => $category]);
     }
 
     public function withArchiveDate(\DateTimeInterface $archivedAt): self
     {
-        return $this->addState(['archivedAt' => $archivedAt]);
+        return $this->with(['archivedAt' => $archivedAt]);
     }
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return self::$modelClass ?? ShippingMethod::class;
     }

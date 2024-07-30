@@ -19,13 +19,13 @@ use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithCustomerTrait;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\OrderRepository;
 use Sylius\Component\Core\Model\Order;
 use Sylius\Component\Core\Model\OrderInterface;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @extends AbstractModelFactory<OrderInterface>
  *
- * @method        OrderInterface|Proxy create(array|callable $attributes = [])
+ * @method        OrderInterface|Proxy create(array|callable $attributes = [], bool $noProxy = false)
  * @method static OrderInterface|Proxy createOne(array $attributes = [])
  * @method static OrderInterface|Proxy find(object|array|mixed $criteria)
  * @method static OrderInterface|Proxy findOrCreate(array $attributes)
@@ -33,7 +33,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static OrderInterface|Proxy last(string $sortedField = 'id')
  * @method static OrderInterface|Proxy random(array $attributes = [])
  * @method static OrderInterface|Proxy randomOrCreate(array $attributes = [])
- * @method static OrderRepository|RepositoryProxy repository()
+ * @method static OrderRepository|ProxyRepositoryDecorator repository()
  * @method static OrderInterface[]|Proxy[] all()
  * @method static OrderInterface[]|Proxy[] createMany(int $number, array|callable $attributes = [])
  * @method static OrderInterface[]|Proxy[] createSequence(iterable|callable $sequence)
@@ -48,7 +48,7 @@ final class OrderFactory extends AbstractModelFactory implements FactoryWithMode
     use WithCustomerTrait;
     use WithCountryTrait;
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return self::$modelClass ?? Order::class;
     }

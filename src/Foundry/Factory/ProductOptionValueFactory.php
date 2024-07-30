@@ -17,13 +17,13 @@ use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithCodeTrait;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Product\Model\ProductOptionValue;
 use Sylius\Component\Product\Model\ProductOptionValueInterface;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @extends AbstractModelFactory<ProductOptionValueInterface>
  *
- * @method        ProductOptionValueInterface|Proxy create(array|callable $attributes = [])
+ * @method        ProductOptionValueInterface|Proxy create(array|callable $attributes = [], bool $noProxy = false)
  * @method static ProductOptionValueInterface|Proxy createOne(array $attributes = [])
  * @method static ProductOptionValueInterface|Proxy find(object|array|mixed $criteria)
  * @method static ProductOptionValueInterface|Proxy findOrCreate(array $attributes)
@@ -31,7 +31,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static ProductOptionValueInterface|Proxy last(string $sortedField = 'id')
  * @method static ProductOptionValueInterface|Proxy random(array $attributes = [])
  * @method static ProductOptionValueInterface|Proxy randomOrCreate(array $attributes = [])
- * @method static EntityRepository|RepositoryProxy repository()
+ * @method static EntityRepository|ProxyRepositoryDecorator repository()
  * @method static ProductOptionValueInterface[]|Proxy[] all()
  * @method static ProductOptionValueInterface[]|Proxy[] createMany(int $number, array|callable $attributes = [])
  * @method static ProductOptionValueInterface[]|Proxy[] createSequence(iterable|callable $sequence)
@@ -44,7 +44,7 @@ final class ProductOptionValueFactory extends AbstractModelFactory implements Fa
     use WithModelClassTrait;
     use WithCodeTrait;
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return ProductOptionValue::class;
     }

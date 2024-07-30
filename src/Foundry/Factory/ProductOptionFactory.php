@@ -18,13 +18,13 @@ use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithNameTrait;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductOptionRepository;
 use Sylius\Component\Product\Model\ProductOption;
 use Sylius\Component\Product\Model\ProductOptionInterface;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @extends AbstractModelFactory<ProductOptionInterface>
  *
- * @method        ProductOptionInterface|Proxy create(array|callable $attributes = [])
+ * @method        ProductOptionInterface|Proxy create(array|callable $attributes = [], bool $noProxy = false)
  * @method static ProductOptionInterface|Proxy createOne(array $attributes = [])
  * @method static ProductOptionInterface|Proxy find(object|array|mixed $criteria)
  * @method static ProductOptionInterface|Proxy findOrCreate(array $attributes)
@@ -32,7 +32,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static ProductOptionInterface|Proxy last(string $sortedField = 'id')
  * @method static ProductOptionInterface|Proxy random(array $attributes = [])
  * @method static ProductOptionInterface|Proxy randomOrCreate(array $attributes = [])
- * @method static ProductOptionRepository|RepositoryProxy repository()
+ * @method static ProductOptionRepository|ProxyRepositoryDecorator repository()
  * @method static ProductOptionInterface[]|Proxy[] all()
  * @method static ProductOptionInterface[]|Proxy[] createMany(int $number, array|callable $attributes = [])
  * @method static ProductOptionInterface[]|Proxy[] createSequence(iterable|callable $sequence)
@@ -48,10 +48,10 @@ final class ProductOptionFactory extends AbstractModelFactory implements Factory
 
     public function withValues(array $values): self
     {
-        return $this->addState(['values' => $values]);
+        return $this->with(['values' => $values]);
     }
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return self::$modelClass ?? ProductOption::class;
     }

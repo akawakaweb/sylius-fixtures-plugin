@@ -13,15 +13,15 @@ declare(strict_types=1);
 
 namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State;
 
-use Zenstruck\Foundry\ModelFactory;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
- * @mixin ModelFactory
+ * @mixin PersistentProxyObjectFactory
  */
 trait WithPasswordTrait
 {
     public function withPassword(string $password): self
     {
-        return $this->addState(['password' => $password]);
+        return $this->with(['password' => $password]);
     }
 }

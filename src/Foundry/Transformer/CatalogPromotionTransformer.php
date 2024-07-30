@@ -17,7 +17,7 @@ use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\CatalogPromotionActionFactor
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\CatalogPromotionScopeFactory;
 use Sylius\Component\Core\Model\CatalogPromotionScopeInterface;
 use Sylius\Component\Promotion\Model\CatalogPromotionActionInterface;
-use Zenstruck\Foundry\Proxy;
+use Zenstruck\Foundry\Persistence\Proxy;
 
 final class CatalogPromotionTransformer implements TransformerInterface
 {

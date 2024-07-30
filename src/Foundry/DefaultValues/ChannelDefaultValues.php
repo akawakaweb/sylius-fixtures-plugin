@@ -19,7 +19,7 @@ use Faker\Generator;
 use Sylius\Component\Currency\Model\CurrencyInterface;
 use Sylius\Component\Locale\Model\LocaleInterface;
 use function Zenstruck\Foundry\lazy;
-use Zenstruck\Foundry\Proxy;
+use Zenstruck\Foundry\Persistence\Proxy;
 
 final class ChannelDefaultValues implements DefaultValuesInterface
 {

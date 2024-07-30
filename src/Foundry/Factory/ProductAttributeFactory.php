@@ -21,13 +21,13 @@ use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithTypeTrait;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Product\Model\ProductAttribute;
 use Sylius\Component\Product\Model\ProductAttributeInterface;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @extends AbstractModelFactory<ProductAttributeInterface>
  *
- * @method        ProductAttributeInterface|Proxy create(array|callable $attributes = [])
+ * @method        ProductAttributeInterface|Proxy create(array|callable $attributes = [], bool $noProxy = false)
  * @method static ProductAttributeInterface|Proxy createOne(array $attributes = [])
  * @method static ProductAttributeInterface|Proxy find(object|array|mixed $criteria)
  * @method static ProductAttributeInterface|Proxy findOrCreate(array $attributes)
@@ -35,7 +35,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static ProductAttributeInterface|Proxy last(string $sortedField = 'id')
  * @method static ProductAttributeInterface|Proxy random(array $attributes = [])
  * @method static ProductAttributeInterface|Proxy randomOrCreate(array $attributes = [])
- * @method static EntityRepository|RepositoryProxy repository()
+ * @method static EntityRepository|ProxyRepositoryDecorator repository()
  * @method static ProductAttributeInterface[]|Proxy[] all()
  * @method static ProductAttributeInterface[]|Proxy[] createMany(int $number, array|callable $attributes = [])
  * @method static ProductAttributeInterface[]|Proxy[] createSequence(iterable|callable $sequence)
@@ -52,7 +52,7 @@ final class ProductAttributeFactory extends AbstractModelFactory implements Fact
     use TranslatableTrait;
     use WithConfigurationTrait;
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return self::$modelClass ?? ProductAttribute::class;
     }

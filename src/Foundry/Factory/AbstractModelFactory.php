@@ -16,14 +16,14 @@ namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\DefaultValues\DefaultValuesInterface;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Initiator\InitiatorInterface;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Transformer\TransformerInterface;
-use Zenstruck\Foundry\ModelFactory;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
  * @template TModel of object
  *
- * @template-extends ModelFactory<TModel>
+ * @template-extends PersistentProxyObjectFactory<TModel>
  */
-abstract class AbstractModelFactory extends ModelFactory
+abstract class AbstractModelFactory extends PersistentProxyObjectFactory
 {
     public function __construct(
         private DefaultValuesInterface $defaultValues,
@@ -33,12 +33,12 @@ abstract class AbstractModelFactory extends ModelFactory
         parent::__construct();
     }
 
-    protected function getDefaults(): array
+    protected function defaults(): array
     {
         return ($this->defaultValues)(self::faker());
     }
 
-    protected function initialize(): ModelFactory
+    protected function initialize(): PersistentProxyObjectFactory
     {
         return $this
             ->beforeInstantiate([$this->transformer, 'transform'])

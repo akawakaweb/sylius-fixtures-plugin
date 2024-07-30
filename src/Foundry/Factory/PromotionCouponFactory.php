@@ -16,13 +16,13 @@ namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory;
 use Sylius\Bundle\PromotionBundle\Doctrine\ORM\PromotionCouponRepository;
 use Sylius\Component\Core\Model\PromotionCoupon;
 use Sylius\Component\Core\Model\PromotionCouponInterface;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @extends AbstractModelFactory<PromotionCouponInterface>
  *
- * @method        PromotionCouponInterface|Proxy create(array|callable $attributes = [])
+ * @method        PromotionCouponInterface|Proxy create(array|callable $attributes = [], bool $noProxy = false)
  * @method static PromotionCouponInterface|Proxy createOne(array $attributes = [])
  * @method static PromotionCouponInterface|Proxy find(object|array|mixed $criteria)
  * @method static PromotionCouponInterface|Proxy findOrCreate(array $attributes)
@@ -30,7 +30,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static PromotionCouponInterface|Proxy last(string $sortedField = 'id')
  * @method static PromotionCouponInterface|Proxy random(array $attributes = [])
  * @method static PromotionCouponInterface|Proxy randomOrCreate(array $attributes = [])
- * @method static PromotionCouponRepository|RepositoryProxy repository()
+ * @method static PromotionCouponRepository|ProxyRepositoryDecorator repository()
  * @method static PromotionCouponInterface[]|Proxy[] all()
  * @method static PromotionCouponInterface[]|Proxy[] createMany(int $number, array|callable $attributes = [])
  * @method static PromotionCouponInterface[]|Proxy[] createSequence(iterable|callable $sequence)
@@ -42,7 +42,7 @@ final class PromotionCouponFactory extends AbstractModelFactory implements Facto
 {
     use WithModelClassTrait;
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return self::$modelClass ?? PromotionCoupon::class;
     }

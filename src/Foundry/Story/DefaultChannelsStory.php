@@ -31,7 +31,7 @@ final class DefaultChannelsStory extends Story implements DefaultChannelsStoryIn
             ->withName('Fashion Web Store')
             ->withCode('FASHION_WEB')
             ->withDefaultLocale($this->defaultLocaleCode)
-            ->withAttributes(['baseCurrency' => 'USD'])
+            ->with(['baseCurrency' => 'USD'])
             ->withCurrencies(['USD'])
             ->enabled()
             ->withHostname($this->fixturesHostname)

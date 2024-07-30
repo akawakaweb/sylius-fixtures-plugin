@@ -21,7 +21,7 @@ use Sylius\Component\Core\Model\ShippingMethodInterface;
 use Sylius\Component\Locale\Model\LocaleInterface;
 use Sylius\Component\Shipping\Calculator\DefaultCalculators;
 use Webmozart\Assert\Assert;
-use Zenstruck\Foundry\Proxy;
+use Zenstruck\Foundry\Persistence\Proxy;
 
 final class ShippingMethodUpdater implements UpdaterInterface
 {

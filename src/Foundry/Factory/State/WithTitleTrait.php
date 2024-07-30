@@ -13,15 +13,15 @@ declare(strict_types=1);
 
 namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State;
 
-use Zenstruck\Foundry\ModelFactory;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
- * @mixin ModelFactory
+ * @mixin PersistentProxyObjectFactory
  */
 trait WithTitleTrait
 {
     public function withTitle(string $title): self
     {
-        return $this->addState(['title' => $title]);
+        return $this->with(['title' => $title]);
     }
 }

@@ -16,7 +16,7 @@ namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Configurator;
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\FactoryWithModelClassAwareInterface;
 use Sylius\Component\Resource\Metadata\MetadataInterface;
 use Sylius\Component\Resource\Metadata\RegistryInterface;
-use Zenstruck\Foundry\ModelFactory;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 final class FactoryConfigurator
 {
@@ -29,12 +29,12 @@ final class FactoryConfigurator
 
     public function configure(FactoryWithModelClassAwareInterface $factory): void
     {
-        if (!$factory instanceof ModelFactory) {
+        if (!$factory instanceof PersistentProxyObjectFactory) {
             return;
         }
 
         /** @var class-string|null $modelClass */
-        $modelClass = $this->getModelClass($factory::getEntityClass());
+        $modelClass = $this->getModelClass($factory::class());
 
         if (null === $modelClass) {
             return;

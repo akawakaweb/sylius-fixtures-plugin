@@ -16,14 +16,14 @@ namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Core\Model\OrderSequence;
 use Sylius\Component\Core\Model\OrderSequenceInterface;
-use Zenstruck\Foundry\ModelFactory;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
- * @extends ModelFactory<OrderSequenceInterface>
+ * @extends PersistentProxyObjectFactory<OrderSequenceInterface>
  *
- * @method        OrderSequenceInterface|Proxy create(array|callable $attributes = [])
+ * @method        OrderSequenceInterface|Proxy create(array|callable $attributes = [], bool $noProxy = false)
  * @method static OrderSequenceInterface|Proxy createOne(array $attributes = [])
  * @method static OrderSequenceInterface|Proxy find(object|array|mixed $criteria)
  * @method static OrderSequenceInterface|Proxy findOrCreate(array $attributes)
@@ -31,7 +31,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static OrderSequenceInterface|Proxy last(string $sortedField = 'id')
  * @method static OrderSequenceInterface|Proxy random(array $attributes = [])
  * @method static OrderSequenceInterface|Proxy randomOrCreate(array $attributes = [])
- * @method static EntityRepository|RepositoryProxy repository()
+ * @method static EntityRepository|ProxyRepositoryDecorator repository()
  * @method static OrderSequenceInterface[]|Proxy[] all()
  * @method static OrderSequenceInterface[]|Proxy[] createMany(int $number, array|callable $attributes = [])
  * @method static OrderSequenceInterface[]|Proxy[] createSequence(iterable|callable $sequence)
@@ -39,16 +39,16 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static OrderSequenceInterface[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
  * @method static OrderSequenceInterface[]|Proxy[] randomSet(int $number, array $attributes = [])
  */
-final class OrderSequenceFactory extends ModelFactory implements FactoryWithModelClassAwareInterface
+final class OrderSequenceFactory extends PersistentProxyObjectFactory implements FactoryWithModelClassAwareInterface
 {
     use WithModelClassTrait;
 
-    protected function getDefaults(): array
+    public function defaults(): array
     {
         return [];
     }
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return self::$modelClass ?? OrderSequence::class;
     }

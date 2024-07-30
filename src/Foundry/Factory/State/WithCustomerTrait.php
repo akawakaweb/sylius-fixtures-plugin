@@ -14,16 +14,16 @@ declare(strict_types=1);
 namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State;
 
 use Sylius\Component\Core\Model\CustomerInterface;
-use Zenstruck\Foundry\ModelFactory;
-use Zenstruck\Foundry\Proxy;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
+use Zenstruck\Foundry\Persistence\Proxy;
 
 /**
- * @mixin ModelFactory
+ * @mixin PersistentProxyObjectFactory
  */
 trait WithCustomerTrait
 {
     public function withCustomer(Proxy|CustomerInterface|string $customer): self
     {
-        return $this->addState(['customer' => $customer]);
+        return $this->with(['customer' => $customer]);
     }
 }

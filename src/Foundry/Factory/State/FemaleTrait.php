@@ -14,15 +14,15 @@ declare(strict_types=1);
 namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State;
 
 use Sylius\Component\Customer\Model\CustomerInterface;
-use Zenstruck\Foundry\ModelFactory;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
- * @mixin ModelFactory
+ * @mixin PersistentProxyObjectFactory
  */
 trait FemaleTrait
 {
     public function female(): self
     {
-        return $this->addState(['gender' => CustomerInterface::FEMALE_GENDER]);
+        return $this->with(['gender' => CustomerInterface::FEMALE_GENDER]);
     }
 }

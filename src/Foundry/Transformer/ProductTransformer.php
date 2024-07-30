@@ -25,7 +25,7 @@ use Sylius\Component\Product\Model\ProductAttributeInterface;
 use Sylius\Component\Product\Model\ProductAttributeValueInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Webmozart\Assert\Assert;
-use Zenstruck\Foundry\Proxy;
+use Zenstruck\Foundry\Persistence\Proxy;
 
 final class ProductTransformer implements TransformerInterface
 {
@@ -87,7 +87,7 @@ final class ProductTransformer implements TransformerInterface
             $productAttribute = ProductAttributeFactory::findOrCreate(['code' => $code]);
 
             if (!$productAttribute->isTranslatable()) {
-                $productAttributesValues[] = $this->configureProductAttributeValue($productAttribute->object(), null, $value);
+                $productAttributesValues[] = $this->configureProductAttributeValue($productAttribute->_real(), null, $value);
 
                 continue;
             }
@@ -95,7 +95,7 @@ final class ProductTransformer implements TransformerInterface
             /** @var Proxy<LocaleInterface> $locale */
             foreach (LocaleFactory::all() as $locale) {
                 $localeCode = $locale->getCode() ?? '';
-                $productAttributesValues[] = $this->configureProductAttributeValue($productAttribute->object(), $localeCode, $value);
+                $productAttributesValues[] = $this->configureProductAttributeValue($productAttribute->_real(), $localeCode, $value);
             }
         }
 

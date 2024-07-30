@@ -14,14 +14,14 @@ declare(strict_types=1);
 namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Story;
 
 use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\CurrencyFactory;
-use Zenstruck\Foundry\Factory;
+use function Zenstruck\Foundry\Persistence\flush_after;
 use Zenstruck\Foundry\Story;
 
 final class DefaultCurrenciesStory extends Story implements DefaultCurrenciesStoryInterface
 {
     public function build(): void
     {
-        Factory::delayFlush(function () {
+        flush_after(function () {
             foreach ($this->getCurrencyCodes() as $currencyCode) {
                 CurrencyFactory::new()->withCode($currencyCode)->create();
             }

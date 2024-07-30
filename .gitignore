@@ -16,3 +16,7 @@
 # Symfony CLI https://symfony.com/doc/current/setup/symfony_server.html#different-php-settings-per-project
 /.php-version
 /php.ini
+
+# Local web server files
+supervisord.log
+

@@ -11,7 +11,7 @@
         "php": "^8.0",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "sylius/core-bundle": "^1.12",
-        "zenstruck/foundry": "^1.31"
+        "zenstruck/foundry": "^1.38"
     },
     "require-dev": {
         "behat/behat": "^3.6.1",

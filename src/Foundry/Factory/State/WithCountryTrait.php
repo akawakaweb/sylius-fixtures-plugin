@@ -14,16 +14,16 @@ declare(strict_types=1);
 namespace Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State;
 
 use Sylius\Component\Addressing\Model\CountryInterface;
-use Zenstruck\Foundry\ModelFactory;
-use Zenstruck\Foundry\Proxy;
+use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
+use Zenstruck\Foundry\Persistence\Proxy;
 
 /**
- * @mixin ModelFactory
+ * @mixin PersistentProxyObjectFactory
  */
 trait WithCountryTrait
 {
     public function withCountry(Proxy|CountryInterface|string $country): self
     {
-        return $this->addState(['country' => $country]);
+        return $this->with(['country' => $country]);
     }
 }

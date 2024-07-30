@@ -23,13 +23,13 @@ use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithPhoneNumberTrait;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\CustomerRepository;
 use Sylius\Component\Core\Model\Customer;
 use Sylius\Component\Core\Model\CustomerInterface;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @extends AbstractModelFactory<CustomerInterface>
  *
- * @method        CustomerInterface|Proxy create(array|callable $attributes = [])
+ * @method        CustomerInterface|Proxy create(array|callable $attributes = [], bool $noProxy = false)
  * @method static CustomerInterface|Proxy createOne(array $attributes = [])
  * @method static CustomerInterface|Proxy find(object|array|mixed $criteria)
  * @method static CustomerInterface|Proxy findOrCreate(array $attributes)
@@ -37,7 +37,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static CustomerInterface|Proxy last(string $sortedField = 'id')
  * @method static CustomerInterface|Proxy random(array $attributes = [])
  * @method static CustomerInterface|Proxy randomOrCreate(array $attributes = [])
- * @method static CustomerRepository|RepositoryProxy repository()
+ * @method static CustomerRepository|ProxyRepositoryDecorator repository()
  * @method static CustomerInterface[]|Proxy[] all()
  * @method static CustomerInterface[]|Proxy[] createMany(int $number, array|callable $attributes = [])
  * @method static CustomerInterface[]|Proxy[] createSequence(iterable|callable $sequence)
@@ -56,7 +56,7 @@ final class CustomerFactory extends AbstractModelFactory implements FactoryWithM
     use WithPhoneNumberTrait;
     use WithBirthdayTrait;
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return self::$modelClass ?? Customer::class;
     }

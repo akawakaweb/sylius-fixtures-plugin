@@ -21,13 +21,13 @@ use Akawakaweb\SyliusFixturesPlugin\Foundry\Factory\State\WithNameTrait;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\PaymentMethodRepository;
 use Sylius\Component\Core\Model\PaymentMethod;
 use Sylius\Component\Core\Model\PaymentMethodInterface;
-use Zenstruck\Foundry\Proxy;
-use Zenstruck\Foundry\RepositoryProxy;
+use Zenstruck\Foundry\Persistence\Proxy;
+use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
 
 /**
  * @extends AbstractModelFactory<PaymentMethodInterface>
  *
- * @method        PaymentMethodInterface|Proxy create(array|callable $attributes = [])
+ * @method        PaymentMethodInterface|Proxy create(array|callable $attributes = [], bool $noProxy = false)
  * @method static PaymentMethodInterface|Proxy createOne(array $attributes = [])
  * @method static PaymentMethodInterface|Proxy find(object|array|mixed $criteria)
  * @method static PaymentMethodInterface|Proxy findOrCreate(array $attributes)
@@ -35,7 +35,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  * @method static PaymentMethodInterface|Proxy last(string $sortedField = 'id')
  * @method static PaymentMethodInterface|Proxy random(array $attributes = [])
  * @method static PaymentMethodInterface|Proxy randomOrCreate(array $attributes = [])
- * @method static PaymentMethodRepository|RepositoryProxy repository()
+ * @method static PaymentMethodRepository|ProxyRepositoryDecorator repository()
  * @method static PaymentMethodInterface[]|Proxy[] all()
  * @method static PaymentMethodInterface[]|Proxy[] createMany(int $number, array|callable $attributes = [])
  * @method static PaymentMethodInterface[]|Proxy[] createSequence(iterable|callable $sequence)
@@ -54,25 +54,25 @@ final class PaymentMethodFactory extends AbstractModelFactory implements Factory
 
     public function withInstructions(string $instructions): self
     {
-        return $this->addState(['instructions' => $instructions]);
+        return $this->with(['instructions' => $instructions]);
     }
 
     public function withGatewayName(string $gatewayName): self
     {
-        return $this->addState(['gatewayName' => $gatewayName]);
+        return $this->with(['gatewayName' => $gatewayName]);
     }
 
     public function withGatewayFactory(string $gatewayFactory): self
     {
-        return $this->addState(['gatewayFactory' => $gatewayFactory]);
+        return $this->with(['gatewayFactory' => $gatewayFactory]);
     }
 
     public function withGatewayConfig(array $gatewayConfig): self
     {
-        return $this->addState(['gatewayConfig' => $gatewayConfig]);
+        return $this->with(['gatewayConfig' => $gatewayConfig]);
     }
 
-    protected static function getClass(): string
+    public static function class(): string
     {
         return self::$modelClass ?? PaymentMethod::class;
     }
